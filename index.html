@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>রসনা ঘর | Restaurant</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #fffaf2;
+      color: #2d241f;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #4f2f20;
+      color: white;
+      padding: 18px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+
+    .hero {
+      padding: 90px 7%;
+      text-align: center;
+      background: #f3dfc1;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      margin-bottom: 25px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #a94f24;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 8px;
+      text-decoration: none;
+      margin: 5px;
+    }
+
+    section {
+      padding: 55px 7%;
+    }
+
+    .title {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 32px;
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+    }
+
+    .price {
+      color: #a94f24;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .about {
+      background: #f1e7d8;
+      text-align: center;
+    }
+
+    footer {
+      background: #2d1b13;
+      color: white;
+      text-align: center;
+      padding: 25px;
+    }
+
+    @media (max-width: 800px) {
+      .menu {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      nav {
+        display: none;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .menu {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">🍽️ রসনা ঘর</div>
+
+    <nav>
+      <a href="#home">হোম</a>
+      <a href="#menu">মেনু</a>
+      <a href="#about">আমাদের সম্পর্কে</a>
+      <a href="#contact">যোগাযোগ</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <h1>স্বাদের সাথে ভালোবাসা</h1>
+
+    <p>
+      পরিবার ও বন্ধুদের সাথে উপভোগ করুন আমাদের সুস্বাদু খাবার।
+    </p>
+
+    <a href="#menu" class="btn">মেনু দেখুন</a>
+    <a href="#contact" class="btn">যোগাযোগ</a>
+  </section>
+
+  <section id="menu">
+    <h2 class="title">🍴 জনপ্রিয় মেনু</h2>
+
+    <div class="menu">
+
+      <div class="card">
+        <h3>বাংলা থালি</h3>
+        <p>ভাত, ডাল, সবজি ও মজাদার আয়োজন</p>
+        <div class="price">৳৩৫০</div>
+      </div>
+
+      <div class="card">
+        <h3>চিকেন গ্রিল</h3>
+        <p>সুস্বাদু ও জুসি চিকেন গ্রিল</p>
+        <div class="price">৳৪২০</div>
+      </div>
+
+      <div class="card">
+        <h3>সবজি প্ল্যাটার</h3>
+        <p>তাজা সবজি দিয়ে তৈরি বিশেষ প্ল্যাটার</p>
+        <div class="price">৳২৮০</div>
+      </div>
+
+      <div class="card">
+        <h3>মিষ্টি দই</h3>
+        <p>খাবারের শেষে মিষ্টি স্বাদের আয়োজন</p>
+        <div class="price">৳১২০</div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <h2 class="title">আমাদের সম্পর্কে</h2>
+
+    <p>
+      রসনা ঘর একটি সম্পূর্ণ ডেমো রেস্টুরেন্ট ওয়েবসাইট।
+      এখানে খাবার, যোগাযোগ ও রেস্টুরেন্টের তথ্য সুন্দরভাবে দেখানো হয়েছে।
+    </p>
+  </section>
+
+  <section id="contact">
+    <h2 class="title">📞 যোগাযোগ</h2>
+
+    <div class="card">
+      <p>📍 ঢাকা, বাংলাদেশ</p>
+      <p>📞 01XXXXXXXXX</p>
+      <p>✉️ info@rosnaghor.com</p>
+      <p>🕐 প্রতিদিন: সকাল ১১টা – রাত ১০টা</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 রসনা ঘর | Original Demo Website</p>
+  </footer>
+
+</body>
+</html>
