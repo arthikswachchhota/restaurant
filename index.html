@@ -1,218 +1,309 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>রসনা ঘর | Fast Food</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<title>রসনা ঘর | Fast Food</title>
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #fffaf3;
-      color: #29231f;
-      line-height: 1.6;
-    }
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-    header {
-      background: #3b2418;
-      color: white;
-      padding: 18px 7%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+body{
+  font-family:Arial,sans-serif;
+  background:#fff8ef;
+  color:#29211d;
+}
 
-    .logo {
-      font-size: 25px;
-      font-weight: bold;
-    }
+header{
+  background:#321b12;
+  color:white;
+  padding:18px 7%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 20px;
-    }
+.logo{
+  font-size:25px;
+  font-weight:bold;
+}
 
-    .hero {
-      padding: 90px 7%;
-      text-align: center;
-      background: #f4dfbd;
-    }
+nav a{
+  color:white;
+  text-decoration:none;
+  margin-left:20px;
+}
 
-    .hero h1 {
-      font-size: 48px;
-      margin-bottom: 15px;
-    }
+.hero{
+  min-height:520px;
+  padding:100px 7%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:
+    linear-gradient(rgba(40,20,10,.55),rgba(40,20,10,.55)),
+    url("https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1600&q=80")
+    center/cover;
+  color:white;
+}
 
-    .hero p {
-      font-size: 18px;
-      margin-bottom: 25px;
-    }
+.hero h1{
+  font-size:52px;
+  margin-bottom:15px;
+}
 
-    .btn {
-      display: inline-block;
-      background: #d65a28;
-      color: white;
-      padding: 12px 25px;
-      border-radius: 8px;
-      text-decoration: none;
-      margin: 5px;
-    }
+.hero p{
+  font-size:20px;
+  margin-bottom:25px;
+}
 
-    section {
-      padding: 55px 7%;
-    }
+.btn{
+  display:inline-block;
+  background:#e45f27;
+  color:white;
+  padding:13px 28px;
+  border-radius:30px;
+  text-decoration:none;
+  margin:5px;
+  font-weight:bold;
+}
 
-    .title {
-      text-align: center;
-      margin-bottom: 30px;
-      font-size: 32px;
-    }
+section{
+  padding:65px 7%;
+}
 
-    .menu {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
+.title{
+  text-align:center;
+  font-size:34px;
+  margin-bottom:35px;
+}
 
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 14px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-      text-align: center;
-    }
+.menu{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:22px;
+}
 
-    .card h3 {
-      margin-bottom: 10px;
-    }
+.card{
+  background:white;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 8px 25px rgba(0,0,0,.10);
+  transition:.3s;
+}
 
-    .price {
-      color: #d65a28;
-      font-size: 20px;
-      font-weight: bold;
-      margin-top: 10px;
-    }
+.card:hover{
+  transform:translateY(-7px);
+}
 
-    .about {
-      background: #eee0cd;
-      text-align: center;
-    }
+.card img{
+  width:100%;
+  height:210px;
+  object-fit:cover;
+}
 
-    footer {
-      background: #26170f;
-      color: white;
-      text-align: center;
-      padding: 25px;
-    }
+.card-content{
+  padding:20px;
+  text-align:center;
+}
 
-    @media (max-width: 800px) {
-      .menu {
-        grid-template-columns: repeat(2, 1fr);
-      }
+.card h3{
+  font-size:22px;
+  margin-bottom:8px;
+}
 
-      .hero h1 {
-        font-size: 36px;
-      }
+.card p{
+  color:#777;
+}
 
-      nav {
-        display: none;
-      }
-    }
+.price{
+  color:#e45f27;
+  font-size:21px;
+  font-weight:bold;
+  margin:12px 0;
+}
 
-    @media (max-width: 500px) {
-      .menu {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+.order{
+  display:inline-block;
+  background:#321b12;
+  color:white;
+  padding:9px 18px;
+  border-radius:20px;
+  text-decoration:none;
+}
+
+.about{
+  background:#f1dfca;
+  text-align:center;
+}
+
+.contact{
+  text-align:center;
+}
+
+.contact-box{
+  max-width:600px;
+  margin:auto;
+  background:white;
+  padding:30px;
+  border-radius:18px;
+  box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.contact-box p{
+  margin:10px;
+  font-size:18px;
+}
+
+footer{
+  background:#24140d;
+  color:white;
+  text-align:center;
+  padding:25px;
+}
+
+@media(max-width:900px){
+  .menu{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:600px){
+  header{
+    justify-content:center;
+  }
+
+  nav{
+    display:none;
+  }
+
+  .hero h1{
+    font-size:38px;
+  }
+
+  .menu{
+    grid-template-columns:1fr;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <div class="logo">🍔 রসনা ঘর</div>
+<header>
+  <div class="logo">🍔 রসনা ঘর</div>
 
-    <nav>
-      <a href="#home">হোম</a>
-      <a href="#menu">মেনু</a>
-      <a href="#about">আমাদের সম্পর্কে</a>
-      <a href="#contact">যোগাযোগ</a>
-    </nav>
-  </header>
+  <nav>
+    <a href="#home">হোম</a>
+    <a href="#menu">মেনু</a>
+    <a href="#about">আমাদের সম্পর্কে</a>
+    <a href="#contact">যোগাযোগ</a>
+  </nav>
+</header>
 
-  <section class="hero" id="home">
+<section class="hero" id="home">
+  <div>
     <h1>স্বাদের সাথে ভালোবাসা ❤️</h1>
 
     <p>
       গরম গরম ফাস্ট ফুড, সুন্দর পরিবেশ এবং দারুণ স্বাদের আয়োজন।
     </p>
 
-    <a href="#menu" class="btn">মেনু দেখুন</a>
-    <a href="#contact" class="btn">যোগাযোগ</a>
-  </section>
+    <a href="#menu" class="btn">🍔 মেনু দেখুন</a>
+    <a href="#contact" class="btn">📞 যোগাযোগ</a>
+  </div>
+</section>
 
-  <section id="menu">
-    <h2 class="title">🍔 আমাদের জনপ্রিয় মেনু</h2>
+<section id="menu">
 
-    <div class="menu">
+  <h2 class="title">🍴 আমাদের জনপ্রিয় মেনু</h2>
 
-      <div class="card">
+  <div class="menu">
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80">
+      <div class="card-content">
         <h3>চিকেন বার্গার</h3>
         <p>ক্রিসপি চিকেন ও ফ্রেশ সবজি</p>
         <div class="price">৳২২০</div>
+        <a class="order" href="#contact">অর্ডার করুন</a>
       </div>
+    </div>
 
-      <div class="card">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=800&q=80">
+      <div class="card-content">
         <h3>চিকেন পিজ্জা</h3>
         <p>চিজ ও চিকেনের সুস্বাদু কম্বিনেশন</p>
         <div class="price">৳৪৫০</div>
+        <a class="order" href="#contact">অর্ডার করুন</a>
       </div>
+    </div>
 
-      <div class="card">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=800&q=80">
+      <div class="card-content">
         <h3>ফ্রেঞ্চ ফ্রাই</h3>
         <p>ক্রিসপি ও মজাদার ফ্রাই</p>
         <div class="price">৳১৫০</div>
+        <a class="order" href="#contact">অর্ডার করুন</a>
       </div>
+    </div>
 
-      <div class="card">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=800&q=80">
+      <div class="card-content">
         <h3>চিকেন শাওয়ারমা</h3>
         <p>ফ্রেশ চিকেন ও স্পেশাল সস</p>
         <div class="price">৳১৮০</div>
+        <a class="order" href="#contact">অর্ডার করুন</a>
       </div>
-
     </div>
-  </section>
 
-  <section class="about" id="about">
-    <h2 class="title">আমাদের সম্পর্কে</h2>
+  </div>
+</section>
 
-    <p>
-      রসনা ঘর একটি সম্পূর্ণ ডেমো ফাস্ট-ফুড ওয়েবসাইট।
-      এই ডিজাইনটি আমাদের নিজস্ব ডেমো হিসেবে তৈরি করা হয়েছে।
-    </p>
-  </section>
+<section class="about" id="about">
 
-  <section id="contact">
-    <h2 class="title">📞 যোগাযোগ</h2>
+  <h2 class="title">আমাদের সম্পর্কে</h2>
 
-    <div class="card">
-      <p>📍 ঢাকা, বাংলাদেশ</p>
-      <p>📞 01XXXXXXXXX</p>
-      <p>✉️ info@rosnaghor.com</p>
-      <p>🕐 প্রতিদিন: সকাল ১০টা – রাত ১১টা</p>
-    </div>
-  </section>
+  <p>
+    রসনা ঘর একটি আধুনিক ফাস্ট-ফুড রেস্টুরেন্ট ডেমো।
+    এখানে সুস্বাদু খাবার ও সহজ অনলাইন যোগাযোগের সুবিধা রাখা হয়েছে।
+  </p>
 
-  <footer>
-    <p>© 2026 রসনা ঘর | Original Demo Website</p>
-  </footer>
+</section>
+
+<section class="contact" id="contact">
+
+  <h2 class="title">📞 যোগাযোগ ও অর্ডার</h2>
+
+  <div class="contact-box">
+
+    <p>📍 ঢাকা, বাংলাদেশ</p>
+    <p>📞 01XXXXXXXXX</p>
+    <p>✉️ info@rosnaghor.com</p>
+    <p>🕐 প্রতিদিন: সকাল ১০টা – রাত ১১টা</p>
+
+    <br>
+
+    <a class="btn" href="tel:01XXXXXXXXX">
+      📞 কল করুন
+    </a>
+
+  </div>
+
+</section>
+
+<footer>
+  <p>© 2026 রসনা ঘর | Original Restaurant Demo</p>
+</footer>
 
 </body>
 </html>
