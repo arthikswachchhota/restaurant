@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>فواز كافتيريا | Fawaz Cafeteria</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Tahoma, sans-serif;
+      background: #fffaf5;
+      color: #222;
+      line-height: 1.6;
+      direction: rtl;
+    }
+
+    header {
+      background: #111;
+      color: white;
+      padding: 18px 5%;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    .languages {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+
+    .languages button {
+      border: none;
+      background: #fff;
+      color: #111;
+      padding: 8px 13px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .languages button:hover {
+      background: #f5a623;
+      color: white;
+    }
+
+    .hero {
+      min-height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      padding: 60px 20px;
+      background:
+        linear-gradient(rgba(0,0,0,.58), rgba(0,0,0,.58)),
+        url("images/hamburger.jpg") center/cover no-repeat;
+    }
+
+    .hero-content {
+      max-width: 750px;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 7vw, 70px);
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 25px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 22px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .whatsapp {
+      background: #25D366;
+      color: white;
+    }
+
+    .call {
+      background: #f5a623;
+      color: white;
+    }
+
+    .map {
+      background: #4285f4;
+      color: white;
+    }
+
+    section {
+      max-width: 1200px;
+      margin: auto;
+      padding: 70px 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 34px;
+      margin-bottom: 35px;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0,0,0,.10);
+      transition: .25s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-body {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .card h3 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      color: #777;
+      margin-bottom: 15px;
+    }
+
+    .price {
+      font-weight: bold;
+      color: #e67e22;
+      margin-bottom: 15px;
+    }
+
+    .order-btn {
+      display: inline-block;
+      background: #111;
+      color: white;
+      text-decoration: none;
+      padding: 9px 18px;
+      border-radius: 20px;
+    }
+
+    .about {
+      background: #fff;
+      border-radius: 25px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,.06);
+    }
+
+    .about p {
+      max-width: 800px;
+      margin: auto;
+      font-size: 18px;
+      color: #555;
+    }
+
+    .location-box {
+      text-align: center;
+      background: #f7eee5;
+      border-radius: 25px;
+      padding: 40px 20px;
+    }
+
+    .location-box p {
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+
+    .reviews {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .review {
+      background: white;
+      padding: 25px;
+      border-radius: 18px;
+      box-shadow: 0 5px 18px rgba(0,0,0,.08);
+      text-align: center;
+    }
+
+    .stars {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .demo-note {
+      text-align: center;
+      color: #888;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .contact {
+      text-align: center;
+    }
+
+    footer {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    footer p {
+      margin: 5px;
+    }
+
+    body.ltr {
+      direction: ltr;
+    }
+
+    body.ltr .card-body,
+    body.ltr .about,
+    body.ltr .location-box,
+    body.ltr .contact {
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .menu-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .reviews {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav {
+        justify-content: center;
+      }
+
+      .logo {
+        width: 100%;
+        text-align: center;
+      }
+
+      .hero {
+        min-height: 450px;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card img {
+        height: 230px;
+      }
+
+      section {
+        padding: 50px 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="nav">
+
+      <div class="logo"
+           data-ar="فواز كافتيريا"
+           data-en="Fawaz Cafeteria"
+           data-bn="ফাওয়াজ ক্যাফেটেরিয়া">
+        فواز كافتيريا
+      </div>
+
+      <div class="languages">
+        <button onclick="setLanguage('ar')">العربية</button>
+        <button onclick="setLanguage('en')">English</button>
+        <button onclick="setLanguage('bn')">বাংলা</button>
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <h1
+        data-ar="فواز كافتيريا"
+        data-en="Fawaz Cafeteria"
+        data-bn="ফাওয়াজ ক্যাফেটেরিয়া">
+        فواز كافتيريا
+      </h1>
+
+      <p
+        data-ar="طعم لذيذ وخدمة مميزة"
+        data-en="Delicious food and great service"
+        data-bn="সুস্বাদু খাবার ও সুন্দর সার্ভিস">
+        طعم لذيذ وخدمة مميزة
+      </p>
+
+      <div class="buttons">
+
+        <a class="btn whatsapp"
+           href="https://wa.me/966571638203"
+           target="_blank"
+           data-ar="💬 اطلب عبر واتساب"
+           data-en="💬 Order on WhatsApp"
+           data-bn="💬 WhatsApp-এ অর্ডার করুন">
+          💬 اطلب عبر واتساب
+        </a>
+
+        <a class="btn call"
+           href="tel:+966571638203"
+           data-ar="📞 اتصل بنا"
+           data-en="📞 Call Us"
+           data-bn="📞 কল করুন">
+          📞 اتصل بنا
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- MENU -->
+  <section>
+
+    <h2 class="section-title"
+        data-ar="قائمة الطعام"
+        data-en="Our Menu"
+        data-bn="আমাদের মেনু">
+      قائمة الطعام
+    </h2>
+
+    <div class="menu-grid">
+
+      <!-- FATIRA -->
+      <div class="card">
+
+        <img src="images/fatira.jpg"
+             alt="Fatira">
+
+        <div class="card-body">
+
+          <h3
+            data-ar="فطيرة"
+            data-en="Fatira"
+            data-bn="ফাতিরা">
+            فطيرة
+          </h3>
+
+          <p
+            data-ar="فطيرة طازجة ولذيذة"
+            data-en="Fresh and delicious pastry"
+            data-bn="তাজা ও সুস্বাদু ফাতিরা">
+            فطيرة طازجة ولذيذة
+          </p>
+
+          <div class="price"
+               data-ar="السعر عند الطلب"
+               data-en="Price on request"
+               data-bn="মূল্য জানতে যোগাযোগ করুন">
+            السعر عند الطلب
+          </div>
+
+          <a class="order-btn"
+             href="https://wa.me/966571638203?text=I%20want%20to%20order%20Fatira"
+             target="_blank"
+             data-ar="اطلب الآن"
+             data-en="Order Now"
+             data-bn="এখনই অর্ডার করুন">
+            اطلب الآن
+          </a>
+
+        </div>
+      </div>
+
+
+      <!-- HAMBURGER -->
+      <div class="card">
+
+        <img src="images/hamburger.jpg"
+             alt="Hamburger">
+
+        <div class="card-body">
+
+          <h3
+            data-ar="همبرجر"
+            data-en="Hamburger"
+            data-bn="হামবার্গার">
+            همبرجر
+          </h3>
+
+          <p
+            data-ar="همبرجر طازج وشهي"
+            data-en="Fresh and juicy hamburger"
+            data-bn="তাজা ও সুস্বাদু হামবার্গার">
+            همبرجر طازج وشهي
+          </p>
+
+          <div class="price"
+               data-ar="السعر عند الطلب"
+               data-en="Price on request"
+               data-bn="মূল্য জানতে যোগাযোগ করুন">
+            السعر عند الطلب
+          </div>
+
+          <a class="order-btn"
+             href="https://wa.me/966571638203?text=I%20want%20to%20order%20Hamburger"
+             target="_blank"
+             data-ar="اطلب الآن"
+             data-en="Order Now"
+             data-bn="এখনই অর্ডার করুন">
+            اطلب الآن
+          </a>
+
+        </div>
+      </div>
+
+
+      <!-- JUICE -->
+      <div class="card">
+
+        <img src="images/fresh-juice.jpg"
+             alt="Fresh Juice">
+
+        <div class="card-body">
+
+          <h3
+            data-ar="عصيرات طازجة"
+            data-en="Fresh Juice"
+            data-bn="তাজা জুস">
+            عصيرات طازجة
+          </h3>
+
+          <p
+            data-ar="عصير طازج ومنعش"
+            data-en="Fresh and refreshing juice"
+            data-bn="তাজা ও সতেজ জুস">
+            عصير طازج ومنعش
+          </p>
+
+          <div class="price"
+               data-ar="السعر عند الطلب"
+               data-en="Price on request"
+               data-bn="মূল্য জানতে যোগাযোগ করুন">
+            السعر عند الطلب
+          </div>
+
+          <a class="order-btn"
+             href="https://wa.me/966571638203?text=I%20want%20to%20order%20Fresh%20Juice"
+             target="_blank"
+             data-ar="اطلب الآن"
+             data-en="Order Now"
+             data-bn="এখনই অর্ডার করুন">
+            اطلب الآن
+          </a>
+
+        </div>
+      </div>
+
+
+      <!-- SANDWICH -->
+      <div class="card">
+
+        <img src="images/sandwich.jpg"
+             alt="Sandwich">
+
+        <div class="card-body">
+
+          <h3
+            data-ar="سندوتش"
+            data-en="Sandwich"
+            data-bn="স্যান্ডউইচ">
+            سندوتش
+          </h3>
+
+          <p
+            data-ar="سندوتش طازج ولذيذ"
+            data-en="Fresh and tasty sandwich"
+            data-bn="তাজা ও সুস্বাদু স্যান্ডউইচ">
+            سندوتش طازج ولذيذ
+          </p>
+
+          <div class="price"
+               data-ar="السعر عند الطلب"
+               data-en="Price on request"
+               data-bn="মূল্য জানতে যোগাযোগ করুন">
+            السعر عند الطلب
+          </div>
+
+          <a class="order-btn"
+             href="https://wa.me/966571638203?text=I%20want%20to%20order%20Sandwich"
+             target="_blank"
+             data-ar="اطلب الآن"
+             data-en="Order Now"
+             data-bn="এখনই অর্ডার করুন">
+            اطلب الآن
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ABOUT -->
+  <section>
+
+    <div class="about">
+
+      <h2 class="section-title"
+          data-ar="عن فواز كافتيريا"
+          data-en="About Fawaz Cafeteria"
+          data-bn="ফাওয়াজ ক্যাফেটেরিয়া সম্পর্কে">
+        عن فواز كافتيريا
+      </h2>
+
+      <p
+        data-ar="نقدم لكم أطعمة ومشروبات طازجة ولذيذة مع خدمة ودية."
+        data-en="We serve fresh and delicious food and drinks with friendly service."
+        data-bn="আমরা তাজা ও সুস্বাদু খাবার এবং পানীয় সুন্দর সার্ভিসের সাথে পরিবেশন করি।">
+        نقدم لكم أطعمة ومشروبات طازجة ولذيذة مع خدمة ودية.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- LOCATION -->
+  <section>
+
+    <div class="location-box">
+
+      <h2 class="section-title"
+          data-ar="موقعنا"
+          data-en="Our Location"
+          data-bn="আমাদের লোকেশন">
+        موقعنا
+      </h2>
+
+      <p
+        data-ar="📍 حي أم السلم، جدة 22373، المملكة العربية السعودية"
+        data-en="📍 Umm Al-Salam, Jeddah 22373, Saudi Arabia"
+        data-bn="📍 উম্ম আল-সালাম, জেদ্দা 22373, সৌদি আরব">
+        📍 حي أم السلم، جدة 22373، المملكة العربية السعودية
+      </p>
+
+      <a class="btn map"
+         href="https://maps.apple/p/xQxoXJSmhAFC3n"
+         target="_blank"
+         data-ar="📍 افتح الموقع في Apple Maps"
+         data-en="📍 Open in Apple Maps"
+         data-bn="📍 Apple Maps-এ লোকেশন দেখুন">
+        📍 افتح الموقع في Apple Maps
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- REVIEWS -->
+  <section>
+
+    <h2 class="section-title"
+        data-ar="آراء العملاء"
+        data-en="Customer Reviews"
+        data-bn="কাস্টমার রিভিউ">
+      آراء العملاء
+    </h2>
+
+    <div class="reviews">
+
+      <div class="review">
+
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+
+        <p
+          data-ar="طعم الطعام رائع."
+          data-en="The food tastes great."
+          data-bn="খাবারের স্বাদ খুব ভালো।">
+          طعم الطعام رائع.
+        </p>
+
+      </div>
+
+
+      <div class="review">
+
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+
+        <p
+          data-ar="خدمة جميلة وطعام لذيذ."
+          data-en="Great service and delicious food."
+          data-bn="সুন্দর সার্ভিস ও সুস্বাদু খাবার।">
+          خدمة جميلة وطعام لذيذ.
+        </p>
+
+      </div>
+
+
+      <div class="review">
+
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+
+        <p
+          data-ar="مكان جميل لتناول وجبة سريعة."
+          data-en="A nice place for a quick meal."
+          data-bn="দ্রুত খাবারের জন্য সুন্দর জায়গা।">
+          مكان جميل لتناول وجبة سريعة.
+        </p>
+
+      </div>
+
+    </div>
+
+    <p class="demo-note"
+       data-ar="* هذه تقييمات تجريبية للموقع وليست تقييمات عملاء حقيقية."
+       data-en="* These are demo reviews for the website, not real customer reviews."
+       data-bn="* এগুলো ওয়েবসাইটের Demo Review, বাস্তব কাস্টমার রিভিউ নয়।">
+      * هذه تقييمات تجريبية للموقع وليست تقييمات عملاء حقيقية.
+    </p>
+
+  </section>
+
+
+  <!-- CONTACT -->
+  <section>
+
+    <div class="contact">
+
+      <h2 class="section-title"
+          data-ar="تواصل معنا"
+          data-en="Contact Us"
+          data-bn="যোগাযোগ করুন">
+        تواصل معنا
+      </h2>
+
+      <div class="buttons">
+
+        <a class="btn whatsapp"
+           href="https://wa.me/966571638203"
+           target="_blank"
+           data-ar="💬 واتساب"
+           data-en="💬 WhatsApp"
+           data-bn="💬 WhatsApp">
+          💬 واتساب
+        </a>
+
+        <a class="btn call"
+           href="tel:+966571638203"
+           data-ar="📞 اتصال"
+           data-en="📞 Call"
+           data-bn="📞 কল">
+          📞 اتصال
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer>
+
+    <p
+      data-ar="فواز كافتيريا"
+      data-en="Fawaz Cafeteria"
+      data-bn="ফাওয়াজ ক্যাফেটেরিয়া">
+      فواز كافتيريا
+    </p>
+
+    <p
+      data-ar="© جميع الحقوق محفوظة"
+      data-en="© All rights reserved"
+      data-bn="© সর্বস্বত্ব সংরক্ষিত">
+      © جميع الحقوق محفوظة
+    </p>
+
+  </footer>
+
+
+  <!-- LANGUAGE SCRIPT -->
+  <script>
+
+    function setLanguage(language) {
+
+      document
+        .querySelectorAll("[data-ar], [data-en], [data-bn]")
+        .forEach(function(element) {
+
+          const text = element.getAttribute("data-" + language);
+
+          if (text) {
+            element.textContent = text;
+          }
+
+        });
+
+
+      if (language === "ar") {
+
+        document.documentElement.lang = "ar";
+        document.documentElement.dir = "rtl";
+
+        document.body.classList.remove("ltr");
+
+      }
+
+      else {
+
+        document.documentElement.dir = "ltr";
+        document.body.classList.add("ltr");
+
+        if (language === "en") {
+          document.documentElement.lang = "en";
+        }
+
+        else {
+          document.documentElement.lang = "bn";
+        }
+
+      }
+
+
+      localStorage.setItem("fawazLanguage", language);
+
+    }
+
+
+    const savedLanguage =
+      localStorage.getItem("fawazLanguage") || "ar";
+
+    setLanguage(savedLanguage);
+
+  </script>
+
+</body>
+</html
