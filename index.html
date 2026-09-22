@@ -1,48 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Fawaz Cafeteria | فواز كافتيريا | Jeddah</title>
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <title>Fawaz Cafeteria | Fresh Food & Drinks in Jeddah</title>
 
   <meta name="description"
-    content="Fawaz Cafeteria in Umm Al-Salam, Jeddah. Fresh food, drinks and sandwiches. Order through WhatsApp or visit us.">
+        content="Fawaz Cafeteria in Umm Al-Salam, Jeddah. Fresh food, fresh drinks and easy WhatsApp ordering.">
   <meta name="keywords"
-    content="Fawaz Cafeteria, فواز كافتيريا, Fawaz Cafeteria Jeddah, cafeteria Jeddah, Umm Al-Salam cafeteria">
-  <meta name="author" content="Fawaz Cafeteria">
+        content="Fawaz Cafeteria, Jeddah cafeteria, Umm Al-Salam restaurant, fresh food Jeddah, Arabic cafeteria">
 
-  <meta property="og:title" content="Fawaz Cafeteria | فواز كافتيريا">
-  <meta property="og:description" content="Fresh food and drinks in Umm Al-Salam, Jeddah.">
+  <meta property="og:title" content="Fawaz Cafeteria">
+  <meta property="og:description"
+        content="Fresh Food • Fresh Drinks • Easy Ordering">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="images/fawaz-logo-transparent.png">
 
-  <meta name="theme-color" content="#0d0d0c">
+  <meta name="theme-color" content="#10100f">
 
   <style>
-    :root {
-      --black: #0b0b0a;
-      --dark: #11110f;
-      --dark-2: #191713;
-      --dark-3: #242018;
-
-      --gold: #d6a84f;
-      --gold-light: #f3d487;
-      --gold-soft: rgba(214, 168, 79, 0.16);
-
-      --cream: #fffaf0;
-      --cream-2: #eee6d5;
-
-      --text: #ffffff;
-      --muted: #bdb6aa;
-
-      --green: #1c8b58;
-      --border: rgba(243, 212, 135, 0.18);
-
-      --shadow: 0 20px 60px rgba(0, 0, 0, .35);
-    }
-
     * {
       box-sizing: border-box;
       margin: 0;
@@ -54,17 +32,26 @@
     }
 
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background:
-        radial-gradient(circle at 50% -10%, rgba(214, 168, 79, .12), transparent 34%),
-        var(--black);
-      color: var(--text);
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+      background: #0d0d0c;
+      color: #f6f1e7;
       line-height: 1.6;
       overflow-x: hidden;
     }
 
-    body.lang-ar {
-      font-family: Tahoma, Arial, sans-serif;
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
     }
 
     a {
@@ -72,56 +59,50 @@
       text-decoration: none;
     }
 
-    button,
-    input,
-    textarea {
+    button {
       font: inherit;
     }
 
-    button {
-      cursor: pointer;
-    }
-
-    .container {
-      width: min(1120px, calc(100% - 32px));
-      margin: auto;
-    }
-
-    /* =========================
-       LANGUAGE
-    ========================= */
-
-    [data-lang="en"],
-    [data-lang="ar"],
-    [data-lang="bn"] {
-      display: none;
-    }
-
-    body.lang-en [data-lang="en"],
-    body.lang-ar [data-lang="ar"],
-    body.lang-bn [data-lang="bn"] {
-      display: inline;
+    :root {
+      --gold: #d7ae63;
+      --gold-light: #f0d08c;
+      --cream: #f7f0e2;
+      --dark: #0d0d0c;
+      --dark-2: #151513;
+      --dark-3: #1d1c19;
+      --muted: #b9b2a5;
+      --border: rgba(215, 174, 99, 0.20);
+      --green: #20b76b;
     }
 
     /* =========================
        HEADER
-    ========================= */
+    ========================== */
 
     header {
-      position: sticky;
+      position: fixed;
       top: 0;
-      z-index: 100;
-      background: rgba(11, 11, 10, .88);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border-bottom: 1px solid rgba(243, 212, 135, .10);
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+
+      background: rgba(10, 10, 9, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+
+      border-bottom: 1px solid rgba(255,255,255,0.07);
     }
 
-    .nav {
-      min-height: 74px;
+    .header-inner {
+      width: min(1180px, calc(100% - 30px));
+      margin: auto;
+
+      min-height: 76px;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       gap: 20px;
     }
 
@@ -132,196 +113,199 @@
       min-width: 0;
     }
 
-    .brand img {
-      width: 48px;
-      height: 48px;
+    .brand-logo {
+      width: 50px;
+      height: 50px;
       object-fit: contain;
-      display: block;
     }
 
     .brand-name {
-      font-size: 17px;
+      font-size: 18px;
       font-weight: 800;
-      letter-spacing: .3px;
+      letter-spacing: 0.4px;
       white-space: nowrap;
     }
 
-    .brand-name span {
-      color: var(--gold-light);
-    }
-
-    .nav-right {
+    nav {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 22px;
     }
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .nav-links a {
-      color: var(--cream-2);
+    nav a {
+      color: #ddd7cc;
       font-size: 14px;
-      padding: 8px 10px;
-      border-radius: 10px;
-      transition: .25s ease;
+      transition: 0.25s ease;
     }
 
-    .nav-links a:hover {
+    nav a:hover {
       color: var(--gold-light);
-      background: rgba(255,255,255,.05);
     }
 
-    .language-switch {
+    .language-switcher {
       display: flex;
-      gap: 4px;
-      padding: 4px;
-      background: rgba(255,255,255,.05);
-      border: 1px solid var(--border);
-      border-radius: 12px;
+      align-items: center;
+      gap: 5px;
     }
 
-    .language-switch button {
-      border: 0;
-      color: var(--muted);
-      background: transparent;
-      padding: 6px 8px;
+    .lang-btn {
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
+      color: #d9d3c8;
+
+      padding: 6px 9px;
       border-radius: 8px;
+
+      cursor: pointer;
       font-size: 12px;
-      font-weight: 700;
+
+      transition: 0.25s ease;
     }
 
-    .language-switch button.active {
-      color: var(--black);
-      background: var(--gold-light);
+    .lang-btn.active,
+    .lang-btn:hover {
+      background: var(--gold);
+      color: #17130d;
+      border-color: var(--gold);
     }
 
     /* =========================
        HERO
-    ========================= */
+    ========================== */
 
     .hero {
+      min-height: 760px;
       position: relative;
-      min-height: 650px;
-      display: flex;
-      align-items: center;
-      text-align: center;
-      overflow: hidden;
-      isolation: isolate;
-      background:
-        linear-gradient(
-          180deg,
-          rgba(5,5,4,.68),
-          rgba(10,9,7,.80) 60%,
-          var(--black)
-        ),
-        url("images/hamburger.jpg") center / cover no-repeat;
-    }
-
-    /* Large background logo symbol */
-    .hero::before {
-      content: "";
-      position: absolute;
-      width: min(720px, 90vw);
-      height: min(720px, 90vw);
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -48%);
-
-      background-image: url("images/fawaz-logo-transparent.png");
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: contain;
-
-      opacity: .075;
-      filter:
-        brightness(1.65)
-        drop-shadow(0 0 28px rgba(243, 212, 135, .32));
-
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    /* Soft glow behind logo */
-    .hero::after {
-      content: "";
-      position: absolute;
-      width: 500px;
-      height: 500px;
-      left: 50%;
-      top: 46%;
-      transform: translate(-50%, -50%);
-      border-radius: 50%;
-      background: rgba(243, 212, 135, .075);
-      filter: blur(70px);
-      z-index: -2;
-      pointer-events: none;
-    }
-
-    .hero-content {
-      width: min(760px, 100%);
-      margin: auto;
-      padding: 70px 0 85px;
-    }
-
-    .hero-logo {
-      width: 155px;
-      height: 155px;
-      margin: 0 auto 26px;
-      border-radius: 50%;
-      background:
-        radial-gradient(circle, #fffdf7 0%, var(--cream) 68%, #e9d9b4 100%);
-      border: 2px solid rgba(243, 212, 135, .75);
-      box-shadow:
-        0 0 0 9px rgba(214,168,79,.07),
-        0 0 55px rgba(243,212,135,.20),
-        0 20px 55px rgba(0,0,0,.45);
 
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 17px;
+
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(10,10,9,0.64),
+          rgba(10,10,9,0.84)
+        ),
+        url("images/hamburger.jpg") center/cover no-repeat;
     }
 
-    .hero-logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
+    /*
+      BIG LOGO SYMBOL BACKGROUND
+      No circle / no foreground logo.
+    */
+
+    .hero::before {
+      content: "";
+
+      position: absolute;
+      width: min(720px, 100vw);
+      height: min(720px, 100vw);
+
+      left: 50%;
+      top: 50%;
+
+      transform: translate(-50%, -47%);
+
+      background:
+        url("images/fawaz-logo-transparent.png")
+        center / contain no-repeat;
+
+      opacity: 0.115;
+
+      filter:
+        brightness(1.9)
+        contrast(1.05)
+        drop-shadow(0 0 30px rgba(215,174,99,0.35))
+        drop-shadow(0 0 80px rgba(215,174,99,0.15));
+
+      pointer-events: none;
+      z-index: 1;
     }
 
-    .eyebrow {
-      color: var(--gold-light);
+    /*
+      Soft glow behind logo
+    */
+
+    .hero::after {
+      content: "";
+
+      position: absolute;
+      width: 650px;
+      height: 650px;
+
+      left: 50%;
+      top: 50%;
+
+      transform: translate(-50%, -50%);
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(215,174,99,0.16) 0%,
+          rgba(215,174,99,0.06) 35%,
+          transparent 72%
+        );
+
+      filter: blur(10px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 5;
+
+      width: min(900px, calc(100% - 32px));
+      margin: auto;
+
+      text-align: center;
+    }
+
+    .welcome-text {
+      display: inline-block;
+
+      font-size: 15px;
+      font-weight: 700;
+
+      letter-spacing: 4px;
       text-transform: uppercase;
-      letter-spacing: 3px;
-      font-size: 12px;
-      font-weight: 800;
-      margin-bottom: 12px;
+
+      color: var(--gold-light);
+
+      margin-bottom: 14px;
+
+      text-shadow:
+        0 2px 18px rgba(0,0,0,0.75);
     }
 
     .hero h1 {
-      font-size: clamp(39px, 7vw, 76px);
+      font-size: clamp(42px, 8vw, 78px);
       line-height: 1.02;
+
       font-weight: 900;
       letter-spacing: -2px;
-      margin-bottom: 18px;
+
+      color: #fff;
+
+      text-shadow:
+        0 4px 25px rgba(0,0,0,0.85);
     }
 
-    .hero h1 span {
-      color: var(--gold-light);
-    }
+    .hero-description {
+      max-width: 650px;
+      margin: 22px auto 0;
 
-    .hero-text {
-      max-width: 620px;
-      margin: auto;
-      color: var(--cream-2);
+      color: #e3ddd1;
+
       font-size: 17px;
     }
 
-    .hero-actions {
-      margin-top: 30px;
+    .hero-buttons {
+      margin-top: 32px;
+
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
@@ -330,193 +314,256 @@
 
     .btn {
       min-height: 48px;
+
       padding: 12px 20px;
-      border-radius: 13px;
-      border: 1px solid transparent;
-      font-weight: 800;
+
+      border-radius: 12px;
+
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+
+      font-weight: 800;
+      font-size: 14px;
+
+      cursor: pointer;
+
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
     }
 
     .btn:hover {
       transform: translateY(-2px);
     }
 
-    .btn-gold {
-      color: var(--black);
-      background: linear-gradient(135deg, var(--gold-light), var(--gold));
-      box-shadow: 0 10px 30px rgba(214,168,79,.18);
+    .btn-primary {
+      background: var(--gold);
+      color: #17130d;
+
+      box-shadow:
+        0 10px 30px rgba(215,174,99,0.22);
     }
 
-    .btn-dark {
-      color: var(--cream);
-      background: rgba(255,255,255,.07);
-      border-color: rgba(255,255,255,.15);
+    .btn-primary:hover {
+      background: var(--gold-light);
+      box-shadow:
+        0 14px 36px rgba(215,174,99,0.32);
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.06);
+      color: #fff;
+
       backdrop-filter: blur(10px);
     }
 
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.11);
+    }
+
     /* =========================
-       SECTIONS
-    ========================= */
+       GENERAL
+    ========================== */
 
     section {
-      padding: 80px 0;
+      padding: 88px 0;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 30px));
+      margin: auto;
     }
 
     .section-heading {
       text-align: center;
-      margin-bottom: 38px;
+      max-width: 720px;
+      margin: 0 auto 45px;
     }
 
-    .section-kicker {
+    .section-label {
       color: var(--gold-light);
+
       font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 2.5px;
       font-weight: 800;
-      margin-bottom: 8px;
+
+      letter-spacing: 3px;
+      text-transform: uppercase;
+
+      margin-bottom: 10px;
     }
 
     .section-heading h2 {
-      font-size: clamp(28px, 5vw, 43px);
+      font-size: clamp(30px, 5vw, 46px);
       line-height: 1.1;
-      margin-bottom: 10px;
+
+      margin-bottom: 14px;
     }
 
     .section-heading p {
       color: var(--muted);
-      max-width: 650px;
-      margin: auto;
+      font-size: 15px;
     }
 
     /* =========================
        QUICK INFO
-    ========================= */
+    ========================== */
 
-    .quick-grid {
+    .quick-info {
+      background: #111110;
+      padding-top: 55px;
+      padding-bottom: 55px;
+    }
+
+    .info-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
+      gap: 16px;
     }
 
     .info-card {
       background:
-        linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.018));
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,0.045),
+          rgba(255,255,255,0.015)
+        );
+
       border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 24px;
+
+      border-radius: 18px;
+      padding: 27px;
+
       text-align: center;
-      box-shadow: var(--shadow);
     }
 
     .info-icon {
-      width: 48px;
-      height: 48px;
-      margin: 0 auto 13px;
-      border-radius: 15px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--gold-soft);
-      border: 1px solid var(--border);
-      font-size: 21px;
+      font-size: 27px;
+      margin-bottom: 12px;
     }
 
     .info-card h3 {
-      font-size: 16px;
+      font-size: 17px;
       margin-bottom: 5px;
     }
 
     .info-card p {
       color: var(--muted);
-      font-size: 14px;
+      font-size: 13px;
     }
 
     /* =========================
-       GALLERY
-    ========================= */
+       GALLERY PREVIEW
+    ========================== */
+
+    .gallery-section {
+      background: #0d0d0c;
+    }
 
     .gallery-preview {
       display: grid;
-      grid-template-columns: 1.35fr 1fr 1fr;
-      grid-template-rows: 190px 190px;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
       gap: 12px;
     }
 
     .gallery-item {
       position: relative;
       overflow: hidden;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.08);
-      background: var(--dark-2);
-      cursor: pointer;
-    }
 
-    .gallery-item:first-child {
-      grid-row: span 2;
+      border-radius: 16px;
+
+      aspect-ratio: 1 / 1;
+
+      cursor: pointer;
+
+      background: #181715;
+
+      border: 1px solid rgba(255,255,255,0.07);
     }
 
     .gallery-item img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform .5s ease, filter .5s ease;
-    }
 
-    .gallery-item::after {
-      content: "View";
-      position: absolute;
-      inset: auto 12px 12px auto;
-      padding: 5px 9px;
-      border-radius: 8px;
-      background: rgba(0,0,0,.68);
-      color: white;
-      font-size: 11px;
-      opacity: 0;
-      transition: .25s ease;
+      object-fit: cover;
+
+      transition:
+        transform 0.45s ease,
+        filter 0.45s ease;
     }
 
     .gallery-item:hover img {
-      transform: scale(1.06);
-      filter: brightness(.82);
+      transform: scale(1.07);
+      filter: brightness(1.08);
     }
 
-    .gallery-item:hover::after {
-      opacity: 1;
+    .gallery-overlay {
+      position: absolute;
+      inset: auto 0 0 0;
+
+      padding: 18px;
+
+      background:
+        linear-gradient(
+          transparent,
+          rgba(0,0,0,0.78)
+        );
+
+      color: white;
+
+      font-size: 13px;
+      font-weight: 700;
     }
 
-    .gallery-more {
+    .gallery-button {
       text-align: center;
-      margin-top: 22px;
+      margin-top: 30px;
     }
 
     /* =========================
        HOURS
-    ========================= */
+    ========================== */
 
-    .hours-box {
-      max-width: 760px;
-      margin: auto;
-      padding: 30px;
-      border-radius: 24px;
-      border: 1px solid var(--border);
+    .hours-section {
       background:
-        radial-gradient(circle at 50% 0%, rgba(214,168,79,.09), transparent 55%),
-        var(--dark-2);
-      box-shadow: var(--shadow);
+        linear-gradient(
+          145deg,
+          #171613,
+          #0e0e0d
+        );
+    }
+
+    .hours-card {
+      width: min(700px, 100%);
+      margin: auto;
+
+      padding: 30px;
+
+      border-radius: 22px;
+
+      background: rgba(255,255,255,0.035);
+      border: 1px solid var(--border);
+
+      box-shadow:
+        0 20px 60px rgba(0,0,0,0.25);
     }
 
     .hours-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       gap: 20px;
+
       padding: 17px 0;
-      border-bottom: 1px solid rgba(255,255,255,.08);
+
+      border-bottom:
+        1px solid rgba(255,255,255,0.07);
     }
 
     .hours-row:last-child {
@@ -524,7 +571,7 @@
     }
 
     .hours-label {
-      font-weight: 800;
+      font-weight: 700;
     }
 
     .hours-time {
@@ -533,41 +580,46 @@
       text-align: right;
     }
 
-    .break-row .hours-time {
-      color: var(--muted);
+    .closed-time {
+      color: #aaa398;
     }
 
     /* =========================
        LOCATION
-    ========================= */
+    ========================== */
 
-    .location-card {
-      max-width: 780px;
-      margin: auto;
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 34px;
-      background: var(--dark-2);
-      text-align: center;
-      box-shadow: var(--shadow);
+    .location-section {
+      background: #10100f;
     }
 
-    .location-pin {
-      width: 62px;
-      height: 62px;
-      margin: 0 auto 17px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 27px;
-      background: var(--gold-soft);
+    .location-card {
+      max-width: 800px;
+      margin: auto;
+
+      text-align: center;
+
+      padding: 38px 25px;
+
+      border-radius: 24px;
+
       border: 1px solid var(--border);
+
+      background:
+        radial-gradient(
+          circle at top,
+          rgba(215,174,99,0.08),
+          transparent 60%
+        );
+    }
+
+    .location-icon {
+      font-size: 38px;
+      margin-bottom: 13px;
     }
 
     .location-card h3 {
-      font-size: 24px;
-      margin-bottom: 8px;
+      font-size: 23px;
+      margin-bottom: 9px;
     }
 
     .location-card p {
@@ -577,160 +629,151 @@
 
     /* =========================
        FEEDBACK
-    ========================= */
+    ========================== */
 
     .feedback-section {
-      padding-top: 65px;
+      background: #0d0d0c;
     }
 
-    .feedback-box {
-      max-width: 820px;
+    .feedback-card {
+      width: min(800px, 100%);
       margin: auto;
-      position: relative;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      border-radius: 26px;
-      padding: 38px;
-      background:
-        radial-gradient(circle at 15% 10%, rgba(214,168,79,.12), transparent 32%),
-        radial-gradient(circle at 90% 90%, rgba(28,139,88,.08), transparent 28%),
-        var(--dark-2);
-      box-shadow: var(--shadow);
+
       text-align: center;
+
+      padding: 42px 25px;
+
+      border-radius: 24px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(215,174,99,0.09),
+          rgba(255,255,255,0.025)
+        );
+
+      border: 1px solid var(--border);
     }
 
-    .feedback-symbol {
-      font-size: 30px;
-      margin-bottom: 10px;
-    }
-
-    .feedback-box h2 {
+    .feedback-card h2 {
       font-size: clamp(27px, 5vw, 40px);
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
-    .feedback-box > p {
-      color: var(--muted);
+    .feedback-card p {
       max-width: 600px;
-      margin: 0 auto 24px;
+      margin: auto auto 23px;
+
+      color: var(--muted);
     }
 
     .feedback-note {
-      color: var(--cream-2);
+      margin-top: 14px;
       font-size: 12px;
-      margin-top: 13px;
-      opacity: .72;
+      color: #898379;
     }
 
     /* =========================
        CONTACT
-    ========================= */
+    ========================== */
+
+    .contact-section {
+      background: #111110;
+    }
 
     .contact-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 15px;
-      max-width: 820px;
-      margin: auto;
     }
 
     .contact-card {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 22px;
-      border-radius: 18px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.035);
-      transition: .25s ease;
-    }
+      text-align: center;
 
-    .contact-card:hover {
-      transform: translateY(-3px);
-      background: rgba(255,255,255,.06);
+      padding: 28px 18px;
+
+      border-radius: 18px;
+
+      border: 1px solid rgba(255,255,255,0.08);
+
+      background: rgba(255,255,255,0.025);
     }
 
     .contact-icon {
-      width: 48px;
-      height: 48px;
-      flex: 0 0 48px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--gold-soft);
-      font-size: 21px;
+      font-size: 27px;
+      margin-bottom: 10px;
     }
 
     .contact-card h3 {
-      font-size: 15px;
-      margin-bottom: 3px;
+      font-size: 16px;
+      margin-bottom: 6px;
     }
 
     .contact-card p {
       color: var(--muted);
       font-size: 13px;
-      word-break: break-word;
     }
 
-    .whatsapp {
-      border-color: rgba(28,139,88,.3);
-    }
-
-    .whatsapp .contact-icon {
-      background: rgba(28,139,88,.14);
+    .contact-link {
+      color: var(--gold-light);
+      font-weight: 700;
     }
 
     /* =========================
        FOOTER
-    ========================= */
+    ========================== */
 
     footer {
-      margin-top: 30px;
-      border-top: 1px solid rgba(255,255,255,.08);
-      background:
-        radial-gradient(circle at 50% 0%, rgba(214,168,79,.07), transparent 35%),
-        #080807;
-      padding: 48px 0 28px;
+      background: #080807;
+
+      border-top:
+        1px solid rgba(255,255,255,0.07);
+
+      padding: 45px 0 25px;
     }
 
-    .footer-main {
+    .footer-inner {
+      width: min(1120px, calc(100% - 30px));
+      margin: auto;
+
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 30px;
+      align-items: center;
+
+      gap: 25px;
     }
 
     .footer-brand {
       display: flex;
       align-items: center;
-      gap: 13px;
+      gap: 12px;
     }
 
-    .footer-brand img {
-      width: 60px;
-      height: 60px;
+    .footer-logo {
+      width: 46px;
+      height: 46px;
       object-fit: contain;
     }
 
     .footer-brand strong {
-      display: block;
-      margin-bottom: 3px;
+      font-size: 17px;
     }
 
     .footer-brand small {
-      color: var(--muted);
+      display: block;
+      color: #8e887d;
+      margin-top: 2px;
     }
 
     .footer-links {
       display: flex;
-      gap: 15px;
+      gap: 18px;
       flex-wrap: wrap;
-      justify-content: flex-end;
+      justify-content: center;
     }
 
     .footer-links a {
-      color: var(--muted);
+      color: #aaa398;
       font-size: 13px;
     }
 
@@ -740,289 +783,331 @@
 
     .copyright {
       text-align: center;
-      color: #77736b;
-      font-size: 11px;
-      margin-top: 35px;
-      padding-top: 20px;
-      border-top: 1px solid rgba(255,255,255,.06);
+
+      color: #706b63;
+
+      font-size: 12px;
+
+      margin-top: 32px;
+      padding-top: 22px;
+
+      border-top:
+        1px solid rgba(255,255,255,0.05);
     }
 
     /* =========================
-       MODALS
-    ========================= */
+       MODAL GALLERY
+    ========================== */
 
     .modal {
       position: fixed;
       inset: 0;
-      z-index: 500;
+
+      z-index: 5000;
+
       display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      background: rgba(0,0,0,.82);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+
+      background:
+        rgba(5,5,4,0.96);
+
+      padding: 30px 15px;
+
+      overflow-y: auto;
     }
 
     .modal.show {
+      display: block;
+    }
+
+    .modal-header {
+      width: min(1100px, 100%);
+      margin: 0 auto 25px;
+
       display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      gap: 20px;
     }
 
-    .modal-box {
-      width: min(1050px, 100%);
-      max-height: 90vh;
-      overflow: auto;
-      background: #12110f;
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 20px;
-      box-shadow: 0 30px 100px rgba(0,0,0,.6);
-      position: relative;
-    }
-
-    .modal-title {
-      text-align: center;
-      padding: 10px 40px 20px;
-    }
-
-    .modal-title h2 {
+    .modal-header h2 {
       font-size: 28px;
     }
 
-    .modal-title p {
-      color: var(--muted);
-      font-size: 13px;
-    }
+    .close-modal {
+      width: 44px;
+      height: 44px;
 
-    .close-btn {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      width: 38px;
-      height: 38px;
       border-radius: 50%;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.07);
+
+      border: 1px solid rgba(255,255,255,0.14);
+
+      background: rgba(255,255,255,0.06);
       color: white;
-      font-size: 21px;
-      z-index: 3;
-    }
 
-    .modal-gallery {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-    }
-
-    .modal-gallery img {
-      width: 100%;
-      height: 190px;
-      object-fit: cover;
-      border-radius: 13px;
       cursor: pointer;
-      transition: .25s ease;
+
+      font-size: 23px;
     }
 
-    .modal-gallery img:hover {
-      transform: scale(1.015);
-      filter: brightness(.8);
+    .modal-grid {
+      width: min(1100px, 100%);
+      margin: auto;
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      gap: 13px;
     }
 
-    /* Full image viewer */
+    .modal-grid .gallery-item {
+      aspect-ratio: 1 / 1;
+    }
+
+    /* =========================
+       IMAGE VIEWER
+    ========================== */
+
     .image-viewer {
       position: fixed;
       inset: 0;
-      z-index: 800;
+
+      z-index: 7000;
+
       display: none;
+
       align-items: center;
       justify-content: center;
-      padding: 25px;
-      background: rgba(0,0,0,.94);
+
+      padding: 20px;
+
+      background:
+        rgba(0,0,0,0.94);
     }
 
     .image-viewer.show {
       display: flex;
     }
 
-    .image-viewer img {
-      max-width: 94vw;
+    .viewer-image {
+      max-width: 95vw;
       max-height: 88vh;
+
       object-fit: contain;
+
       border-radius: 12px;
-      box-shadow: 0 30px 100px rgba(0,0,0,.8);
+
+      box-shadow:
+        0 20px 80px rgba(0,0,0,0.7);
     }
 
-    .viewer-close {
+    .close-viewer {
       position: absolute;
-      right: 18px;
+
       top: 18px;
+      right: 18px;
+
       width: 44px;
       height: 44px;
-      border: 1px solid rgba(255,255,255,.15);
+
       border-radius: 50%;
+
+      border: 1px solid rgba(255,255,255,0.15);
+
+      background: rgba(255,255,255,0.07);
       color: white;
-      background: rgba(255,255,255,.08);
-      font-size: 25px;
+
+      cursor: pointer;
+
+      font-size: 23px;
     }
 
     /* =========================
-       MOBILE
-    ========================= */
+       LANGUAGE
+    ========================== */
 
-    @media (max-width: 800px) {
-      .nav {
-        min-height: 66px;
+    [data-lang] {
+      display: none;
+    }
+
+    body.lang-en [data-lang="en"],
+    body.lang-ar [data-lang="ar"],
+    body.lang-bn [data-lang="bn"] {
+      display: block;
+    }
+
+    span[data-lang],
+    a[data-lang],
+    button[data-lang] {
+      display: none;
+    }
+
+    body.lang-en span[data-lang="en"],
+    body.lang-ar span[data-lang="ar"],
+    body.lang-bn span[data-lang="bn"],
+
+    body.lang-en a[data-lang="en"],
+    body.lang-ar a[data-lang="ar"],
+    body.lang-bn a[data-lang="bn"],
+
+    body.lang-en button[data-lang="en"],
+    body.lang-ar button[data-lang="ar"],
+    body.lang-bn button[data-lang="bn"] {
+      display: inline-flex;
+    }
+
+    body.lang-ar {
+      direction: rtl;
+    }
+
+    body.lang-ar .hours-time {
+      text-align: left;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================== */
+
+    @media (max-width: 850px) {
+
+      nav {
+        display: none;
       }
 
-      .nav-links {
-        display: none;
+      .header-inner {
+        min-height: 68px;
+      }
+
+      .hero {
+        min-height: 690px;
+      }
+
+      .hero::before {
+        width: 600px;
+        height: 600px;
+        opacity: 0.10;
+      }
+
+      .info-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-preview {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+      .modal-grid {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 520px) {
+
+      section {
+        padding: 70px 0;
       }
 
       .brand-name {
         font-size: 15px;
       }
 
-      .brand img {
+      .brand-logo {
         width: 43px;
         height: 43px;
       }
 
+      .language-switcher {
+        gap: 3px;
+      }
+
+      .lang-btn {
+        padding: 5px 7px;
+        font-size: 11px;
+      }
+
       .hero {
-        min-height: 610px;
+        min-height: 680px;
       }
 
       .hero::before {
-        width: 570px;
-        height: 570px;
-        opacity: .08;
+        width: 520px;
+        height: 520px;
+
+        opacity: 0.105;
       }
 
-      .hero-logo {
-        width: 130px;
-        height: 130px;
+      .hero::after {
+        width: 500px;
+        height: 500px;
       }
 
-      .hero-content {
-        padding: 60px 0 70px;
+      .welcome-text {
+        font-size: 12px;
+        letter-spacing: 3px;
       }
 
       .hero h1 {
-        letter-spacing: -1px;
+        font-size: 46px;
+        letter-spacing: -1.5px;
       }
 
-      .hero-text {
+      .hero-description {
         font-size: 15px;
       }
 
-      section {
-        padding: 65px 0;
-      }
-
-      .quick-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .gallery-preview {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 175px 175px;
-      }
-
-      .gallery-item:first-child {
-        grid-row: span 2;
-      }
-
-      .modal-gallery {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .modal-gallery img {
-        height: 155px;
-      }
-
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .feedback-box,
-      .location-card,
-      .hours-box {
-        padding: 26px 20px;
-      }
-
-      .footer-main {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .footer-links {
-        justify-content: center;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .container {
-        width: min(100% - 22px, 1120px);
-      }
-
-      .language-switch button {
-        padding: 5px 6px;
-        font-size: 10px;
-      }
-
-      .hero-logo {
-        width: 115px;
-        height: 115px;
-        padding: 14px;
-      }
-
-      .eyebrow {
-        letter-spacing: 2px;
-        font-size: 10px;
-      }
-
-      .hero h1 {
-        font-size: 42px;
-      }
-
-      .hero-actions {
+      .hero-buttons {
         flex-direction: column;
       }
 
-      .hero-actions .btn {
+      .hero-buttons .btn {
         width: 100%;
       }
 
-      .gallery-preview {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 145px 145px;
-        gap: 8px;
+      .hours-card {
+        padding: 22px 18px;
       }
 
       .hours-row {
         align-items: flex-start;
-        flex-direction: column;
-        gap: 4px;
+      }
+
+      .hours-label {
+        font-size: 13px;
       }
 
       .hours-time {
-        text-align: left;
+        font-size: 13px;
+      }
+
+      .gallery-preview {
+        gap: 9px;
       }
 
       .modal {
-        padding: 8px;
+        padding: 20px 10px;
       }
 
-      .modal-box {
-        border-radius: 18px;
-        padding: 12px;
+      .modal-header h2 {
+        font-size: 23px;
       }
+    }
 
-      .modal-gallery {
-        gap: 7px;
-      }
-
-      .modal-gallery img {
-        height: 125px;
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
       }
     }
   </style>
@@ -1030,584 +1115,252 @@
 
 <body class="lang-en">
 
-  <!-- =========================
-       HEADER
-  ========================== -->
+<!-- =========================
+     HEADER
+========================== -->
 
-  <header>
-    <div class="container nav">
+<header>
+  <div class="header-inner">
 
-      <a href="#home" class="brand" aria-label="Fawaz Cafeteria">
-        <img src="images/fawaz-logo-transparent.png" alt="Fawaz Cafeteria logo">
-        <div class="brand-name">
-          Fawaz <span>Cafeteria</span>
-        </div>
+    <a href="#home" class="brand">
+
+      <img
+        src="images/fawaz-logo-transparent.png"
+        alt="Fawaz Cafeteria Logo"
+        class="brand-logo"
+      >
+
+      <div class="brand-name">
+        Fawaz Cafeteria
+      </div>
+
+    </a>
+
+    <nav>
+      <a href="#home">
+        <span data-lang="en">Home</span>
+        <span data-lang="ar">الرئيسية</span>
+        <span data-lang="bn">হোম</span>
       </a>
 
-      <div class="nav-right">
-
-        <nav class="nav-links">
-          <a href="#home">
-            <span data-lang="en">Home</span>
-            <span data-lang="ar">الرئيسية</span>
-            <span data-lang="bn">হোম</span>
-          </a>
-
-          <a href="#gallery">
-            <span data-lang="en">Gallery</span>
-            <span data-lang="ar">الصور</span>
-            <span data-lang="bn">গ্যালারি</span>
-          </a>
-
-          <a href="#hours">
-            <span data-lang="en">Hours</span>
-            <span data-lang="ar">ساعات العمل</span>
-            <span data-lang="bn">সময়সূচি</span>
-          </a>
-        </nav>
-
-        <div class="language-switch">
-          <button id="btn-en" onclick="setLanguage('en')">EN</button>
-          <button id="btn-ar" onclick="setLanguage('ar')">ع</button>
-          <button id="btn-bn" onclick="setLanguage('bn')">বাং</button>
-        </div>
-
-      </div>
-    </div>
-  </header>
-
-
-  <main>
-
-    <!-- =========================
-         HERO
-    ========================== -->
-
-    <section class="hero" id="home">
-      <div class="container hero-content">
-
-        <div class="hero-logo">
-          <img src="images/fawaz-logo-transparent.png"
-            alt="Fawaz Cafeteria">
-        </div>
-
-        <div class="eyebrow">
-          <span data-lang="en">Fresh • Simple • Delicious</span>
-          <span data-lang="ar">طازج • بسيط • لذيذ</span>
-          <span data-lang="bn">তাজা • সহজ • সুস্বাদু</span>
-        </div>
-
-        <h1>
-          <span data-lang="en">Welcome to</span>
-          <span data-lang="ar">مرحباً بكم في</span>
-          <span data-lang="bn">স্বাগতম</span>
-          <br>
-          <span>Fawaz Cafeteria</span>
-        </h1>
-
-        <p class="hero-text">
-          <span data-lang="en">
-            Good food, refreshing drinks and a warm cafeteria experience
-            in Umm Al-Salam, Jeddah.
-          </span>
-
-          <span data-lang="ar">
-            أطعمة شهية ومشروبات منعشة وتجربة مميزة في كافتيريا فواز
-            بحي أم السلام في جدة.
-          </span>
-
-          <span data-lang="bn">
-            জেদ্দার উম্ম আল-সালাম এলাকায় সুস্বাদু খাবার,
-            সতেজ পানীয় এবং সুন্দর ক্যাফেটেরিয়া অভিজ্ঞতা।
-          </span>
-        </p>
-
-        <div class="hero-actions">
-
-          <a class="btn btn-gold"
-            href="https://wa.me/966571638203"
-            target="_blank"
-            rel="noopener">
-            💬
-            <span data-lang="en">Order on WhatsApp</span>
-            <span data-lang="ar">اطلب عبر واتساب</span>
-            <span data-lang="bn">WhatsApp-এ অর্ডার</span>
-          </a>
-
-          <a class="btn btn-dark" href="#gallery">
-            📸
-            <span data-lang="en">Explore Gallery</span>
-            <span data-lang="ar">استكشف الصور</span>
-            <span data-lang="bn">গ্যালারি দেখুন</span>
-          </a>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- =========================
-         QUICK INFO
-    ========================== -->
-
-    <section>
-      <div class="container">
-
-        <div class="quick-grid">
-
-          <div class="info-card">
-            <div class="info-icon">🍔</div>
-            <h3>
-              <span data-lang="en">Fresh Food</span>
-              <span data-lang="ar">طعام طازج</span>
-              <span data-lang="bn">তাজা খাবার</span>
-            </h3>
-            <p>
-              <span data-lang="en">Prepared for a satisfying meal.</span>
-              <span data-lang="ar">محضر لتستمتع بوجبتك.</span>
-              <span data-lang="bn">সুস্বাদু খাবারের জন্য প্রস্তুত।</span>
-            </p>
-          </div>
-
-          <div class="info-card">
-            <div class="info-icon">🥤</div>
-            <h3>
-              <span data-lang="en">Fresh Drinks</span>
-              <span data-lang="ar">مشروبات منعشة</span>
-              <span data-lang="bn">সতেজ পানীয়</span>
-            </h3>
-            <p>
-              <span data-lang="en">Refreshing drinks for every visit.</span>
-              <span data-lang="ar">مشروبات منعشة لكل زيارة.</span>
-              <span data-lang="bn">প্রতিটি ভিজিটের জন্য সতেজ পানীয়।</span>
-            </p>
-          </div>
-
-          <div class="info-card">
-            <div class="info-icon">💬</div>
-            <h3>
-              <span data-lang="en">Easy Ordering</span>
-              <span data-lang="ar">طلب سهل</span>
-              <span data-lang="bn">সহজ অর্ডার</span>
-            </h3>
-            <p>
-              <span data-lang="en">Order quickly through WhatsApp.</span>
-              <span data-lang="ar">اطلب بسهولة عبر واتساب.</span>
-              <span data-lang="bn">WhatsApp-এর মাধ্যমে সহজে অর্ডার করুন।</span>
-            </p>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- =========================
-         GALLERY PREVIEW
-    ========================== -->
-
-    <section id="gallery">
-      <div class="container">
-
-        <div class="section-heading">
-          <div class="section-kicker">
-            <span data-lang="en">Our Gallery</span>
-            <span data-lang="ar">معرض الصور</span>
-            <span data-lang="bn">আমাদের গ্যালারি</span>
-          </div>
-
-          <h2>
-            <span data-lang="en">A taste of Fawaz</span>
-            <span data-lang="ar">لمحة من أجواء فواز</span>
-            <span data-lang="bn">Fawaz-এর কিছু ঝলক</span>
-          </h2>
-
-          <p>
-            <span data-lang="en">
-              Explore our food and cafeteria moments.
-            </span>
-
-            <span data-lang="ar">
-              شاهد صور الأطعمة وأجواء الكافتيريا.
-            </span>
-
-            <span data-lang="bn">
-              খাবার ও ক্যাফেটেরিয়ার কিছু মুহূর্ত দেখুন।
-            </span>
-          </p>
-        </div>
-
-        <!-- Only preview images appear on home -->
-        <div class="gallery-preview">
-
-          <div class="gallery-item"
-            onclick="openImage('images/IMG_3745.jpeg')">
-            <img src="images/IMG_3745.jpeg" alt="Fawaz Cafeteria">
-          </div>
-
-          <div class="gallery-item"
-            onclick="openImage('images/fatira.jpg')">
-            <img src="images/fatira.jpg" alt="Fatira">
-          </div>
-
-          <div class="gallery-item"
-            onclick="openImage('images/hamburger.jpg')">
-            <img src="images/hamburger.jpg" alt="Hamburger">
-          </div>
-
-          <div class="gallery-item"
-            onclick="openImage('images/fresh-juice.jpg')">
-            <img src="images/fresh-juice.jpg" alt="Fresh Juice">
-          </div>
-
-          <div class="gallery-item"
-            onclick="openImage('images/sandwich.jpg')">
-            <img src="images/sandwich.jpg" alt="Sandwich">
-          </div>
-
-        </div>
-
-        <div class="gallery-more">
-          <button class="btn btn-gold" onclick="openGallery()">
-            📸
-            <span data-lang="en">View Full Gallery</span>
-            <span data-lang="ar">عرض جميع الصور</span>
-            <span data-lang="bn">সম্পূর্ণ গ্যালারি দেখুন</span>
-          </button>
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- =========================
-         OPENING HOURS
-    ========================== -->
-
-    <section id="hours">
-      <div class="container">
-
-        <div class="section-heading">
-          <div class="section-kicker">
-            <span data-lang="en">Opening Hours</span>
-            <span data-lang="ar">ساعات العمل</span>
-            <span data-lang="bn">খোলার সময়</span>
-          </div>
-
-          <h2>
-            <span data-lang="en">We're here for you</span>
-            <span data-lang="ar">نحن هنا لخدمتكم</span>
-            <span data-lang="bn">আমরা আপনার জন্য প্রস্তুত</span>
-          </h2>
-        </div>
-
-        <div class="hours-box">
-
-          <div class="hours-row">
-            <div class="hours-label">
-              <span data-lang="en">Morning</span>
-              <span data-lang="ar">الفترة الصباحية</span>
-              <span data-lang="bn">সকাল</span>
-            </div>
-
-            <div class="hours-time">
-              5:30 AM – 12:00 PM
-            </div>
-          </div>
-
-          <div class="hours-row break-row">
-            <div class="hours-label">
-              <span data-lang="en">Break</span>
-              <span data-lang="ar">استراحة</span>
-              <span data-lang="bn">বিরতি</span>
-            </div>
-
-            <div class="hours-time">
-              12:00 PM – 4:00 PM
-            </div>
-          </div>
-
-          <div class="hours-row">
-            <div class="hours-label">
-              <span data-lang="en">Evening</span>
-              <span data-lang="ar">الفترة المسائية</span>
-              <span data-lang="bn">সন্ধ্যা</span>
-            </div>
-
-            <div class="hours-time">
-              4:00 PM – 12:00 AM
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- =========================
-         LOCATION — ONLY ONCE
-    ========================== -->
-
-    <section id="location">
-      <div class="container">
-
-        <div class="section-heading">
-          <div class="section-kicker">
-            <span data-lang="en">Find Us</span>
-            <span data-lang="ar">موقعنا</span>
-            <span data-lang="bn">আমাদের অবস্থান</span>
-          </div>
-
-          <h2>
-            <span data-lang="en">Visit Fawaz Cafeteria</span>
-            <span data-lang="ar">زوروا كافتيريا فواز</span>
-            <span data-lang="bn">Fawaz Cafeteria-তে আসুন</span>
-          </h2>
-        </div>
-
-        <div class="location-card">
-
-          <div class="location-pin">📍</div>
-
-          <h3>Umm Al-Salam, Jeddah</h3>
-
-          <p>
-            Umm Al-Salam, Jeddah 22373,<br>
-            Saudi Arabia
-          </p>
-
-          <a
-            class="btn btn-gold"
-            href="https://maps.apple.com/?address=Umm%20Al-Salam%2C%20Jeddah%2022373%2C%20Saudi%20Arabia"
-            target="_blank"
-            rel="noopener">
-            🗺️
-            <span data-lang="en">Open in Apple Maps</span>
-            <span data-lang="ar">فتح في خرائط Apple</span>
-            <span data-lang="bn">Apple Maps-এ খুলুন</span>
-          </a>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- =========================
-         FEEDBACK
-    ========================== -->
-
-    <section class="feedback-section">
-      <div class="container">
-
-        <div class="feedback-box">
-
-          <div class="feedback-symbol">💬</div>
-
-          <h2>
-            <span data-lang="en">Your Feedback Matters</span>
-            <span data-lang="ar">رأيكم يهمنا</span>
-            <span data-lang="bn">আপনার মতামত আমাদের কাছে গুরুত্বপূর্ণ</span>
-          </h2>
-
-          <p>
-            <span data-lang="en">
-              Tell us about your experience at Fawaz Cafeteria.
-              Your feedback helps us improve our food and service.
-            </span>
-
-            <span data-lang="ar">
-              شاركونا تجربتكم في كافتيريا فواز.
-              ملاحظاتكم تساعدنا على تحسين الطعام والخدمة.
-            </span>
-
-            <span data-lang="bn">
-              Fawaz Cafeteria-তে আপনার অভিজ্ঞতা আমাদের জানান।
-              আপনার মতামত খাবার ও সেবার মান উন্নত করতে সাহায্য করবে।
-            </span>
-          </p>
-
-          <a
-            class="btn btn-gold"
-            href="https://wa.me/966571638203?text=Hello%20Fawaz%20Cafeteria%2C%20I%20would%20like%20to%20share%20my%20feedback."
-            target="_blank"
-            rel="noopener">
-            💬
-            <span data-lang="en">Send Feedback</span>
-            <span data-lang="ar">إرسال ملاحظات</span>
-            <span data-lang="bn">মতামত পাঠান</span>
-          </a>
-
-          <div class="feedback-note">
-            <span data-lang="en">
-              Feedback is sent privately to the cafeteria.
-            </span>
-
-            <span data-lang="ar">
-              يتم إرسال الملاحظات بشكل خاص إلى الكافتيريا.
-            </span>
-
-            <span data-lang="bn">
-              মতামত ব্যক্তিগতভাবে ক্যাফেটেরিয়ায় পাঠানো হবে।
-            </span>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- =========================
-         CONTACT
-    ========================== -->
-
-    <section id="contact">
-      <div class="container">
-
-        <div class="section-heading">
-          <div class="section-kicker">
-            <span data-lang="en">Contact</span>
-            <span data-lang="ar">تواصل معنا</span>
-            <span data-lang="bn">যোগাযোগ</span>
-          </div>
-
-          <h2>
-            <span data-lang="en">Let's connect</span>
-            <span data-lang="ar">يسعدنا تواصلكم معنا</span>
-            <span data-lang="bn">আমাদের সাথে যোগাযোগ করুন</span>
-          </h2>
-        </div>
-
-        <div class="contact-grid">
-
-          <a
-            class="contact-card whatsapp"
-            href="https://wa.me/966571638203"
-            target="_blank"
-            rel="noopener">
-
-            <div class="contact-icon">💬</div>
-
-            <div>
-              <h3>
-                <span data-lang="en">WhatsApp</span>
-                <span data-lang="ar">واتساب</span>
-                <span data-lang="bn">WhatsApp</span>
-              </h3>
-
-              <p>+966 57 163 8203</p>
-            </div>
-
-          </a>
-
-
-          <a
-            class="contact-card"
-            href="tel:+966571638203">
-
-            <div class="contact-icon">📞</div>
-
-            <div>
-              <h3>
-                <span data-lang="en">Call Us</span>
-                <span data-lang="ar">اتصل بنا</span>
-                <span data-lang="bn">ফোন করুন</span>
-              </h3>
-
-              <p>+966 57 163 8203</p>
-            </div>
-
-          </a>
-
-        </div>
-
-      </div>
-    </section>
-
-  </main>
-
-
-  <!-- =========================
-       FULL GALLERY MODAL
-  ========================== -->
-
-  <div class="modal" id="galleryModal" onclick="closeGallery(event)">
-
-    <div class="modal-box" onclick="event.stopPropagation()">
-
-      <button class="close-btn"
-        onclick="closeGallery()"
-        aria-label="Close">
-        ×
+      <a href="#gallery">
+        <span data-lang="en">Gallery</span>
+        <span data-lang="ar">الصور</span>
+        <span data-lang="bn">গ্যালারি</span>
+      </a>
+
+      <a href="#hours">
+        <span data-lang="en">Hours</span>
+        <span data-lang="ar">ساعات العمل</span>
+        <span data-lang="bn">সময়সূচি</span>
+      </a>
+
+      <a href="#contact">
+        <span data-lang="en">Contact</span>
+        <span data-lang="ar">اتصل بنا</span>
+        <span data-lang="bn">যোগাযোগ</span>
+      </a>
+    </nav>
+
+    <div class="language-switcher">
+
+      <button class="lang-btn active" data-language="en">
+        EN
       </button>
 
-      <div class="modal-title">
+      <button class="lang-btn" data-language="ar">
+        عربي
+      </button>
 
-        <div class="section-kicker">
-          <span data-lang="en">Fawaz Gallery</span>
-          <span data-lang="ar">معرض فواز</span>
-          <span data-lang="bn">Fawaz Gallery</span>
-        </div>
+      <button class="lang-btn" data-language="bn">
+        বাংলা
+      </button>
 
-        <h2>
-          <span data-lang="en">Food & Moments</span>
-          <span data-lang="ar">الأطعمة والأجواء</span>
-          <span data-lang="bn">খাবার ও মুহূর্ত</span>
-        </h2>
+    </div>
+
+  </div>
+</header>
+
+
+<!-- =========================
+     HERO
+========================== -->
+
+<main id="home">
+
+<section class="hero">
+
+  <div class="hero-content">
+
+    <!-- ONLY WELCOME HERE -->
+    <div class="welcome-text">
+
+      <span data-lang="en">Welcome to</span>
+      <span data-lang="ar">مرحباً بكم في</span>
+      <span data-lang="bn">স্বাগতম</span>
+
+    </div>
+
+    <!-- NAME BELOW WELCOME -->
+    <h1>
+      Fawaz Cafeteria
+    </h1>
+
+    <p class="hero-description">
+
+      <span data-lang="en">
+        Fresh food, refreshing drinks and simple ordering —
+        made for everyday moments.
+      </span>
+
+      <span data-lang="ar">
+        أطعمة طازجة ومشروبات منعشة وطلب سهل —
+        لكل لحظة جميلة.
+      </span>
+
+      <span data-lang="bn">
+        তাজা খাবার, সতেজ পানীয় এবং সহজ অর্ডার —
+        প্রতিদিনের সুন্দর মুহূর্তের জন্য।
+      </span>
+
+    </p>
+
+    <div class="hero-buttons">
+
+      <a
+        class="btn btn-primary"
+        href="https://wa.me/966571638203"
+        target="_blank"
+        rel="noopener"
+      >
+
+        <span data-lang="en">
+          Order on WhatsApp
+        </span>
+
+        <span data-lang="ar">
+          اطلب عبر واتساب
+        </span>
+
+        <span data-lang="bn">
+          WhatsApp-এ অর্ডার করুন
+        </span>
+
+      </a>
+
+      <a
+        class="btn btn-secondary"
+        href="#gallery"
+      >
+
+        <span data-lang="en">
+          Explore Gallery
+        </span>
+
+        <span data-lang="ar">
+          شاهد الصور
+        </span>
+
+        <span data-lang="bn">
+          গ্যালারি দেখুন
+        </span>
+
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     QUICK INFO
+========================== -->
+
+<section class="quick-info">
+
+  <div class="container">
+
+    <div class="info-grid">
+
+      <div class="info-card">
+
+        <div class="info-icon">🍔</div>
+
+        <h3>
+          <span data-lang="en">Fresh Food</span>
+          <span data-lang="ar">طعام طازج</span>
+          <span data-lang="bn">তাজা খাবার</span>
+        </h3>
 
         <p>
           <span data-lang="en">
-            Tap any image to view it larger.
+            Simple and delicious everyday food.
           </span>
 
           <span data-lang="ar">
-            اضغط على أي صورة لعرضها بحجم أكبر.
+            أطعمة بسيطة ولذيذة كل يوم.
           </span>
 
           <span data-lang="bn">
-            বড় করে দেখতে যেকোনো ছবিতে চাপ দিন।
+            প্রতিদিনের সহজ ও সুস্বাদু খাবার।
           </span>
         </p>
 
       </div>
 
-      <div class="modal-gallery">
 
-        <img src="images/IMG_3745.jpeg"
-          alt="Fawaz Cafeteria"
-          onclick="openImage(this.src)">
+      <div class="info-card">
 
-        <img src="images/IMG_3749.jpeg"
-          alt="Fawaz Cafeteria"
-          onclick="openImage(this.src)">
+        <div class="info-icon">🥤</div>
 
-        <img src="images/IMG_3750.jpeg"
-          alt="Fawaz Cafeteria"
-          onclick="openImage(this.src)">
+        <h3>
+          <span data-lang="en">Fresh Drinks</span>
+          <span data-lang="ar">مشروبات طازجة</span>
+          <span data-lang="bn">তাজা পানীয়</span>
+        </h3>
 
-        <img src="images/Snapseed.jpeg"
-          alt="Fawaz Cafeteria"
-          onclick="openImage(this.src)">
+        <p>
+          <span data-lang="en">
+            Refreshing drinks for every day.
+          </span>
 
-        <img src="images/fatira.jpg"
-          alt="Fatira"
-          onclick="openImage(this.src)">
+          <span data-lang="ar">
+            مشروبات منعشة لكل يوم.
+          </span>
 
-        <img src="images/hamburger.jpg"
-          alt="Hamburger"
-          onclick="openImage(this.src)">
+          <span data-lang="bn">
+            প্রতিদিনের জন্য সতেজ পানীয়।
+          </span>
+        </p>
 
-        <img src="images/fresh-juice.jpg"
-          alt="Fresh Juice"
-          onclick="openImage(this.src)">
+      </div>
 
-        <img src="images/sandwich.jpg"
-          alt="Sandwich"
-          onclick="openImage(this.src)">
+
+      <div class="info-card">
+
+        <div class="info-icon">📲</div>
+
+        <h3>
+          <span data-lang="en">Easy Ordering</span>
+          <span data-lang="ar">طلب سهل</span>
+          <span data-lang="bn">সহজ অর্ডার</span>
+        </h3>
+
+        <p>
+          <span data-lang="en">
+            Contact us quickly through WhatsApp.
+          </span>
+
+          <span data-lang="ar">
+            تواصل معنا بسهولة عبر واتساب.
+          </span>
+
+          <span data-lang="bn">
+            WhatsApp-এর মাধ্যমে সহজে যোগাযোগ করুন।
+          </span>
+        </p>
 
       </div>
 
@@ -1615,236 +1368,934 @@
 
   </div>
 
+</section>
 
-  <!-- =========================
-       IMAGE VIEWER
-  ========================== -->
 
-  <div
-    class="image-viewer"
-    id="imageViewer"
-    onclick="closeImage(event)">
+<!-- =========================
+     GALLERY
+========================== -->
+
+<section
+  class="gallery-section"
+  id="gallery"
+>
+
+  <div class="container">
+
+    <div class="section-heading">
+
+      <div class="section-label">
+        <span data-lang="en">Our Gallery</span>
+        <span data-lang="ar">معرض الصور</span>
+        <span data-lang="bn">আমাদের গ্যালারি</span>
+      </div>
+
+      <h2>
+        <span data-lang="en">A Taste You Can See</span>
+        <span data-lang="ar">طعم يمكنك رؤيته</span>
+        <span data-lang="bn">চোখে দেখেই স্বাদ অনুভব করুন</span>
+      </h2>
+
+      <p>
+        <span data-lang="en">
+          Explore our food and cafeteria moments.
+        </span>
+
+        <span data-lang="ar">
+          اكتشف أطعمتنا وأجواء الكافتيريا.
+        </span>
+
+        <span data-lang="bn">
+          আমাদের খাবার ও ক্যাফেটেরিয়ার মুহূর্তগুলো দেখুন।
+        </span>
+      </p>
+
+    </div>
+
+
+    <!-- ONLY PREVIEW IMAGES -->
+
+    <div class="gallery-preview">
+
+      <div class="gallery-item" data-image="images/IMG_3745.jpeg">
+        <img
+          src="images/IMG_3745.jpeg"
+          alt="Fawaz Cafeteria"
+          loading="lazy"
+        >
+
+        <div class="gallery-overlay">
+          Fawaz Cafeteria
+        </div>
+      </div>
+
+
+      <div class="gallery-item" data-image="images/IMG_3749.jpeg">
+        <img
+          src="images/IMG_3749.jpeg"
+          alt="Fawaz Cafeteria"
+          loading="lazy"
+        >
+
+        <div class="gallery-overlay">
+          Fawaz Cafeteria
+        </div>
+      </div>
+
+
+      <div class="gallery-item" data-image="images/IMG_3750.jpeg">
+        <img
+          src="images/IMG_3750.jpeg"
+          alt="Fawaz Cafeteria"
+          loading="lazy"
+        >
+
+        <div class="gallery-overlay">
+          Fawaz Cafeteria
+        </div>
+      </div>
+
+
+      <div class="gallery-item" data-image="images/Snapseed.jpeg">
+        <img
+          src="images/Snapseed.jpeg"
+          alt="Fawaz Cafeteria"
+          loading="lazy"
+        >
+
+        <div class="gallery-overlay">
+          Fawaz Cafeteria
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="gallery-button">
+
+      <button
+        class="btn btn-primary"
+        id="openGallery"
+      >
+
+        <span data-lang="en">
+          View Full Gallery
+        </span>
+
+        <span data-lang="ar">
+          عرض جميع الصور
+        </span>
+
+        <span data-lang="bn">
+          সম্পূর্ণ গ্যালারি দেখুন
+        </span>
+
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     OPENING HOURS
+========================== -->
+
+<section
+  class="hours-section"
+  id="hours"
+>
+
+  <div class="container">
+
+    <div class="section-heading">
+
+      <div class="section-label">
+        <span data-lang="en">Opening Hours</span>
+        <span data-lang="ar">ساعات العمل</span>
+        <span data-lang="bn">খোলার সময়</span>
+      </div>
+
+      <h2>
+        <span data-lang="en">We're Open Every Day</span>
+        <span data-lang="ar">مفتوحون كل يوم</span>
+        <span data-lang="bn">প্রতিদিন খোলা</span>
+      </h2>
+
+    </div>
+
+
+    <div class="hours-card">
+
+      <div class="hours-row">
+
+        <div class="hours-label">
+          <span data-lang="en">Morning</span>
+          <span data-lang="ar">الفترة الصباحية</span>
+          <span data-lang="bn">সকাল</span>
+        </div>
+
+        <div class="hours-time">
+          5:30 AM – 12:00 PM
+        </div>
+
+      </div>
+
+
+      <div class="hours-row">
+
+        <div class="hours-label">
+          <span data-lang="en">Break</span>
+          <span data-lang="ar">استراحة</span>
+          <span data-lang="bn">বিরতি</span>
+        </div>
+
+        <div class="hours-time closed-time">
+          12:00 PM – 4:00 PM
+        </div>
+
+      </div>
+
+
+      <div class="hours-row">
+
+        <div class="hours-label">
+          <span data-lang="en">Evening</span>
+          <span data-lang="ar">الفترة المسائية</span>
+          <span data-lang="bn">সন্ধ্যা</span>
+        </div>
+
+        <div class="hours-time">
+          4:00 PM – 12:00 AM
+        </div>
+
+      </div>
+
+
+      <div class="hours-row">
+
+        <div class="hours-label">
+          <span data-lang="en">Total Opening Time</span>
+          <span data-lang="ar">إجمالي وقت العمل</span>
+          <span data-lang="bn">মোট খোলা থাকে</span>
+        </div>
+
+        <div class="hours-time">
+          14 Hours / Day
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     LOCATION
+========================== -->
+
+<section class="location-section">
+
+  <div class="container">
+
+    <div class="section-heading">
+
+      <div class="section-label">
+        <span data-lang="en">Find Us</span>
+        <span data-lang="ar">موقعنا</span>
+        <span data-lang="bn">আমাদের ঠিকানা</span>
+      </div>
+
+      <h2>
+        <span data-lang="en">Visit Fawaz Cafeteria</span>
+        <span data-lang="ar">قم بزيارة كافتيريا فواز</span>
+        <span data-lang="bn">Fawaz Cafeteria-তে আসুন</span>
+      </h2>
+
+    </div>
+
+
+    <div class="location-card">
+
+      <div class="location-icon">
+        📍
+      </div>
+
+      <h3>
+        Umm Al-Salam, Jeddah
+      </h3>
+
+      <p>
+        Jeddah 22373, Saudi Arabia
+      </p>
+
+      <a
+        class="btn btn-primary"
+        href="https://maps.apple.com/?address=Umm%20Al-Salam%2C%20Jeddah%2022373%2C%20Saudi%20Arabia"
+        target="_blank"
+        rel="noopener"
+      >
+
+        <span data-lang="en">
+          Open in Apple Maps
+        </span>
+
+        <span data-lang="ar">
+          افتح في خرائط Apple
+        </span>
+
+        <span data-lang="bn">
+          Apple Maps-এ খুলুন
+        </span>
+
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     FEEDBACK
+========================== -->
+
+<section class="feedback-section">
+
+  <div class="container">
+
+    <div class="feedback-card">
+
+      <div class="section-label">
+        <span data-lang="en">Your Feedback Matters</span>
+        <span data-lang="ar">رأيك يهمنا</span>
+        <span data-lang="bn">আপনার মতামত গুরুত্বপূর্ণ</span>
+      </div>
+
+      <h2>
+        <span data-lang="en">
+          Tell Us What You Think
+        </span>
+
+        <span data-lang="ar">
+          أخبرنا برأيك
+        </span>
+
+        <span data-lang="bn">
+          আপনার মতামত আমাদের জানান
+        </span>
+      </h2>
+
+      <p>
+
+        <span data-lang="en">
+          Your feedback helps us improve our food and service.
+        </span>
+
+        <span data-lang="ar">
+          ملاحظاتكم تساعدنا على تحسين الطعام والخدمة.
+        </span>
+
+        <span data-lang="bn">
+          আপনার মতামত আমাদের খাবার ও সেবা আরও ভালো করতে সাহায্য করবে।
+        </span>
+
+      </p>
+
+
+      <a
+        class="btn btn-primary"
+        href="https://wa.me/966571638203?text=Hello%20Fawaz%20Cafeteria%2C%20I%20would%20like%20to%20share%20my%20feedback."
+        target="_blank"
+        rel="noopener"
+      >
+
+        <span data-lang="en">
+          Send Private Feedback
+        </span>
+
+        <span data-lang="ar">
+          إرسال ملاحظات خاصة
+        </span>
+
+        <span data-lang="bn">
+          ব্যক্তিগত মতামত পাঠান
+        </span>
+
+      </a>
+
+      <div class="feedback-note">
+
+        <span data-lang="en">
+          Your feedback is sent privately through WhatsApp.
+        </span>
+
+        <span data-lang="ar">
+          يتم إرسال ملاحظاتك بشكل خاص عبر واتساب.
+        </span>
+
+        <span data-lang="bn">
+          আপনার মতামত WhatsApp-এর মাধ্যমে ব্যক্তিগতভাবে পাঠানো হবে।
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     CONTACT
+========================== -->
+
+<section
+  class="contact-section"
+  id="contact"
+>
+
+  <div class="container">
+
+    <div class="section-heading">
+
+      <div class="section-label">
+        <span data-lang="en">Contact</span>
+        <span data-lang="ar">اتصل بنا</span>
+        <span data-lang="bn">যোগাযোগ</span>
+      </div>
+
+      <h2>
+        <span data-lang="en">We're Easy to Reach</span>
+        <span data-lang="ar">يسهل التواصل معنا</span>
+        <span data-lang="bn">আমাদের সাথে যোগাযোগ সহজ</span>
+      </h2>
+
+    </div>
+
+
+    <div class="contact-grid">
+
+      <!-- WhatsApp -->
+
+      <a
+        class="contact-card"
+        href="https://wa.me/966571638203"
+        target="_blank"
+        rel="noopener"
+      >
+
+        <div class="contact-icon">
+          💬
+        </div>
+
+        <h3>
+          WhatsApp
+        </h3>
+
+        <p class="contact-link">
+          +966 57 163 8203
+        </p>
+
+      </a>
+
+
+      <!-- Call -->
+
+      <a
+        class="contact-card"
+        href="tel:+966571638203"
+      >
+
+        <div class="contact-icon">
+          📞
+        </div>
+
+        <h3>
+          <span data-lang="en">Call Us</span>
+          <span data-lang="ar">اتصل بنا</span>
+          <span data-lang="bn">কল করুন</span>
+        </h3>
+
+        <p class="contact-link">
+          +966 57 163 8203
+        </p>
+
+      </a>
+
+
+      <!-- Location -->
+
+      <a
+        class="contact-card"
+        href="https://maps.apple.com/?address=Umm%20Al-Salam%2C%20Jeddah%2022373%2C%20Saudi%20Arabia"
+        target="_blank"
+        rel="noopener"
+      >
+
+        <div class="contact-icon">
+          📍
+        </div>
+
+        <h3>
+          <span data-lang="en">Location</span>
+          <span data-lang="ar">الموقع</span>
+          <span data-lang="bn">লোকেশন</span>
+        </h3>
+
+        <p>
+          Umm Al-Salam, Jeddah
+        </p>
+
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================== -->
+
+<footer>
+
+  <div class="footer-inner">
+
+    <div class="footer-brand">
+
+      <img
+        src="images/fawaz-logo-transparent.png"
+        alt="Fawaz Cafeteria"
+        class="footer-logo"
+      >
+
+      <div>
+
+        <strong>
+          Fawaz Cafeteria
+        </strong>
+
+        <small>
+          Fresh • Simple • Delicious
+        </small>
+
+      </div>
+
+    </div>
+
+
+    <div class="footer-links">
+
+      <a href="#home">
+        <span data-lang="en">Home</span>
+        <span data-lang="ar">الرئيسية</span>
+        <span data-lang="bn">হোম</span>
+      </a>
+
+      <a href="#gallery">
+        <span data-lang="en">Gallery</span>
+        <span data-lang="ar">الصور</span>
+        <span data-lang="bn">গ্যালারি</span>
+      </a>
+
+      <a href="#hours">
+        <span data-lang="en">Hours</span>
+        <span data-lang="ar">ساعات العمل</span>
+        <span data-lang="bn">সময়সূচি</span>
+      </a>
+
+      <a href="#contact">
+        <span data-lang="en">Contact</span>
+        <span data-lang="ar">اتصل بنا</span>
+        <span data-lang="bn">যোগাযোগ</span>
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <div class="copyright">
+
+    © <span id="year"></span> Fawaz Cafeteria.
+    All rights reserved.
+
+  </div>
+
+</footer>
+
+
+<!-- =========================
+     FULL GALLERY MODAL
+========================== -->
+
+<div
+  class="modal"
+  id="galleryModal"
+>
+
+  <div class="modal-header">
+
+    <h2>
+      <span data-lang="en">Full Gallery</span>
+      <span data-lang="ar">معرض الصور الكامل</span>
+      <span data-lang="bn">সম্পূর্ণ গ্যালারি</span>
+    </h2>
 
     <button
-      class="viewer-close"
-      onclick="closeImage()"
-      aria-label="Close">
+      class="close-modal"
+      id="closeGallery"
+      aria-label="Close"
+    >
       ×
     </button>
 
-    <img id="viewerImage" src="" alt="Fawaz Cafeteria image">
-
   </div>
 
 
-  <!-- =========================
-       FOOTER
-  ========================== -->
+  <div class="modal-grid">
 
-  <footer>
+    <!-- General photos -->
 
-    <div class="container">
-
-      <div class="footer-main">
-
-        <div class="footer-brand">
-
-          <img
-            src="images/fawaz-logo-transparent.png"
-            alt="Fawaz Cafeteria logo">
-
-          <div>
-            <strong>Fawaz Cafeteria</strong>
-            <small>
-              <span data-lang="en">Fresh • Simple • Delicious</span>
-              <span data-lang="ar">طازج • بسيط • لذيذ</span>
-              <span data-lang="bn">তাজা • সহজ • সুস্বাদু</span>
-            </small>
-          </div>
-
-        </div>
-
-
-        <div class="footer-links">
-
-          <a href="#home">
-            <span data-lang="en">Home</span>
-            <span data-lang="ar">الرئيسية</span>
-            <span data-lang="bn">হোম</span>
-          </a>
-
-          <a href="#gallery">
-            <span data-lang="en">Gallery</span>
-            <span data-lang="ar">الصور</span>
-            <span data-lang="bn">গ্যালারি</span>
-          </a>
-
-          <a href="#hours">
-            <span data-lang="en">Hours</span>
-            <span data-lang="ar">ساعات العمل</span>
-            <span data-lang="bn">সময়সূচি</span>
-          </a>
-
-          <a href="#contact">
-            <span data-lang="en">Contact</span>
-            <span data-lang="ar">تواصل معنا</span>
-            <span data-lang="bn">যোগাযোগ</span>
-          </a>
-
-        </div>
-
-      </div>
-
-      <div class="copyright">
-        © <span id="year"></span> Fawaz Cafeteria. All rights reserved.
-      </div>
-
+    <div
+      class="gallery-item"
+      data-image="images/IMG_3745.jpeg"
+    >
+      <img
+        src="images/IMG_3745.jpeg"
+        alt="Fawaz Cafeteria"
+        loading="lazy"
+      >
     </div>
 
-  </footer>
+
+    <div
+      class="gallery-item"
+      data-image="images/IMG_3749.jpeg"
+    >
+      <img
+        src="images/IMG_3749.jpeg"
+        alt="Fawaz Cafeteria"
+        loading="lazy"
+      >
+    </div>
 
 
-  <!-- =========================
-       JAVASCRIPT
-  ========================== -->
+    <div
+      class="gallery-item"
+      data-image="images/IMG_3750.jpeg"
+    >
+      <img
+        src="images/IMG_3750.jpeg"
+        alt="Fawaz Cafeteria"
+        loading="lazy"
+      >
+    </div>
 
-  <script>
 
-    /* -------------------------
-       LANGUAGE
-    ------------------------- */
+    <div
+      class="gallery-item"
+      data-image="images/Snapseed.jpeg"
+    >
+      <img
+        src="images/Snapseed.jpeg"
+        alt="Fawaz Cafeteria"
+        loading="lazy"
+      >
+    </div>
 
-    function setLanguage(lang) {
 
-      document.body.classList.remove(
-        "lang-en",
-        "lang-ar",
-        "lang-bn"
+    <!-- Menu photos -->
+
+    <div
+      class="gallery-item"
+      data-image="images/fatira.jpg"
+    >
+      <img
+        src="images/fatira.jpg"
+        alt="Fatira"
+        loading="lazy"
+      >
+
+      <div class="gallery-overlay">
+        Fatira
+      </div>
+    </div>
+
+
+    <div
+      class="gallery-item"
+      data-image="images/hamburger.jpg"
+    >
+      <img
+        src="images/hamburger.jpg"
+        alt="Hamburger"
+        loading="lazy"
+      >
+
+      <div class="gallery-overlay">
+        Hamburger
+      </div>
+    </div>
+
+
+    <div
+      class="gallery-item"
+      data-image="images/fresh-juice.jpg"
+    >
+      <img
+        src="images/fresh-juice.jpg"
+        alt="Fresh Juice"
+        loading="lazy"
+      >
+
+      <div class="gallery-overlay">
+        Fresh Juice
+      </div>
+    </div>
+
+
+    <div
+      class="gallery-item"
+      data-image="images/sandwich.jpg"
+    >
+      <img
+        src="images/sandwich.jpg"
+        alt="Sandwich"
+        loading="lazy"
+      >
+
+      <div class="gallery-overlay">
+        Sandwich
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     IMAGE VIEWER
+========================== -->
+
+<div
+  class="image-viewer"
+  id="imageViewer"
+>
+
+  <button
+    class="close-viewer"
+    id="closeViewer"
+    aria-label="Close"
+  >
+    ×
+  </button>
+
+  <img
+    class="viewer-image"
+    id="viewerImage"
+    src=""
+    alt="Fawaz Cafeteria"
+  >
+
+</div>
+
+
+<script>
+
+  /* =========================
+     LANGUAGE
+  ========================== */
+
+  const languageButtons =
+    document.querySelectorAll(".lang-btn");
+
+  function setLanguage(language) {
+
+    document.body.classList.remove(
+      "lang-en",
+      "lang-ar",
+      "lang-bn"
+    );
+
+    document.body.classList.add(
+      "lang-" + language
+    );
+
+    document.documentElement.lang = language;
+
+    if (language === "ar") {
+      document.documentElement.dir = "rtl";
+    } else {
+      document.documentElement.dir = "ltr";
+    }
+
+    languageButtons.forEach(button => {
+
+      button.classList.toggle(
+        "active",
+        button.dataset.language === language
       );
-
-      document.body.classList.add("lang-" + lang);
-
-      document.documentElement.lang = lang;
-
-      if (lang === "ar") {
-        document.documentElement.dir = "rtl";
-      } else {
-        document.documentElement.dir = "ltr";
-      }
-
-      localStorage.setItem("fawazLanguage", lang);
-
-      document.querySelectorAll(".language-switch button")
-        .forEach(button => {
-          button.classList.remove("active");
-        });
-
-      const activeButton =
-        document.getElementById("btn-" + lang);
-
-      if (activeButton) {
-        activeButton.classList.add("active");
-      }
-    }
-
-
-    /* -------------------------
-       GALLERY
-    ------------------------- */
-
-    function openGallery() {
-      document.getElementById("galleryModal")
-        .classList.add("show");
-
-      document.body.style.overflow = "hidden";
-    }
-
-
-    function closeGallery(event) {
-
-      if (
-        event &&
-        event.target !== document.getElementById("galleryModal")
-      ) {
-        return;
-      }
-
-      document.getElementById("galleryModal")
-        .classList.remove("show");
-
-      document.body.style.overflow = "";
-    }
-
-
-    /* -------------------------
-       IMAGE VIEWER
-    ------------------------- */
-
-    function openImage(src) {
-
-      const viewer =
-        document.getElementById("imageViewer");
-
-      const image =
-        document.getElementById("viewerImage");
-
-      image.src = src;
-
-      viewer.classList.add("show");
-
-      document.body.style.overflow = "hidden";
-    }
-
-
-    function closeImage(event) {
-
-      if (
-        event &&
-        event.target !== document.getElementById("imageViewer")
-      ) {
-        return;
-      }
-
-      document.getElementById("imageViewer")
-        .classList.remove("show");
-
-      document.body.style.overflow = "";
-    }
-
-
-    /* -------------------------
-       ESC KEY
-    ------------------------- */
-
-    document.addEventListener("keydown", function(event) {
-
-      if (event.key === "Escape") {
-
-        document.getElementById("galleryModal")
-          .classList.remove("show");
-
-        document.getElementById("imageViewer")
-          .classList.remove("show");
-
-        document.body.style.overflow = "";
-      }
 
     });
 
+    localStorage.setItem(
+      "fawaz-language",
+      language
+    );
+  }
 
-    /* -------------------------
-       STARTUP
-    ------------------------- */
 
-    const savedLanguage =
-      localStorage.getItem("fawazLanguage") || "en";
+  languageButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      setLanguage(
+        button.dataset.language
+      );
+
+    });
+
+  });
+
+
+  const savedLanguage =
+    localStorage.getItem("fawaz-language");
+
+  if (
+    savedLanguage === "en" ||
+    savedLanguage === "ar" ||
+    savedLanguage === "bn"
+  ) {
 
     setLanguage(savedLanguage);
 
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
+  }
 
-  </script>
+
+  /* =========================
+     FULL GALLERY
+  ========================== */
+
+  const galleryModal =
+    document.getElementById("galleryModal");
+
+  const openGallery =
+    document.getElementById("openGallery");
+
+  const closeGallery =
+    document.getElementById("closeGallery");
+
+
+  openGallery.addEventListener("click", () => {
+
+    galleryModal.classList.add("show");
+
+    document.body.classList.add("modal-open");
+
+  });
+
+
+  closeGallery.addEventListener("click", () => {
+
+    galleryModal.classList.remove("show");
+
+    document.body.classList.remove("modal-open");
+
+  });
+
+
+  /* =========================
+     IMAGE VIEWER
+  ========================== */
+
+  const imageViewer =
+    document.getElementById("imageViewer");
+
+  const viewerImage =
+    document.getElementById("viewerImage");
+
+  const closeViewer =
+    document.getElementById("closeViewer");
+
+
+  document.querySelectorAll(
+    ".gallery-item"
+  ).forEach(item => {
+
+    item.addEventListener("click", () => {
+
+      const image =
+        item.dataset.image;
+
+      if (!image) return;
+
+      viewerImage.src = image;
+
+      imageViewer.classList.add("show");
+
+      document.body.classList.add("modal-open");
+
+    });
+
+  });
+
+
+  closeViewer.addEventListener("click", () => {
+
+    imageViewer.classList.remove("show");
+
+    viewerImage.src = "";
+
+    document.body.classList.remove("modal-open");
+
+  });
+
+
+  /* =========================
+     ESC KEY
+  ========================== */
+
+  document.addEventListener("keydown", event => {
+
+    if (event.key === "Escape") {
+
+      galleryModal.classList.remove("show");
+
+      imageViewer.classList.remove("show");
+
+      viewerImage.src = "";
+
+      document.body.classList.remove(
+        "modal-open"
+      );
+
+    }
+
+  });
+
+
+  /* =========================
+     YEAR
+  ========================== */
+
+  document.getElementById("year")
+    .textContent = new Date().getFullYear();
+
+</script>
 
 </body>
 </html>
