@@ -21,7 +21,7 @@
 
     :root {
       --dark: #111111;
-      --dark-soft: #1c1c1c;
+      --dark-soft: #1d1d1d;
       --cream: #fff9f1;
       --cream-dark: #f3e7d7;
       --gold: #d99a35;
@@ -49,17 +49,15 @@
       color: inherit;
     }
 
-    /* =========================
-       HEADER
-    ========================= */
+    /* HEADER */
 
     header {
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(17, 17, 17, 0.96);
+      background: rgba(17, 17, 17, 0.97);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
     .nav {
@@ -75,14 +73,10 @@
     }
 
     .logo {
-      color: var(--white);
+      color: white;
       font-size: 25px;
-      font-weight: 800;
+      font-weight: 900;
       white-space: nowrap;
-    }
-
-    .logo span {
-      color: var(--gold);
     }
 
     .languages {
@@ -92,26 +86,21 @@
     }
 
     .languages button {
-      border: 1px solid rgba(255, 255, 255, 0.25);
+      border: 1px solid rgba(255,255,255,0.25);
       background: transparent;
       color: white;
       padding: 8px 13px;
       border-radius: 30px;
       cursor: pointer;
       font-weight: bold;
-      transition: 0.25s;
     }
 
-    .languages button:hover,
     .languages button.active {
       background: var(--gold);
       border-color: var(--gold);
-      color: white;
     }
 
-    /* =========================
-       HERO
-    ========================= */
+    /* HERO */
 
     .hero {
       min-height: 650px;
@@ -127,30 +116,15 @@
 
       background:
         linear-gradient(
-          rgba(0, 0, 0, 0.60),
-          rgba(0, 0, 0, 0.72)
+          rgba(0,0,0,0.58),
+          rgba(0,0,0,0.76)
         ),
-        url("images/IMG_3745.jpeg") center/cover no-repeat;
-
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      width: 500px;
-      height: 500px;
-      border-radius: 50%;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      bottom: -250px;
-      left: -150px;
+        url("https://arthikswachchhota.github.io/restaurant/images/IMG_3745.jpeg")
+        center/cover no-repeat;
     }
 
     .hero-content {
       max-width: 850px;
-      position: relative;
-      z-index: 2;
     }
 
     .hero-badge {
@@ -158,10 +132,9 @@
       padding: 8px 18px;
       margin-bottom: 22px;
 
-      border: 1px solid rgba(255, 255, 255, 0.25);
+      border: 1px solid rgba(255,255,255,0.25);
       border-radius: 50px;
-
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255,255,255,0.08);
 
       font-size: 14px;
       font-weight: bold;
@@ -174,15 +147,13 @@
       font-weight: 900;
     }
 
-    .hero h1 span {
-      color: var(--gold);
-    }
-
     .hero p {
       font-size: clamp(17px, 3vw, 22px);
-      color: rgba(255, 255, 255, 0.88);
+      color: rgba(255,255,255,0.88);
       margin-bottom: 32px;
     }
+
+    /* BUTTONS */
 
     .buttons {
       display: flex;
@@ -225,15 +196,7 @@
       color: white;
     }
 
-    .outline {
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      color: white;
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    /* =========================
-       COMMON
-    ========================= */
+    /* COMMON */
 
     section {
       max-width: 1200px;
@@ -266,13 +229,7 @@
       font-size: 17px;
     }
 
-    /* =========================
-       MENU
-    ========================= */
-
-    .menu-section {
-      background: var(--cream);
-    }
+    /* MENU */
 
     .menu-grid {
       display: grid;
@@ -285,33 +242,29 @@
       border-radius: 22px;
       overflow: hidden;
 
-      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 10px 35px rgba(0,0,0,0.08);
 
       transition: 0.3s;
-      border: 1px solid rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(0,0,0,0.04);
     }
 
     .card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.12);
     }
 
     .card-image {
-      position: relative;
+      width: 100%;
+      height: 230px;
       overflow: hidden;
       background: #eeeeee;
     }
 
-    .card img {
+    .card-image img {
       width: 100%;
-      height: 220px;
+      height: 100%;
       object-fit: cover;
       display: block;
-      transition: 0.4s;
-    }
-
-    .card:hover img {
-      transform: scale(1.05);
     }
 
     .card-body {
@@ -355,30 +308,7 @@
       background: var(--gold-dark);
     }
 
-    /* =========================
-       ABOUT
-    ========================= */
-
-    .about-wrapper {
-      background: white;
-      border-radius: 30px;
-      padding: 55px 30px;
-
-      text-align: center;
-
-      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.06);
-    }
-
-    .about-wrapper p {
-      max-width: 800px;
-      margin: auto;
-      color: var(--muted);
-      font-size: 18px;
-    }
-
-    /* =========================
-       FEATURE STRIP
-    ========================= */
+    /* FEATURES */
 
     .features {
       background: var(--dark);
@@ -412,13 +342,30 @@
     }
 
     .feature p {
-      color: rgba(255, 255, 255, 0.65);
+      color: rgba(255,255,255,0.65);
       font-size: 15px;
     }
 
-    /* =========================
-       LOCATION
-    ========================= */
+    /* ABOUT */
+
+    .about-wrapper {
+      background: white;
+      border-radius: 30px;
+      padding: 55px 30px;
+
+      text-align: center;
+
+      box-shadow: 0 10px 35px rgba(0,0,0,0.06);
+    }
+
+    .about-wrapper p {
+      max-width: 800px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    /* LOCATION */
 
     .location-box {
       background: var(--cream-dark);
@@ -435,9 +382,7 @@
       margin-bottom: 25px;
     }
 
-    /* =========================
-       REVIEWS
-    ========================= */
+    /* REVIEWS */
 
     .reviews {
       display: grid;
@@ -450,7 +395,7 @@
       padding: 28px;
       border-radius: 20px;
 
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.07);
 
       text-align: center;
     }
@@ -471,9 +416,7 @@
       font-size: 13px;
     }
 
-    /* =========================
-       CONTACT
-    ========================= */
+    /* CONTACT */
 
     .contact-box {
       background: var(--dark);
@@ -484,18 +427,12 @@
       text-align: center;
     }
 
-    .contact-box .section-title {
-      margin-bottom: 10px;
-    }
-
     .contact-box p {
-      color: rgba(255, 255, 255, 0.7);
+      color: rgba(255,255,255,0.7);
       margin-bottom: 25px;
     }
 
-    /* =========================
-       FOOTER
-    ========================= */
+    /* FOOTER */
 
     footer {
       background: #0b0b0b;
@@ -516,25 +453,11 @@
       font-size: 13px;
     }
 
-    /* =========================
-       RTL / LTR
-    ========================= */
-
     body.ltr {
       direction: ltr;
     }
 
-    body.ltr .card-body,
-    body.ltr .about-wrapper,
-    body.ltr .location-box,
-    body.ltr .contact-box,
-    body.ltr .review {
-      text-align: center;
-    }
-
-    /* =========================
-       RESPONSIVE
-    ========================= */
+    /* RESPONSIVE */
 
     @media (max-width: 1000px) {
 
@@ -589,7 +512,7 @@
         grid-template-columns: 1fr;
       }
 
-      .card img {
+      .card-image {
         height: 235px;
       }
 
@@ -604,9 +527,7 @@
 
 <body>
 
-  <!-- =========================
-       HEADER
-  ========================= -->
+  <!-- HEADER -->
 
   <header>
 
@@ -645,9 +566,7 @@
   </header>
 
 
-  <!-- =========================
-       HERO
-  ========================= -->
+  <!-- HERO -->
 
   <section class="hero">
 
@@ -704,11 +623,9 @@
   </section>
 
 
-  <!-- =========================
-       MENU
-  ========================= -->
+  <!-- MENU -->
 
-  <section class="menu-section">
+  <section>
 
     <div class="section-heading">
 
@@ -742,18 +659,15 @@
     <div class="menu-grid">
 
 
-      <!-- =========================
-           FATIRA
-      ========================= -->
+      <!-- FATIRA -->
 
       <div class="card">
 
         <div class="card-image">
 
           <img
-            src="images/IMG_3749.jpeg"
-            alt="Fatira"
-            onerror="this.style.display='none';">
+            src="https://arthikswachchhota.github.io/restaurant/images/IMG_3749.jpeg"
+            alt="Fatira">
 
         </div>
 
@@ -799,18 +713,15 @@
       </div>
 
 
-      <!-- =========================
-           HAMBURGER
-      ========================= -->
+      <!-- HAMBURGER -->
 
       <div class="card">
 
         <div class="card-image">
 
           <img
-            src="images/IMG_3745.jpeg"
-            alt="Hamburger"
-            onerror="this.style.display='none';">
+            src="https://arthikswachchhota.github.io/restaurant/images/IMG_3745.jpeg"
+            alt="Hamburger">
 
         </div>
 
@@ -856,18 +767,15 @@
       </div>
 
 
-      <!-- =========================
-           FRESH JUICE
-      ========================= -->
+      <!-- FRESH JUICE -->
 
       <div class="card">
 
         <div class="card-image">
 
           <img
-            src="images/Snapseed.jpeg"
-            alt="Fresh Juice"
-            onerror="this.style.display='none';">
+            src="https://arthikswachchhota.github.io/restaurant/images/Snapseed.jpeg"
+            alt="Fresh Juice">
 
         </div>
 
@@ -913,18 +821,15 @@
       </div>
 
 
-      <!-- =========================
-           SANDWICH
-      ========================= -->
+      <!-- SANDWICH -->
 
       <div class="card">
 
         <div class="card-image">
 
           <img
-            src="images/IMG_3750.jpeg"
-            alt="Sandwich"
-            onerror="this.style.display='none';">
+            src="https://arthikswachchhota.github.io/restaurant/images/IMG_3750.jpeg"
+            alt="Sandwich">
 
         </div>
 
@@ -974,9 +879,7 @@
   </section>
 
 
-  <!-- =========================
-       FEATURES
-  ========================= -->
+  <!-- FEATURES -->
 
   <section class="features">
 
@@ -1049,9 +952,7 @@
   </section>
 
 
-  <!-- =========================
-       ABOUT
-  ========================= -->
+  <!-- ABOUT -->
 
   <section>
 
@@ -1085,9 +986,7 @@
   </section>
 
 
-  <!-- =========================
-       LOCATION
-  ========================= -->
+  <!-- LOCATION -->
 
   <section>
 
@@ -1132,9 +1031,7 @@
   </section>
 
 
-  <!-- =========================
-       REVIEWS
-  ========================= -->
+  <!-- REVIEWS -->
 
   <section>
 
@@ -1216,9 +1113,7 @@
   </section>
 
 
-  <!-- =========================
-       CONTACT
-  ========================= -->
+  <!-- CONTACT -->
 
   <section>
 
@@ -1276,9 +1171,7 @@
   </section>
 
 
-  <!-- =========================
-       FOOTER
-  ========================= -->
+  <!-- FOOTER -->
 
   <footer>
 
@@ -1300,9 +1193,7 @@
   </footer>
 
 
-  <!-- =========================
-       LANGUAGE SCRIPT
-  ========================= -->
+  <!-- LANGUAGE SCRIPT -->
 
   <script>
 
@@ -1320,7 +1211,6 @@
           }
 
         });
-
 
       if (language === "ar") {
 
@@ -1342,26 +1232,20 @@
 
       }
 
-
       document
         .querySelectorAll(".languages button")
         .forEach(function(button) {
-
           button.classList.remove("active");
-
         });
-
 
       if (clickedButton) {
         clickedButton.classList.add("active");
       }
 
-
       localStorage.setItem(
         "fawazLanguage",
         language
       );
-
     }
 
 
