@@ -5,32 +5,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>فواز كافتيريا | Fawaz Cafeteria</title>
+  <title>كفتيريا فواز | Fawaz Cafeteria | فواز كافتيريا</title>
 
-  <meta
-    name="description"
-    content="Fawaz Cafeteria - Fresh food, drinks and friendly service in Umm Al-Salam, Jeddah."
-  >
+  <meta name="description"
+    content="كفتيريا فواز في أم السلم، جدة. فطيرة، همبرجر، عصيرات طازجة وسندوتش. Fawaz Cafeteria in Umm Al-Salam, Jeddah.">
+  <meta name="keywords"
+    content="Fawaz Cafeteria, فواز كافتيريا, كفتيريا فواز, Jeddah cafeteria, Umm Al-Salam, Fatira, Hamburger, Fresh Juice, Sandwich">
+  <meta name="author" content="Fawaz Cafeteria">
+
+  <meta property="og:title" content="Fawaz Cafeteria">
+  <meta property="og:description" content="Fresh food and drinks in Umm Al-Salam, Jeddah.">
+  <meta property="og:type" content="website">
+
+  <meta name="theme-color" content="#111111">
 
   <style>
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --dark: #111111;
-      --dark-soft: #1d1d1d;
-      --cream: #fff9f1;
-      --cream-dark: #f3e7d7;
-      --gold: #d99a35;
-      --gold-dark: #b97918;
-      --text: #222222;
-      --muted: #777777;
-      --white: #ffffff;
-      --green: #25d366;
-      --blue: #4285f4;
     }
 
     html {
@@ -39,14 +32,37 @@
 
     body {
       font-family: Arial, Tahoma, sans-serif;
-      background: var(--cream);
-      color: var(--text);
-      line-height: 1.6;
-      direction: rtl;
+      background: #faf8f3;
+      color: #171717;
+      line-height: 1.7;
     }
 
     a {
+      text-decoration: none;
       color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    :root {
+      --dark: #111111;
+      --dark2: #1d1d1d;
+      --gold: #d6a84f;
+      --gold2: #f0c76b;
+      --cream: #faf8f3;
+      --white: #ffffff;
+      --green: #168c55;
+      --blue: #1677d2;
+      --gray: #777;
+      --border: #e8e2d6;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: auto;
     }
 
     /* HEADER */
@@ -55,178 +71,222 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(17, 17, 17, 0.97);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: rgba(17, 17, 17, .97);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
     }
 
     .nav {
-      max-width: 1200px;
-      margin: auto;
-      padding: 15px 20px;
-      min-height: 72px;
-
+      min-height: 76px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 20px;
+      justify-content: space-between;
+      gap: 15px;
     }
 
-    .logo {
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       color: white;
-      font-size: 25px;
-      font-weight: 900;
-      white-space: nowrap;
+    }
+
+    .brand img {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+    }
+
+    .brand-text strong {
+      display: block;
+      font-size: 19px;
+      color: var(--gold2);
+    }
+
+    .brand-text span {
+      font-size: 12px;
+      color: #ddd;
     }
 
     .languages {
       display: flex;
-      gap: 7px;
+      gap: 5px;
       flex-wrap: wrap;
+      justify-content: center;
     }
 
-    .languages button {
-      border: 1px solid rgba(255,255,255,0.25);
+    .lang-btn {
+      border: 1px solid #555;
       background: transparent;
       color: white;
-      padding: 8px 13px;
-      border-radius: 30px;
+      padding: 7px 10px;
+      border-radius: 20px;
       cursor: pointer;
-      font-weight: bold;
+      font-size: 12px;
     }
 
-    .languages button.active {
+    .lang-btn.active,
+    .lang-btn:hover {
       background: var(--gold);
       border-color: var(--gold);
+      color: #111;
     }
 
     /* HERO */
 
     .hero {
       min-height: 650px;
-
       display: flex;
       align-items: center;
-      justify-content: center;
-
       text-align: center;
-      color: white;
-
-      padding: 80px 20px;
-
+      position: relative;
+      overflow: hidden;
       background:
-        linear-gradient(
-          rgba(0,0,0,0.58),
-          rgba(0,0,0,0.76)
-        ),
-        url("https://arthikswachchhota.github.io/restaurant/images/IMG_3745.jpeg")
-        center/cover no-repeat;
+        linear-gradient(rgba(0,0,0,.72), rgba(0,0,0,.78)),
+        url("images/hamburger.jpg") center/cover no-repeat;
+      color: white;
     }
 
     .hero-content {
-      max-width: 850px;
+      width: min(800px, 92%);
+      margin: auto;
     }
 
-    .hero-badge {
+    .hero-logo {
+      width: 125px;
+      height: 125px;
+      object-fit: contain;
+      margin: 0 auto 20px;
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,.4));
+    }
+
+    .badge {
       display: inline-block;
-      padding: 8px 18px;
-      margin-bottom: 22px;
-
-      border: 1px solid rgba(255,255,255,0.25);
-      border-radius: 50px;
-      background: rgba(255,255,255,0.08);
-
-      font-size: 14px;
-      font-weight: bold;
+      padding: 7px 15px;
+      border-radius: 30px;
+      background: rgba(214,168,79,.16);
+      border: 1px solid var(--gold);
+      color: var(--gold2);
+      font-size: 13px;
+      margin-bottom: 18px;
     }
 
     .hero h1 {
-      font-size: clamp(45px, 8vw, 82px);
-      line-height: 1.1;
-      margin-bottom: 18px;
-      font-weight: 900;
+      font-size: clamp(38px, 7vw, 72px);
+      line-height: 1.15;
+      margin-bottom: 15px;
     }
 
     .hero p {
-      font-size: clamp(17px, 3vw, 22px);
-      color: rgba(255,255,255,0.88);
-      margin-bottom: 32px;
+      max-width: 650px;
+      margin: auto;
+      color: #eee;
+      font-size: 17px;
     }
 
-    /* BUTTONS */
-
-    .buttons {
+    .hero-buttons {
       display: flex;
       justify-content: center;
-      align-items: center;
-      gap: 12px;
       flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
     }
 
     .btn {
       display: inline-flex;
-      justify-content: center;
       align-items: center;
-
-      padding: 14px 23px;
-
-      border-radius: 50px;
-      text-decoration: none;
-
-      font-weight: 800;
-      transition: 0.25s;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 22px;
+      border-radius: 12px;
+      font-weight: bold;
+      transition: .25s;
     }
 
     .btn:hover {
-      transform: translateY(-3px);
+      transform: translateY(-2px);
     }
 
-    .whatsapp {
+    .btn-gold {
+      background: var(--gold);
+      color: #111;
+    }
+
+    .btn-green {
       background: var(--green);
       color: white;
     }
 
-    .call {
-      background: var(--gold);
+    .btn-outline {
+      border: 1px solid #777;
       color: white;
     }
 
-    .map {
-      background: var(--blue);
-      color: white;
+    /* QUICK INFO */
+
+    .quick-info {
+      margin-top: -45px;
+      position: relative;
+      z-index: 5;
     }
 
-    /* COMMON */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .info-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px;
+      text-align: center;
+      box-shadow: 0 12px 35px rgba(0,0,0,.08);
+    }
+
+    .info-icon {
+      font-size: 27px;
+      margin-bottom: 7px;
+    }
+
+    .info-card h3 {
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .info-card p {
+      color: var(--gray);
+      font-size: 13px;
+    }
+
+    /* SECTIONS */
 
     section {
-      max-width: 1200px;
-      margin: auto;
-      padding: 85px 20px;
+      padding: 85px 0;
     }
 
-    .section-heading {
+    .section-head {
       text-align: center;
-      max-width: 700px;
-      margin: 0 auto 45px;
+      max-width: 720px;
+      margin: 0 auto 40px;
     }
 
-    .eyebrow {
-      color: var(--gold-dark);
-      font-size: 14px;
-      font-weight: 800;
-      text-transform: uppercase;
+    .section-label {
+      color: var(--gold);
+      font-weight: bold;
+      font-size: 13px;
+      letter-spacing: .5px;
       margin-bottom: 8px;
     }
 
-    .section-title {
-      font-size: clamp(30px, 5vw, 42px);
-      line-height: 1.2;
-      margin-bottom: 12px;
+    .section-head h2 {
+      font-size: clamp(28px, 5vw, 42px);
+      margin-bottom: 10px;
     }
 
-    .section-description {
-      color: var(--muted);
-      font-size: 17px;
+    .section-head p {
+      color: var(--gray);
     }
 
     /* MENU */
@@ -234,1012 +294,1367 @@
     .menu-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 22px;
+      gap: 20px;
     }
 
-    .card {
+    .menu-card {
       background: white;
-      border-radius: 22px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
       overflow: hidden;
-
-      box-shadow: 0 10px 35px rgba(0,0,0,0.08);
-
-      transition: 0.3s;
-      border: 1px solid rgba(0,0,0,0.04);
+      box-shadow: 0 8px 25px rgba(0,0,0,.06);
+      transition: .25s;
     }
 
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 18px 45px rgba(0,0,0,0.12);
+    .menu-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,.1);
     }
 
-    .card-image {
+    .menu-image {
+      height: 210px;
       width: 100%;
-      height: 230px;
-      overflow: hidden;
-      background: #eeeeee;
-    }
-
-    .card-image img {
-      width: 100%;
-      height: 100%;
       object-fit: cover;
-      display: block;
     }
 
-    .card-body {
-      padding: 22px;
+    .menu-body {
+      padding: 20px;
       text-align: center;
     }
 
-    .card h3 {
-      font-size: 24px;
-      margin-bottom: 8px;
+    .menu-body h3 {
+      font-size: 21px;
+      margin-bottom: 3px;
     }
 
-    .card p {
-      color: var(--muted);
-      margin-bottom: 15px;
-      min-height: 50px;
+    .menu-en {
+      color: var(--gold);
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .menu-bn {
+      color: var(--gray);
+      font-size: 14px;
     }
 
     .price {
-      display: inline-block;
-      color: var(--gold-dark);
-      font-weight: 800;
-      margin-bottom: 17px;
+      margin-top: 12px;
+      font-size: 18px;
+      font-weight: bold;
+      color: var(--green);
     }
 
     .order-btn {
-      display: inline-block;
-      background: var(--dark);
-      color: white;
-
-      text-decoration: none;
-
-      padding: 10px 20px;
-      border-radius: 30px;
-
+      display: block;
+      margin-top: 14px;
+      padding: 10px;
+      border-radius: 10px;
+      background: #f4f1e9;
+      color: #222;
       font-weight: bold;
-      transition: 0.2s;
+      font-size: 13px;
     }
 
     .order-btn:hover {
-      background: var(--gold-dark);
+      background: var(--gold);
+    }
+
+    /* HOURS */
+
+    .hours-section {
+      background: var(--dark);
+      color: white;
+    }
+
+    .hours-section .section-head p {
+      color: #bbb;
+    }
+
+    .hours-box {
+      max-width: 720px;
+      margin: auto;
+      background: var(--dark2);
+      border: 1px solid #333;
+      border-radius: 22px;
+      overflow: hidden;
+    }
+
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 22px 25px;
+      border-bottom: 1px solid #333;
+    }
+
+    .hours-row:last-child {
+      border-bottom: 0;
+    }
+
+    .hours-row span:last-child {
+      color: var(--gold2);
+      font-weight: bold;
+    }
+
+    .hours-total {
+      text-align: center;
+      padding: 20px;
+      color: #bbb;
+      font-size: 14px;
+    }
+
+    /* ABOUT */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .about-image {
+      border-radius: 25px;
+      width: 100%;
+      height: 430px;
+      object-fit: cover;
+      box-shadow: 0 15px 40px rgba(0,0,0,.12);
+    }
+
+    .about-content h2 {
+      font-size: 38px;
+      margin-bottom: 15px;
+    }
+
+    .about-content p {
+      color: var(--gray);
+      margin-bottom: 15px;
     }
 
     /* FEATURES */
 
     .features {
-      background: var(--dark);
-      color: white;
-
-      max-width: none;
-      padding: 55px 20px;
-    }
-
-    .feature-grid {
-      max-width: 1100px;
-      margin: auto;
-
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
+      gap: 18px;
     }
 
     .feature {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 25px;
       text-align: center;
-      padding: 20px;
     }
 
     .feature-icon {
-      font-size: 34px;
+      font-size: 35px;
       margin-bottom: 10px;
     }
 
-    .feature h3 {
-      margin-bottom: 6px;
-    }
-
     .feature p {
-      color: rgba(255,255,255,0.65);
-      font-size: 15px;
+      color: var(--gray);
+      font-size: 14px;
+      margin-top: 5px;
     }
 
-    /* ABOUT */
+    /* GALLERY */
 
-    .about-wrapper {
-      background: white;
-      border-radius: 30px;
-      padding: 55px 30px;
-
-      text-align: center;
-
-      box-shadow: 0 10px 35px rgba(0,0,0,0.06);
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
     }
 
-    .about-wrapper p {
-      max-width: 800px;
-      margin: auto;
-      color: var(--muted);
-      font-size: 18px;
+    .gallery-item {
+      overflow: hidden;
+      border-radius: 18px;
+      height: 240px;
+      background: #eee;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: .4s;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
     }
 
     /* LOCATION */
 
     .location-box {
-      background: var(--cream-dark);
-      border-radius: 30px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+      align-items: stretch;
+    }
 
-      padding: 55px 25px;
+    .location-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 30px;
+    }
 
+    .location-card h3 {
+      margin-bottom: 10px;
+    }
+
+    .location-card p {
+      color: var(--gray);
+      margin-bottom: 20px;
+    }
+
+    .qr-box {
+      margin-top: 25px;
+      padding: 20px;
+      border: 1px dashed #ccc;
+      border-radius: 15px;
       text-align: center;
     }
 
-    .location-box p {
-      color: #555;
-      font-size: 18px;
-      margin-bottom: 25px;
+    .qr-box img {
+      width: 160px;
+      height: 160px;
+      object-fit: contain;
+      margin: auto;
+    }
+
+    .qr-note {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--gray);
     }
 
     /* REVIEWS */
 
-    .reviews {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
-
-    .review {
+    .review-box {
+      max-width: 760px;
+      margin: auto;
       background: white;
-      padding: 28px;
+      border: 1px solid var(--border);
       border-radius: 20px;
-
-      box-shadow: 0 8px 25px rgba(0,0,0,0.07);
-
+      padding: 30px;
       text-align: center;
     }
 
-    .stars {
-      font-size: 21px;
-      margin-bottom: 13px;
+    .review-stars {
+      color: var(--gold);
+      font-size: 25px;
+      margin-bottom: 10px;
     }
 
-    .review p {
-      color: #555;
+    .review-box p {
+      color: var(--gray);
     }
 
-    .demo-note {
-      text-align: center;
-      color: #999;
-      margin-top: 22px;
-      font-size: 13px;
+    .demo-label {
+      display: inline-block;
+      margin-top: 15px;
+      font-size: 11px;
+      color: #a56b00;
+      background: #fff5d8;
+      padding: 5px 10px;
+      border-radius: 20px;
     }
 
     /* CONTACT */
 
-    .contact-box {
-      background: var(--dark);
-      color: white;
-      border-radius: 30px;
-
-      padding: 60px 25px;
-      text-align: center;
+    .contact-section {
+      background: #f1ede4;
     }
 
-    .contact-box p {
-      color: rgba(255,255,255,0.7);
-      margin-bottom: 25px;
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .contact-card {
+      background: white;
+      border-radius: 18px;
+      padding: 28px;
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+
+    .contact-card .icon {
+      font-size: 35px;
+      margin-bottom: 10px;
+    }
+
+    .contact-card h3 {
+      margin-bottom: 7px;
+    }
+
+    .contact-card p {
+      color: var(--gray);
+      font-size: 14px;
+      margin-bottom: 15px;
     }
 
     /* FOOTER */
 
     footer {
-      background: #0b0b0b;
+      background: #0d0d0d;
       color: white;
+      padding: 50px 0 25px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr;
+      gap: 35px;
+    }
+
+    .footer-brand img {
+      width: 75px;
+      margin-bottom: 12px;
+    }
+
+    .footer-brand p {
+      color: #aaa;
+      font-size: 14px;
+      max-width: 400px;
+    }
+
+    footer h3 {
+      color: var(--gold2);
+      margin-bottom: 12px;
+    }
+
+    footer li {
+      list-style: none;
+      margin-bottom: 7px;
+      color: #aaa;
+      font-size: 14px;
+    }
+
+    .copyright {
+      border-top: 1px solid #292929;
+      margin-top: 35px;
+      padding-top: 20px;
       text-align: center;
-      padding: 35px 20px;
+      color: #777;
+      font-size: 12px;
     }
 
-    footer .footer-name {
-      color: var(--gold);
-      font-size: 20px;
-      font-weight: 800;
-      margin-bottom: 6px;
+    /* LANGUAGE */
+
+    [data-lang] {
+      display: none;
     }
 
-    footer p:last-child {
-      color: #888;
-      font-size: 13px;
+    body.lang-ar [data-lang="ar"],
+    body.lang-en [data-lang="en"],
+    body.lang-bn [data-lang="bn"] {
+      display: block;
     }
 
-    body.ltr {
-      direction: ltr;
+    span[data-lang] {
+      display: none !important;
+    }
+
+    body.lang-ar span[data-lang="ar"],
+    body.lang-en span[data-lang="en"],
+    body.lang-bn span[data-lang="bn"] {
+      display: inline !important;
     }
 
     /* RESPONSIVE */
 
-    @media (max-width: 1000px) {
-
+    @media (max-width: 900px) {
       .menu-grid {
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .feature-grid {
+      .features {
         grid-template-columns: 1fr;
       }
 
-      .reviews {
+      .about-grid,
+      .location-box {
         grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
       }
     }
 
     @media (max-width: 650px) {
 
       .nav {
-        flex-direction: column;
-        justify-content: center;
-        padding: 14px 15px;
+        min-height: 68px;
       }
 
-      .logo {
-        font-size: 22px;
+      .brand img {
+        width: 45px;
+        height: 45px;
+      }
+
+      .brand-text strong {
+        font-size: 15px;
+      }
+
+      .brand-text span {
+        font-size: 10px;
+      }
+
+      .languages {
+        max-width: 145px;
+      }
+
+      .lang-btn {
+        padding: 5px 8px;
+        font-size: 10px;
       }
 
       .hero {
-        min-height: 570px;
-        padding: 70px 18px;
+        min-height: 600px;
       }
 
-      .hero h1 {
-        font-size: 48px;
+      .hero-logo {
+        width: 105px;
+        height: 105px;
       }
 
       .hero p {
-        font-size: 17px;
+        font-size: 15px;
       }
 
-      .btn {
-        width: 100%;
-        max-width: 320px;
-      }
-
-      section {
-        padding: 60px 15px;
-      }
-
-      .menu-grid {
+      .info-grid {
         grid-template-columns: 1fr;
       }
 
-      .card-image {
-        height: 235px;
+      .quick-info {
+        margin-top: 20px;
       }
 
-      .about-wrapper,
-      .location-box,
-      .contact-box {
-        padding: 40px 20px;
+      section {
+        padding: 65px 0;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .menu-image {
+        height: 155px;
+      }
+
+      .menu-body {
+        padding: 14px 10px;
+      }
+
+      .menu-body h3 {
+        font-size: 17px;
+      }
+
+      .price {
+        font-size: 16px;
+      }
+
+      .order-btn {
+        font-size: 11px;
+      }
+
+      .gallery {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .gallery-item {
+        height: 170px;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .footer-brand p {
+        margin: auto;
+      }
+
+      .footer-brand img {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hours-row {
+        padding: 18px;
+        font-size: 14px;
+      }
+
+      .about-image {
+        height: 300px;
       }
     }
   </style>
 </head>
 
-<body>
+<body class="lang-ar">
 
   <!-- HEADER -->
-
   <header>
+    <div class="container nav">
 
-    <div class="nav">
+      <a href="#home" class="brand">
+        <img src="images/fawaz-logo-transparent.png" alt="Fawaz Cafeteria Logo">
 
-      <div
-        class="logo"
-        data-ar="فواز كافتيريا"
-        data-en="Fawaz Cafeteria"
-        data-bn="ফাওয়াজ ক্যাফেটেরিয়া">
-        فواز كافتيريا
-      </div>
-
-      <div class="languages">
-
-        <button
-          class="active"
-          onclick="setLanguage('ar', this)">
-          العربية
-        </button>
-
-        <button
-          onclick="setLanguage('en', this)">
-          English
-        </button>
-
-        <button
-          onclick="setLanguage('bn', this)">
-          বাংলা
-        </button>
-
-      </div>
-
-    </div>
-
-  </header>
-
-
-  <!-- HERO -->
-
-  <section class="hero">
-
-    <div class="hero-content">
-
-      <div
-        class="hero-badge"
-        data-ar="🍔 أهلاً وسهلاً بكم"
-        data-en="🍔 Welcome to Fawaz Cafeteria"
-        data-bn="🍔 ফাওয়াজ ক্যাফেটেরিয়ায় স্বাগতম">
-        🍔 أهلاً وسهلاً بكم
-      </div>
-
-      <h1
-        data-ar="فواز كافتيريا"
-        data-en="Fawaz Cafeteria"
-        data-bn="ফাওয়াজ ক্যাফেটেরিয়া">
-        فواز كافتيريا
-      </h1>
-
-      <p
-        data-ar="طعم لذيذ وخدمة مميزة"
-        data-en="Delicious food and friendly service"
-        data-bn="সুস্বাদু খাবার ও সুন্দর সার্ভিস">
-        طعم لذيذ وخدمة مميزة
-      </p>
-
-      <div class="buttons">
-
-        <a
-          class="btn whatsapp"
-          href="https://wa.me/966571638203"
-          target="_blank"
-          rel="noopener"
-          data-ar="💬 اطلب عبر واتساب"
-          data-en="💬 Order on WhatsApp"
-          data-bn="💬 WhatsApp-এ অর্ডার করুন">
-          💬 اطلب عبر واتساب
-        </a>
-
-        <a
-          class="btn call"
-          href="tel:+966571638203"
-          data-ar="📞 اتصل بنا"
-          data-en="📞 Call Us"
-          data-bn="📞 কল করুন">
-          📞 اتصل بنا
-        </a>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- MENU -->
-
-  <section>
-
-    <div class="section-heading">
-
-      <div
-        class="eyebrow"
-        data-ar="قائمتنا"
-        data-en="Our Menu"
-        data-bn="আমাদের মেনু">
-        قائمتنا
-      </div>
-
-      <h2
-        class="section-title"
-        data-ar="اختر وجبتك المفضلة"
-        data-en="Choose Your Favorite"
-        data-bn="আপনার পছন্দের খাবার বেছে নিন">
-        اختر وجبتك المفضلة
-      </h2>
-
-      <p
-        class="section-description"
-        data-ar="أطعمة ومشروبات طازجة ولذيذة"
-        data-en="Fresh and delicious food and drinks"
-        data-bn="তাজা ও সুস্বাদু খাবার ও পানীয়">
-        أطعمة ومشروبات طازجة ولذيذة
-      </p>
-
-    </div>
-
-
-    <div class="menu-grid">
-
-
-      <!-- FATIRA -->
-
-      <div class="card">
-
-        <div class="card-image">
-
-          <img
-            src="https://arthikswachchhota.github.io/restaurant/images/IMG_3749.jpeg"
-            alt="Fatira">
-
+        <div class="brand-text">
+          <strong>فواز كافتيريا</strong>
+          <span>Fawaz Cafeteria</span>
         </div>
-
-        <div class="card-body">
-
-          <h3
-            data-ar="فطيرة"
-            data-en="Fatira"
-            data-bn="ফাতিরা">
-            فطيرة
-          </h3>
-
-          <p
-            data-ar="فطيرة طازجة ولذيذة"
-            data-en="Fresh and delicious pastry"
-            data-bn="তাজা ও সুস্বাদু ফাতিরা">
-            فطيرة طازجة ولذيذة
-          </p>
-
-          <div
-            class="price"
-            data-ar="السعر عند الطلب"
-            data-en="Price on request"
-            data-bn="মূল্য জানতে যোগাযোগ করুন">
-            السعر عند الطلب
-          </div>
-
-          <br>
-
-          <a
-            class="order-btn"
-            href="https://wa.me/966571638203?text=I%20want%20to%20order%20Fatira"
-            target="_blank"
-            rel="noopener"
-            data-ar="اطلب الآن"
-            data-en="Order Now"
-            data-bn="এখনই অর্ডার করুন">
-            اطلب الآن
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <!-- HAMBURGER -->
-
-      <div class="card">
-
-        <div class="card-image">
-
-          <img
-            src="https://arthikswachchhota.github.io/restaurant/images/IMG_3745.jpeg"
-            alt="Hamburger">
-
-        </div>
-
-        <div class="card-body">
-
-          <h3
-            data-ar="همبرجر"
-            data-en="Hamburger"
-            data-bn="হামবার্গার">
-            همبرجر
-          </h3>
-
-          <p
-            data-ar="همبرجر طازج وشهي"
-            data-en="Fresh and juicy hamburger"
-            data-bn="তাজা ও সুস্বাদু হামবার্গার">
-            همبرجر طازج وشهي
-          </p>
-
-          <div
-            class="price"
-            data-ar="السعر عند الطلب"
-            data-en="Price on request"
-            data-bn="মূল্য জানতে যোগাযোগ করুন">
-            السعر عند الطلب
-          </div>
-
-          <br>
-
-          <a
-            class="order-btn"
-            href="https://wa.me/966571638203?text=I%20want%20to%20order%20Hamburger"
-            target="_blank"
-            rel="noopener"
-            data-ar="اطلب الآن"
-            data-en="Order Now"
-            data-bn="এখনই অর্ডার করুন">
-            اطلب الآن
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <!-- FRESH JUICE -->
-
-      <div class="card">
-
-        <div class="card-image">
-
-          <img
-            src="https://arthikswachchhota.github.io/restaurant/images/Snapseed.jpeg"
-            alt="Fresh Juice">
-
-        </div>
-
-        <div class="card-body">
-
-          <h3
-            data-ar="عصيرات طازجة"
-            data-en="Fresh Juice"
-            data-bn="তাজা জুস">
-            عصيرات طازجة
-          </h3>
-
-          <p
-            data-ar="عصير طازج ومنعش"
-            data-en="Fresh and refreshing juice"
-            data-bn="তাজা ও সতেজ জুস">
-            عصير طازج ومنعش
-          </p>
-
-          <div
-            class="price"
-            data-ar="السعر عند الطلب"
-            data-en="Price on request"
-            data-bn="মূল্য জানতে যোগাযোগ করুন">
-            السعر عند الطلب
-          </div>
-
-          <br>
-
-          <a
-            class="order-btn"
-            href="https://wa.me/966571638203?text=I%20want%20to%20order%20Fresh%20Juice"
-            target="_blank"
-            rel="noopener"
-            data-ar="اطلب الآن"
-            data-en="Order Now"
-            data-bn="এখনই অর্ডার করুন">
-            اطلب الآن
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <!-- SANDWICH -->
-
-      <div class="card">
-
-        <div class="card-image">
-
-          <img
-            src="https://arthikswachchhota.github.io/restaurant/images/IMG_3750.jpeg"
-            alt="Sandwich">
-
-        </div>
-
-        <div class="card-body">
-
-          <h3
-            data-ar="سندوتش"
-            data-en="Sandwich"
-            data-bn="স্যান্ডউইচ">
-            سندوتش
-          </h3>
-
-          <p
-            data-ar="سندوتش طازج ولذيذ"
-            data-en="Fresh and tasty sandwich"
-            data-bn="তাজা ও সুস্বাদু স্যান্ডউইচ">
-            سندوتش طازج ولذيذ
-          </p>
-
-          <div
-            class="price"
-            data-ar="السعر عند الطلب"
-            data-en="Price on request"
-            data-bn="মূল্য জানতে যোগাযোগ করুন">
-            السعر عند الطلب
-          </div>
-
-          <br>
-
-          <a
-            class="order-btn"
-            href="https://wa.me/966571638203?text=I%20want%20to%20order%20Sandwich"
-            target="_blank"
-            rel="noopener"
-            data-ar="اطلب الآن"
-            data-en="Order Now"
-            data-bn="এখনই অর্ডার করুন">
-            اطلب الآن
-          </a>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- FEATURES -->
-
-  <section class="features">
-
-    <div class="feature-grid">
-
-      <div class="feature">
-
-        <div class="feature-icon">🍽️</div>
-
-        <h3
-          data-ar="طعام لذيذ"
-          data-en="Delicious Food"
-          data-bn="সুস্বাদু খাবার">
-          طعام لذيذ
-        </h3>
-
-        <p
-          data-ar="نكهات شهية ومميزة"
-          data-en="Tasty and enjoyable flavors"
-          data-bn="সুস্বাদু ও উপভোগ্য স্বাদ">
-          نكهات شهية ومميزة
-        </p>
-
-      </div>
-
-
-      <div class="feature">
-
-        <div class="feature-icon">🥤</div>
-
-        <h3
-          data-ar="مشروبات منعشة"
-          data-en="Refreshing Drinks"
-          data-bn="সতেজ পানীয়">
-          مشروبات منعشة
-        </h3>
-
-        <p
-          data-ar="مشروبات طازجة ومنعشة"
-          data-en="Fresh and refreshing drinks"
-          data-bn="তাজা ও সতেজ পানীয়">
-          مشروبات طازجة ومنعشة
-        </p>
-
-      </div>
-
-
-      <div class="feature">
-
-        <div class="feature-icon">💬</div>
-
-        <h3
-          data-ar="طلب سهل"
-          data-en="Easy Ordering"
-          data-bn="সহজ অর্ডার">
-          طلب سهل
-        </h3>
-
-        <p
-          data-ar="اطلب بسهولة عبر واتساب"
-          data-en="Order easily through WhatsApp"
-          data-bn="WhatsApp-এর মাধ্যমে সহজে অর্ডার করুন">
-          اطلب بسهولة عبر واتساب
-        </p>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- ABOUT -->
-
-  <section>
-
-    <div class="about-wrapper">
-
-      <div
-        class="eyebrow"
-        data-ar="من نحن"
-        data-en="About Us"
-        data-bn="আমাদের সম্পর্কে">
-        من نحن
-      </div>
-
-      <h2
-        class="section-title"
-        data-ar="عن فواز كافتيريا"
-        data-en="About Fawaz Cafeteria"
-        data-bn="ফাওয়াজ ক্যাফেটেরিয়া সম্পর্কে">
-        عن فواز كافتيريا
-      </h2>
-
-      <p
-        data-ar="نقدم لكم أطعمة ومشروبات طازجة ولذيذة مع خدمة ودية."
-        data-en="We serve fresh and delicious food and drinks with friendly service."
-        data-bn="আমরা তাজা ও সুস্বাদু খাবার এবং পানীয় সুন্দর সার্ভিসের সাথে পরিবেশন করি।">
-        نقدم لكم أطعمة ومشروبات طازجة ولذيذة مع خدمة ودية.
-      </p>
-
-    </div>
-
-  </section>
-
-
-  <!-- LOCATION -->
-
-  <section>
-
-    <div class="location-box">
-
-      <div
-        class="eyebrow"
-        data-ar="زورونا"
-        data-en="Visit Us"
-        data-bn="আমাদের কাছে আসুন">
-        زورونا
-      </div>
-
-      <h2
-        class="section-title"
-        data-ar="موقعنا"
-        data-en="Our Location"
-        data-bn="আমাদের লোকেশন">
-        موقعنا
-      </h2>
-
-      <p
-        data-ar="📍 حي أم السلم، جدة 22373، المملكة العربية السعودية"
-        data-en="📍 Umm Al-Salam, Jeddah 22373, Saudi Arabia"
-        data-bn="📍 উম্ম আল-সালাম, জেদ্দা 22373, সৌদি আরব">
-        📍 حي أم السلم، جدة 22373، المملكة العربية السعودية
-      </p>
-
-      <a
-        class="btn map"
-        href="https://maps.apple/p/xQxoXJSmhAFC3n"
-        target="_blank"
-        rel="noopener"
-        data-ar="📍 افتح الموقع في Apple Maps"
-        data-en="📍 Open in Apple Maps"
-        data-bn="📍 Apple Maps-এ লোকেশন দেখুন">
-        📍 افتح الموقع في Apple Maps
       </a>
 
-    </div>
-
-  </section>
-
-
-  <!-- REVIEWS -->
-
-  <section>
-
-    <div class="section-heading">
-
-      <div
-        class="eyebrow"
-        data-ar="آراء"
-        data-en="Reviews"
-        data-bn="রিভিউ">
-        آراء
-      </div>
-
-      <h2
-        class="section-title"
-        data-ar="آراء العملاء"
-        data-en="Customer Reviews"
-        data-bn="কাস্টমার রিভিউ">
-        آراء العملاء
-      </h2>
-
-    </div>
-
-
-    <div class="reviews">
-
-      <div class="review">
-
-        <div class="stars">⭐⭐⭐⭐⭐</div>
-
-        <p
-          data-ar="طعم الطعام رائع."
-          data-en="The food tastes great."
-          data-bn="খাবারের স্বাদ খুব ভালো।">
-          طعم الطعام رائع.
-        </p>
-
-      </div>
-
-
-      <div class="review">
-
-        <div class="stars">⭐⭐⭐⭐⭐</div>
-
-        <p
-          data-ar="خدمة جميلة وطعام لذيذ."
-          data-en="Great service and delicious food."
-          data-bn="সুন্দর সার্ভিস ও সুস্বাদু খাবার।">
-          خدمة جميلة وطعام لذيذ.
-        </p>
-
-      </div>
-
-
-      <div class="review">
-
-        <div class="stars">⭐⭐⭐⭐⭐</div>
-
-        <p
-          data-ar="مكان جميل لتناول وجبة سريعة."
-          data-en="A nice place for a quick meal."
-          data-bn="দ্রুত খাবারের জন্য সুন্দর জায়গা।">
-          مكان جميل لتناول وجبة سريعة.
-        </p>
-
+      <div class="languages">
+        <button class="lang-btn active" onclick="setLanguage('ar')">العربية</button>
+        <button class="lang-btn" onclick="setLanguage('en')">English</button>
+        <button class="lang-btn" onclick="setLanguage('bn')">বাংলা</button>
       </div>
 
     </div>
+  </header>
 
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-content">
 
-    <p
-      class="demo-note"
-      data-ar="* هذه تقييمات تجريبية للموقع وليست تقييمات عملاء حقيقية."
-      data-en="* These are demo reviews for the website, not real customer reviews."
-      data-bn="* এগুলো ওয়েবসাইটের Demo Review, বাস্তব কাস্টমার রিভিউ নয়।">
-      * هذه تقييمات تجريبية للموقع وليست تقييمات عملاء حقيقية.
-    </p>
+      <img class="hero-logo"
+        src="images/fawaz-logo-transparent.png"
+        alt="Fawaz Cafeteria">
 
-  </section>
-
-
-  <!-- CONTACT -->
-
-  <section>
-
-    <div class="contact-box">
-
-      <div
-        class="eyebrow"
-        data-ar="تواصل معنا"
-        data-en="Get in Touch"
-        data-bn="যোগাযোগ করুন">
-        تواصل معنا
+      <div class="badge">
+        <span data-lang="ar">أهلاً وسهلاً بكم</span>
+        <span data-lang="en">Welcome to Fawaz Cafeteria</span>
+        <span data-lang="bn">ফাওয়াজ ক্যাফেটেরিয়ায় স্বাগতম</span>
       </div>
 
-      <h2
-        class="section-title"
-        data-ar="اطلب الآن"
-        data-en="Order Now"
-        data-bn="এখনই অর্ডার করুন">
-        اطلب الآن
-      </h2>
+      <h1>
+        <span data-lang="ar">كفتيريا فواز</span>
+        <span data-lang="en">Fawaz Cafeteria</span>
+        <span data-lang="bn">ফাওয়াজ ক্যাফেটেরিয়া</span>
+      </h1>
 
-      <p
-        data-ar="يسعدنا استقبال طلباتكم واستفساراتكم."
-        data-en="We are happy to receive your orders and inquiries."
-        data-bn="আপনার অর্ডার ও জিজ্ঞাসার জন্য আমরা প্রস্তুত।">
-        يسعدنا استقبال طلباتكم واستفساراتكم.
+      <p>
+        <span data-lang="ar">طعم طازج، خدمة بسيطة، ووجبات تحبها.</span>
+        <span data-lang="en">Fresh taste, simple service and food you love.</span>
+        <span data-lang="bn">তাজা স্বাদ, সহজ সার্ভিস এবং পছন্দের খাবার।</span>
       </p>
 
-      <div class="buttons">
+      <div class="hero-buttons">
 
-        <a
-          class="btn whatsapp"
+        <a class="btn btn-green"
           href="https://wa.me/966571638203"
-          target="_blank"
-          rel="noopener"
-          data-ar="💬 واتساب"
-          data-en="💬 WhatsApp"
-          data-bn="💬 WhatsApp">
-          💬 واتساب
+          target="_blank">
+          <span data-lang="ar">طلب عبر واتساب</span>
+          <span data-lang="en">Order on WhatsApp</span>
+          <span data-lang="bn">WhatsApp অর্ডার</span>
         </a>
 
-        <a
-          class="btn call"
-          href="tel:+966571638203"
-          data-ar="📞 اتصال"
-          data-en="📞 Call"
-          data-bn="📞 কল">
-          📞 اتصال
+        <a class="btn btn-outline"
+          href="tel:+966571638203">
+          <span data-lang="ar">اتصل بنا</span>
+          <span data-lang="en">Call Us</span>
+          <span data-lang="bn">কল করুন</span>
         </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK INFO -->
+  <div class="quick-info">
+    <div class="container info-grid">
+
+      <div class="info-card">
+        <div class="info-icon">🕐</div>
+        <h3>
+          <span data-lang="ar">أوقات العمل</span>
+          <span data-lang="en">Opening Hours</span>
+          <span data-lang="bn">খোলার সময়</span>
+        </h3>
+        <p>5:30 AM – 12:00 PM<br>4:00 PM – 12:00 AM</p>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">📍</div>
+        <h3>
+          <span data-lang="ar">الموقع</span>
+          <span data-lang="en">Location</span>
+          <span data-lang="bn">ঠিকানা</span>
+        </h3>
+        <p>Umm Al-Salam, Jeddah 22373</p>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">📱</div>
+        <h3>
+          <span data-lang="ar">التواصل</span>
+          <span data-lang="en">Contact</span>
+          <span data-lang="bn">যোগাযোগ</span>
+        </h3>
+        <p>+966 57 163 8203</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MENU -->
+  <section id="menu">
+
+    <div class="container">
+
+      <div class="section-head">
+
+        <div class="section-label">
+          <span data-lang="ar">قائمة الطعام</span>
+          <span data-lang="en">OUR MENU</span>
+          <span data-lang="bn">আমাদের মেনু</span>
+        </div>
+
+        <h2>
+          <span data-lang="ar">اختر وجبتك</span>
+          <span data-lang="en">Choose Your Meal</span>
+          <span data-lang="bn">আপনার খাবার বেছে নিন</span>
+        </h2>
+
+        <p>
+          <span data-lang="ar">الأسعار سيتم تحديثها قريباً.</span>
+          <span data-lang="en">Prices will be updated soon.</span>
+          <span data-lang="bn">দাম পরে আপডেট করা হবে।</span>
+        </p>
+
+      </div>
+
+      <div class="menu-grid" id="menuGrid"></div>
+
+    </div>
+  </section>
+
+  <!-- HOURS -->
+  <section class="hours-section" id="hours">
+
+    <div class="container">
+
+      <div class="section-head">
+
+        <div class="section-label">
+          <span data-lang="ar">ساعات العمل</span>
+          <span data-lang="en">OPENING HOURS</span>
+          <span data-lang="bn">খোলার সময়</span>
+        </div>
+
+        <h2>
+          <span data-lang="ar">نحن بانتظاركم</span>
+          <span data-lang="en">We're Open For You</span>
+          <span data-lang="bn">আমরা আপনাদের জন্য খোলা</span>
+        </h2>
+
+        <p>
+          <span data-lang="ar">لدينا فترتان للعمل يومياً.</span>
+          <span data-lang="en">We operate in two daily shifts.</span>
+          <span data-lang="bn">প্রতিদিন দুই সময়ে আমাদের কার্যক্রম চলে।</span>
+        </p>
+
+      </div>
+
+      <div class="hours-box">
+
+        <div class="hours-row">
+          <span>
+            <span data-lang="ar">الفترة الصباحية</span>
+            <span data-lang="en">Morning</span>
+            <span data-lang="bn">সকাল</span>
+          </span>
+
+          <span>5:30 AM – 12:00 PM</span>
+        </div>
+
+        <div class="hours-row">
+          <span>
+            <span data-lang="ar">الفترة المسائية</span>
+            <span data-lang="en">Evening</span>
+            <span data-lang="bn">বিকাল/রাত</span>
+          </span>
+
+          <span>4:00 PM – 12:00 AM</span>
+        </div>
+
+        <div class="hours-row">
+          <span>
+            <span data-lang="ar">مغلق</span>
+            <span data-lang="en">Closed</span>
+            <span data-lang="bn">বন্ধ</span>
+          </span>
+
+          <span>12:00 PM – 4:00 PM</span>
+        </div>
+
+        <div class="hours-total">
+          <span data-lang="ar">إجمالي ساعات العمل: 14 ساعة يومياً</span>
+          <span data-lang="en">Total opening time: 14 hours daily</span>
+          <span data-lang="bn">মোট খোলা থাকে: প্রতিদিন ১৪ ঘণ্টা</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+
+    <div class="container about-grid">
+
+      <img class="about-image"
+        src="images/IMG_3745.jpeg"
+        alt="Fawaz Cafeteria">
+
+      <div class="about-content">
+
+        <div class="section-label">
+          <span data-lang="ar">عن كفتيريا فواز</span>
+          <span data-lang="en">ABOUT FAWAZ</span>
+          <span data-lang="bn">ফাওয়াজ সম্পর্কে</span>
+        </div>
+
+        <h2>
+          <span data-lang="ar">نكهة بسيطة تحبها</span>
+          <span data-lang="en">Simple Food. Good Taste.</span>
+          <span data-lang="bn">সহজ খাবার, ভালো স্বাদ।</span>
+        </h2>
+
+        <p>
+          <span data-lang="ar">
+            كفتيريا فواز تقدم مجموعة من الوجبات والمشروبات الطازجة في أم السلم، جدة.
+          </span>
+
+          <span data-lang="en">
+            Fawaz Cafeteria offers fresh meals and drinks in Umm Al-Salam, Jeddah.
+          </span>
+
+          <span data-lang="bn">
+            ফাওয়াজ ক্যাফেটেরিয়া জেদ্দার উম্ম আল-সালামে তাজা খাবার ও পানীয় পরিবেশন করে।
+          </span>
+        </p>
+
+        <p>
+          <span data-lang="ar">
+            نرحب بكم ونسعد بخدمتكم.
+          </span>
+
+          <span data-lang="en">
+            We welcome you and look forward to serving you.
+          </span>
+
+          <span data-lang="bn">
+            আপনাদের স্বাগতম। আপনাদের সেবা করতে আমরা আনন্দিত।
+          </span>
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section>
+
+    <div class="container">
+
+      <div class="section-head">
+
+        <div class="section-label">
+          <span data-lang="ar">لماذا فواز؟</span>
+          <span data-lang="en">WHY FAWAZ?</span>
+          <span data-lang="bn">কেন ফাওয়াজ?</span>
+        </div>
+
+        <h2>
+          <span data-lang="ar">أشياء نهتم بها</span>
+          <span data-lang="en">What We Care About</span>
+          <span data-lang="bn">যেসব বিষয়কে আমরা গুরুত্ব দিই</span>
+        </h2>
+
+      </div>
+
+      <div class="features">
+
+        <div class="feature">
+          <div class="feature-icon">🍔</div>
+
+          <h3>
+            <span data-lang="ar">طازج</span>
+            <span data-lang="en">Fresh</span>
+            <span data-lang="bn">তাজা</span>
+          </h3>
+
+          <p>
+            <span data-lang="ar">وجبات ومشروبات طازجة.</span>
+            <span data-lang="en">Fresh food and drinks.</span>
+            <span data-lang="bn">তাজা খাবার ও পানীয়।</span>
+          </p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">⚡</div>
+
+          <h3>
+            <span data-lang="ar">خدمة بسيطة</span>
+            <span data-lang="en">Simple Service</span>
+            <span data-lang="bn">সহজ সার্ভিস</span>
+          </h3>
+
+          <p>
+            <span data-lang="ar">طلب سهل وسريع.</span>
+            <span data-lang="en">Easy and quick ordering.</span>
+            <span data-lang="bn">সহজ ও দ্রুত অর্ডার।</span>
+          </p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">❤️</div>
+
+          <h3>
+            <span data-lang="ar">أهلاً بكم</span>
+            <span data-lang="en">You Are Welcome</span>
+            <span data-lang="bn">আপনাদের স্বাগতম</span>
+          </h3>
+
+          <p>
+            <span data-lang="ar">نسعد بخدمتكم دائماً.</span>
+            <span data-lang="en">Always happy to serve you.</span>
+            <span data-lang="bn">সবসময় আপনাদের সেবা করতে আনন্দিত।</span>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+
+    <div class="container">
+
+      <div class="section-head">
+
+        <div class="section-label">
+          <span data-lang="ar">معرض الصور</span>
+          <span data-lang="en">GALLERY</span>
+          <span data-lang="bn">গ্যালারি</span>
+        </div>
+
+        <h2>
+          <span data-lang="ar">من كفتيريا فواز</span>
+          <span data-lang="en">From Fawaz Cafeteria</span>
+          <span data-lang="bn">ফাওয়াজ ক্যাফেটেরিয়া</span>
+        </h2>
+
+      </div>
+
+      <div class="gallery">
+
+        <div class="gallery-item">
+          <img src="images/IMG_3745.jpeg" alt="Fawaz Cafeteria">
+        </div>
+
+        <div class="gallery-item">
+          <img src="images/IMG_3749.jpeg" alt="Fawaz food">
+        </div>
+
+        <div class="gallery-item">
+          <img src="images/IMG_3750.jpeg" alt="Fawaz Cafeteria food">
+        </div>
+
+        <div class="gallery-item">
+          <img src="images/Snapseed.jpeg" alt="Fawaz Cafeteria">
+        </div>
+
+        <div class="gallery-item">
+          <img src="images/fatira.jpg" alt="Fatira">
+        </div>
+
+        <div class="gallery-item">
+          <img src="images/hamburger.jpg" alt="Hamburger">
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION + QR -->
+  <section id="location">
+
+    <div class="container">
+
+      <div class="section-head">
+
+        <div class="section-label">
+          <span data-lang="ar">موقعنا</span>
+          <span data-lang="en">OUR LOCATION</span>
+          <span data-lang="bn">আমাদের ঠিকানা</span>
+        </div>
+
+        <h2>
+          <span data-lang="ar">زورونا في أم السلم</span>
+          <span data-lang="en">Visit Us in Umm Al-Salam</span>
+          <span data-lang="bn">উম্ম আল-সালামে আমাদের কাছে আসুন</span>
+        </h2>
+
+      </div>
+
+      <div class="location-box">
+
+        <div class="location-card">
+
+          <h3>📍
+            <span data-lang="ar">العنوان</span>
+            <span data-lang="en">Address</span>
+            <span data-lang="bn">ঠিকানা</span>
+          </h3>
+
+          <p>
+            Umm Al-Salam,<br>
+            Jeddah 22373,<br>
+            Saudi Arabia
+          </p>
+
+          <a
+            class="btn btn-gold"
+            href="https://maps.apple.com/?address=Umm%20Al-Salam%2C%20Jeddah%2022373%2C%20Saudi%20Arabia"
+            target="_blank">
+
+            <span data-lang="ar">فتح الموقع</span>
+            <span data-lang="en">Open in Maps</span>
+            <span data-lang="bn">ম্যাপে দেখুন</span>
+
+          </a>
+
+        </div>
+
+        <div class="location-card">
+
+          <h3>📱
+            <span data-lang="ar">تواصل معنا</span>
+            <span data-lang="en">Contact Us</span>
+            <span data-lang="bn">যোগাযোগ করুন</span>
+          </h3>
+
+          <p>
+            +966 57 163 8203
+          </p>
+
+          <a
+            class="btn btn-green"
+            href="https://wa.me/966571638203"
+            target="_blank">
+
+            <span data-lang="ar">واتساب</span>
+            <span data-lang="en">WhatsApp</span>
+            <span data-lang="bn">WhatsApp</span>
+
+          </a>
+
+          <!-- QR CODE -->
+          <div class="qr-box">
+
+            <!--
+              QR image later:
+              Save your QR image inside images folder
+              and change the filename below.
+            -->
+
+            <img
+              src="images/fawaz-website-qr.png"
+              alt="Fawaz Cafeteria Website QR Code"
+              onerror="this.style.display='none';">
+
+            <div class="qr-note">
+
+              <span data-lang="ar">امسح الرمز لزيارة موقعنا</span>
+              <span data-lang="en">Scan to visit our website</span>
+              <span data-lang="bn">Website দেখতে QR code scan করুন</span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section>
+
+    <div class="container">
+
+      <div class="section-head">
+
+        <div class="section-label">
+          <span data-lang="ar">آراء العملاء</span>
+          <span data-lang="en">CUSTOMER REVIEWS</span>
+          <span data-lang="bn">কাস্টমার রিভিউ</span>
+        </div>
+
+        <h2>
+          <span data-lang="ar">قريباً</span>
+          <span data-lang="en">Coming Soon</span>
+          <span data-lang="bn">শীঘ্রই আসছে</span>
+        </h2>
+
+      </div>
+
+      <div class="review-box">
+
+        <div class="review-stars">★★★★★</div>
+
+        <p>
+          <span data-lang="ar">
+            سيتم إضافة تقييمات العملاء الحقيقية هنا لاحقاً.
+          </span>
+
+          <span data-lang="en">
+            Real customer reviews will be added here later.
+          </span>
+
+          <span data-lang="bn">
+            প্রকৃত কাস্টমার রিভিউ পরে এখানে যোগ করা হবে।
+          </span>
+        </p>
+
+        <span class="demo-label">
+          Demo / Placeholder
+        </span>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+
+    <div class="container">
+
+      <div class="section-head">
+
+        <div class="section-label">
+          <span data-lang="ar">تواصل معنا</span>
+          <span data-lang="en">CONTACT</span>
+          <span data-lang="bn">যোগাযোগ</span>
+        </div>
+
+        <h2>
+          <span data-lang="ar">نحن هنا لخدمتكم</span>
+          <span data-lang="en">We're Here to Serve You</span>
+          <span data-lang="bn">আমরা আপনাদের সেবায় আছি</span>
+        </h2>
+
+      </div>
+
+      <div class="contact-grid">
+
+        <div class="contact-card">
+
+          <div class="icon">💬</div>
+
+          <h3>WhatsApp</h3>
+
+          <p>+966 57 163 8203</p>
+
+          <a
+            class="btn btn-green"
+            href="https://wa.me/966571638203"
+            target="_blank">
+
+            <span data-lang="ar">ابدأ المحادثة</span>
+            <span data-lang="en">Message Us</span>
+            <span data-lang="bn">মেসেজ করুন</span>
+
+          </a>
+
+        </div>
+
+        <div class="contact-card">
+
+          <div class="icon">📞</div>
+
+          <h3>
+            <span data-lang="ar">اتصال</span>
+            <span data-lang="en">Call</span>
+            <span data-lang="bn">কল</span>
+          </h3>
+
+          <p>+966 57 163 8203</p>
+
+          <a
+            class="btn btn-gold"
+            href="tel:+966571638203">
+
+            <span data-lang="ar">اتصل الآن</span>
+            <span data-lang="en">Call Now</span>
+            <span data-lang="bn">এখন কল করুন</span>
+
+          </a>
+
+        </div>
+
+        <div class="contact-card">
+
+          <div class="icon">📍</div>
+
+          <h3>
+            <span data-lang="ar">الموقع</span>
+            <span data-lang="en">Location</span>
+            <span data-lang="bn">লোকেশন</span>
+          </h3>
+
+          <p>Umm Al-Salam, Jeddah</p>
+
+          <a
+            class="btn btn-gold"
+            href="https://maps.apple.com/?address=Umm%20Al-Salam%2C%20Jeddah%2022373%2C%20Saudi%20Arabia"
+            target="_blank">
+
+            <span data-lang="ar">الخريطة</span>
+            <span data-lang="en">Map</span>
+            <span data-lang="bn">ম্যাপ</span>
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+
+    <div class="container footer-grid">
+
+      <div class="footer-brand">
+
+        <img
+          src="images/fawaz-logo-transparent.png"
+          alt="Fawaz Cafeteria Logo">
+
+        <p>
+          <span data-lang="ar">
+            كفتيريا فواز — أم السلم، جدة.
+          </span>
+
+          <span data-lang="en">
+            Fawaz Cafeteria — Umm Al-Salam, Jeddah.
+          </span>
+
+          <span data-lang="bn">
+            ফাওয়াজ ক্যাফেটেরিয়া — উম্ম আল-সালাম, জেদ্দা।
+          </span>
+        </p>
+
+      </div>
+
+      <div>
+
+        <h3>
+          <span data-lang="ar">روابط</span>
+          <span data-lang="en">Links</span>
+          <span data-lang="bn">লিংক</span>
+        </h3>
+
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#hours">Hours</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#location">Location</a></li>
+        </ul>
+
+      </div>
+
+      <div>
+
+        <h3>
+          <span data-lang="ar">تواصل</span>
+          <span data-lang="en">Contact</span>
+          <span data-lang="bn">যোগাযোগ</span>
+        </h3>
+
+        <ul>
+          <li>+966 57 163 8203</li>
+          <li>Umm Al-Salam</li>
+          <li>Jeddah 22373</li>
+          <li>Saudi Arabia</li>
+        </ul>
 
       </div>
 
     </div>
 
-  </section>
+    <div class="container copyright">
 
+      © <span id="year"></span> Fawaz Cafeteria.
+      <span data-lang="ar">جميع الحقوق محفوظة.</span>
+      <span data-lang="en">All rights reserved.</span>
+      <span data-lang="bn">সর্বস্বত্ব সংরক্ষিত।</span>
 
-  <!-- FOOTER -->
-
-  <footer>
-
-    <p
-      class="footer-name"
-      data-ar="فواز كافتيريا"
-      data-en="Fawaz Cafeteria"
-      data-bn="ফাওয়াজ ক্যাফেটেরিয়া">
-      فواز كافتيريا
-    </p>
-
-    <p
-      data-ar="© جميع الحقوق محفوظة"
-      data-en="© All rights reserved"
-      data-bn="© সর্বস্বত্ব সংরক্ষিত">
-      © جميع الحقوق محفوظة
-    </p>
+    </div>
 
   </footer>
 
-
-  <!-- LANGUAGE SCRIPT -->
-
   <script>
 
-    function setLanguage(language, clickedButton) {
+    /* ==========================================
+       MENU DATA
+       পরে শুধু এই অংশ edit করলেই হবে
+       ========================================== */
 
-      document
-        .querySelectorAll("[data-ar], [data-en], [data-bn]")
-        .forEach(function(element) {
+    const menuItems = [
 
-          const text =
-            element.getAttribute("data-" + language);
+      {
+        nameAr: "فطيرة",
+        nameEn: "Fatira",
+        nameBn: "ফাতিরা",
+        price: "",
+        image: "images/fatira.jpg"
+      },
 
-          if (text) {
-            element.textContent = text;
-          }
+      {
+        nameAr: "همبرجر",
+        nameEn: "Hamburger",
+        nameBn: "হামবার্গার",
+        price: "",
+        image: "images/hamburger.jpg"
+      },
 
-        });
+      {
+        nameAr: "عصيرات طازجة",
+        nameEn: "Fresh Juice",
+        nameBn: "তাজা জুস",
+        price: "",
+        image: "images/fresh-juice.jpg"
+      },
 
-      if (language === "ar") {
-
-        document.documentElement.lang = "ar";
-        document.documentElement.dir = "rtl";
-
-        document.body.classList.remove("ltr");
-
-      } else {
-
-        document.documentElement.dir = "ltr";
-        document.body.classList.add("ltr");
-
-        if (language === "en") {
-          document.documentElement.lang = "en";
-        } else {
-          document.documentElement.lang = "bn";
-        }
-
+      {
+        nameAr: "سندوتش",
+        nameEn: "Sandwich",
+        nameBn: "স্যান্ডউইচ",
+        price: "",
+        image: "images/sandwich.jpg"
       }
 
-      document
-        .querySelectorAll(".languages button")
-        .forEach(function(button) {
-          button.classList.remove("active");
-        });
+    ];
 
-      if (clickedButton) {
-        clickedButton.classList.add("active");
+
+    /* MENU DISPLAY */
+
+    const menuGrid = document.getElementById("menuGrid");
+
+    menuItems.forEach((item, index) => {
+
+      const card = document.createElement("article");
+
+      card.className = "menu-card";
+
+      card.innerHTML = `
+
+        <img
+          class="menu-image"
+          src="${item.image}"
+          alt="${item.nameEn}">
+
+        <div class="menu-body">
+
+          <h3>
+            <span data-lang="ar">${item.nameAr}</span>
+            <span data-lang="en">${item.nameEn}</span>
+            <span data-lang="bn">${item.nameBn}</span>
+          </h3>
+
+          <div class="menu-en">${item.nameEn}</div>
+
+          <div class="menu-bn">${item.nameBn}</div>
+
+          <div class="price">
+            ${item.price ? item.price : ""}
+          </div>
+
+          <a
+            class="order-btn"
+            href="https://wa.me/966571638203"
+            target="_blank"
+            onclick="orderMenuItem(event, ${index})">
+
+            <span data-lang="ar">اطلب الآن</span>
+            <span data-lang="en">Order Now</span>
+            <span data-lang="bn">অর্ডার করুন</span>
+
+          </a>
+
+        </div>
+      `;
+
+      menuGrid.appendChild(card);
+
+    });
+
+
+    /* LANGUAGE */
+
+    function setLanguage(language) {
+
+      document.body.classList.remove(
+        "lang-ar",
+        "lang-en",
+        "lang-bn"
+      );
+
+      document.body.classList.add(
+        "lang-" + language
+      );
+
+      document.documentElement.lang =
+        language === "ar"
+          ? "ar"
+          : language === "bn"
+          ? "bn"
+          : "en";
+
+      document.documentElement.dir =
+        language === "ar"
+          ? "rtl"
+          : "ltr";
+
+      document.querySelectorAll(".lang-btn")
+        .forEach(btn => btn.classList.remove("active"));
+
+      if (language === "ar") {
+        document.querySelectorAll(".lang-btn")[0]
+          .classList.add("active");
+      }
+
+      if (language === "en") {
+        document.querySelectorAll(".lang-btn")[1]
+          .classList.add("active");
+      }
+
+      if (language === "bn") {
+        document.querySelectorAll(".lang-btn")[2]
+          .classList.add("active");
       }
 
       localStorage.setItem(
@@ -1249,31 +1664,68 @@
     }
 
 
+    /* WHATSAPP MENU ORDER */
+
+    function orderMenuItem(event, index) {
+
+      event.preventDefault();
+
+      const item = menuItems[index];
+
+      const language =
+        localStorage.getItem("fawazLanguage") || "ar";
+
+      let message = "";
+
+      if (language === "ar") {
+
+        message =
+          "السلام عليكم، أريد طلب: " +
+          item.nameAr;
+
+      } else if (language === "bn") {
+
+        message =
+          "আসসালামু আলাইকুম, আমি অর্ডার করতে চাই: " +
+          item.nameBn;
+
+      } else {
+
+        message =
+          "Hello, I would like to order: " +
+          item.nameEn;
+
+      }
+
+      const whatsappURL =
+        "https://wa.me/966571638203?text=" +
+        encodeURIComponent(message);
+
+      window.open(
+        whatsappURL,
+        "_blank"
+      );
+    }
+
+
+    /* YEAR */
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+
+    /* SAVED LANGUAGE */
+
     const savedLanguage =
-      localStorage.getItem("fawazLanguage") || "ar";
+      localStorage.getItem("fawazLanguage");
 
-
-    document
-      .querySelectorAll(".languages button")
-      .forEach(function(button) {
-
-        const buttonLanguage =
-          button.getAttribute("onclick");
-
-        if (
-          buttonLanguage &&
-          buttonLanguage.includes("'" + savedLanguage + "'")
-        ) {
-          button.classList.add("active");
-        }
-
-      });
-
-
-    setLanguage(savedLanguage);
+    if (savedLanguage) {
+      setLanguage(savedLanguage);
+    } else {
+      setLanguage("ar");
+    }
 
   </script>
 
 </body>
-
 </html>
