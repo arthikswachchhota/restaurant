@@ -13,7 +13,7 @@
 
   <meta
     name="keywords"
-    content="Fawaz Cafeteria, cafeteria Jeddah, Umm Al-Salam cafeteria, food Jeddah, drinks Jeddah, WhatsApp food order"
+    content="Fawaz Cafeteria, cafeteria Jeddah, Umm Al-Salam cafeteria, Fatira, Hamburger, Fresh Juice, Sandwich, food Jeddah, drinks Jeddah"
   >
 
   <meta name="theme-color" content="#0d0d0c">
@@ -26,6 +26,7 @@
   <meta property="og:type" content="website">
 
   <style>
+
     :root {
       --gold: #d7ae63;
       --gold-light: #f0d08c;
@@ -36,6 +37,7 @@
       --muted: #b9b2a5;
       --border: rgba(215,174,99,.20);
       --green: #20b76b;
+      --burgundy: #5c1830;
     }
 
     * {
@@ -181,11 +183,12 @@
       justify-content: center;
       overflow: hidden;
 
+      /* BURGUNDY / WINE OVERLAY */
       background:
         linear-gradient(
           180deg,
-          rgba(8,8,7,.58),
-          rgba(8,8,7,.82)
+          rgba(92, 24, 48, 0.38),
+          rgba(55, 10, 28, 0.58)
         ),
         url("images/hamburger.jpg") center/cover no-repeat;
     }
@@ -193,45 +196,43 @@
     .hero-content {
       position: relative;
       z-index: 5;
-
       width: min(850px, 92%);
       text-align: center;
-
       padding-top: 50px;
     }
 
-    /* WELCOME TO — ONE LINE */
+    /* =========================
+       WELCOME
+    ========================== */
 
-.welcome-text {
-  display: inline-block;
-  white-space: nowrap;
+    .welcome-text {
+      display: inline-block;
+      white-space: nowrap;
 
-  font-size: clamp(22px, 4vw, 38px);
-  font-weight: 800;
-  line-height: 1;
+      font-size: clamp(30px, 5vw, 42px);
+      font-weight: 800;
+      line-height: 1;
 
-  letter-spacing: 3px;
-  margin-bottom: 14px;
+      letter-spacing: 3px;
+      margin-bottom: 14px;
 
-  color: var(--cream);
+      color: var(--cream);
+      text-transform: uppercase;
 
-  text-transform: uppercase;
+      text-shadow:
+        0 3px 15px rgba(0,0,0,.65);
+    }
 
-  text-shadow:
-    0 3px 15px rgba(0,0,0,.65);
-}
-    /* FAWAZ CAFETERIA */
+    /* =========================
+       HERO TITLE
+    ========================== */
 
     .hero-content h1 {
       font-size: clamp(25px, 4vw, 42px);
       font-weight: 600;
-
       line-height: 1.2;
-
       margin-bottom: 20px;
-
       color: var(--gold-light);
-
       letter-spacing: 1.5px;
 
       text-shadow:
@@ -272,12 +273,14 @@
       font-size: 14px;
 
       transition: .25s;
+      cursor: pointer;
     }
 
     .btn-primary {
       background: var(--gold);
       color: #111;
       box-shadow: 0 8px 25px rgba(215,174,99,.20);
+      border: 1px solid var(--gold);
     }
 
     .btn-primary:hover {
@@ -383,6 +386,78 @@
     }
 
     /* =========================
+       MENU
+    ========================== */
+
+    .menu-section {
+      background: var(--dark);
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .menu-card {
+      overflow: hidden;
+      background: var(--dark-3);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      transition: .25s;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(215,174,99,.45);
+    }
+
+    .menu-card-image {
+      height: 210px;
+      overflow: hidden;
+      background: #111;
+    }
+
+    .menu-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: .4s;
+    }
+
+    .menu-card:hover .menu-card-image img {
+      transform: scale(1.05);
+    }
+
+    .menu-card-content {
+      padding: 20px;
+    }
+
+    .menu-card-content h3 {
+      font-size: 20px;
+      margin-bottom: 9px;
+      color: var(--cream);
+    }
+
+    .menu-card-content p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .menu-price {
+      display: inline-block;
+      color: var(--gold-light);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 7px 11px;
+      border-radius: 8px;
+      background: rgba(215,174,99,.08);
+      border: 1px solid rgba(215,174,99,.16);
+    }
+
+    /* =========================
        GALLERY PREVIEW
     ========================== */
 
@@ -465,12 +540,14 @@
       text-align: center;
       padding: 40px 25px;
       border-radius: 22px;
+
       background:
         linear-gradient(
           135deg,
           rgba(215,174,99,.08),
           rgba(255,255,255,.02)
         );
+
       border: 1px solid var(--border);
     }
 
@@ -694,8 +771,8 @@
       }
 
       .welcome-text {
-        font-size: clamp(34px, 10vw, 54px);
-        letter-spacing: 3px;
+        font-size: 34px;
+        letter-spacing: 2px;
       }
 
       .hero-content h1 {
@@ -704,6 +781,10 @@
 
       .feature-grid {
         grid-template-columns: 1fr;
+      }
+
+      .menu-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
 
       .gallery-grid {
@@ -739,7 +820,7 @@
       }
 
       .welcome-text {
-        font-size: clamp(32px, 11vw, 48px);
+        font-size: 30px;
         letter-spacing: 2px;
         margin-bottom: 8px;
       }
@@ -767,6 +848,14 @@
 
       section {
         padding: 70px 0;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .menu-card-image {
+        height: 230px;
       }
 
       .gallery-grid {
@@ -810,6 +899,7 @@
     html[dir="rtl"] .footer-grid {
       direction: rtl;
     }
+
   </style>
 </head>
 
@@ -820,21 +910,32 @@
   ========================== -->
 
   <header>
+
     <div class="nav">
 
       <a href="#home" class="brand">
+
         <img
           src="images/fawaz-logo-transparent.png"
           alt="Fawaz Cafeteria Logo"
         >
+
         <span>Fawaz Cafeteria</span>
+
       </a>
 
       <nav>
+
         <a href="#home">
           <span data-lang="en">Home</span>
           <span data-lang="ar">الرئيسية</span>
           <span data-lang="bn">হোম</span>
+        </a>
+
+        <a href="#menu">
+          <span data-lang="en">Menu</span>
+          <span data-lang="ar">القائمة</span>
+          <span data-lang="bn">মেনু</span>
         </a>
 
         <a href="#gallery">
@@ -856,15 +957,18 @@
         </a>
 
         <div class="lang-switch">
+
           <button onclick="setLanguage('ar')">ع</button>
           <button onclick="setLanguage('en')">EN</button>
           <button onclick="setLanguage('bn')">বাং</button>
+
         </div>
+
       </nav>
 
     </div>
-  </header>
 
+  </header>
 
   <!-- =========================
        HERO
@@ -933,7 +1037,6 @@
 
     </section>
 
-
     <!-- =========================
          EASY ORDERING
     ========================== -->
@@ -945,15 +1048,19 @@
         <div class="section-title">
 
           <small>
+
             <span data-lang="en">Why Fawaz</span>
             <span data-lang="ar">لماذا فواز</span>
             <span data-lang="bn">কেন Fawaz</span>
+
           </small>
 
           <h2>
+
             <span data-lang="en">Simple & Convenient</span>
             <span data-lang="ar">بسيط ومريح</span>
             <span data-lang="bn">সহজ ও সুবিধাজনক</span>
+
           </h2>
 
         </div>
@@ -965,12 +1072,15 @@
             <div class="feature-icon">💬</div>
 
             <h3>
+
               <span data-lang="en">Easy Ordering</span>
               <span data-lang="ar">طلب سهل وسريع</span>
               <span data-lang="bn">সহজে অর্ডার করুন</span>
+
             </h3>
 
             <p>
+
               <span data-lang="en">
                 Order quickly and easily through WhatsApp.
               </span>
@@ -982,22 +1092,25 @@
               <span data-lang="bn">
                 WhatsApp-এর মাধ্যমে দ্রুত ও সহজে অর্ডার করুন।
               </span>
+
             </p>
 
           </div>
-
 
           <div class="feature-card">
 
             <div class="feature-icon">🍔</div>
 
             <h3>
+
               <span data-lang="en">Fresh Food</span>
               <span data-lang="ar">طعام طازج</span>
               <span data-lang="bn">তাজা খাবার</span>
+
             </h3>
 
             <p>
+
               <span data-lang="en">
                 Enjoy freshly prepared food and refreshing drinks.
               </span>
@@ -1009,22 +1122,25 @@
               <span data-lang="bn">
                 উপভোগ করুন তাজা খাবার ও সতেজ পানীয়।
               </span>
+
             </p>
 
           </div>
-
 
           <div class="feature-card">
 
             <div class="feature-icon">📍</div>
 
             <h3>
+
               <span data-lang="en">Easy to Find</span>
               <span data-lang="ar">موقع سهل الوصول</span>
               <span data-lang="bn">সহজে পৌঁছানো যায়</span>
+
             </h3>
 
             <p>
+
               <span data-lang="en">
                 Find us in Umm Al-Salam, Jeddah.
               </span>
@@ -1036,6 +1152,7 @@
               <span data-lang="bn">
                 আমাদের ঠিকানা উম্ম আল-সালাম, জেদ্দা।
               </span>
+
             </p>
 
           </div>
@@ -1046,6 +1163,209 @@
 
     </section>
 
+    <!-- =========================
+         MENU
+    ========================== -->
+
+    <section class="menu-section" id="menu">
+
+      <div class="container">
+
+        <div class="section-title">
+
+          <small>
+
+            <span data-lang="en">Our Menu</span>
+            <span data-lang="ar">قائمة الطعام</span>
+            <span data-lang="bn">আমাদের মেনু</span>
+
+          </small>
+
+          <h2>
+
+            <span data-lang="en">Food & Drinks</span>
+            <span data-lang="ar">الأطعمة والمشروبات</span>
+            <span data-lang="bn">খাবার ও পানীয়</span>
+
+          </h2>
+
+          <p>
+
+            <span data-lang="en">
+              Explore some of our popular food and drinks.
+            </span>
+
+            <span data-lang="ar">
+              اكتشف بعض الأطعمة والمشروبات المميزة لدينا.
+            </span>
+
+            <span data-lang="bn">
+              আমাদের জনপ্রিয় কিছু খাবার ও পানীয় দেখুন।
+            </span>
+
+          </p>
+
+        </div>
+
+        <div class="menu-grid">
+
+          <div class="menu-card">
+
+            <div class="menu-card-image">
+              <img src="images/fatira.jpg" alt="Fatira">
+            </div>
+
+            <div class="menu-card-content">
+
+              <h3>
+                <span data-lang="en">Fatira</span>
+                <span data-lang="ar">فطيرة</span>
+                <span data-lang="bn">ফাতিরা</span>
+              </h3>
+
+              <p>
+                <span data-lang="en">
+                  Freshly prepared Fatira.
+                </span>
+
+                <span data-lang="ar">
+                  فطيرة طازجة ومحضرة بعناية.
+                </span>
+
+                <span data-lang="bn">
+                  তাজা তৈরি ফাতিরা।
+                </span>
+              </p>
+
+              <span class="menu-price">
+                <span data-lang="en">Price to be updated</span>
+                <span data-lang="ar">السعر سيتم تحديثه</span>
+                <span data-lang="bn">দাম পরে আপডেট হবে</span>
+              </span>
+
+            </div>
+
+          </div>
+
+          <div class="menu-card">
+
+            <div class="menu-card-image">
+              <img src="images/hamburger.jpg" alt="Hamburger">
+            </div>
+
+            <div class="menu-card-content">
+
+              <h3>
+                <span data-lang="en">Hamburger</span>
+                <span data-lang="ar">همبرجر</span>
+                <span data-lang="bn">হামবার্গার</span>
+              </h3>
+
+              <p>
+                <span data-lang="en">
+                  Fresh and delicious hamburger.
+                </span>
+
+                <span data-lang="ar">
+                  همبرجر طازج ولذيذ.
+                </span>
+
+                <span data-lang="bn">
+                  তাজা ও সুস্বাদু হামবার্গার।
+                </span>
+              </p>
+
+              <span class="menu-price">
+                <span data-lang="en">Price to be updated</span>
+                <span data-lang="ar">السعر سيتم تحديثه</span>
+                <span data-lang="bn">দাম পরে আপডেট হবে</span>
+              </span>
+
+            </div>
+
+          </div>
+
+          <div class="menu-card">
+
+            <div class="menu-card-image">
+              <img src="images/fresh-juice.jpg" alt="Fresh Juice">
+            </div>
+
+            <div class="menu-card-content">
+
+              <h3>
+                <span data-lang="en">Fresh Juice</span>
+                <span data-lang="ar">عصيرات طازجة</span>
+                <span data-lang="bn">তাজা জুস</span>
+              </h3>
+
+              <p>
+                <span data-lang="en">
+                  Refreshing fresh juice.
+                </span>
+
+                <span data-lang="ar">
+                  عصيرات طازجة ومنعشة.
+                </span>
+
+                <span data-lang="bn">
+                  সতেজ ও তাজা জুস।
+                </span>
+              </p>
+
+              <span class="menu-price">
+                <span data-lang="en">Price to be updated</span>
+                <span data-lang="ar">السعر سيتم تحديثه</span>
+                <span data-lang="bn">দাম পরে আপডেট হবে</span>
+              </span>
+
+            </div>
+
+          </div>
+
+          <div class="menu-card">
+
+            <div class="menu-card-image">
+              <img src="images/sandwich.jpg" alt="Sandwich">
+            </div>
+
+            <div class="menu-card-content">
+
+              <h3>
+                <span data-lang="en">Sandwich</span>
+                <span data-lang="ar">سندوتش</span>
+                <span data-lang="bn">স্যান্ডউইচ</span>
+              </h3>
+
+              <p>
+                <span data-lang="en">
+                  Freshly prepared sandwich.
+                </span>
+
+                <span data-lang="ar">
+                  سندوتش طازج ومحضر بعناية.
+                </span>
+
+                <span data-lang="bn">
+                  তাজা তৈরি স্যান্ডউইচ।
+                </span>
+              </p>
+
+              <span class="menu-price">
+                <span data-lang="en">Price to be updated</span>
+                <span data-lang="ar">السعر سيتم تحديثه</span>
+                <span data-lang="bn">দাম পরে আপডেট হবে</span>
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
 
     <!-- =========================
          GALLERY
@@ -1085,7 +1405,6 @@
 
         </div>
 
-
         <div class="gallery-grid">
 
           <div class="gallery-item">
@@ -1106,7 +1425,6 @@
 
         </div>
 
-
         <div class="gallery-button">
 
           <button
@@ -1125,7 +1443,6 @@
       </div>
 
     </section>
-
 
     <!-- =========================
          OPENING HOURS
@@ -1151,7 +1468,6 @@
 
         </div>
 
-
         <div class="hours-box">
 
           <div class="hours-row">
@@ -1166,7 +1482,6 @@
 
           </div>
 
-
           <div class="hours-row">
 
             <span>
@@ -1178,7 +1493,6 @@
             <strong>12:00 PM – 4:00 PM</strong>
 
           </div>
-
 
           <div class="hours-row">
 
@@ -1197,7 +1511,6 @@
       </div>
 
     </section>
-
 
     <!-- =========================
          LOCATION
@@ -1237,7 +1550,6 @@
 
     </section>
 
-
     <!-- =========================
          CONTACT
     ========================== -->
@@ -1262,7 +1574,6 @@
 
         </div>
 
-
         <div class="contact-grid">
 
           <div class="contact-card">
@@ -1286,7 +1597,6 @@
             </a>
 
           </div>
-
 
           <div class="contact-card">
 
@@ -1321,7 +1631,6 @@
 
   </main>
 
-
   <!-- =========================
        FOOTER
   ========================== -->
@@ -1346,6 +1655,7 @@
           </div>
 
           <p>
+
             <span data-lang="en">
               Fresh food, refreshing drinks and simple ordering
               in Umm Al-Salam, Jeddah.
@@ -1360,10 +1670,10 @@
               উম্ম আল-সালাম, জেদ্দায় তাজা খাবার,
               সতেজ পানীয় ও সহজ অর্ডার।
             </span>
+
           </p>
 
         </div>
-
 
         <div>
 
@@ -1374,12 +1684,12 @@
           </h4>
 
           <p><a href="#home">Home</a></p>
+          <p><a href="#menu">Menu</a></p>
           <p><a href="#gallery">Gallery</a></p>
           <p><a href="#hours">Opening Hours</a></p>
           <p><a href="#contact">Contact</a></p>
 
         </div>
-
 
         <div>
 
@@ -1399,7 +1709,6 @@
 
       </div>
 
-
       <div class="footer-bottom">
 
         © <span id="year"></span> Fawaz Cafeteria.
@@ -1410,7 +1719,6 @@
     </div>
 
   </footer>
-
 
   <!-- =========================
        FULL GALLERY MODAL
@@ -1435,7 +1743,6 @@
 
     </div>
 
-
     <div class="full-gallery">
 
       <img src="images/IMG_3745.jpeg" alt="Fawaz Cafeteria">
@@ -1452,7 +1759,6 @@
 
   </div>
 
-
   <!-- =========================
        IMAGE VIEWER
   ========================== -->
@@ -1466,10 +1772,13 @@
       ×
     </button>
 
-    <img id="viewerImage" src="" alt="Fawaz Cafeteria">
+    <img
+      id="viewerImage"
+      src=""
+      alt="Fawaz Cafeteria"
+    >
 
   </div>
-
 
   <script>
 
@@ -1525,7 +1834,6 @@
       }
     }
 
-
     /* =========================
        GALLERY
     ========================== */
@@ -1539,7 +1847,6 @@
       document.body.style.overflow = "hidden";
     }
 
-
     function closeGallery() {
 
       document
@@ -1548,7 +1855,6 @@
 
       document.body.style.overflow = "";
     }
-
 
     /* =========================
        IMAGE VIEWER
@@ -1578,7 +1884,6 @@
 
     });
 
-
     function closeViewer() {
 
       document
@@ -1586,7 +1891,6 @@
         .classList.remove("show");
 
     }
-
 
     /* =========================
        ESC KEY
@@ -1606,14 +1910,12 @@
       }
     );
 
-
     /* =========================
        YEAR
     ========================== */
 
     document.getElementById("year").textContent =
       new Date().getFullYear();
-
 
     /* =========================
        LOAD LANGUAGE
