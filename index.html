@@ -20,30 +20,33 @@
   <meta name="theme-color" content="#00b7c3">
 
   <meta property="og:title" content="Fawaz Cafeteria | Umm Al-Salam, Jeddah">
-
   <meta
     property="og:description"
     content="Fresh food, familiar taste and friendly service in Umm Al-Salam, Jeddah."
   >
-
   <meta property="og:type" content="website">
 
   <style>
-
     :root {
       --cyan: #00b7c3;
       --cyan-dark: #006f78;
       --cyan-deep: #003b40;
       --cyan-soft: #dffcff;
+
       --dark: #071315;
       --dark-2: #0c1d20;
       --dark-3: #10282b;
+
       --white: #ffffff;
       --cream: #f7f4ea;
       --muted: #b9c8ca;
+
       --border: rgba(0, 210, 220, 0.22);
+
       --green: #20b76b;
+
       --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+
       --radius: 22px;
     }
 
@@ -65,6 +68,7 @@
         Roboto,
         Arial,
         sans-serif;
+
       background: var(--dark);
       color: var(--white);
       line-height: 1.6;
@@ -85,7 +89,9 @@
       font: inherit;
     }
 
-    /* LANGUAGE */
+    /* =========================
+       LANGUAGE SYSTEM
+    ========================== */
 
     [data-lang] {
       display: none;
@@ -106,7 +112,9 @@
       direction: ltr;
     }
 
-    /* HEADER */
+    /* =========================
+       HEADER
+    ========================== */
 
     header {
       position: fixed;
@@ -114,9 +122,11 @@
       left: 0;
       width: 100%;
       z-index: 1000;
+
       background: rgba(4, 19, 21, 0.86);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
+
       border-bottom: 1px solid rgba(0, 210, 220, 0.16);
     }
 
@@ -124,6 +134,7 @@
       width: min(1180px, calc(100% - 32px));
       min-height: 76px;
       margin: auto;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -169,11 +180,14 @@
       border: 1px solid rgba(255,255,255,0.18);
       background: rgba(255,255,255,0.06);
       color: #fff;
+
       padding: 7px 10px;
       border-radius: 9px;
+
       cursor: pointer;
       font-size: 12px;
       font-weight: 700;
+
       transition: 0.25s ease;
     }
 
@@ -184,43 +198,55 @@
       color: #002b2f;
     }
 
-    /* TOP STRIP */
+    /* =========================
+       TOP STRIP
+    ========================== */
 
     .top-strip {
       padding-top: 76px;
       min-height: 35px;
+
       display: flex;
       align-items: center;
       justify-content: center;
+
       background: #031b1e;
       color: #aeeef1;
+
       font-size: 12px;
       letter-spacing: 0.5px;
       text-align: center;
     }
 
-    /* HERO */
+    /* =========================
+       HERO
+    ========================== */
 
     .hero {
       min-height: 720px;
+
       position: relative;
+
       display: flex;
       align-items: center;
       justify-content: center;
+
       overflow: hidden;
+
       background:
         linear-gradient(
           180deg,
           rgba(0, 190, 200, 0.30),
           rgba(0, 65, 70, 0.72)
         ),
-        url("images/Snapseed.jpeg") center/cover no-repeat;
+        url("images/hamburger.jpg") center/cover no-repeat;
     }
 
     .hero::after {
       content: "";
       position: absolute;
       inset: 0;
+
       background:
         radial-gradient(
           circle at center,
@@ -232,41 +258,59 @@
     .hero-content {
       position: relative;
       z-index: 2;
+
       width: min(900px, calc(100% - 34px));
+
       text-align: center;
       padding: 90px 0 70px;
     }
 
     .hero-kicker {
       display: inline-block;
+
       margin-bottom: 18px;
+
       color: #c8fbfd;
+
       font-size: 14px;
       font-weight: 700;
+
       letter-spacing: 3px;
       text-transform: uppercase;
+
       text-shadow: 0 3px 15px rgba(0,0,0,0.65);
     }
 
     .welcome-text {
       display: block;
+
       white-space: nowrap;
+
       font-size: clamp(30px, 5vw, 42px);
       font-weight: 800;
+
       line-height: 1;
       letter-spacing: 3px;
+
       margin-bottom: 12px;
+
       color: var(--cream);
+
       text-transform: uppercase;
+
       text-shadow: 0 3px 15px rgba(0,0,0,.65);
     }
 
     .hero-title {
       font-size: clamp(42px, 8vw, 78px);
       line-height: 1.05;
+
       font-weight: 900;
+
       color: #ffffff;
+
       margin-bottom: 22px;
+
       text-shadow:
         0 5px 25px rgba(0,0,0,.65),
         0 1px 2px rgba(0,0,0,.8);
@@ -275,9 +319,12 @@
     .hero-description {
       width: min(650px, 100%);
       margin: 0 auto 32px;
+
       color: #eefcfd;
+
       font-size: 17px;
       line-height: 1.8;
+
       text-shadow: 0 3px 12px rgba(0,0,0,.7);
     }
 
@@ -294,11 +341,16 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
+
       min-height: 50px;
+
       padding: 0 22px;
+
       border-radius: 13px;
+
       font-size: 14px;
       font-weight: 800;
+
       transition:
         transform .25s ease,
         box-shadow .25s ease,
@@ -312,6 +364,7 @@
     .btn-whatsapp {
       background: var(--green);
       color: white;
+
       box-shadow: 0 12px 30px rgba(32,183,107,.24);
     }
 
@@ -322,7 +375,9 @@
     .btn-gallery {
       background: rgba(255,255,255,.10);
       color: white;
+
       border: 1px solid rgba(255,255,255,.28);
+
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
     }
@@ -331,7 +386,9 @@
       background: rgba(255,255,255,.17);
     }
 
-    /* GENERAL SECTION */
+    /* =========================
+       GENERAL SECTION
+    ========================== */
 
     section {
       padding: 92px 0;
@@ -351,27 +408,34 @@
       color: var(--cyan);
       font-size: 12px;
       font-weight: 900;
+
       letter-spacing: 3px;
       text-transform: uppercase;
+
       margin-bottom: 8px;
     }
 
     .section-title {
       font-size: clamp(32px, 5vw, 46px);
       line-height: 1.15;
+
       color: #fff;
       font-weight: 850;
+
       margin-bottom: 12px;
     }
 
     .section-description {
       max-width: 650px;
       margin: auto;
+
       color: var(--muted);
       font-size: 15px;
     }
 
-    /* FOOD */
+    /* =========================
+       FOOD
+    ========================== */
 
     .food-section {
       background:
@@ -394,10 +458,15 @@
         rgba(0, 181, 193, .13),
         rgba(255,255,255,.035)
       );
+
       border: 1px solid var(--border);
+
       border-radius: var(--radius);
+
       overflow: hidden;
+
       box-shadow: 0 16px 45px rgba(0,0,0,.22);
+
       transition:
         transform .3s ease,
         border-color .3s ease;
@@ -415,9 +484,12 @@
 
     .food-name {
       padding: 17px 16px 19px;
+
       font-size: 17px;
       font-weight: 800;
+
       color: #fff;
+
       text-align: center;
     }
 
@@ -430,14 +502,20 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+
       color: var(--cyan-soft);
+
       border: 1px solid var(--border);
       background: rgba(0,180,190,.08);
+
       padding: 12px 19px;
       border-radius: 12px;
+
       font-weight: 800;
       font-size: 14px;
+
       cursor: pointer;
+
       transition: .25s ease;
     }
 
@@ -446,7 +524,9 @@
       color: #002c30;
     }
 
-    /* OPENING HOURS */
+    /* =========================
+       OPENING HOURS
+    ========================== */
 
     .hours-section {
       background: #0c2023;
@@ -460,9 +540,13 @@
 
     .hour-card {
       background: rgba(255,255,255,.035);
+
       border: 1px solid var(--border);
+
       border-radius: var(--radius);
+
       padding: 28px 20px;
+
       text-align: center;
     }
 
@@ -481,12 +565,17 @@
 
     .hours-note {
       text-align: center;
+
       color: var(--muted);
+
       margin-top: 25px;
+
       font-size: 14px;
     }
 
-    /* CONTACT */
+    /* =========================
+       CONTACT
+    ========================== */
 
     .contact-section {
       background:
@@ -502,38 +591,51 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 18px;
+
       margin-bottom: 25px;
     }
 
     .contact-card {
       background: rgba(255,255,255,.035);
+
       border: 1px solid var(--border);
+
       border-radius: var(--radius);
+
       padding: 28px 20px;
+
       text-align: center;
     }
 
     .contact-icon {
       width: 52px;
       height: 52px;
+
       margin: 0 auto 15px;
+
       border-radius: 50%;
+
       display: flex;
       align-items: center;
       justify-content: center;
+
       background: rgba(0,190,200,.12);
+
       font-size: 23px;
     }
 
     .contact-name {
       color: #fff;
+
       font-size: 16px;
       font-weight: 850;
+
       margin-bottom: 6px;
     }
 
     .contact-value {
       color: var(--muted);
+
       font-size: 14px;
       line-height: 1.7;
     }
@@ -553,9 +655,13 @@
           rgba(0,180,190,.12),
           rgba(255,255,255,.03)
         );
+
       border: 1px solid var(--border);
+
       border-radius: var(--radius);
+
       padding: 30px;
+
       text-align: center;
     }
 
@@ -576,13 +682,19 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+
       gap: 7px;
+
       background: var(--cyan);
       color: #002c30;
+
       padding: 12px 18px;
+
       border-radius: 11px;
+
       font-size: 14px;
       font-weight: 900;
+
       transition: .25s ease;
     }
 
@@ -591,11 +703,15 @@
       box-shadow: 0 12px 30px rgba(0,190,200,.22);
     }
 
-    /* FOOTER */
+    /* =========================
+       FOOTER
+    ========================== */
 
     footer {
       background: #020b0d;
+
       border-top: 1px solid rgba(0,200,210,.15);
+
       padding: 60px 0 25px;
     }
 
@@ -603,6 +719,7 @@
       display: grid;
       grid-template-columns: 1.3fr 1fr 1fr;
       gap: 40px;
+
       padding-bottom: 40px;
     }
 
@@ -613,42 +730,54 @@
     .footer-logo {
       width: 125px;
       height: auto;
+
       margin-bottom: 18px;
+
       object-fit: contain;
     }
 
     .footer-title {
       font-size: 20px;
       font-weight: 850;
+
       color: white;
+
       margin-bottom: 10px;
     }
 
     .footer-text {
       max-width: 390px;
+
       color: var(--muted);
+
       font-size: 14px;
       line-height: 1.8;
     }
 
     .footer-heading {
       color: var(--cyan);
+
       font-size: 13px;
       font-weight: 900;
+
       text-transform: uppercase;
       letter-spacing: 2px;
+
       margin-bottom: 16px;
     }
 
     .footer-links {
       list-style: none;
+
       display: grid;
       gap: 9px;
     }
 
     .footer-links a {
       color: #b9c8ca;
+
       font-size: 14px;
+
       transition: .2s ease;
     }
 
@@ -659,7 +788,9 @@
     .footer-contact {
       display: grid;
       gap: 10px;
+
       color: var(--muted);
+
       font-size: 14px;
     }
 
@@ -667,67 +798,39 @@
       color: var(--cyan);
     }
 
-    /* QR CODE */
-
-    .footer-qr {
-      margin-top: 25px;
-    }
-
-    .footer-qr-title {
-      color: var(--cyan);
-      font-size: 13px;
-      font-weight: 900;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-
-    .qr-box {
-      width: 145px;
-      padding: 10px;
-      background: #ffffff;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.15);
-      box-shadow: 0 12px 35px rgba(0,0,0,.35);
-    }
-
-    .qr-box img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-    }
-
-    .qr-note {
-      color: var(--muted);
-      font-size: 12px;
-      margin-top: 8px;
-      max-width: 180px;
-    }
-
-    /* FOOTER BOTTOM */
-
     .footer-bottom {
       border-top: 1px solid rgba(255,255,255,.08);
+
       padding-top: 20px;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 15px;
+
       color: #738689;
+
       font-size: 12px;
     }
 
-    /* GALLERY MODAL */
+    /* =========================
+       GALLERY MODAL
+    ========================== */
 
     .modal {
       position: fixed;
       inset: 0;
+
       z-index: 2000;
+
       display: none;
       align-items: center;
       justify-content: center;
+
       padding: 20px;
+
       background: rgba(0,0,0,.88);
+
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
     }
@@ -739,10 +842,15 @@
     .modal-content {
       width: min(1100px, 100%);
       max-height: 92vh;
+
       overflow-y: auto;
+
       background: #071315;
+
       border: 1px solid var(--border);
+
       border-radius: 24px;
+
       padding: 22px;
     }
 
@@ -750,7 +858,9 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       gap: 15px;
+
       margin-bottom: 18px;
     }
 
@@ -763,12 +873,18 @@
     .close-btn {
       width: 42px;
       height: 42px;
+
       border: 1px solid rgba(255,255,255,.15);
+
       background: rgba(255,255,255,.06);
       color: white;
+
       border-radius: 50%;
+
       cursor: pointer;
+
       font-size: 20px;
+
       display: flex;
       align-items: center;
       justify-content: center;
@@ -780,23 +896,32 @@
 
     .gallery-grid {
       display: grid;
+
       grid-template-columns: repeat(4, 1fr);
+
       gap: 12px;
     }
 
     .gallery-item {
       height: 210px;
+
       overflow: hidden;
+
       border-radius: 15px;
+
       border: 1px solid rgba(255,255,255,.08);
+
       cursor: pointer;
+
       background: #10191a;
     }
 
     .gallery-item img {
       width: 100%;
       height: 100%;
+
       object-fit: cover;
+
       transition: transform .35s ease;
     }
 
@@ -804,16 +929,22 @@
       transform: scale(1.05);
     }
 
-    /* IMAGE VIEWER */
+    /* =========================
+       IMAGE VIEWER
+    ========================== */
 
     .viewer {
       position: fixed;
       inset: 0;
+
       z-index: 3000;
+
       display: none;
       align-items: center;
       justify-content: center;
+
       padding: 20px;
+
       background: rgba(0,0,0,.95);
     }
 
@@ -825,25 +956,36 @@
       width: auto;
       max-width: 95vw;
       max-height: 90vh;
+
       object-fit: contain;
+
       border-radius: 10px;
     }
 
     .viewer-close {
       position: fixed;
+
       top: 20px;
       right: 20px;
+
       width: 45px;
       height: 45px;
+
       border-radius: 50%;
+
       background: rgba(255,255,255,.10);
       color: white;
+
       border: 1px solid rgba(255,255,255,.2);
+
       font-size: 22px;
+
       cursor: pointer;
     }
 
-    /* MOBILE */
+    /* =========================
+       MOBILE
+    ========================== */
 
     @media (max-width: 900px) {
 
@@ -1006,12 +1148,6 @@
         margin-right: auto;
       }
 
-      .footer-qr {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
       .footer-bottom {
         flex-direction: column;
         text-align: center;
@@ -1059,9 +1195,7 @@
         height: 145px;
       }
     }
-
   </style>
-
 </head>
 
 <body class="lang-en">
@@ -1069,7 +1203,6 @@
   <!-- HEADER -->
 
   <header>
-
     <div class="header-inner">
 
       <a href="#home" class="brand">
@@ -1115,8 +1248,8 @@
       </div>
 
     </div>
-
   </header>
+
 
   <!-- TOP STRIP -->
 
@@ -1135,6 +1268,7 @@
     </span>
 
   </div>
+
 
   <!-- HERO -->
 
@@ -1160,6 +1294,7 @@
 
         </div>
 
+
         <div class="welcome-text">
 
           <span data-lang="en">
@@ -1175,6 +1310,7 @@
           </span>
 
         </div>
+
 
         <h1 class="hero-title">
 
@@ -1192,6 +1328,7 @@
 
         </h1>
 
+
         <p class="hero-description">
 
           <span data-lang="en">
@@ -1208,6 +1345,7 @@
 
         </p>
 
+
         <div class="hero-actions">
 
           <a
@@ -1216,6 +1354,7 @@
             target="_blank"
             rel="noopener"
           >
+
             💬
 
             <span data-lang="en">
@@ -1231,6 +1370,7 @@
             </span>
 
           </a>
+
 
           <button class="btn btn-gallery" id="openGallery">
 
@@ -1256,7 +1396,8 @@
 
     </section>
 
-    <!-- FOOD -->
+
+    <!-- OUR FOOD -->
 
     <section class="food-section" id="food">
 
@@ -1280,6 +1421,7 @@
 
           </div>
 
+
           <h2 class="section-title">
 
             <span data-lang="en">
@@ -1295,6 +1437,7 @@
             </span>
 
           </h2>
+
 
           <p class="section-description">
 
@@ -1313,6 +1456,7 @@
           </p>
 
         </div>
+
 
         <div class="food-grid">
 
@@ -1345,13 +1489,14 @@
 
           </article>
 
+
           <!-- HAMBURGER -->
 
           <article class="food-card">
 
             <img
               class="food-image"
-              src="images/IMG_3745.jpeg"
+              src="images/hamburger.jpg"
               alt="Hamburger"
               loading="lazy"
             >
@@ -1374,13 +1519,14 @@
 
           </article>
 
+
           <!-- FRESH JUICE -->
 
           <article class="food-card">
 
             <img
               class="food-image"
-              src="images/IMG_3749.jpeg"
+              src="images/fresh-juice.jpg"
               alt="Fresh Juice"
               loading="lazy"
             >
@@ -1403,13 +1549,14 @@
 
           </article>
 
+
           <!-- SANDWICH -->
 
           <article class="food-card">
 
             <img
               class="food-image"
-              src="images/IMG_3750.jpeg"
+              src="images/sandwich.jpg"
               alt="Sandwich"
               loading="lazy"
             >
@@ -1433,6 +1580,7 @@
           </article>
 
         </div>
+
 
         <div class="full-gallery-btn-wrap">
 
@@ -1461,6 +1609,7 @@
 
     </section>
 
+
     <!-- OPENING HOURS -->
 
     <section class="hours-section" id="hours">
@@ -1485,6 +1634,7 @@
 
           </div>
 
+
           <h2 class="section-title">
 
             <span data-lang="en">
@@ -1502,6 +1652,7 @@
           </h2>
 
         </div>
+
 
         <div class="hours-grid">
 
@@ -1529,6 +1680,7 @@
 
           </div>
 
+
           <div class="hour-card">
 
             <div class="hour-name">
@@ -1552,6 +1704,7 @@
             </div>
 
           </div>
+
 
           <div class="hour-card">
 
@@ -1579,6 +1732,7 @@
 
         </div>
 
+
         <p class="hours-note">
 
           <span data-lang="en">
@@ -1598,6 +1752,7 @@
       </div>
 
     </section>
+
 
     <!-- CONTACT -->
 
@@ -1623,6 +1778,7 @@
 
           </div>
 
+
           <h2 class="section-title">
 
             <span data-lang="en">
@@ -1640,6 +1796,7 @@
           </h2>
 
         </div>
+
 
         <div class="contact-grid">
 
@@ -1681,6 +1838,7 @@
 
           </div>
 
+
           <!-- CALL -->
 
           <div class="contact-card">
@@ -1715,6 +1873,7 @@
 
           </div>
 
+
           <!-- LOCATION -->
 
           <div class="contact-card">
@@ -1746,6 +1905,7 @@
           </div>
 
         </div>
+
 
         <div class="map-box">
 
@@ -1788,6 +1948,7 @@
 
   </main>
 
+
   <!-- FOOTER -->
 
   <footer>
@@ -1796,14 +1957,14 @@
 
       <div class="footer-grid">
 
-        <!-- BRAND -->
-
         <div class="footer-brand">
 
+          <!-- Logo only: no visible logo text -->
           <img
             class="footer-logo"
             src="images/fawaz-logo-transparent.png"
-            alt="Fawaz Cafeteria Logo"
+            alt=""
+            aria-hidden="true"
           >
 
           <div class="footer-title">
@@ -1826,57 +1987,8 @@
 
           </p>
 
-          <!-- QR CODE -->
-
-          <div class="footer-qr">
-
-            <div class="footer-qr-title">
-
-              <span data-lang="en">
-                Scan QR Code
-              </span>
-
-              <span data-lang="ar">
-                امسح رمز QR
-              </span>
-
-              <span data-lang="bn">
-                QR কোড স্ক্যান করুন
-              </span>
-
-            </div>
-
-            <div class="qr-box">
-
-              <img
-                src="fawaz-cafeteria-qr.png"
-                alt="Fawaz Cafeteria QR Code"
-                loading="lazy"
-              >
-
-            </div>
-
-            <div class="qr-note">
-
-              <span data-lang="en">
-                Scan to connect with Fawaz Cafeteria.
-              </span>
-
-              <span data-lang="ar">
-                امسح للتواصل مع كفتيريا فواز.
-              </span>
-
-              <span data-lang="bn">
-                ফাওয়াজ ক্যাফেটেরিয়ার সাথে যোগাযোগ করতে স্ক্যান করুন।
-              </span>
-
-            </div>
-
-          </div>
-
         </div>
 
-        <!-- QUICK LINKS -->
 
         <div>
 
@@ -1895,6 +2007,7 @@
             </span>
 
           </div>
+
 
           <ul class="footer-links">
 
@@ -1916,6 +2029,7 @@
               </a>
             </li>
 
+
             <li>
               <a href="#home">
 
@@ -1933,6 +2047,7 @@
 
               </a>
             </li>
+
 
             <li>
               <a href="#contact">
@@ -1956,7 +2071,6 @@
 
         </div>
 
-        <!-- CONTACT -->
 
         <div>
 
@@ -1975,6 +2089,7 @@
             </span>
 
           </div>
+
 
           <div class="footer-contact">
 
@@ -2000,7 +2115,6 @@
 
       </div>
 
-      <!-- FOOTER BOTTOM -->
 
       <div class="footer-bottom">
 
@@ -2017,6 +2131,7 @@
     </div>
 
   </footer>
+
 
   <!-- FULL GALLERY -->
 
@@ -2051,6 +2166,7 @@
         </button>
 
       </div>
+
 
       <div class="gallery-grid">
 
@@ -2096,7 +2212,7 @@
 
         <div class="gallery-item">
           <img
-            src="images/IMG_3745.jpeg"
+            src="images/hamburger.jpg"
             alt="Hamburger"
             loading="lazy"
           >
@@ -2104,7 +2220,7 @@
 
         <div class="gallery-item">
           <img
-            src="images/IMG_3749.jpeg"
+            src="images/fresh-juice.jpg"
             alt="Fresh Juice"
             loading="lazy"
           >
@@ -2112,7 +2228,7 @@
 
         <div class="gallery-item">
           <img
-            src="images/IMG_3750.jpeg"
+            src="images/sandwich.jpg"
             alt="Sandwich"
             loading="lazy"
           >
@@ -2123,6 +2239,7 @@
     </div>
 
   </div>
+
 
   <!-- IMAGE VIEWER -->
 
@@ -2144,14 +2261,16 @@
 
   </div>
 
-  <!-- JAVASCRIPT -->
 
   <script>
 
-    /* LANGUAGE */
+    /* =========================
+       LANGUAGE
+    ========================== */
 
     const languageButtons =
       document.querySelectorAll("[data-set-lang]");
+
 
     function setLanguage(language) {
 
@@ -2180,6 +2299,7 @@
 
       }
 
+
       languageButtons.forEach(button => {
 
         button.classList.toggle(
@@ -2189,12 +2309,14 @@
 
       });
 
+
       localStorage.setItem(
         "fawaz-language",
         language
       );
 
     }
+
 
     languageButtons.forEach(button => {
 
@@ -2211,15 +2333,19 @@
 
     });
 
+
     const savedLanguage =
       localStorage.getItem(
         "fawaz-language"
       ) || "en";
 
+
     setLanguage(savedLanguage);
 
 
-    /* GALLERY */
+    /* =========================
+       GALLERY
+    ========================== */
 
     const galleryModal =
       document.getElementById(
@@ -2241,6 +2367,7 @@
         "closeGallery"
       );
 
+
     function showGallery() {
 
       galleryModal.classList.add("show");
@@ -2249,6 +2376,7 @@
         "hidden";
 
     }
+
 
     function hideGallery() {
 
@@ -2261,20 +2389,24 @@
 
     }
 
+
     openGallery.addEventListener(
       "click",
       showGallery
     );
+
 
     openGallery2.addEventListener(
       "click",
       showGallery
     );
 
+
     closeGallery.addEventListener(
       "click",
       hideGallery
     );
+
 
     galleryModal.addEventListener(
       "click",
@@ -2292,7 +2424,9 @@
     );
 
 
-    /* IMAGE VIEWER */
+    /* =========================
+       IMAGE VIEWER
+    ========================== */
 
     const imageViewer =
       document.getElementById(
@@ -2308,6 +2442,7 @@
       document.getElementById(
         "closeViewer"
       );
+
 
     document
       .querySelectorAll(
@@ -2334,6 +2469,7 @@
 
       });
 
+
     function hideViewer() {
 
       imageViewer.classList.remove(
@@ -2344,10 +2480,12 @@
 
     }
 
+
     closeViewer.addEventListener(
       "click",
       hideViewer
     );
+
 
     imageViewer.addEventListener(
       "click",
@@ -2365,7 +2503,9 @@
     );
 
 
-    /* ESC */
+    /* =========================
+       ESC
+    ========================== */
 
     document.addEventListener(
       "keydown",
@@ -2382,7 +2522,9 @@
     );
 
 
-    /* YEAR */
+    /* =========================
+       YEAR
+    ========================== */
 
     document.getElementById(
       "year"
