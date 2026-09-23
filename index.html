@@ -190,68 +190,6 @@
         url("images/hamburger.jpg") center/cover no-repeat;
     }
 
-    /* GOLD GLOW BEHIND LOGO */
-
-    .hero::after {
-      content: "";
-      position: absolute;
-
-      left: 50%;
-      top: 50%;
-
-      width: min(720px, 100vw);
-      height: min(720px, 100vw);
-
-      transform: translate(-50%, -50%);
-
-      background:
-        radial-gradient(
-          circle,
-          rgba(215,174,99,.22) 0%,
-          rgba(215,174,99,.12) 32%,
-          rgba(215,174,99,.05) 52%,
-          transparent 74%
-        );
-
-      filter: blur(10px);
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    /* MAIN BACKGROUND LOGO */
-
-    .hero::before {
-      content: "";
-
-      position: absolute;
-
-      left: 50%;
-      top: 50%;
-
-      width: min(760px, 94vw);
-      height: min(760px, 94vw);
-
-      transform: translate(-50%, -50%);
-
-      background:
-        url("images/fawaz-logo-transparent.png")
-        center center /
-        contain
-        no-repeat;
-
-      opacity: .28;
-
-      filter:
-        brightness(1.75)
-        saturate(1.35)
-        contrast(1.05)
-        drop-shadow(0 0 28px rgba(215,174,99,.55))
-        drop-shadow(0 0 70px rgba(215,174,99,.25));
-
-      pointer-events: none;
-      z-index: 2;
-    }
-
     .hero-content {
       position: relative;
       z-index: 5;
@@ -282,7 +220,7 @@
         0 0 25px rgba(215,174,99,.15);
     }
 
-    /* FAWAZ CAFETERIA — SMALLER */
+    /* FAWAZ CAFETERIA */
 
     .hero-content h1 {
       font-size: clamp(25px, 4vw, 42px);
@@ -692,7 +630,9 @@
       cursor: pointer;
     }
 
-    /* IMAGE VIEWER */
+    /* =========================
+       IMAGE VIEWER
+    ========================== */
 
     .viewer {
       position: fixed;
@@ -753,17 +693,6 @@
         min-height: 700px;
       }
 
-      .hero::before {
-        width: min(600px, 110vw);
-        height: min(600px, 110vw);
-        opacity: .30;
-      }
-
-      .hero::after {
-        width: 600px;
-        height: 600px;
-      }
-
       .welcome-text {
         font-size: clamp(34px, 10vw, 54px);
         letter-spacing: 3px;
@@ -803,17 +732,6 @@
 
       .hero {
         min-height: 680px;
-      }
-
-      .hero::before {
-        width: 520px;
-        height: 520px;
-        opacity: .28;
-      }
-
-      .hero::after {
-        width: 520px;
-        height: 520px;
       }
 
       .hero-content {
