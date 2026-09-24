@@ -301,15 +301,13 @@
       padding: 22px;
     }
 
-    .menu-content h3 {
-      font-size: 1.35rem;
-      margin-bottom: 7px;
-    }
-
-    .menu-content p {
-      color: var(--gray);
-      margin-bottom: 18px;
-    }
+    .menu-price {
+  margin-top: 8px;
+  margin-bottom: 12px;
+  color: var(--gold);
+  font-size: 1.05rem;
+  font-weight: 900;
+}
 
     .menu-order {
       display: inline-flex;
@@ -782,150 +780,244 @@
 
       <div class="menu-grid">
 
+  <!-- 1. HAMBURGER -->
+  <article class="menu-card">
 
-        <!-- HAMBURGER -->
+    <div class="menu-image">
+      <img
+        src="images/IMG_3745.jpeg"
+        alt="Hamburger"
+      >
+    </div>
 
-        <article class="menu-card">
+    <div class="menu-content">
 
-          <div class="menu-image">
-            <img
-              src="images/IMG_3745.jpeg"
-              alt="Hamburger"
-            >
-          </div>
+      <h3>
+        <span data-lang="ar">همبرجر</span>
+        <span data-lang="en">Hamburger</span>
+        <span data-lang="bn">হামবার্গার</span>
+      </h3>
 
-          <div class="menu-content">
+      <p>
+        <span data-lang="ar">برجر لذيذ ومحضر بعناية.</span>
+        <span data-lang="en">Delicious burger prepared with care.</span>
+        <span data-lang="bn">যত্নের সাথে তৈরি সুস্বাদু হামবার্গার।</span>
+      </p>
 
-            <h3>
-              <span data-lang="ar">همبرجر</span>
-              <span data-lang="en">Hamburger</span>
-              <span data-lang="bn">হামবার্গার</span>
-            </h3>
+      <div class="menu-price">SAR 8</div>
 
-            <p>
-              <span data-lang="ar">
-                برجر لذيذ ومحضر بعناية.
-              </span>
-
-              <span data-lang="en">
-                Delicious burger prepared with care.
-              </span>
-
-              <span data-lang="bn">
-                যত্নের সাথে তৈরি সুস্বাদু হামবার্গার।
-              </span>
-            </p>
-
-            <a
-              class="menu-order"
-              href="https://wa.me/966571638203?text=I%20want%20to%20order%20a%20Hamburger"
-              target="_blank"
-            >
-              WhatsApp
-            </a>
-
-          </div>
-
-        </article>
-
-
-        <!-- FRESH JUICE -->
-
-        <article class="menu-card">
-
-          <div class="menu-image">
-            <img
-              src="images/Snapseed.jpeg"
-              alt="Fresh Juice"
-            >
-          </div>
-
-          <div class="menu-content">
-
-            <h3>
-              <span data-lang="ar">عصيرات طازجة</span>
-              <span data-lang="en">Fresh Juice</span>
-              <span data-lang="bn">তাজা জুস</span>
-            </h3>
-
-            <p>
-              <span data-lang="ar">
-                عصيرات طازجة ومنعشة.
-              </span>
-
-              <span data-lang="en">
-                Fresh and refreshing juices.
-              </span>
-
-              <span data-lang="bn">
-                তাজা ও সতেজ জুস।
-              </span>
-            </p>
-
-            <a
-              class="menu-order"
-              href="https://wa.me/966571638203?text=I%20want%20to%20order%20Fresh%20Juice"
-              target="_blank"
-            >
-              WhatsApp
-            </a>
-
-          </div>
-
-        </article>
-
-
-        <!-- SANDWICH -->
-
-        <article class="menu-card">
-
-          <div class="menu-image">
-            <img
-              src="images/IMG_3746.jpeg"
-              alt="Sandwich"
-            >
-          </div>
-
-          <div class="menu-content">
-
-            <h3>
-              <span data-lang="ar">سندوتش</span>
-              <span data-lang="en">Sandwich</span>
-              <span data-lang="bn">স্যান্ডউইচ</span>
-            </h3>
-
-            <p>
-              <span data-lang="ar">
-                سندوتش طازج ومناسب لوجبة سريعة.
-              </span>
-
-              <span data-lang="en">
-                Fresh sandwich, perfect for a quick meal.
-              </span>
-
-              <span data-lang="bn">
-                তাজা স্যান্ডউইচ, দ্রুত খাবারের জন্য উপযুক্ত।
-              </span>
-            </p>
-
-            <a
-              class="menu-order"
-              href="https://wa.me/966571638203?text=I%20want%20to%20order%20a%20Sandwich"
-              target="_blank"
-            >
-              WhatsApp
-            </a>
-
-          </div>
-
-        </article>
-
-
-      </div>
+      <a
+        class="menu-order"
+        href="https://wa.me/966571638203?text=I%20want%20to%20order%20a%20Hamburger"
+        target="_blank"
+      >
+        WhatsApp
+      </a>
 
     </div>
 
-  </section>
+  </article>
+
+
+  <!-- 2. FATIRA -->
+  <article class="menu-card">
+
+    <div class="menu-image">
+      <img
+        src="images/IMG_3749.jpeg"
+        alt="Fatira"
+      >
+    </div>
+
+    <div class="menu-content">
+
+      <h3>
+        <span data-lang="ar">فطيرة</span>
+        <span data-lang="en">Fatira</span>
+        <span data-lang="bn">ফাতিরা</span>
+      </h3>
+
+      <p>
+        <span data-lang="ar">فطيرة طازجة ولذيذة.</span>
+        <span data-lang="en">Fresh and delicious Fatira.</span>
+        <span data-lang="bn">তাজা ও সুস্বাদু ফাতিরা।</span>
+      </p>
+
+      <div class="menu-price">SAR 5</div>
+
+      <a
+        class="menu-order"
+        href="https://wa.me/966571638203?text=I%20want%20to%20order%20Fatira"
+        target="_blank"
+      >
+        WhatsApp
+      </a>
+
+    </div>
+
+  </article>
+
+
+  <!-- 3. SANDWICH -->
+  <article class="menu-card">
+
+    <div class="menu-image">
+      <img
+        src="images/IMG_3750.jpeg"
+        alt="Sandwich"
+      >
+    </div>
+
+    <div class="menu-content">
+
+      <h3>
+        <span data-lang="ar">سندوتش</span>
+        <span data-lang="en">Sandwich</span>
+        <span data-lang="bn">স্যান্ডউইচ</span>
+      </h3>
+
+      <p>
+        <span data-lang="ar">سندوتش طازج ومناسب لوجبة سريعة.</span>
+        <span data-lang="en">Fresh sandwich, perfect for a quick meal.</span>
+        <span data-lang="bn">তাজা স্যান্ডউইচ, দ্রুত খাবারের জন্য উপযুক্ত।</span>
+      </p>
+
+      <div class="menu-price">SAR 7</div>
+
+      <a
+        class="menu-order"
+        href="https://wa.me/966571638203?text=I%20want%20to%20order%20a%20Sandwich"
+        target="_blank"
+      >
+        WhatsApp
+      </a>
+
+    </div>
+
+  </article>
+
+
+  <!-- 4. FRESH JUICE -->
+  <article class="menu-card">
+
+    <div class="menu-image">
+      <img
+        src="images/Snapseed.jpeg"
+        alt="Fresh Juice"
+      >
+    </div>
+
+    <div class="menu-content">
+
+      <h3>
+        <span data-lang="ar">عصيرات طازجة</span>
+        <span data-lang="en">Fresh Juice</span>
+        <span data-lang="bn">তাজা জুস</span>
+      </h3>
+
+      <p>
+        <span data-lang="ar">عصيرات طازجة ومنعشة.</span>
+        <span data-lang="en">Fresh and refreshing juices.</span>
+        <span data-lang="bn">তাজা ও সতেজ জুস।</span>
+      </p>
+
+      <div class="menu-price">SAR 6</div>
+
+      <a
+        class="menu-order"
+        href="https://wa.me/966571638203?text=I%20want%20to%20order%20Fresh%20Juice"
+        target="_blank"
+      >
+        WhatsApp
+      </a>
+
+    </div>
+
+  </article>
+
+
+  <!-- 5. BOILED EGG -->
+  <article class="menu-card">
+
+    <div class="menu-image">
+      <img
+        src="images/IMG_3803.jpeg"
+        alt="Boiled Egg"
+      >
+    </div>
+
+    <div class="menu-content">
+
+      <h3>
+        <span data-lang="ar">بيض مسلوق</span>
+        <span data-lang="en">Boiled Egg</span>
+        <span data-lang="bn">সিদ্ধ ডিম</span>
+      </h3>
+
+      <p>
+        <span data-lang="ar">بيض مسلوق طازج.</span>
+        <span data-lang="en">Fresh boiled egg.</span>
+        <span data-lang="bn">তাজা সিদ্ধ ডিম।</span>
+      </p>
+
+      <div class="menu-price">SAR 2</div>
+
+      <a
+        class="menu-order"
+        href="https://wa.me/966571638203?text=I%20want%20to%20order%20a%20Boiled%20Egg"
+        target="_blank"
+      >
+        WhatsApp
+      </a>
+
+    </div>
+
+  </article>
+
+
+  <!-- 6. MILK TEA -->
+  <article class="menu-card">
+
+    <div class="menu-image">
+      <img
+        src="images/IMG_3802.jpeg"
+        alt="Milk Tea"
+      >
+    </div>
+
+    <div class="menu-content">
+
+      <h3>
+        <span data-lang="ar">شاي بالحليب</span>
+        <span data-lang="en">Milk Tea</span>
+        <span data-lang="bn">দুধ চা</span>
+      </h3>
+
+      <p>
+        <span data-lang="ar">شاي بالحليب لذيذ.</span>
+        <span data-lang="en">Delicious milk tea.</span>
+        <span data-lang="bn">সুস্বাদু দুধ চা।</span>
+      </p>
+
+      <div class="menu-price">SAR 2</div>
+
+      <a
+        class="menu-order"
+        href="https://wa.me/966571638203?text=I%20want%20to%20order%20Milk%20Tea"
+        target="_blank"
+      >
+        WhatsApp
+      </a>
+
+    </div>
+
+  </article>
+
+</div>
+
+</div>
+
+</section>
 
 
   <!-- ================= ABOUT ================= -->
