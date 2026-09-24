@@ -2268,403 +2268,448 @@
 
   <!-- FULL GALLERY -->
 
-  <div class="modal" id="galleryModal">
+<div class="modal" id="galleryModal">
 
-    <div class="modal-content">
+  <div class="modal-content">
 
-      <div class="modal-header">
+    <div class="modal-header">
 
-        <div class="modal-title">
+      <div class="modal-title">
 
-          <span data-lang="en">
-            Fawaz Gallery
-          </span>
+        <span data-lang="en">
+          Fawaz Gallery
+        </span>
 
-          <span data-lang="ar">
-            معرض فواز
-          </span>
+        <span data-lang="ar">
+          معرض فواز
+        </span>
 
-          <span data-lang="bn">
-            ফাওয়াজ গ্যালারি
-          </span>
+        <span data-lang="bn">
+          ফাওয়াজ গ্যালারি
+        </span>
 
-        </div>
+      </div>
 
-        <button
-          class="close-btn"
-          id="closeGallery"
-          aria-label="Close"
+
+      <button
+        class="close-btn"
+        id="closeGallery"
+        aria-label="Close"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div class="gallery-grid">
+
+
+      <!-- 1. HAMBURGER -->
+
+      <div class="gallery-item">
+
+        <img
+          src="images/IMG_3745.jpeg"
+          alt="Hamburger"
+          loading="lazy"
         >
-          ×
-        </button>
 
       </div>
 
 
-      <div class="gallery-grid">
+      <!-- 2. FATIRA -->
 
-        <div class="gallery-item">
-          <img
-            src="images/IMG_3745.jpeg"
-            alt="Fawaz Cafeteria"
-            loading="lazy"
-          >
-        </div>
+      <div class="gallery-item">
 
-        <div class="gallery-item">
-          <img
-            src="images/IMG_3749.jpeg"
-            alt="Fawaz Cafeteria"
-            loading="lazy"
-          >
-        </div>
-
-        <div class="gallery-item">
-          <img
-            src="images/IMG_3750.jpeg"
-            alt="Fawaz Cafeteria"
-            loading="lazy"
-          >
-        </div>
-
-        <div class="gallery-item">
-          <img
-            src="images/Snapseed.jpeg"
-            alt="Fawaz Cafeteria"
-            loading="lazy"
-          >
-        </div>
-
-        <div class="gallery-item">
-          <img
-            src="images/fatira.jpg"
-            alt="Fatira"
-            loading="lazy"
-          >
-        </div>
-
-        <div class="gallery-item">
-          <img
-            src="images/hamburger.jpg"
-            alt="Hamburger"
-            loading="lazy"
-          >
-        </div>
-
-        <div class="gallery-item">
-          <img
-            src="images/fresh-juice.jpg"
-            alt="Fresh Juice"
-            loading="lazy"
-          >
-        </div>
-
-        <div class="gallery-item">
-          <img
-            src="images/sandwich.jpg"
-            alt="Sandwich"
-            loading="lazy"
-          >
-        </div>
+        <img
+          src="images/IMG_3749.jpeg"
+          alt="Fatira"
+          loading="lazy"
+        >
 
       </div>
+
+
+      <!-- 3. SANDWICH -->
+
+      <div class="gallery-item">
+
+        <img
+          src="images/IMG_3750.jpeg"
+          alt="Sandwich"
+          loading="lazy"
+        >
+
+      </div>
+
+
+      <!-- 4. FRESH JUICE -->
+
+      <div class="gallery-item">
+
+        <img
+          src="images/Snapseed.jpeg"
+          alt="Fresh Juice"
+          loading="lazy"
+        >
+
+      </div>
+
+
+      <!-- 5. BOILED EGG -->
+
+      <div class="gallery-item">
+
+        <img
+          src="images/IMG_3803.jpeg"
+          alt="Boiled Egg"
+          loading="lazy"
+        >
+
+      </div>
+
+
+      <!-- 6. MILK TEA -->
+
+      <div class="gallery-item">
+
+        <img
+          src="images/IMG_3802.jpeg"
+          alt="Milk Tea"
+          loading="lazy"
+        >
+
+      </div>
+
 
     </div>
 
   </div>
 
-
-  <!-- IMAGE VIEWER -->
-
-  <div class="viewer" id="imageViewer">
-
-    <button
-      class="viewer-close"
-      id="closeViewer"
-      aria-label="Close image"
-    >
-      ×
-    </button>
-
-    <img
-      id="viewerImage"
-      src=""
-      alt=""
-    >
-
-  </div>
+</div>
 
 
-  <script>
+<!-- IMAGE VIEWER -->
 
-    /* =========================
-       LANGUAGE
-    ========================== */
+<div class="viewer" id="imageViewer">
 
-    const languageButtons =
-      document.querySelectorAll("[data-set-lang]");
+  <button
+    class="viewer-close"
+    id="closeViewer"
+    aria-label="Close image"
+  >
+    ×
+  </button>
+
+  <img
+    id="viewerImage"
+    src=""
+    alt=""
+  >
+
+</div>
 
 
-    function setLanguage(language) {
+<script>
 
-      document.body.classList.remove(
-        "lang-en",
-        "lang-ar",
-        "lang-bn"
+/* =========================
+   LANGUAGE
+========================== */
+
+const languageButtons =
+  document.querySelectorAll("[data-set-lang]");
+
+
+function setLanguage(language) {
+
+  document.body.classList.remove(
+    "lang-en",
+    "lang-ar",
+    "lang-bn"
+  );
+
+  document.body.classList.add(
+    "lang-" + language
+  );
+
+  document.documentElement.lang =
+    language;
+
+  if (language === "ar") {
+
+    document.documentElement.dir =
+      "rtl";
+
+  } else {
+
+    document.documentElement.dir =
+      "ltr";
+
+  }
+
+
+  languageButtons.forEach(button => {
+
+    button.classList.toggle(
+      "active",
+      button.dataset.setLang === language
+    );
+
+  });
+
+
+  localStorage.setItem(
+    "fawaz-language",
+    language
+  );
+
+}
+
+
+languageButtons.forEach(button => {
+
+  button.addEventListener(
+    "click",
+    () => {
+
+      setLanguage(
+        button.dataset.setLang
       );
 
-      document.body.classList.add(
-        "lang-" + language
-      );
+    }
+  );
 
-      document.documentElement.lang =
-        language;
+});
 
-      if (language === "ar") {
 
-        document.documentElement.dir =
-          "rtl";
+const savedLanguage =
+  localStorage.getItem(
+    "fawaz-language"
+  ) || "en";
 
-      } else {
 
-        document.documentElement.dir =
-          "ltr";
+setLanguage(savedLanguage);
+
+
+/* =========================
+   GALLERY
+========================== */
+
+const galleryModal =
+  document.getElementById(
+    "galleryModal"
+  );
+
+const openGallery =
+  document.getElementById(
+    "openGallery"
+  );
+
+const openGallery2 =
+  document.getElementById(
+    "openGallery2"
+  );
+
+const closeGallery =
+  document.getElementById(
+    "closeGallery"
+  );
+
+
+function showGallery() {
+
+  galleryModal.classList.add("show");
+
+  document.body.style.overflow =
+    "hidden";
+
+}
+
+
+function hideGallery() {
+
+  galleryModal.classList.remove(
+    "show"
+  );
+
+  document.body.style.overflow =
+    "";
+
+}
+
+
+if (openGallery) {
+
+  openGallery.addEventListener(
+    "click",
+    showGallery
+  );
+
+}
+
+
+if (openGallery2) {
+
+  openGallery2.addEventListener(
+    "click",
+    showGallery
+  );
+
+}
+
+
+if (closeGallery) {
+
+  closeGallery.addEventListener(
+    "click",
+    hideGallery
+  );
+
+}
+
+
+if (galleryModal) {
+
+  galleryModal.addEventListener(
+    "click",
+    event => {
+
+      if (
+        event.target === galleryModal
+      ) {
+
+        hideGallery();
 
       }
 
+    }
+  );
 
-      languageButtons.forEach(button => {
+}
 
-        button.classList.toggle(
-          "active",
-          button.dataset.setLang === language
+
+/* =========================
+   IMAGE VIEWER
+========================== */
+
+const imageViewer =
+  document.getElementById(
+    "imageViewer"
+  );
+
+const viewerImage =
+  document.getElementById(
+    "viewerImage"
+  );
+
+const closeViewer =
+  document.getElementById(
+    "closeViewer"
+  );
+
+
+document
+  .querySelectorAll(
+    ".gallery-item img"
+  )
+  .forEach(image => {
+
+    image.addEventListener(
+      "click",
+      () => {
+
+        viewerImage.src =
+          image.src;
+
+        viewerImage.alt =
+          image.alt;
+
+        imageViewer.classList.add(
+          "show"
         );
 
-      });
-
-
-      localStorage.setItem(
-        "fawaz-language",
-        language
-      );
-
-    }
-
-
-    languageButtons.forEach(button => {
-
-      button.addEventListener(
-        "click",
-        () => {
-
-          setLanguage(
-            button.dataset.setLang
-          );
-
-        }
-      );
-
-    });
-
-
-    const savedLanguage =
-      localStorage.getItem(
-        "fawaz-language"
-      ) || "en";
-
-
-    setLanguage(savedLanguage);
-
-
-    /* =========================
-       GALLERY
-    ========================== */
-
-    const galleryModal =
-      document.getElementById(
-        "galleryModal"
-      );
-
-    const openGallery =
-      document.getElementById(
-        "openGallery"
-      );
-
-    const openGallery2 =
-      document.getElementById(
-        "openGallery2"
-      );
-
-    const closeGallery =
-      document.getElementById(
-        "closeGallery"
-      );
-
-
-    function showGallery() {
-
-      galleryModal.classList.add("show");
-
-      document.body.style.overflow =
-        "hidden";
-
-    }
-
-
-    function hideGallery() {
-
-      galleryModal.classList.remove(
-        "show"
-      );
-
-      document.body.style.overflow =
-        "";
-
-    }
-
-
-    openGallery.addEventListener(
-      "click",
-      showGallery
-    );
-
-
-    openGallery2.addEventListener(
-      "click",
-      showGallery
-    );
-
-
-    closeGallery.addEventListener(
-      "click",
-      hideGallery
-    );
-
-
-    galleryModal.addEventListener(
-      "click",
-      event => {
-
-        if (
-          event.target === galleryModal
-        ) {
-
-          hideGallery();
-
-        }
-
       }
     );
 
-
-    /* =========================
-       IMAGE VIEWER
-    ========================== */
-
-    const imageViewer =
-      document.getElementById(
-        "imageViewer"
-      );
-
-    const viewerImage =
-      document.getElementById(
-        "viewerImage"
-      );
-
-    const closeViewer =
-      document.getElementById(
-        "closeViewer"
-      );
+  });
 
 
-    document
-      .querySelectorAll(
-        ".gallery-item img"
-      )
-      .forEach(image => {
+function hideViewer() {
 
-        image.addEventListener(
-          "click",
-          () => {
+  imageViewer.classList.remove(
+    "show"
+  );
 
-            viewerImage.src =
-              image.src;
+  viewerImage.src = "";
 
-            viewerImage.alt =
-              image.alt;
-
-            imageViewer.classList.add(
-              "show"
-            );
-
-          }
-        );
-
-      });
+}
 
 
-    function hideViewer() {
+if (closeViewer) {
 
-      imageViewer.classList.remove(
-        "show"
-      );
+  closeViewer.addEventListener(
+    "click",
+    hideViewer
+  );
 
-      viewerImage.src = "";
+}
+
+
+if (imageViewer) {
+
+  imageViewer.addEventListener(
+    "click",
+    event => {
+
+      if (
+        event.target === imageViewer
+      ) {
+
+        hideViewer();
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =========================
+   ESC
+========================== */
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    if (event.key === "Escape") {
+
+      hideGallery();
+      hideViewer();
 
     }
 
-
-    closeViewer.addEventListener(
-      "click",
-      hideViewer
-    );
+  }
+);
 
 
-    imageViewer.addEventListener(
-      "click",
-      event => {
+/* =========================
+   YEAR
+========================== */
 
-        if (
-          event.target === imageViewer
-        ) {
+const yearElement =
+  document.getElementById("year");
 
-          hideViewer();
+if (yearElement) {
 
-        }
+  yearElement.textContent =
+    new Date().getFullYear();
 
-      }
-    );
+}
 
-
-    /* =========================
-       ESC
-    ========================== */
-
-    document.addEventListener(
-      "keydown",
-      event => {
-
-        if (event.key === "Escape") {
-
-          hideGallery();
-          hideViewer();
-
-        }
-
-      }
-    );
-
-
-    /* =========================
-       YEAR
-    ========================== */
-
-    document.getElementById(
-      "year"
-    ).textContent =
-      new Date().getFullYear();
-
-  </script>
+</script>
 
 </body>
 </html>
