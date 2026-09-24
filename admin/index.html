@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Admin Login | Fawaz Cafeteria</title>
+  <title>Admin Dashboard | Fawaz Cafeteria</title>
 
   <style>
     * {
@@ -17,170 +17,171 @@
       min-height: 100vh;
       font-family: Arial, sans-serif;
       background: #071315;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .login-box {
-      width: 100%;
-      max-width: 400px;
-      background: #ffffff;
-      border-radius: 20px;
-      padding: 30px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
-    }
-
-    .logo {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .logo img {
-      width: 80px;
-      height: 80px;
-      object-fit: contain;
-    }
-
-    h1 {
-      text-align: center;
-      color: #003b40;
-      font-size: 25px;
-      margin-bottom: 8px;
-    }
-
-    .subtitle {
-      text-align: center;
-      color: #777;
-      font-size: 14px;
-      margin-bottom: 25px;
-    }
-
-    label {
-      display: block;
       color: #123;
-      font-weight: 600;
-      margin-bottom: 7px;
-    }
-
-    input {
-      width: 100%;
-      padding: 13px 14px;
-      border: 1px solid #d5dfe0;
-      border-radius: 10px;
-      font-size: 15px;
-      margin-bottom: 16px;
-      outline: none;
-    }
-
-    input:focus {
-      border-color: #00b7c3;
-    }
-
-    button {
-      width: 100%;
       padding: 14px;
+    }
+
+    .dashboard {
+      width: 100%;
+      max-width: 760px;
+      margin: 20px auto;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.20);
+    }
+
+    .header {
+      margin-bottom: 16px;
+    }
+
+    .header h1 {
+      color: #003b40;
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+
+    .welcome {
+      color: #777;
+      font-size: 13px;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .card {
+      background: #f3faf9;
+      border: 1px solid #dceeed;
+      border-radius: 12px;
+      padding: 15px;
+      min-height: 95px;
+    }
+
+    .card h2 {
+      color: #006f78;
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      color: #777;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .logout {
+      width: 100%;
+      padding: 11px;
       border: none;
-      border-radius: 10px;
-      background: #00b7c3;
+      border-radius: 9px;
+      background: #006f78;
       color: white;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: bold;
+      margin-top: 14px;
       cursor: pointer;
     }
 
-    button:hover {
-      background: #006f78;
+    .logout:hover {
+      background: #00545b;
     }
 
-    button:disabled {
-      opacity: 0.7;
-      cursor: not-allowed;
-    }
+    @media (max-width: 480px) {
 
-    .back-home {
-      display: block;
-      text-align: center;
-      margin-top: 20px;
-      color: #006f78;
-      text-decoration: none;
-      font-size: 14px;
+      body {
+        padding: 10px;
+      }
+
+      .dashboard {
+        margin: 10px auto;
+        padding: 14px;
+        border-radius: 14px;
+      }
+
+      .header h1 {
+        font-size: 18px;
+      }
+
+      .menu-grid {
+        gap: 8px;
+      }
+
+      .card {
+        padding: 12px;
+        min-height: 85px;
+      }
+
+      .card h2 {
+        font-size: 14px;
+      }
+
+      .card p {
+        font-size: 11px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <div class="login-box">
+  <div class="dashboard">
 
-    <div class="logo">
-      <img src="../images/fawaz-logo-transparent.png" alt="Fawaz Cafeteria Logo">
+    <div class="header">
+      <h1>Fawaz Cafeteria Admin</h1>
+      <p class="welcome">Management Dashboard</p>
     </div>
 
-    <h1>Admin Login</h1>
+    <div class="menu-grid">
 
-    <p class="subtitle">
-      Fawaz Cafeteria Management
-    </p>
+      <div class="card">
+        <h2>🍔 Food</h2>
+        <p>Add, edit and manage food items.</p>
+      </div>
 
-    <form id="loginForm">
+      <div class="card">
+        <h2>💰 Price</h2>
+        <p>Update food prices.</p>
+      </div>
 
-      <label for="email">Email / Username</label>
+      <div class="card">
+        <h2>🖼️ Gallery</h2>
+        <p>Manage cafeteria gallery.</p>
+      </div>
 
-      <input
-        type="email"
-        id="email"
-        placeholder="Enter email"
-        autocomplete="username"
-        required
-      >
+      <div class="card">
+        <h2>🕐 Opening Hours</h2>
+        <p>Manage opening and break times.</p>
+      </div>
 
-      <label for="password">Password</label>
+      <div class="card">
+        <h2>📱 WhatsApp</h2>
+        <p>Update WhatsApp contact number.</p>
+      </div>
 
-      <input
-        type="password"
-        id="password"
-        placeholder="Enter password"
-        autocomplete="current-password"
-        required
-      >
+      <div class="card">
+        <h2>⚙️ Settings</h2>
+        <p>Owner and system settings.</p>
+      </div>
 
-      <button type="button" id="loginButton">
-        Login
-      </button>
+    </div>
 
-    </form>
-
-    <a class="back-home" href="../index.html">
-      ← Back to Home
-    </a>
+    <button class="logout" id="logoutButton">
+      Logout
+    </button>
 
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <script>
-  const SUPABASE_URL = "https://vqoyhnrhlpnwtnvdxpjn.supabase.co";
+    const SUPABASE_URL =
+      "https://vqoyhnrhlpnwtnvdxpjn.supabase.co";
 
-  const SUPABASE_KEY =
-    "sb_publishable_9s15tPt0smgSEX_Hsr-t_g_xYH_QFY3";
-
-  const status = document.createElement("p");
-
-  status.id = "loginStatus";
-  status.style.textAlign = "center";
-  status.style.marginTop = "15px";
-  status.style.fontSize = "14px";
-
-  document.querySelector(".login-box").appendChild(status);
-
-  if (!window.supabase) {
-
-    status.textContent =
-      "Supabase library could not load.";
-
-  } else {
+    const SUPABASE_KEY =
+      "sb_publishable_9s15tPt0smgSEX_Hsr-t_g_xYH_QFY3";
 
     const supabase = window.supabase.createClient(
       SUPABASE_URL,
@@ -188,81 +189,14 @@
     );
 
     document
-      .getElementById("loginButton")
+      .getElementById("logoutButton")
       .addEventListener("click", async function() {
 
-        const email = document
-          .getElementById("email")
-          .value
-          .trim();
+        await supabase.auth.signOut();
 
-        const password = document
-          .getElementById("password")
-          .value;
-
-        const button =
-          document.getElementById("loginButton");
-
-        if (!email || !password) {
-
-          status.textContent =
-            "Please enter email and password.";
-
-          return;
-        }
-
-        button.disabled = true;
-        button.textContent = "Logging in...";
-
-        status.textContent =
-          "Connecting to Supabase...";
-
-        try {
-
-          const { data, error } =
-            await supabase.auth.signInWithPassword({
-              email: email,
-              password: password
-            });
-
-          console.log("LOGIN DATA:", data);
-          console.log("LOGIN ERROR:", error);
-
-          if (error) {
-
-            status.textContent =
-              "Login failed: " + error.message;
-
-            button.disabled = false;
-            button.textContent = "Login";
-
-            return;
-          }
-
-          status.textContent =
-  "Login successful!";
-
-button.textContent =
-  "Logged in";
-
-setTimeout(function() {
-  window.location.href = "./dashboard.html";
-}, 500);
-
-        } catch (err) {
-
-          console.error(err);
-
-          status.textContent =
-            "Connection error: " + err.message;
-
-          button.disabled = false;
-          button.textContent = "Login";
-        }
-
+        window.location.href = "./";
       });
-  }
-</script>
+  </script>
 
 </body>
 </html>
