@@ -166,6 +166,7 @@
     const password = document.getElementById("password").value;
 
     const { error } = await supabase.auth.signInWithPassword({
+      console.log("LOGIN RESPONSE:", error);
       email: email,
       password: password
     });
