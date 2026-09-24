@@ -165,11 +165,19 @@
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
 
+    <script>
+  document.getElementById("loginForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+
     const { error } = await supabase.auth.signInWithPassword({
-      console.log("LOGIN RESPONSE:", error);
       email: email,
       password: password
     });
+
+    console.log("LOGIN RESPONSE:", error);
 
     if (error) {
       alert("Login failed: " + error.message);
