@@ -146,7 +146,7 @@
         required
       >
 
-      <button type="submit" id="loginButton">
+      <button type="button" id="loginButton">
         Login
       </button>
 
@@ -161,10 +161,26 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <script>
-    const SUPABASE_URL = "https://vqoyhnrhlpnwtnvdxpjn.supabase.co";
+  const SUPABASE_URL = "https://vqoyhnrhlpnwtnvdxpjn.supabase.co";
 
-    const SUPABASE_KEY =
-      "sb_publishable_9s15tPt0smgSEX_Hsr-t_g_xYH_QFY3";
+  const SUPABASE_KEY =
+    "sb_publishable_9s15tPt0smgSEX_Hsr-t_g_xYH_QFY3";
+
+  const status = document.createElement("p");
+
+  status.id = "loginStatus";
+  status.style.textAlign = "center";
+  status.style.marginTop = "15px";
+  status.style.fontSize = "14px";
+
+  document.querySelector(".login-box").appendChild(status);
+
+  if (!window.supabase) {
+
+    status.textContent =
+      "Supabase library could not load.";
+
+  } else {
 
     const supabase = window.supabase.createClient(
       SUPABASE_URL,
@@ -172,10 +188,8 @@
     );
 
     document
-      .getElementById("loginForm")
-      .addEventListener("submit", async function(e) {
-
-        e.preventDefault();
+      .getElementById("loginButton")
+      .addEventListener("click", async function() {
 
         const email = document
           .getElementById("email")
@@ -186,10 +200,22 @@
           .getElementById("password")
           .value;
 
-        const button = document.getElementById("loginButton");
+        const button =
+          document.getElementById("loginButton");
+
+        if (!email || !password) {
+
+          status.textContent =
+            "Please enter email and password.";
+
+          return;
+        }
 
         button.disabled = true;
         button.textContent = "Logging in...";
+
+        status.textContent =
+          "Connecting to Supabase...";
 
         try {
 
@@ -204,7 +230,8 @@
 
           if (error) {
 
-            alert("Login failed: " + error.message);
+            status.textContent =
+              "Login failed: " + error.message;
 
             button.disabled = false;
             button.textContent = "Login";
@@ -212,22 +239,26 @@
             return;
           }
 
-          alert("Login successful!");
+          status.textContent =
+            "Login successful!";
 
-          button.textContent = "Logged in";
+          button.textContent =
+            "Logged in";
 
         } catch (err) {
 
-          console.error("LOGIN CONNECTION ERROR:", err);
+          console.error(err);
 
-          alert("Connection error: " + err.message);
+          status.textContent =
+            "Connection error: " + err.message;
 
           button.disabled = false;
           button.textContent = "Login";
         }
 
       });
-  </script>
+  }
+</script>
 
 </body>
 </html>
