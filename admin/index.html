@@ -240,10 +240,14 @@
           }
 
           status.textContent =
-            "Login successful!";
+  "Login successful!";
 
-          button.textContent =
-            "Logged in";
+button.textContent =
+  "Logged in";
+
+setTimeout(function() {
+  window.location.href = "./dashboard.html";
+}, 500);
 
         } catch (err) {
 
