@@ -147,6 +147,7 @@
 
   </div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
   const SUPABASE_URL = "https://vqoyhnrhlpnwtnvdxpj";
   const SUPABASE_KEY = "sb_publishable_9s15tPt0smgSEX_Hsr-t_g_xYH_QFY3";
@@ -155,6 +156,27 @@
     SUPABASE_URL,
     SUPABASE_KEY
   );
+</script>
+
+<script>
+  document.getElementById("loginForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+
+    const { error } = await supabase.auth.signInWithPassword({
+      email: email,
+      password: password
+    });
+
+    if (error) {
+      alert("Login failed: " + error.message);
+      return;
+    }
+
+    alert("Login successful!");
+  });
 </script>
 </body>
 </html>
