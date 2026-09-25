@@ -188,6 +188,19 @@
     SUPABASE_KEY
   );
 
+  async function checkSession() {
+    const {
+      data: { session }
+    } = await supabase.auth.getSession();
+
+    if (!session) {
+      window.location.href = "./";
+      return;
+    }
+  }
+
+  checkSession();
+
   document
     .getElementById("logoutButton")
     .addEventListener("click", async function() {
