@@ -188,6 +188,8 @@
 
   async function logoutAdmin() {
 
+    alert("Logout button কাজ করছে");
+
     try {
       const { error } = await supabase.auth.signOut();
 
