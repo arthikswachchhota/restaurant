@@ -26,7 +26,7 @@
     .login-box {
       width: 100%;
       max-width: 400px;
-      background: #ffffff;
+      background: #fff;
       border-radius: 18px;
       padding: 25px;
       box-shadow: 0 15px 40px rgba(0,0,0,0.25);
@@ -72,24 +72,20 @@
       outline: none;
     }
 
-    input:focus {
-      border-color: #006f78;
-    }
-
     .login-button {
       width: 100%;
       padding: 12px;
       border: none;
       border-radius: 9px;
       background: #006f78;
-      color: #ffffff;
+      color: #fff;
       font-size: 14px;
       font-weight: bold;
       cursor: pointer;
     }
 
-    .login-button:hover {
-      background: #00545b;
+    .login-button:disabled {
+      opacity: 0.6;
     }
 
     #status {
@@ -107,10 +103,6 @@
       color: #006f78;
       text-decoration: none;
       font-size: 13px;
-    }
-
-    .back-home:hover {
-      text-decoration: underline;
     }
   </style>
 </head>
@@ -137,6 +129,7 @@
         type="email"
         id="email"
         placeholder="Enter admin email"
+        autocomplete="username"
         required
       >
 
@@ -146,6 +139,7 @@
         type="password"
         id="password"
         placeholder="Enter password"
+        autocomplete="current-password"
         required
       >
 
@@ -159,7 +153,7 @@
 
     </form>
 
-    <div id="status"></div>
+    <div id="status">Ready</div>
 
     <a href="../index.html" class="back-home">
       ← Back to Home
@@ -170,57 +164,86 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <script>
+    const status = document.getElementById("status");
+    const loginForm = document.getElementById("loginForm");
+    const loginButton = document.getElementById("loginButton");
+
     const SUPABASE_URL =
       "https://vqoyhnrhlpnwtnvdxpjn.supabase.co";
 
     const SUPABASE_KEY =
       "sb_publishable_9s15tPt0smgSEX_Hsr-t_g_xYH_QFY3";
 
-    const supabase = window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_KEY
-    );
+    if (!window.supabase) {
 
-    const loginForm = document.getElementById("loginForm");
-    const status = document.getElementById("status");
-    const loginButton = document.getElementById("loginButton");
+      status.textContent =
+        "Supabase library could not load.";
 
-    loginForm.addEventListener("submit", async function(event) {
+    } else {
 
-      event.preventDefault();
+      const supabaseClient =
+        window.supabase.createClient(
+          SUPABASE_URL,
+          SUPABASE_KEY
+        );
 
-      const email = document.getElementById("email").value.trim();
-      const password = document.getElementById("password").value;
+      loginForm.addEventListener("submit", async function(event) {
 
-      status.textContent = "Logging in...";
-      loginButton.disabled = true;
+        event.preventDefault();
 
-      const { data, error } =
-        await supabase.auth.signInWithPassword({
-          email: email,
-          password: password
-        });
+        const email =
+          document.getElementById("email").value.trim();
 
-      if (error) {
+        const password =
+          document.getElementById("password").value;
 
-        status.textContent = "Login failed: " + error.message;
-        loginButton.disabled = false;
-        return;
-      }
+        status.textContent = "Logging in...";
+        loginButton.disabled = true;
 
-      if (data.session) {
+        try {
 
-        status.textContent = "Login successful!";
+          const { data, error } =
+            await supabaseClient.auth.signInWithPassword({
+              email: email,
+              password: password
+            });
 
-        window.location.href = "./dashboard.html";
+          if (error) {
 
-      } else {
+            status.textContent =
+              "Login failed: " + error.message;
 
-        status.textContent = "Login failed.";
-        loginButton.disabled = false;
-      }
+            loginButton.disabled = false;
+            return;
+          }
 
-    });
+          if (data && data.session) {
+
+            status.textContent =
+              "Login successful. Opening dashboard...";
+
+            window.location.href =
+              "./dashboard.html";
+
+            return;
+          }
+
+          status.textContent =
+            "Login failed: No session received.";
+
+          loginButton.disabled = false;
+
+        } catch (error) {
+
+          status.textContent =
+            "Error: " + error.message;
+
+          loginButton.disabled = false;
+        }
+
+      });
+
+    }
   </script>
 
 </body>
