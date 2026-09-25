@@ -194,25 +194,30 @@
     } = await supabase.auth.getSession();
 
     if (!session) {
-      window.location.href = "./";
+      window.location.replace("./");
       return;
     }
   }
 
-  checkSession();
+  document.addEventListener("DOMContentLoaded", function() {
 
-  document
-  .getElementById("logoutButton")
-  .addEventListener("click", async function() {
+    checkSession();
 
-    const { error } = await supabase.auth.signOut();
+    document
+      .getElementById("logoutButton")
+      .addEventListener("click", async function() {
 
-    if (error) {
-      alert("Logout failed: " + error.message);
-      return;
-    }
+        const { error } =
+          await supabase.auth.signOut();
 
-    window.location.replace("./");
+        if (error) {
+          alert("Logout failed: " + error.message);
+          return;
+        }
+
+        window.location.replace("./");
+      });
+
   });
 </script>
 
