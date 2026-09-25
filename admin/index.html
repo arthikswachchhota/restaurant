@@ -202,13 +202,18 @@
   checkSession();
 
   document
-    .getElementById("logoutButton")
-    .addEventListener("click", async function() {
+  .getElementById("logoutButton")
+  .addEventListener("click", async function() {
 
-      await supabase.auth.signOut();
+    const { error } = await supabase.auth.signOut();
 
-      window.location.href = "./";
-    });
+    if (error) {
+      alert("Logout failed: " + error.message);
+      return;
+    }
+
+    window.location.replace("./");
+  });
 </script>
 
 </body>
