@@ -417,7 +417,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <<script>
+  <script>
 
     const SUPABASE_URL =
       "https://vqoyhnrhlpnwtnvdxpjn.supabase.co";
@@ -440,20 +440,21 @@
 
     /* SESSION CHECK */
 
-    async function checkSession() {
+   async function checkSession() {
 
-      const { error } =
-  await supabaseClient.auth.signOut();
+  const {
+    data: { session }
+  } = await supabaseClient.auth.getSession();
 
-      if (!session) {
+  if (!session) {
 
-        window.location.href = "./";
+    window.location.href = "./";
 
-        return;
-      }
+    return;
+  }
 
-      status.textContent = "Logged in";
-    }
+  status.textContent = "Logged in";
+}
 
 
     /* FOOD MANAGER */
