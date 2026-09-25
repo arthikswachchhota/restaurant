@@ -100,14 +100,13 @@
     SUPABASE_KEY
   );
 
-  document
-    .getElementById("logoutButton")
-    .addEventListener("click", async function() {
+  document.getElementById("logoutButton").onclick = async function() {
+  alert("Logout function চলছে");
 
-      await supabase.auth.signOut();
-alert("Logout function চলছে");
-      window.location.href = "./";
-    });
+  await supabase.auth.signOut();
+
+  window.location.href = "./";
+};
 </script>
 
 </body>
