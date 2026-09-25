@@ -562,7 +562,7 @@
           "Logging out...";
 
         const { error } =
-          await supabase.auth.signOut();
+          await supabaseClient.auth.signOut();
 
         if (error) {
 
