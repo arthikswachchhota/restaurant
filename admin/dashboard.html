@@ -25,7 +25,7 @@
       width: 100%;
       max-width: 760px;
       margin: 20px auto;
-      background: #ffffff;
+      background: #fff;
       border-radius: 16px;
       padding: 18px;
       box-shadow: 0 12px 35px rgba(0,0,0,0.20);
@@ -57,7 +57,7 @@
       border: 1px solid #dceeed;
       border-radius: 12px;
       padding: 15px;
-      min-height: 95px;
+      min-height: 120px;
     }
 
     .card h2 {
@@ -70,6 +70,23 @@
       color: #777;
       font-size: 12px;
       line-height: 1.4;
+      margin-bottom: 12px;
+    }
+
+    .manage-button {
+      width: 100%;
+      padding: 9px;
+      border: none;
+      border-radius: 8px;
+      background: #006f78;
+      color: #fff;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .manage-button:hover {
+      background: #00545b;
     }
 
     .logout {
@@ -78,15 +95,11 @@
       border: none;
       border-radius: 9px;
       background: #006f78;
-      color: #ffffff;
+      color: #fff;
       font-size: 14px;
       font-weight: bold;
       margin-top: 14px;
       cursor: pointer;
-    }
-
-    .logout:hover {
-      background: #00545b;
     }
 
     #status {
@@ -97,7 +110,71 @@
       min-height: 18px;
     }
 
+    /* Food Manager */
+
+    .manager {
+      display: none;
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid #dceeed;
+    }
+
+    .manager h2 {
+      color: #003b40;
+      font-size: 18px;
+      margin-bottom: 14px;
+    }
+
+    .food-item {
+      background: #f8fbfb;
+      border: 1px solid #dceeed;
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+
+    .food-item label {
+      display: block;
+      font-size: 11px;
+      color: #666;
+      margin-bottom: 5px;
+    }
+
+    .food-item input {
+      width: 100%;
+      padding: 9px;
+      border: 1px solid #d7e5e5;
+      border-radius: 7px;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .save-food {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      background: #006f78;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+
+    .close-manager {
+      width: 100%;
+      padding: 9px;
+      border: 1px solid #006f78;
+      border-radius: 8px;
+      background: #fff;
+      color: #006f78;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+
     @media (max-width: 480px) {
+
       body {
         padding: 10px;
       }
@@ -105,28 +182,14 @@
       .dashboard {
         margin: 10px auto;
         padding: 14px;
-        border-radius: 14px;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr;
       }
 
       .header h1 {
         font-size: 18px;
-      }
-
-      .menu-grid {
-        gap: 8px;
-      }
-
-      .card {
-        padding: 12px;
-        min-height: 85px;
-      }
-
-      .card h2 {
-        font-size: 14px;
-      }
-
-      .card p {
-        font-size: 11px;
       }
     }
   </style>
@@ -144,20 +207,30 @@
     <div class="menu-grid">
 
       <div class="card">
-  <h2>🍔 Food</h2>
-  <p>Add, edit and manage food items.</p>
-  <button type="button" onclick="openFoodManager()">
-    Manage Food
-  </button>
-</div>
+        <h2>🍔 Food</h2>
+        <p>Add, edit and manage food items.</p>
 
-<div class="card">
-  <h2>💰 Price</h2>
-  <p>Update food prices.</p>
-  <button type="button" onclick="openFoodManager()">
-    Manage Prices
-  </button>
-</div>
+        <button
+          class="manage-button"
+          type="button"
+          onclick="openFoodManager()"
+        >
+          Manage Food
+        </button>
+      </div>
+
+      <div class="card">
+        <h2>💰 Price</h2>
+        <p>Update food prices.</p>
+
+        <button
+          class="manage-button"
+          type="button"
+          onclick="openFoodManager()"
+        >
+          Manage Prices
+        </button>
+      </div>
 
       <div class="card">
         <h2>🖼️ Gallery</h2>
@@ -181,6 +254,153 @@
 
     </div>
 
+    <!-- FOOD MANAGER -->
+
+    <div
+      class="manager"
+      id="foodManager"
+    >
+
+      <h2>🍔 Manage Food & Prices</h2>
+
+      <div class="food-item">
+
+        <label>Hamburger</label>
+
+        <input
+          type="text"
+          id="food1Name"
+          value="Hamburger"
+        >
+
+        <label>Price (SAR)</label>
+
+        <input
+          type="number"
+          id="food1Price"
+          value="8"
+        >
+
+      </div>
+
+      <div class="food-item">
+
+        <label>Fatira</label>
+
+        <input
+          type="text"
+          id="food2Name"
+          value="Fatira"
+        >
+
+        <label>Price (SAR)</label>
+
+        <input
+          type="number"
+          id="food2Price"
+          value="5"
+        >
+
+      </div>
+
+      <div class="food-item">
+
+        <label>Sandwich</label>
+
+        <input
+          type="text"
+          id="food3Name"
+          value="Sandwich"
+        >
+
+        <label>Price (SAR)</label>
+
+        <input
+          type="number"
+          id="food3Price"
+          value="7"
+        >
+
+      </div>
+
+      <div class="food-item">
+
+        <label>Fresh Juice</label>
+
+        <input
+          type="text"
+          id="food4Name"
+          value="Fresh Juice"
+        >
+
+        <label>Price (SAR)</label>
+
+        <input
+          type="number"
+          id="food4Price"
+          value="6"
+        >
+
+      </div>
+
+      <div class="food-item">
+
+        <label>Boiled Egg</label>
+
+        <input
+          type="text"
+          id="food5Name"
+          value="Boiled Egg"
+        >
+
+        <label>Price (SAR)</label>
+
+        <input
+          type="number"
+          id="food5Price"
+          value="2"
+        >
+
+      </div>
+
+      <div class="food-item">
+
+        <label>Milk Tea</label>
+
+        <input
+          type="text"
+          id="food6Name"
+          value="Milk Tea"
+        >
+
+        <label>Price (SAR)</label>
+
+        <input
+          type="number"
+          id="food6Price"
+          value="2"
+        >
+
+      </div>
+
+      <button
+        class="save-food"
+        type="button"
+        onclick="saveFoodData()"
+      >
+        Save Food & Prices
+      </button>
+
+      <button
+        class="close-manager"
+        type="button"
+        onclick="closeFoodManager()"
+      >
+        Close
+      </button>
+
+    </div>
+
     <button
       class="logout"
       id="logoutButton"
@@ -189,26 +409,36 @@
       Logout
     </button>
 
-    <div id="status">Checking login...</div>
+    <div id="status">
+      Checking login...
+    </div>
 
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <script>
+
     const SUPABASE_URL =
       "https://vqoyhnrhlpnwtnvdxpjn.supabase.co";
 
     const SUPABASE_KEY =
       "sb_publishable_9s15tPt0smgSEX_Hsr-t_g_xYH_QFY3";
 
-    const supabase = window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_KEY
-    );
+    const supabase =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
 
-    const status = document.getElementById("status");
-    const logoutButton = document.getElementById("logoutButton");
+    const status =
+      document.getElementById("status");
+
+    const logoutButton =
+      document.getElementById("logoutButton");
+
+
+    /* SESSION CHECK */
 
     async function checkSession() {
 
@@ -217,28 +447,197 @@
       } = await supabase.auth.getSession();
 
       if (!session) {
+
         window.location.href = "./";
+
         return;
       }
 
       status.textContent = "Logged in";
     }
 
-    logoutButton.addEventListener("click", async function() {
 
-      status.textContent = "Logging out...";
+    /* FOOD MANAGER */
 
-      const { error } = await supabase.auth.signOut();
+    function openFoodManager() {
 
-      if (error) {
-        status.textContent = "Logout failed.";
+      const manager =
+        document.getElementById("foodManager");
+
+      manager.style.display = "block";
+
+      manager.scrollIntoView({
+        behavior: "smooth"
+      });
+
+      status.textContent =
+        "Food Manager opened";
+    }
+
+
+    function closeFoodManager() {
+
+      document.getElementById(
+        "foodManager"
+      ).style.display = "none";
+
+      status.textContent =
+        "Food Manager closed";
+    }
+
+
+    /* SAVE FOOD DATA */
+
+    function saveFoodData() {
+
+      const foods = [
+
+        {
+          name:
+            document.getElementById("food1Name").value,
+
+          price:
+            document.getElementById("food1Price").value
+        },
+
+        {
+          name:
+            document.getElementById("food2Name").value,
+
+          price:
+            document.getElementById("food2Price").value
+        },
+
+        {
+          name:
+            document.getElementById("food3Name").value,
+
+          price:
+            document.getElementById("food3Price").value
+        },
+
+        {
+          name:
+            document.getElementById("food4Name").value,
+
+          price:
+            document.getElementById("food4Price").value
+        },
+
+        {
+          name:
+            document.getElementById("food5Name").value,
+
+          price:
+            document.getElementById("food5Price").value
+        },
+
+        {
+          name:
+            document.getElementById("food6Name").value,
+
+          price:
+            document.getElementById("food6Price").value
+        }
+
+      ];
+
+      localStorage.setItem(
+        "fawaz_food_data",
+        JSON.stringify(foods)
+      );
+
+      status.textContent =
+        "Food & prices saved.";
+    }
+
+
+    /* LOGOUT */
+
+    logoutButton.addEventListener(
+      "click",
+      async function() {
+
+        status.textContent =
+          "Logging out...";
+
+        const { error } =
+          await supabase.auth.signOut();
+
+        if (error) {
+
+          status.textContent =
+            "Logout failed.";
+
+          return;
+        }
+
+        window.location.href = "./";
+
+      }
+    );
+
+
+    /* LOAD SAVED DATA */
+
+    function loadFoodData() {
+
+      const saved =
+        localStorage.getItem(
+          "fawaz_food_data"
+        );
+
+      if (!saved) {
         return;
       }
 
-      window.location.href = "./";
-    });
+      try {
+
+        const foods =
+          JSON.parse(saved);
+
+        foods.forEach(
+          function(food, index) {
+
+            const number =
+              index + 1;
+
+            const nameInput =
+              document.getElementById(
+                "food" + number + "Name"
+              );
+
+            const priceInput =
+              document.getElementById(
+                "food" + number + "Price"
+              );
+
+            if (nameInput) {
+              nameInput.value =
+                food.name;
+            }
+
+            if (priceInput) {
+              priceInput.value =
+                food.price;
+            }
+
+          }
+        );
+
+      } catch (error) {
+
+        console.log(
+          "Could not load saved food data."
+        );
+      }
+    }
+
+
+    loadFoodData();
 
     checkSession();
+
   </script>
 
 </body>
