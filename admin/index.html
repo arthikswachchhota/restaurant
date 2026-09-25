@@ -166,7 +166,7 @@
         <p>Owner and system settings.</p>
       </div>
 
-    <button class="logout" id="logoutButton" type="button" onclick="logoutAdmin()">
+    <button class="logout" id="logoutButton" type="button">
   Logout
 </button>
 
@@ -207,7 +207,7 @@
     }
   }
 
-  async function checkSession() {
+    async function checkSession() {
 
     const {
       data: { session }
@@ -217,6 +217,10 @@
       window.location.replace("./");
     }
   }
+
+  document
+    .getElementById("logoutButton")
+    .addEventListener("click", logoutAdmin);
 
   checkSession();
 </script>
