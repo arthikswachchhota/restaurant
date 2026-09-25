@@ -25,7 +25,7 @@
       width: 100%;
       max-width: 760px;
       margin: 20px auto;
-      background: #ffffff;
+      background: #fff;
       border-radius: 16px;
       padding: 18px;
       box-shadow: 0 12px 35px rgba(0,0,0,0.20);
@@ -78,7 +78,7 @@
       border: none;
       border-radius: 9px;
       background: #006f78;
-      color: white;
+      color: #fff;
       font-size: 14px;
       font-weight: bold;
       margin-top: 14px;
@@ -89,6 +89,13 @@
       background: #00545b;
     }
 
+    #status {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 12px;
+      color: #777;
+    }
+
     @media (max-width: 480px) {
       body {
         padding: 10px;
@@ -97,15 +104,10 @@
       .dashboard {
         margin: 10px auto;
         padding: 14px;
-        border-radius: 14px;
       }
 
       .header h1 {
         font-size: 18px;
-      }
-
-      .menu-grid {
-        gap: 8px;
       }
 
       .card {
@@ -167,37 +169,23 @@
 
     </div>
 
-    <button class="logout" id="logoutButton" type="button">
+    <button
+      class="logout"
+      id="logoutButton"
+      type="button"
+      onclick="logoutAdmin()"
+    >
       Logout
     </button>
 
+    <div id="status">Ready</div>
+
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
   <script>
-    const SUPABASE_URL =
-      "https://vqoyhnrhlpnwtnvdxpjn.supabase.co";
-
-    const SUPABASE_KEY =
-      "sb_publishable_9s15tPt0smgSEX_Hsr-t_g_xYH_QFY3";
-
-    const supabase = window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_KEY
-    );
-
-    async function logoutAdmin() {
+    function logoutAdmin() {
       alert("Logout button কাজ করছে");
-
-      await supabase.auth.signOut();
-
-      window.location.replace("./");
     }
-
-    document
-      .getElementById("logoutButton")
-      .addEventListener("click", logoutAdmin);
   </script>
 
 </body>
