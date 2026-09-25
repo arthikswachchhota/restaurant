@@ -166,15 +166,13 @@
         <p>Owner and system settings.</p>
       </div>
 
-    </div>
+    <button class="logout" id="logoutButton" type="button" onclick="logoutAdmin()">
+  Logout
+</button>
 
-    <button class="logout" id="logoutButton">
-      Logout
-    </button>
+</div>
 
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
   const SUPABASE_URL =
@@ -188,37 +186,37 @@
     SUPABASE_KEY
   );
 
+  async function logoutAdmin() {
+
+    try {
+      const { error } = await supabase.auth.signOut();
+
+      if (error) {
+        console.log("Logout error:", error);
+      }
+
+      window.location.replace("./");
+
+    } catch (error) {
+
+      console.log("Logout error:", error);
+
+      window.location.replace("./");
+    }
+  }
+
   async function checkSession() {
+
     const {
       data: { session }
     } = await supabase.auth.getSession();
 
     if (!session) {
       window.location.replace("./");
-      return;
     }
   }
 
-  document.addEventListener("DOMContentLoaded", function() {
-alert("Dashboard script is working");
-    checkSession();
-
-    document
-      .getElementById("logoutButton")
-      .addEventListener("click", async function() {
-
-        const { error } =
-          await supabase.auth.signOut();
-
-        if (error) {
-          alert("Logout failed: " + error.message);
-          return;
-        }
-
-        window.location.replace("./");
-      });
-
-  });
+  checkSession();
 </script>
 
 </body>
