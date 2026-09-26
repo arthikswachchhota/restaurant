@@ -650,6 +650,11 @@
         "food" + number + "Price"
       );
 
+    const imageInput =
+      document.getElementById(
+        "food" + number + "Image"
+      );
+
     if (nameInput) {
       nameInput.value =
         food.name_en || "";
@@ -657,7 +662,12 @@
 
     if (priceInput) {
       priceInput.value =
-        food.price || "";
+        food.price ?? "";
+    }
+
+    if (imageInput) {
+      imageInput.value =
+        food.image_url || "";
     }
 
   });
@@ -665,11 +675,6 @@
   status.textContent =
     "Food data loaded from Supabase.";
 }
-
-
-    loadFoodData();
-
-    checkSession();
 
   </script>
 
