@@ -565,12 +565,47 @@ function openGalleryManager() {
 
   manager.scrollIntoView({
     behavior: "smooth"
-  });
+    });
 
   status.textContent =
     "Gallery Manager opened";
 }
+async function saveGalleryImage() {
 
+  const imageUrl =
+    document.getElementById(
+      "galleryImageUrl"
+    ).value.trim();
+
+  if (!imageUrl) {
+
+    status.textContent =
+      "Please enter an image URL.";
+
+    return;
+  }
+
+  const { error } =
+    await supabaseClient
+      .from("gallery")
+      .insert({
+        image_url: imageUrl
+      });
+
+  if (error) {
+
+    console.error(error);
+
+    status.textContent =
+      "Could not save gallery image.";
+
+    return;
+  }
+
+  status.textContent =
+    "Gallery image saved.";
+
+}
     /* SAVE FOOD DATA */
 
     async function saveFoodData() {
