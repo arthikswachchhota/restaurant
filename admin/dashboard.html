@@ -580,58 +580,50 @@
 
     /* LOAD SAVED DATA */
 
-    function loadFoodData() {
+    async function loadFoodData() {
 
-      const saved =
-        localStorage.getItem(
-          "fawaz_food_data"
-        );
+  const { data, error } =
+    await supabaseClient
+      .from("foods")
+      .select("*")
+      .order("id", { ascending: true });
 
-      if (!saved) {
-        return;
-      }
+  if (error) {
+    console.log(error);
+    status.textContent =
+      "Could not load food data.";
+    return;
+  }
 
-      try {
+  data.forEach(function(food, index) {
 
-        const foods =
-          JSON.parse(saved);
+    const number = index + 1;
 
-        foods.forEach(
-          function(food, index) {
+    const nameInput =
+      document.getElementById(
+        "food" + number + "Name"
+      );
 
-            const number =
-              index + 1;
+    const priceInput =
+      document.getElementById(
+        "food" + number + "Price"
+      );
 
-            const nameInput =
-              document.getElementById(
-                "food" + number + "Name"
-              );
-
-            const priceInput =
-              document.getElementById(
-                "food" + number + "Price"
-              );
-
-            if (nameInput) {
-              nameInput.value =
-                food.name;
-            }
-
-            if (priceInput) {
-              priceInput.value =
-                food.price;
-            }
-
-          }
-        );
-
-      } catch (error) {
-
-        console.log(
-          "Could not load saved food data."
-        );
-      }
+    if (nameInput) {
+      nameInput.value =
+        food.name_en || "";
     }
+
+    if (priceInput) {
+      priceInput.value =
+        food.price || "";
+    }
+
+  });
+
+  status.textContent =
+    "Food data loaded from Supabase.";
+}
 
 
     loadFoodData();
