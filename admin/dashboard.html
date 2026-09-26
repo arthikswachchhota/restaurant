@@ -862,7 +862,37 @@ async function loadGalleryImages() {
 
 }
 
-loadGalleryImages();
+async function deleteGalleryImage(id) {
+
+  const confirmed =
+    confirm("Delete this gallery image?");
+
+  if (!confirmed) {
+    return;
+  }
+
+  const { error } =
+    await supabaseClient
+      .from("gallery")
+      .delete()
+      .eq("id", id);
+
+  if (error) {
+
+    console.error(error);
+
+    status.textContent =
+      "Could not delete gallery image.";
+
+    return;
+  }
+
+  status.textContent =
+    "Gallery image deleted.";
+
+  loadGalleryImages();
+
+}
   </script>
 
 </body>
