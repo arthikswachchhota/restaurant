@@ -606,6 +606,50 @@ async function saveGalleryImage() {
     "Gallery image saved.";
 
 }
+    async function loadGalleryImages() {
+
+  const galleryList =
+    document.getElementById("galleryList");
+
+  const { data, error } =
+    await supabaseClient
+      .from("gallery")
+      .select("*")
+      .order("id", { ascending: false });
+
+  if (error) {
+
+    console.error(error);
+
+    galleryList.innerHTML =
+      "Could not load gallery images.";
+
+    return;
+  }
+
+  galleryList.innerHTML = "";
+
+  data.forEach(function(image) {
+
+    const item =
+      document.createElement("div");
+
+    item.innerHTML = `
+      <img
+        src="${image.image_url}"
+        style="
+          width:120px;
+          margin-top:10px;
+          border-radius:10px;
+        "
+      >
+    `;
+
+    galleryList.appendChild(item);
+
+  });
+
+}
     /* SAVE FOOD DATA */
 
     async function saveFoodData() {
@@ -760,7 +804,52 @@ async function saveGalleryImage() {
   status.textContent =
     "Food data loaded from Supabase.";
 }
+async function loadGalleryImages() {
 
+  const galleryList =
+    document.getElementById("galleryList");
+
+  const { data, error } =
+    await supabaseClient
+      .from("gallery")
+      .select("*")
+      .order("id", { ascending: false });
+
+  if (error) {
+
+    console.error(error);
+
+    galleryList.innerHTML =
+      "Could not load gallery images.";
+
+    return;
+  }
+
+  galleryList.innerHTML = "";
+
+  data.forEach(function(image) {
+
+    const item =
+      document.createElement("div");
+
+    item.innerHTML = `
+      <img
+        src="${image.image_url}"
+        style="
+          width:120px;
+          margin-top:10px;
+          border-radius:10px;
+        "
+      >
+    `;
+
+    galleryList.appendChild(item);
+
+  });
+
+}
+
+loadGalleryImages();
   </script>
 
 </body>
