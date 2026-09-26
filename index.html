@@ -2310,7 +2310,82 @@ const savedLanguage =
 
 setLanguage(savedLanguage);
 
+async function loadFoodData() {
 
+  const foodGrid =
+    document.getElementById("foodGrid");
+
+  if (!foodGrid) return;
+
+  const { data, error } =
+    await supabaseClient
+      .from("foods")
+      .select("id,name_en,name_ar,name_bn,price,image_url")
+      .order("id", { ascending: true });
+
+  if (error) {
+    console.error(error);
+    foodGrid.innerHTML =
+      "<p>Could not load food menu.</p>";
+    return;
+  }
+
+  foodGrid.innerHTML = "";
+
+  data.forEach(food => {
+
+    const card =
+      document.createElement("article");
+
+    card.className = "food-card";
+
+    const image =
+      document.createElement("img");
+
+    image.className = "food-image";
+    image.src = food.image_url || "";
+    image.alt = food.name_en || "";
+    image.loading = "lazy";
+
+    const name =
+      document.createElement("div");
+
+    name.className = "food-name";
+
+    const en =
+      document.createElement("span");
+
+    en.dataset.lang = "en";
+    en.textContent = food.name_en || "";
+
+    const ar =
+      document.createElement("span");
+
+    ar.dataset.lang = "ar";
+    ar.textContent = food.name_ar || "";
+
+    const bn =
+      document.createElement("span");
+
+    bn.dataset.lang = "bn";
+    bn.textContent = food.name_bn || "";
+
+    name.append(en, ar, bn);
+
+    const price =
+      document.createElement("div");
+
+    price.className = "food-price";
+    price.textContent =
+      "SAR " + (food.price ?? "");
+
+    card.append(image, name, price);
+
+    foodGrid.appendChild(card);
+  });
+}
+
+loadFoodData();
 /* =========================
    GALLERY
 ========================== */
