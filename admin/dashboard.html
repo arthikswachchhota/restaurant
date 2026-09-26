@@ -871,18 +871,27 @@ async function deleteGalleryImage(id) {
     return;
   }
 
-  const { error } =
+  const { data, error } =
     await supabaseClient
       .from("gallery")
       .delete()
-      .eq("id", id);
+      .eq("id", id)
+      .select();
 
   if (error) {
 
     console.error(error);
 
     status.textContent =
-  "Delete error: " + error.message;
+      "Delete error: " + error.message;
+
+    return;
+  }
+
+  if (!data || data.length === 0) {
+
+    status.textContent =
+      "Delete failed: no row was deleted.";
 
     return;
   }
