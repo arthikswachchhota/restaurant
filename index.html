@@ -2108,85 +2108,11 @@
     </div>
 
 
-    <div class="gallery-grid">
-
-
-      <!-- 1. HAMBURGER -->
-
-      <div class="gallery-item">
-
-        <img
-          src="images/IMG_3745.jpeg"
-          alt="Hamburger"
-          loading="lazy"
-        >
-
-      </div>
-
-
-      <!-- 2. FATIRA -->
-
-      <div class="gallery-item">
-
-        <img
-          src="images/IMG_3749.jpeg"
-          alt="Fatira"
-          loading="lazy"
-        >
-
-      </div>
-
-
-      <!-- 3. SANDWICH -->
-
-      <div class="gallery-item">
-
-        <img
-          src="images/IMG_3750.jpeg"
-          alt="Sandwich"
-          loading="lazy"
-        >
-
-      </div>
-
-
-      <!-- 4. FRESH JUICE -->
-
-      <div class="gallery-item">
-
-        <img
-          src="images/Snapseed.jpeg"
-          alt="Fresh Juice"
-          loading="lazy"
-        >
-
-      </div>
-
-
-      <!-- 5. BOILED EGG -->
-
-      <div class="gallery-item">
-
-        <img
-          src="images/IMG_3803.jpeg"
-          alt="Boiled Egg"
-          loading="lazy"
-        >
-
-      </div>
-
-
-      <!-- 6. MILK TEA -->
-
-      <div class="gallery-item">
-
-        <img
-          src="images/IMG_3802.jpeg"
-          alt="Milk Tea"
-          loading="lazy"
-        >
-
-      </div>
+    <div
+  class="gallery-grid"
+  id="galleryGrid"
+>
+</div>
 
 
     </div>
@@ -2382,9 +2308,45 @@ async function loadFoodData() {
     card.append(image, name, price);
 
     foodGrid.appendChild(card);
-  });
-}
+  async function loadGalleryData() {
 
+  const galleryGrid =
+    document.getElementById("galleryGrid");
+
+  const { data, error } =
+    await supabaseClient
+      .from("gallery")
+      .select("id,image_url")
+      .order("id", { ascending: true });
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  galleryGrid.innerHTML = "";
+
+  data.forEach(function(image) {
+
+    const item =
+      document.createElement("div");
+
+    item.className =
+      "gallery-item";
+
+    item.innerHTML = `
+      <img
+        src="${image.image_url}"
+        alt="Fawaz Gallery"
+        loading="lazy"
+      >
+    `;
+
+    galleryGrid.appendChild(item);
+
+  });
+
+}
 loadFoodData();
 /* =========================
    GALLERY
@@ -2504,26 +2466,26 @@ const closeViewer =
 
 
 document
-  .querySelectorAll(
-    ".gallery-item img"
-  )
-  .forEach(image => {
+  .getElementById("galleryGrid")
+  .addEventListener("click", function(event) {
 
-    image.addEventListener(
-      "click",
-      () => {
+    const image =
+      event.target.closest(
+        ".gallery-item img"
+      );
 
-        viewerImage.src =
-          image.src;
+    if (!image) {
+      return;
+    }
 
-        viewerImage.alt =
-          image.alt;
+    viewerImage.src =
+      image.src;
 
-        imageViewer.classList.add(
-          "show"
-        );
+    viewerImage.alt =
+      image.alt;
 
-      }
+    imageViewer.classList.add(
+      "show"
     );
 
   });
