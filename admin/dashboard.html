@@ -442,6 +442,17 @@
         Close
       </button>
 
+        </div>
+
+    <div
+      class="manager"
+      id="galleryManager"
+    >
+
+      <h2>🖼️ Manage Gallery</h2>
+
+      <p>Gallery manager coming next.</p>
+
     </div>
 
     <button
@@ -527,7 +538,20 @@
       status.textContent =
         "Food Manager closed";
     }
+function openGalleryManager() {
 
+  const manager =
+    document.getElementById("galleryManager");
+
+  manager.style.display = "block";
+
+  manager.scrollIntoView({
+    behavior: "smooth"
+  });
+
+  status.textContent =
+    "Gallery Manager opened";
+}
 
     /* SAVE FOOD DATA */
 
