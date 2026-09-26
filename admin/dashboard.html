@@ -882,7 +882,7 @@ async function deleteGalleryImage(id) {
     console.error(error);
 
     status.textContent =
-      "Could not delete gallery image.";
+  "Delete error: " + error.message;
 
     return;
   }
