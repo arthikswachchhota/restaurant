@@ -272,7 +272,6 @@
           id="food1Name"
           value="Hamburger"
         >
-
         <label>Price (SAR)</label>
 
         <input
@@ -280,7 +279,13 @@
           id="food1Price"
           value="8"
         >
+<label>Image URL</label>
 
+<input
+  type="text"
+  id="food1Image"
+  value="images/IMG_3745.jpeg"
+>
       </div>
 
       <div class="food-item">
@@ -292,7 +297,13 @@
           id="food2Name"
           value="Fatira"
         >
+<label>Image URL</label>
 
+<input
+  type="text"
+  id="food2Image"
+  value="images/IMG_3749.jpeg"
+>
         <label>Price (SAR)</label>
 
         <input
@@ -320,7 +331,13 @@
           id="food3Price"
           value="7"
         >
+<label>Image URL</label>
 
+<input
+  type="text"
+  id="food3Image"
+  value="images/IMG_3750.jpeg"
+>
       </div>
 
       <div class="food-item">
@@ -340,7 +357,13 @@
           id="food4Price"
           value="6"
         >
+<label>Image URL</label>
 
+<input
+  type="text"
+  id="food4Image"
+  value="images/Snapseed.jpeg"
+>
       </div>
 
       <div class="food-item">
@@ -360,7 +383,13 @@
           id="food5Price"
           value="2"
         >
+<label>Image URL</label>
 
+<input
+  type="text"
+  id="food5Image"
+  value="images/IMG_3803.jpeg"
+>
       </div>
 
       <div class="food-item">
@@ -380,7 +409,13 @@
           id="food6Price"
           value="2"
         >
+<label>Image URL</label>
 
+<input
+  type="text"
+  id="food6Image"
+  value="images/IMG_3802.jpeg"
+>
       </div>
 
       <button
@@ -492,35 +527,41 @@
 
   const foods = [
     {
-      id: 1,
-      name: document.getElementById("food1Name").value,
-      price: document.getElementById("food1Price").value
-    },
+  id: 1,
+  name: document.getElementById("food1Name").value,
+  price: document.getElementById("food1Price").value,
+  image: document.getElementById("food1Image").value
+},
     {
-      id: 2,
-      name: document.getElementById("food2Name").value,
-      price: document.getElementById("food2Price").value
-    },
+  id: 2,
+  name: document.getElementById("food2Name").value,
+  price: document.getElementById("food2Price").value,
+  image: document.getElementById("food2Image").value
+},
     {
-      id: 3,
-      name: document.getElementById("food3Name").value,
-      price: document.getElementById("food3Price").value
-    },
+  id: 3,
+  name: document.getElementById("food3Name").value,
+  price: document.getElementById("food3Price").value,
+  image: document.getElementById("food3Image").value
+},
     {
-      id: 4,
-      name: document.getElementById("food4Name").value,
-      price: document.getElementById("food4Price").value
-    },
+  id: 4,
+  name: document.getElementById("food4Name").value,
+  price: document.getElementById("food4Price").value,
+  image: document.getElementById("food4Image").value
+},
     {
-      id: 5,
-      name: document.getElementById("food5Name").value,
-      price: document.getElementById("food5Price").value
-    },
+  id: 5,
+  name: document.getElementById("food5Name").value,
+  price: document.getElementById("food5Price").value,
+  image: document.getElementById("food5Image").value
+},
     {
-      id: 6,
-      name: document.getElementById("food6Name").value,
-      price: document.getElementById("food6Price").value
-    }
+  id: 6,
+  name: document.getElementById("food6Name").value,
+  price: document.getElementById("food6Price").value,
+  image: document.getElementById("food6Image").value
+},
   ];
 
   for (const food of foods) {
@@ -529,9 +570,10 @@
       await supabaseClient
         .from("foods")
         .update({
-          name_en: food.name,
-          price: Number(food.price)
-        })
+  name_en: food.name,
+  price: Number(food.price),
+  image_url: food.image
+})
         .eq("id", food.id);
 
     if (error) {
