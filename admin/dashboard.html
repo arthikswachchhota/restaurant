@@ -834,6 +834,8 @@ async function loadGalleryImages() {
     const item =
       document.createElement("div");
 
+    item.style.marginBottom = "15px";
+
     item.innerHTML = `
       <img
         src="../${image.image_url}"
@@ -841,8 +843,17 @@ async function loadGalleryImages() {
           width:120px;
           margin-top:10px;
           border-radius:10px;
+          display:block;
         "
       >
+
+      <button
+        type="button"
+        class="close-manager"
+        onclick="deleteGalleryImage(${image.id})"
+      >
+        🗑️ Delete
+      </button>
     `;
 
     galleryList.appendChild(item);
