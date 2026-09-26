@@ -270,7 +270,35 @@
     >
 
       <h2>🍔 Manage Food & Prices</h2>
+<div class="food-item">
 
+  <h3>Add New Food</h3>
+
+  <label>Food Name</label>
+
+  <input
+    type="text"
+    id="newFoodName"
+    placeholder="Food name"
+  >
+
+  <label>Price</label>
+
+  <input
+    type="number"
+    id="newFoodPrice"
+    placeholder="Price"
+  >
+
+  <button
+    class="save-food"
+    type="button"
+    onclick="addNewFood()"
+  >
+    ➕ Add Food
+  </button>
+
+</div>
       <div class="food-item">
 
         <label>Hamburger</label>
@@ -805,6 +833,59 @@ async function saveGalleryImage() {
 
   status.textContent =
     "Food data loaded from Supabase.";
+}
+    async function addNewFood() {
+
+  const name =
+    document.getElementById(
+      "newFoodName"
+    ).value.trim();
+
+  const price =
+    document.getElementById(
+      "newFoodPrice"
+    ).value;
+
+  if (!name || !price) {
+
+    status.textContent =
+      "Please enter food name and price.";
+
+    return;
+  }
+
+  const { error } =
+    await supabaseClient
+      .from("foods")
+      .insert({
+        name_en: name,
+        price: Number(price),
+        category: "food"
+      });
+
+  if (error) {
+
+    console.error(error);
+
+    status.textContent =
+      "Could not add food.";
+
+    return;
+  }
+
+  status.textContent =
+    "New food added successfully.";
+
+  document.getElementById(
+    "newFoodName"
+  ).value = "";
+
+  document.getElementById(
+    "newFoodPrice"
+  ).value = "";
+
+  loadFoodData();
+
 }
 async function loadGalleryImages() {
 
