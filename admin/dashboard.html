@@ -488,68 +488,67 @@
 
     /* SAVE FOOD DATA */
 
-    function saveFoodData() {
+    async function saveFoodData() {
 
-      const foods = [
+  const foods = [
+    {
+      id: 1,
+      name: document.getElementById("food1Name").value,
+      price: document.getElementById("food1Price").value
+    },
+    {
+      id: 2,
+      name: document.getElementById("food2Name").value,
+      price: document.getElementById("food2Price").value
+    },
+    {
+      id: 3,
+      name: document.getElementById("food3Name").value,
+      price: document.getElementById("food3Price").value
+    },
+    {
+      id: 4,
+      name: document.getElementById("food4Name").value,
+      price: document.getElementById("food4Price").value
+    },
+    {
+      id: 5,
+      name: document.getElementById("food5Name").value,
+      price: document.getElementById("food5Price").value
+    },
+    {
+      id: 6,
+      name: document.getElementById("food6Name").value,
+      price: document.getElementById("food6Price").value
+    }
+  ];
 
-        {
-          name:
-            document.getElementById("food1Name").value,
+  for (const food of foods) {
 
-          price:
-            document.getElementById("food1Price").value
-        },
+    const { error } =
+      await supabaseClient
+        .from("foods")
+        .update({
+          name_en: food.name,
+          price: Number(food.price)
+        })
+        .eq("id", food.id);
 
-        {
-          name:
-            document.getElementById("food2Name").value,
+    if (error) {
 
-          price:
-            document.getElementById("food2Price").value
-        },
-
-        {
-          name:
-            document.getElementById("food3Name").value,
-
-          price:
-            document.getElementById("food3Price").value
-        },
-
-        {
-          name:
-            document.getElementById("food4Name").value,
-
-          price:
-            document.getElementById("food4Price").value
-        },
-
-        {
-          name:
-            document.getElementById("food5Name").value,
-
-          price:
-            document.getElementById("food5Price").value
-        },
-
-        {
-          name:
-            document.getElementById("food6Name").value,
-
-          price:
-            document.getElementById("food6Price").value
-        }
-
-      ];
-
-      localStorage.setItem(
-        "fawaz_food_data",
-        JSON.stringify(foods)
-      );
+      console.error(error);
 
       status.textContent =
-        "Food & prices saved.";
+        "Could not save food data.";
+
+      return;
     }
+  }
+
+  status.textContent =
+    "Food & prices saved to Supabase.";
+
+}
 
 
     /* LOGOUT */
