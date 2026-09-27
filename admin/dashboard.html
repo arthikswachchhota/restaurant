@@ -606,85 +606,82 @@ function openGalleryManager() {
   status.textContent =
     "Gallery Manager opened";
 }
-async function saveGalleryImage() {
+async function uploadGalleryImage() {
 
-  const imageUrl =
+  const file =
     document.getElementById(
-      "galleryImageUrl"
-    ).value.trim();
+      "galleryImageFile"
+    ).files[0];
 
-  if (!imageUrl) {
+  if (!file) {
 
     status.textContent =
-      "Please enter an image URL.";
+      "Please select an image.";
 
     return;
   }
 
+  status.textContent =
+    "Uploading image...";
+
+  const fileName =
+    Date.now() + "-" + file.name;
+
   const { error } =
+    await supabaseClient
+      .storage
+      .from("gallery")
+      .upload(
+        fileName,
+        file
+      );
+
+  if (error) {
+
+    console.error(error);
+
+    status.textContent =
+      "Image upload failed: " +
+      error.message;
+
+    return;
+  }
+
+  const { data } =
+    supabaseClient
+      .storage
+      .from("gallery")
+      .getPublicUrl(fileName);
+
+  const imageUrl =
+    data.publicUrl;
+
+  const { error: dbError } =
     await supabaseClient
       .from("gallery")
       .insert({
         image_url: imageUrl
       });
 
-  if (error) {
+  if (dbError) {
 
-    console.error(error);
+    console.error(dbError);
 
     status.textContent =
-      "Could not save gallery image.";
+      "Image uploaded but database save failed: " +
+      dbError.message;
 
     return;
   }
 
   status.textContent =
-    "Gallery image saved.";
+    "Gallery image uploaded successfully.";
 
-}
-    async function loadGalleryImages() {
+  document.getElementById(
+    "galleryImageFile"
+  ).value = "";
 
-  const galleryList =
-    document.getElementById("galleryList");
-
-  const { data, error } =
-    await supabaseClient
-      .from("gallery")
-      .select("*")
-      .order("id", { ascending: false });
-
-  if (error) {
-
-    console.error(error);
-
-    galleryList.innerHTML =
-      "Could not load gallery images.";
-
-    return;
-  }
-
-  galleryList.innerHTML = "";
-
-  data.forEach(function(image) {
-
-    const item =
-      document.createElement("div");
-
-    item.innerHTML = `
-      <img
-        src="../${image.image_url}"
-        style="
-          width:120px;
-          margin-top:10px;
-          border-radius:10px;
-        "
-      >
-    `;
-
-    galleryList.appendChild(item);
-
-  });
-
+  loadGalleryImages();
 }
     /* SAVE FOOD DATA */
 
