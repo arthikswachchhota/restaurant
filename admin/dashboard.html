@@ -1024,92 +1024,78 @@ item.innerHTML = `
 
 }
 
-async function deleteGalleryImage(id) {
+async function uploadFoodImage() {
 
-  const confirmed =
-    confirm("Delete this gallery image?");
+  const fileInput =
+    document.getElementById("food1ImageFile");
 
-  if (!confirmed) {
-    return;
-  }
+  const file =
+    fileInput.files[0];
 
-  const { data: image, error: fetchError } =
-    await supabaseClient
-      .from("gallery")
-      .select("image_url")
-      .eq("id", id)
-      .single();
-
-  if (fetchError) {
-
-    console.error(fetchError);
+  if (!file) {
 
     status.textContent =
-      "Could not find gallery image.";
-
-    return;
-  }
-
-  const imageUrl =
-    image.image_url;
-
-  // Delete from Supabase Storage
-  if (imageUrl.includes("/storage/v1/object/public/gallery/")) {
-
-    const filePath =
-      imageUrl.split(
-        "/storage/v1/object/public/gallery/"
-      )[1];
-
-    const { error: storageError } =
-      await supabaseClient
-        .storage
-        .from("gallery")
-        .remove([filePath]);
-
-    if (storageError) {
-
-      console.error(storageError);
-
-      status.textContent =
-        "Storage delete error: " +
-        storageError.message;
-
-      return;
-    }
-  }
-
-  // Delete database row
-  const { data, error } =
-    await supabaseClient
-      .from("gallery")
-      .delete()
-      .eq("id", id)
-      .select();
-
-  if (error) {
-
-    console.error(error);
-
-    status.textContent =
-      "Database delete error: " +
-      error.message;
-
-    return;
-  }
-
-  if (!data || data.length === 0) {
-
-    status.textContent =
-      "Delete failed: no row was deleted.";
+      "Please select a food image.";
 
     return;
   }
 
   status.textContent =
-    "Gallery image and storage file deleted.";
+    "Uploading food image...";
 
-  loadGalleryImages();
+  const fileName =
+    Date.now() + "-" + file.name;
+
+  const { error: uploadError } =
+    await supabaseClient
+      .storage
+      .from("food")
+      .upload(
+        fileName,
+        file,
+        {
+          cacheControl: "3600",
+          upsert: false
+        }
+      );
+
+  if (uploadError) {
+
+    console.error(
+      "Food upload error:",
+      uploadError
+    );
+
+    status.textContent =
+      "Food image upload failed: " +
+      uploadError.message;
+
+    return;
+  }
+
+  const { data: publicData } =
+    supabaseClient
+      .storage
+      .from("food")
+      .getPublicUrl(fileName);
+
+  if (!publicData || !publicData.publicUrl) {
+
+    status.textContent =
+      "Image uploaded but public URL was not created.";
+
+    return;
+  }
+
+  document.getElementById(
+    "food1Image"
+  ).value =
+    publicData.publicUrl;
+
+  fileInput.value = "";
+
+  status.textContent =
+    "Food image uploaded successfully.";
 
 }
   </script>
