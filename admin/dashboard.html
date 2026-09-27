@@ -699,6 +699,14 @@ async function uploadGalleryImage() {
 }
     async function uploadFoodImage() {
 
+  status.textContent =
+    "Food upload button clicked.";
+
+  const file =
+    document.getElementById(
+      "food1ImageFile"
+    ).files[0];
+
   const file =
     document.getElementById(
       "food1ImageFile"
