@@ -920,9 +920,14 @@ async function loadGalleryImages() {
 
     item.style.marginBottom = "15px";
 
-    item.innerHTML = `
-      <img
-        src="../${image.image_url}"
+    const imageSrc =
+  image.image_url.startsWith("http")
+    ? image.image_url
+    : "../" + image.image_url;
+
+item.innerHTML = `
+  <img
+    src="${imageSrc}"
         style="
           width:120px;
           margin-top:10px;
