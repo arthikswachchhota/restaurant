@@ -960,6 +960,53 @@ async function deleteGalleryImage(id) {
     return;
   }
 
+  const { data: image, error: fetchError } =
+    await supabaseClient
+      .from("gallery")
+      .select("image_url")
+      .eq("id", id)
+      .single();
+
+  if (fetchError) {
+
+    console.error(fetchError);
+
+    status.textContent =
+      "Could not find gallery image.";
+
+    return;
+  }
+
+  const imageUrl =
+    image.image_url;
+
+  // Delete from Supabase Storage
+  if (imageUrl.includes("/storage/v1/object/public/gallery/")) {
+
+    const filePath =
+      imageUrl.split(
+        "/storage/v1/object/public/gallery/"
+      )[1];
+
+    const { error: storageError } =
+      await supabaseClient
+        .storage
+        .from("gallery")
+        .remove([filePath]);
+
+    if (storageError) {
+
+      console.error(storageError);
+
+      status.textContent =
+        "Storage delete error: " +
+        storageError.message;
+
+      return;
+    }
+  }
+
+  // Delete database row
   const { data, error } =
     await supabaseClient
       .from("gallery")
@@ -972,7 +1019,8 @@ async function deleteGalleryImage(id) {
     console.error(error);
 
     status.textContent =
-      "Delete error: " + error.message;
+      "Database delete error: " +
+      error.message;
 
     return;
   }
@@ -986,7 +1034,7 @@ async function deleteGalleryImage(id) {
   }
 
   status.textContent =
-    "Gallery image deleted.";
+    "Gallery image and storage file deleted.";
 
   loadGalleryImages();
 
