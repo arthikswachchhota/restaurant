@@ -322,6 +322,20 @@
   id="food1ImageFile"
   accept="image/*"
 >
+
+<input
+  type="hidden"
+  id="food1Image"
+  value="images/IMG_3745.jpeg"
+>
+
+<button
+  class="save-food"
+  type="button"
+  onclick="uploadFoodImage()"
+>
+  🖼️ Upload Food Image
+</button>
       </div>
 
       <div class="food-item">
@@ -682,6 +696,62 @@ async function uploadGalleryImage() {
   ).value = "";
 
   loadGalleryImages();
+}
+    async function uploadFoodImage() {
+
+  const file =
+    document.getElementById(
+      "food1ImageFile"
+    ).files[0];
+
+  if (!file) {
+
+    status.textContent =
+      "Please select a food image.";
+
+    return;
+  }
+
+  status.textContent =
+    "Uploading food image...";
+
+  const fileName =
+    Date.now() + "-" + file.name;
+
+  const { error } =
+    await supabaseClient
+      .storage
+      .from("food")
+      .upload(
+        fileName,
+        file
+      );
+
+  if (error) {
+
+    console.error(error);
+
+    status.textContent =
+      "Food image upload failed: " +
+      error.message;
+
+    return;
+  }
+
+  const { data } =
+    supabaseClient
+      .storage
+      .from("food")
+      .getPublicUrl(fileName);
+
+  document.getElementById(
+    "food1Image"
+  ).value =
+    data.publicUrl;
+
+  status.textContent =
+    "Food image uploaded successfully.";
+
 }
     /* SAVE FOOD DATA */
 
