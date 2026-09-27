@@ -480,7 +480,13 @@
       <h2>🖼️ Manage Gallery</h2>
 
       <div class="food-item">
+<label>Upload Gallery Image</label>
 
+<input
+  type="file"
+  id="galleryImageFile"
+  accept="image/*"
+>
   <label>Gallery Image URL</label>
 
   <input
@@ -492,7 +498,7 @@
   <button
     class="save-food"
     type="button"
-    onclick="saveGalleryImage()"
+    onclick="uploadGalleryImage()"
   >
     Save Gallery Image
   </button>
