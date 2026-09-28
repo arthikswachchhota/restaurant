@@ -535,682 +535,1376 @@
 
   </div>
 
-  <script>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  const SUPABASE_URL =
-    "https://vqoyhnrhlpnwtnvdxpjn.supabase.co";
+  <title>Admin Dashboard | Fawaz Cafeteria</title>
 
-  const SUPABASE_KEY =
-    "sb_publishable_9s15tPt0smgSEX_Hsr-t_g_xYH_QFY3";
-
-  const supabaseClient =
-    window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_KEY
-    );
-
-  const status =
-    document.getElementById("status");
-
-  const logoutButton =
-    document.getElementById("logoutButton");
-
-
-  /* SESSION CHECK */
-
-  async function checkSession() {
-
-    const {
-      data: { session }
-    } = await supabaseClient.auth.getSession();
-
-    if (!session) {
-
-      window.location.href = "./";
-
-      return;
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    status.textContent = "Logged in";
+    body {
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: #071315;
+      color: #123;
+      padding: 14px;
+    }
 
-    loadFoodData();
+    .dashboard {
+      width: 100%;
+      max-width: 760px;
+      margin: 20px auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.20);
+    }
+
+    .header {
+      margin-bottom: 16px;
+    }
+
+    .header h1 {
+      color: #003b40;
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+
+    .welcome {
+      color: #777;
+      font-size: 13px;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .card {
+      background: #f3faf9;
+      border: 1px solid #dceeed;
+      border-radius: 12px;
+      padding: 15px;
+      min-height: 120px;
+    }
+
+    .card h2 {
+      color: #006f78;
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      color: #777;
+      font-size: 12px;
+      line-height: 1.4;
+      margin-bottom: 12px;
+    }
+
+    .manage-button {
+      width: 100%;
+      padding: 9px;
+      border: none;
+      border-radius: 8px;
+      background: #006f78;
+      color: #fff;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .manage-button:hover {
+      background: #00545b;
+    }
+
+    .logout {
+      width: 100%;
+      padding: 11px;
+      border: none;
+      border-radius: 9px;
+      background: #006f78;
+      color: #fff;
+      font-size: 14px;
+      font-weight: bold;
+      margin-top: 14px;
+      cursor: pointer;
+    }
+
+    #status {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 12px;
+      color: #777;
+      min-height: 18px;
+    }
+
+    /* Food Manager */
+
+    .manager {
+      display: none;
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid #dceeed;
+    }
+
+    .manager h2 {
+      color: #003b40;
+      font-size: 18px;
+      margin-bottom: 14px;
+    }
+
+    .food-item {
+      background: #f8fbfb;
+      border: 1px solid #dceeed;
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+
+    .food-item label {
+      display: block;
+      font-size: 11px;
+      color: #666;
+      margin-bottom: 5px;
+    }
+
+    .food-item input {
+      width: 100%;
+      padding: 9px;
+      border: 1px solid #d7e5e5;
+      border-radius: 7px;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .save-food {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      background: #006f78;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+
+    .close-manager {
+      width: 100%;
+      padding: 9px;
+      border: 1px solid #006f78;
+      border-radius: 8px;
+      background: #fff;
+      color: #006f78;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 480px) {
+
+      body {
+        padding: 10px;
+      }
+
+      .dashboard {
+        margin: 10px auto;
+        padding: 14px;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .header h1 {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="dashboard">
+
+    <div class="header">
+      <h1>Fawaz Cafeteria Admin</h1>
+      <p class="welcome">Management Dashboard</p>
+    </div>
+
+    <div class="menu-grid">
+
+      <div class="card">
+        <h2>🍔 Food</h2>
+        <p>Add, edit and manage food items.</p>
+
+        <button
+          class="manage-button"
+          type="button"
+          onclick="openFoodManager()"
+        >
+          Manage Food
+        </button>
+      </div>
+
+      <div class="card">
+        <h2>💰 Price</h2>
+        <p>Update food prices.</p>
+
+        <button
+          class="manage-button"
+          type="button"
+          onclick="openFoodManager()"
+        >
+          Manage Prices
+        </button>
+      </div>
+
+      <div class="card">
+  <h2>🖼️ Gallery</h2>
+  <p>Manage cafeteria gallery.</p>
+
+  <button
+    class="manage-button"
+    type="button"
+    onclick="openGalleryManager()"
+  >
+    Manage Gallery
+  </button>
+</div>
+
+      <div class="card">
+        <h2>🕐 Opening Hours</h2>
+        <p>Manage opening and break times.</p>
+      </div>
+
+      <div class="card">
+        <h2>📱 WhatsApp</h2>
+        <p>Update WhatsApp contact number.</p>
+      </div>
+
+      <div class="card">
+        <h2>⚙️ Settings</h2>
+        <p>Owner and system settings.</p>
+      </div>
+
+    </div>
+
+    <!-- FOOD MANAGER -->
+
+    <div
+      class="manager"
+      id="foodManager"
+    >
+
+      <h2>🍔 Manage Food & Prices</h2>
+<div class="food-item">
+
+  <h3>Add New Food</h3>
+
+  <label>Food Name</label>
+
+  <input
+    type="text"
+    id="newFoodName"
+    placeholder="Food name"
+  >
+
+  <label>Price</label>
+
+  <input
+    type="number"
+    id="newFoodPrice"
+    placeholder="Price"
+  >
+
+  <button
+    class="save-food"
+    type="button"
+    onclick="addNewFood()"
+  >
+    ➕ Add Food
+  </button>
+
+</div>
+      <div class="food-item">
+
+        <label>Hamburger</label>
+
+        <input
+          type="text"
+          id="food1Name"
+          value="Hamburger"
+        >
+        <label>Price (SAR)</label>
+
+        <input
+          type="number"
+          id="food1Price"
+          value="8"
+        >
+<label>Food Image</label>
+
+<input
+  type="file"
+  id="food1ImageFile"
+  accept="image/*"
+>
+
+<input
+  type="hidden"
+  id="food1Image"
+  value="images/IMG_3745.jpeg"
+>
+
+<button
+  class="save-food"
+  type="button"
+  onclick="uploadFoodImage()"
+>
+  🖼️ Upload Food Image
+</button>
+      </div>
+
+      <div class="food-item">
+
+        <label>Fatira</label>
+
+        <input
+          type="text"
+          id="food2Name"
+          value="Fatira"
+        >
+<label>Image URL</label>
+
+<input
+  type="text"
+  id="food2Image"
+  value="images/IMG_3749.jpeg"
+>
+        <label>Price (SAR)</label>
+
+        <input
+          type="number"
+          id="food2Price"
+          value="5"
+        >
+
+      </div>
+
+      <div class="food-item">
+
+        <label>Sandwich</label>
+
+        <input
+          type="text"
+          id="food3Name"
+          value="Sandwich"
+        >
+
+        <label>Price (SAR)</label>
+
+        <input
+          type="number"
+          id="food3Price"
+          value="7"
+        >
+<label>Image URL</label>
+
+<input
+  type="text"
+  id="food3Image"
+  value="images/IMG_3750.jpeg"
+>
+      </div>
+
+      <div class="food-item">
+
+        <label>Fresh Juice</label>
+
+        <input
+          type="text"
+          id="food4Name"
+          value="Fresh Juice"
+        >
+
+        <label>Price (SAR)</label>
+
+        <input
+          type="number"
+          id="food4Price"
+          value="6"
+        >
+<label>Image URL</label>
+
+<input
+  type="text"
+  id="food4Image"
+  value="images/Snapseed.jpeg"
+>
+      </div>
+
+      <div class="food-item">
+
+        <label>Boiled Egg</label>
+
+        <input
+          type="text"
+          id="food5Name"
+          value="Boiled Egg"
+        >
+
+        <label>Price (SAR)</label>
+
+        <input
+          type="number"
+          id="food5Price"
+          value="2"
+        >
+<label>Image URL</label>
+
+<input
+  type="text"
+  id="food5Image"
+  value="images/IMG_3803.jpeg"
+>
+      </div>
+
+      <div class="food-item">
+
+        <label>Milk Tea</label>
+
+        <input
+          type="text"
+          id="food6Name"
+          value="Milk Tea"
+        >
+
+        <label>Price (SAR)</label>
+
+        <input
+          type="number"
+          id="food6Price"
+          value="2"
+        >
+<label>Image URL</label>
+
+<input
+  type="text"
+  id="food6Image"
+  value="images/IMG_3802.jpeg"
+>
+      </div>
+
+      <button
+        class="save-food"
+        type="button"
+        onclick="saveFoodData()"
+      >
+        Save Food & Prices
+      </button>
+
+      <button
+        class="close-manager"
+        type="button"
+        onclick="closeFoodManager()"
+      >
+        Close
+      </button>
+
+        </div>
+
+    <div
+      class="manager"
+      id="galleryManager"
+    >
+
+      <h2>🖼️ Manage Gallery</h2>
+
+      <div class="food-item">
+<label>Upload Gallery Image</label>
+
+<input
+  type="file"
+  id="galleryImageFile"
+  accept="image/*"
+>
+  <label>Gallery Image URL</label>
+
+  <input
+    type="text"
+    id="galleryImageUrl"
+    value="images/IMG_3745.jpeg"
+  >
+
+  <button
+    class="save-food"
+    type="button"
+    onclick="uploadGalleryImage()"
+  >
+    Save Gallery Image
+  </button>
+
+</div>
+<div id="galleryList"></div>
+    </div>
+
+    <button
+      class="logout"
+      id="logoutButton"
+      type="button"
+    >
+      Logout
+    </button>
+
+    <div id="status">
+      Checking login...
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Admin Dashboard | Fawaz Cafeteria</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: #071315;
+      color: #123;
+      padding: 14px;
+    }
+
+    .dashboard {
+      width: 100%;
+      max-width: 760px;
+      margin: 20px auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.20);
+    }
+
+    .header {
+      margin-bottom: 16px;
+    }
+
+    .header h1 {
+      color: #003b40;
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+
+    .welcome {
+      color: #777;
+      font-size: 13px;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .card {
+      background: #f3faf9;
+      border: 1px solid #dceeed;
+      border-radius: 12px;
+      padding: 15px;
+      min-height: 120px;
+    }
+
+    .card h2 {
+      color: #006f78;
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      color: #777;
+      font-size: 12px;
+      line-height: 1.4;
+      margin-bottom: 12px;
+    }
+
+    .manage-button {
+      width: 100%;
+      padding: 9px;
+      border: none;
+      border-radius: 8px;
+      background: #006f78;
+      color: #fff;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .manage-button:hover {
+      background: #00545b;
+    }
+
+    .logout {
+      width: 100%;
+      padding: 11px;
+      border: none;
+      border-radius: 9px;
+      background: #006f78;
+      color: #fff;
+      font-size: 14px;
+      font-weight: bold;
+      margin-top: 14px;
+      cursor: pointer;
+    }
+
+    #status {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 12px;
+      color: #777;
+      min-height: 18px;
+    }
+
+    /* Food Manager */
+
+    .manager {
+      display: none;
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid #dceeed;
+    }
+
+    .manager h2 {
+      color: #003b40;
+      font-size: 18px;
+      margin-bottom: 14px;
+    }
+
+    .food-item {
+      background: #f8fbfb;
+      border: 1px solid #dceeed;
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+
+    .food-item label {
+      display: block;
+      font-size: 11px;
+      color: #666;
+      margin-bottom: 5px;
+    }
+
+    .food-item input {
+      width: 100%;
+      padding: 9px;
+      border: 1px solid #d7e5e5;
+      border-radius: 7px;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .save-food {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      background: #006f78;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+
+    .close-manager {
+      width: 100%;
+      padding: 9px;
+      border: 1px solid #006f78;
+      border-radius: 8px;
+      background: #fff;
+      color: #006f78;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 480px) {
+
+      body {
+        padding: 10px;
+      }
+
+      .dashboard {
+        margin: 10px auto;
+        padding: 14px;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .header h1 {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="dashboard">
+
+    <div class="header">
+      <h1>Fawaz Cafeteria Admin</h1>
+      <p class="welcome">Management Dashboard</p>
+    </div>
+
+    <div class="menu-grid">
+
+      <div class="card">
+        <h2>🍔 Food</h2>
+        <p>Add, edit and manage food items.</p>
+
+        <button
+          class="manage-button"
+          type="button"
+          onclick="openFoodManager()"
+        >
+          Manage Food
+        </button>
+      </div>
+
+      <div class="card">
+        <h2>💰 Price</h2>
+        <p>Update food prices.</p>
+
+        <button
+          class="manage-button"
+          type="button"
+          onclick="openFoodManager()"
+        >
+          Manage Prices
+        </button>
+      </div>
+
+      <div class="card">
+  <h2>🖼️ Gallery</h2>
+  <p>Manage cafeteria gallery.</p>
+
+  <button
+    class="manage-button"
+    type="button"
+    onclick="openGalleryManager()"
+  >
+    Manage Gallery
+  </button>
+</div>
+
+      <div class="card">
+        <h2>🕐 Opening Hours</h2>
+        <p>Manage opening and break times.</p>
+      </div>
+
+      <div class="card">
+        <h2>📱 WhatsApp</h2>
+        <p>Update WhatsApp contact number.</p>
+      </div>
+
+      <div class="card">
+        <h2>⚙️ Settings</h2>
+        <p>Owner and system settings.</p>
+      </div>
+
+    </div>
+
+    <!-- FOOD MANAGER -->
+
+    <div
+      class="manager"
+      id="foodManager"
+    >
+
+      <h2>🍔 Manage Food & Prices</h2>
+<div class="food-item">
+
+  <h3>Add New Food</h3>
+
+  <label>Food Name</label>
+
+  <input
+    type="text"
+    id="newFoodName"
+    placeholder="Food name"
+  >
+
+  <label>Price</label>
+
+  <input
+    type="number"
+    id="newFoodPrice"
+    placeholder="Price"
+  >
+
+  <button
+    class="save-food"
+    type="button"
+    onclick="addNewFood()"
+  >
+    ➕ Add Food
+  </button>
+
+</div>
+      <div class="food-item">
+
+        <label>Hamburger</label>
+
+        <input
+          type="text"
+          id="food1Name"
+          value="Hamburger"
+        >
+        <label>Price (SAR)</label>
+
+        <input
+          type="number"
+          id="food1Price"
+          value="8"
+        >
+<label>Food Image</label>
+
+<input
+  type="file"
+  id="food1ImageFile"
+  accept="image/*"
+>
+
+<input
+  type="hidden"
+  id="food1Image"
+  value="images/IMG_3745.jpeg"
+>
+
+<button
+  class="save-food"
+  type="button"
+  onclick="uploadFoodImage()"
+>
+  🖼️ Upload Food Image
+</button>
+      </div>
+
+      <div class="food-item">
+
+        <label>Fatira</label>
+
+        <input
+          type="text"
+          id="food2Name"
+          value="Fatira"
+        >
+<label>Image URL</label>
+
+<input
+  type="text"
+  id="food2Image"
+  value="images/IMG_3749.jpeg"
+>
+        <label>Price (SAR)</label>
+
+        <input
+          type="number"
+          id="food2Price"
+          value="5"
+        >
+
+      </div>
+
+      <div class="food-item">
+
+        <label>Sandwich</label>
+
+        <input
+          type="text"
+          id="food3Name"
+          value="Sandwich"
+        >
+
+        <label>Price (SAR)</label>
+
+        <input
+          type="number"
+          id="food3Price"
+          value="7"
+        >
+<label>Image URL</label>
+
+<input
+  type="text"
+  id="food3Image"
+  value="images/IMG_3750.jpeg"
+>
+      </div>
+
+      <div class="food-item">
+
+        <label>Fresh Juice</label>
+
+        <input
+          type="text"
+          id="food4Name"
+          value="Fresh Juice"
+        >
+
+        <label>Price (SAR)</label>
+
+        <input
+          type="number"
+          id="food4Price"
+          value="6"
+        >
+<label>Image URL</label>
+
+<input
+  type="text"
+  id="food4Image"
+  value="images/Snapseed.jpeg"
+>
+      </div>
+
+      <div class="food-item">
+
+        <label>Boiled Egg</label>
+
+        <input
+          type="text"
+          id="food5Name"
+          value="Boiled Egg"
+        >
+
+        <label>Price (SAR)</label>
+
+        <input
+          type="number"
+          id="food5Price"
+          value="2"
+        >
+<label>Image URL</label>
+
+<input
+  type="text"
+  id="food5Image"
+  value="images/IMG_3803.jpeg"
+>
+      </div>
+
+      <div class="food-item">
+
+        <label>Milk Tea</label>
+
+        <input
+          type="text"
+          id="food6Name"
+          value="Milk Tea"
+        >
+
+        <label>Price (SAR)</label>
+
+        <input
+          type="number"
+          id="food6Price"
+          value="2"
+        >
+<label>Image URL</label>
+
+<input
+  type="text"
+  id="food6Image"
+  value="images/IMG_3802.jpeg"
+>
+      </div>
+
+      <button
+        class="save-food"
+        type="button"
+        onclick="saveFoodData()"
+      >
+        Save Food & Prices
+      </button>
+
+      <button
+        class="close-manager"
+        type="button"
+        onclick="closeFoodManager()"
+      >
+        Close
+      </button>
+
+        </div>
+
+    <div
+      class="manager"
+      id="galleryManager"
+    >
+
+      <h2>🖼️ Manage Gallery</h2>
+
+      <div class="food-item">
+<label>Upload Gallery Image</label>
+
+<input
+  type="file"
+  id="galleryImageFile"
+  accept="image/*"
+>
+  <label>Gallery Image URL</label>
+
+  <input
+    type="text"
+    id="galleryImageUrl"
+    value="images/IMG_3745.jpeg"
+  >
+
+  <button
+    class="save-food"
+    type="button"
+    onclick="uploadGalleryImage()"
+  >
+    Save Gallery Image
+  </button>
+
+</div>
+<div id="galleryList"></div>
+    </div>
+
+    <button
+      class="logout"
+      id="logoutButton"
+      type="button"
+    >
+      Logout
+    </button>
+
+    <div id="status">
+      Checking login...
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+
+    const SUPABASE_URL =
+      "https://vqoyhnrhlpnwtnvdxpjn.supabase.co";
+
+    const SUPABASE_KEY =
+      "sb_publishable_9s15tPt0smgSEX_Hsr-t_g_xYH_QFY3";
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
+
+    const status =
+      document.getElementById("status");
+
+    const logoutButton =
+      document.getElementById("logoutButton");
+
+
+    /* SESSION CHECK */
+
+   async function checkSession() {
+
+  const {
+    data: { session }
+  } = await supabaseClient.auth.getSession();
+
+  if (!session) {
+
+    window.location.href = "./";
+
+    return;
   }
 
-
-  /* FOOD MANAGER */
-
-  function openFoodManager() {
-
-    const manager =
-      document.getElementById("foodManager");
-
-    manager.style.display = "block";
-
-    manager.scrollIntoView({
-      behavior: "smooth"
-    });
-
-    loadFoodData();
-
-    status.textContent =
-      "Food Manager opened";
-  }
+  status.textContent = "Logged in";
+}
 
 
-  function closeFoodManager() {
+    /* FOOD MANAGER */
 
-    document.getElementById(
-      "foodManager"
-    ).style.display = "none";
+    function openFoodManager() {
 
-    status.textContent =
-      "Food Manager closed";
-  }
+      const manager =
+        document.getElementById("foodManager");
+
+      manager.style.display = "block";
+
+      manager.scrollIntoView({
+        behavior: "smooth"
+      });
+
+      status.textContent =
+        "Food Manager opened";
+    }
 
 
-  /* GALLERY MANAGER */
+    function closeFoodManager() {
 
-  function openGalleryManager() {
+      document.getElementById(
+        "foodManager"
+      ).style.display = "none";
 
-    const manager =
-      document.getElementById("galleryManager");
+      status.textContent =
+        "Food Manager closed";
+    }
+function openGalleryManager() {
 
-    manager.style.display = "block";
+  const manager =
+    document.getElementById("galleryManager");
 
-    manager.scrollIntoView({
-      behavior: "smooth"
+  manager.style.display = "block";
+
+  manager.scrollIntoView({
+    behavior: "smooth"
     });
 
     loadGalleryImages();
 
+  status.textContent =
+    "Gallery Manager opened";
+}
+async function uploadGalleryImage() {
+
+  const file =
+    document.getElementById(
+      "galleryImageFile"
+    ).files[0];
+
+  if (!file) {
+
     status.textContent =
-      "Gallery Manager opened";
+      "Please select an image.";
+
+    return;
   }
 
+  status.textContent =
+    "Uploading image...";
 
-  /* GALLERY UPLOAD */
+  const fileName =
+    Date.now() + "-" + file.name;
 
-  async function uploadGalleryImage() {
+  const { error } =
+    await supabaseClient
+      .storage
+      .from("gallery")
+      .upload(
+        fileName,
+        file
+      );
 
-    const file =
-      document.getElementById(
-        "galleryImageFile"
-      ).files[0];
+  if (error) {
 
-    if (!file) {
-
-      status.textContent =
-        "Please select an image.";
-
-      return;
-    }
+    console.error(error);
 
     status.textContent =
-      "Uploading image...";
+      "Image upload failed: " +
+      error.message;
 
-    const fileName =
-      Date.now() + "-" + file.name;
+    return;
+  }
+
+  const { data } =
+    supabaseClient
+      .storage
+      .from("gallery")
+      .getPublicUrl(fileName);
+
+  const imageUrl =
+    data.publicUrl;
+
+  const { error: dbError } =
+    await supabaseClient
+      .from("gallery")
+      .insert({
+        image_url: imageUrl
+      });
+
+  if (dbError) {
+
+    console.error(dbError);
+
+    status.textContent =
+      "Image uploaded but database save failed: " +
+      dbError.message;
+
+    return;
+  }
+
+  status.textContent =
+    "Gallery image uploaded successfully.";
+
+  document.getElementById(
+    "galleryImageFile"
+  ).value = "";
+
+  loadGalleryImages();
+}
+    async function uploadFoodImage() {
+
+  status.textContent =
+    "Food upload button clicked.";
+
+  const file =
+    document.getElementById(
+      "food1ImageFile"
+    ).files[0];
+
+  if (!file) {
+
+    status.textContent =
+      "Please select a food image.";
+
+    return;
+  }
+
+  status.textContent =
+    "Uploading food image...";
+
+  const fileName =
+    Date.now() + "-" + file.name;
+
+  const { error } =
+    await supabaseClient
+      .storage
+      .from("food")
+      .upload(
+        fileName,
+        file
+      );
+
+  if (error) {
+
+    console.error(error);
+
+    status.textContent =
+      "Food image upload failed: " +
+      error.message;
+
+    return;
+  }
+
+  const { data } =
+    supabaseClient
+      .storage
+      .from("food")
+      .getPublicUrl(fileName);
+
+  document.getElementById(
+    "food1Image"
+  ).value =
+    data.publicUrl;
+
+  status.textContent =
+    "Food image uploaded successfully.";
+
+}
+    /* SAVE FOOD DATA */
+
+    async function saveFoodData() {
+
+  const foods = [
+    {
+  id: 1,
+  name: document.getElementById("food1Name").value,
+  price: document.getElementById("food1Price").value,
+  image: document.getElementById("food1Image").value
+},
+    {
+  id: 2,
+  name: document.getElementById("food2Name").value,
+  price: document.getElementById("food2Price").value,
+  image: document.getElementById("food2Image").value
+},
+    {
+  id: 3,
+  name: document.getElementById("food3Name").value,
+  price: document.getElementById("food3Price").value,
+  image: document.getElementById("food3Image").value
+},
+    {
+  id: 4,
+  name: document.getElementById("food4Name").value,
+  price: document.getElementById("food4Price").value,
+  image: document.getElementById("food4Image").value
+},
+    {
+  id: 5,
+  name: document.getElementById("food5Name").value,
+  price: document.getElementById("food5Price").value,
+  image: document.getElementById("food5Image").value
+},
+    {
+  id: 6,
+  name: document.getElementById("food6Name").value,
+  price: document.getElementById("food6Price").value,
+  image: document.getElementById("food6Image").value
+},
+  ];
+
+  for (const food of foods) {
 
     const { error } =
       await supabaseClient
-        .storage
-        .from("gallery")
-        .upload(
-          fileName,
-          file,
-          {
-            cacheControl: "3600",
-            upsert: false
-          }
-        );
+        .from("foods")
+        .update({
+  name_en: food.name,
+  price: Number(food.price),
+  image_url: food.image
+})
+        .eq("id", food.id);
 
     if (error) {
 
       console.error(error);
 
       status.textContent =
-        "Image upload failed: " +
-        error.message;
-
-      return;
-    }
-
-    const { data } =
-      supabaseClient
-        .storage
-        .from("gallery")
-        .getPublicUrl(fileName);
-
-    const imageUrl =
-      data.publicUrl;
-
-    const { error: dbError } =
-      await supabaseClient
-        .from("gallery")
-        .insert({
-          image_url: imageUrl
-        });
-
-    if (dbError) {
-
-      console.error(dbError);
-
-      status.textContent =
-        "Image uploaded but database save failed: " +
-        dbError.message;
-
-      return;
-    }
-
-    status.textContent =
-      "Gallery image uploaded successfully.";
-
-    document.getElementById(
-      "galleryImageFile"
-    ).value = "";
-
-    loadGalleryImages();
-  }
-
-
-  /* FOOD IMAGE UPLOAD */
-
-  async function uploadFoodImage() {
-
-    status.textContent =
-      "FOOD TEST";
-
-    const fileInput =
-      document.getElementById(
-        "food1ImageFile"
-      );
-
-    const file =
-      fileInput.files[0];
-
-    if (!file) {
-
-      status.textContent =
-        "Please select a food image.";
-
-      return;
-    }
-
-    status.textContent =
-      "Uploading food image...";
-
-    const fileName =
-      Date.now() + "-" + file.name;
-
-    const { error: uploadError } =
-      await supabaseClient
-        .storage
-        .from("food")
-        .upload(
-          fileName,
-          file,
-          {
-            cacheControl: "3600",
-            upsert: false
-          }
-        );
-
-    if (uploadError) {
-
-      console.error(
-        "Food upload error:",
-        uploadError
-      );
-
-      status.textContent =
-        "Food image upload failed: " +
-        uploadError.message;
-
-      return;
-    }
-
-    const { data: publicData } =
-      supabaseClient
-        .storage
-        .from("food")
-        .getPublicUrl(fileName);
-
-    if (
-      !publicData ||
-      !publicData.publicUrl
-    ) {
-
-      status.textContent =
-        "Image uploaded but public URL was not created.";
-
-      return;
-    }
-
-    document.getElementById(
-      "food1Image"
-    ).value =
-      publicData.publicUrl;
-
-    fileInput.value = "";
-
-    status.textContent =
-      "Food image uploaded successfully.";
-  }
-
-
-  /* SAVE FOOD DATA */
-
-  async function saveFoodData() {
-
-  const foods = [
-    {
-      id: 1,
-      name: document.getElementById("food1Name").value,
-      price: document.getElementById("food1Price").value,
-      image: document.getElementById("food1Image").value
-    },
-    {
-      id: 2,
-      name: document.getElementById("food2Name").value,
-      price: document.getElementById("food2Price").value,
-      image: document.getElementById("food2Image").value
-    },
-    {
-      id: 3,
-      name: document.getElementById("food3Name").value,
-      price: document.getElementById("food3Price").value,
-      image: document.getElementById("food3Image").value
-    },
-    {
-      id: 4,
-      name: document.getElementById("food4Name").value,
-      price: document.getElementById("food4Price").value,
-      image: document.getElementById("food4Image").value
-    },
-    {
-      id: 5,
-      name: document.getElementById("food5Name").value,
-      price: document.getElementById("food5Price").value,
-      image: document.getElementById("food5Image").value
-    },
-    {
-      id: 6,
-      name: document.getElementById("food6Name").value,
-      price: document.getElementById("food6Price").value,
-      image: document.getElementById("food6Image").value
-    }
-  ];
-
-  status.textContent = "Saving food data...";
-
-  for (const food of foods) {
-
-    const { data, error } =
-      await supabaseClient
-        .from("foods")
-        .update({
-          name_en: food.name,
-          price: Number(food.price),
-          image_url: food.image
-        })
-        .eq("id", food.id)
-        .select();
-
-    if (error) {
-
-      console.error("Save error:", error);
-
-      status.textContent =
-        "Save failed: " + error.message;
-
-      return;
-    }
-
-    if (!data || data.length === 0) {
-
-      status.textContent =
-        "Save failed: no row updated for food ID " +
-        food.id;
-
-      console.error(
-        "No row updated:",
-        food.id
-      );
+        "Could not save food data.";
 
       return;
     }
   }
 
   status.textContent =
-    "Food & prices saved successfully.";
+    "Food & prices saved to Supabase.";
+
 }
 
 
-  /* LOAD FOOD DATA */
-
-  async function loadFoodData() {
-
-    const { data, error } =
-      await supabaseClient
-        .from("foods")
-        .select("*")
-        .order("id", {
-          ascending: true
-        });
-
-    if (error) {
-
-      console.error(error);
-
-      status.textContent =
-        "Could not load food data.";
-
-      return;
-    }
-
-    data.forEach(
-      function(food, index) {
-
-        const number =
-          index + 1;
-
-        const nameInput =
-          document.getElementById(
-            "food" +
-            number +
-            "Name"
-          );
-
-        const priceInput =
-          document.getElementById(
-            "food" +
-            number +
-            "Price"
-          );
-
-        const imageInput =
-          document.getElementById(
-            "food" +
-            number +
-            "Image"
-          );
-
-        if (nameInput) {
-
-          nameInput.value =
-            food.name_en || "";
-        }
-
-        if (priceInput) {
-
-          priceInput.value =
-            food.price ?? "";
-        }
-
-        if (imageInput) {
-
-          imageInput.value =
-            food.image_url || "";
-        }
-      }
-    );
-
-    status.textContent =
-      "Food data loaded from Supabase.";
-  }
-
-
-  /* ADD NEW FOOD */
-
-  async function addNewFood() {
-
-    const name =
-      document.getElementById(
-        "newFoodName"
-      ).value.trim();
-
-    const price =
-      document.getElementById(
-        "newFoodPrice"
-      ).value;
-
-    if (!name || !price) {
-
-      status.textContent =
-        "Please enter food name and price.";
-
-      return;
-    }
-
-    const { error } =
-      await supabaseClient
-        .from("foods")
-        .insert({
-          name_en: name,
-          price: Number(price),
-          category: "food"
-        });
-
-    if (error) {
-
-      console.error(error);
-
-      status.textContent =
-        "Could not add food.";
-
-      return;
-    }
-
-    status.textContent =
-      "New food added successfully.";
-
-    document.getElementById(
-      "newFoodName"
-    ).value = "";
-
-    document.getElementById(
-      "newFoodPrice"
-    ).value = "";
-
-    loadFoodData();
-  }
-
-
-  /* LOAD GALLERY IMAGES */
-
-  async function loadGalleryImages() {
-
-    const galleryList =
-      document.getElementById(
-        "galleryList"
-      );
-
-    const { data, error } =
-      await supabaseClient
-        .from("gallery")
-        .select("*")
-        .order("id", {
-          ascending: false
-        });
-
-    if (error) {
-
-      console.error(error);
-
-      galleryList.innerHTML =
-        "Could not load gallery images.";
-
-      return;
-    }
-
-    galleryList.innerHTML = "";
-
-    data.forEach(
-      function(image) {
-
-        const item =
-          document.createElement(
-            "div"
-          );
-
-        item.style.marginBottom =
-          "15px";
-
-        const imageSrc =
-          image.image_url.startsWith(
-            "http"
-          )
-            ? image.image_url
-            : "../" +
-              image.image_url;
-
-        item.innerHTML = `
-          <img
-            src="${imageSrc}"
-            style="
-              width:120px;
-              margin-top:10px;
-              border-radius:10px;
-              display:block;
-            "
-          >
-
-          <button
-            type="button"
-            class="close-manager"
-            onclick="deleteGalleryImage(${image.id})"
-          >
-            🗑️ Delete
-          </button>
-        `;
-
-        galleryList.appendChild(
-          item
-        );
-      }
-    );
-  }
-
-
-  /* DELETE GALLERY IMAGE */
-
-  async function deleteGalleryImage(id) {
-
-    const confirmed =
-      confirm(
-        "Delete this gallery image?"
-      );
-
-    if (!confirmed) return;
-
-
-    const {
-      data: image,
-      error: fetchError
-    } =
-      await supabaseClient
-        .from("gallery")
-        .select("image_url")
-        .eq("id", id)
-        .single();
-
-
-    if (fetchError) {
-
-      console.error(fetchError);
-
-      status.textContent =
-        "Could not find gallery image.";
-
-      return;
-    }
-
-
-    const imageUrl =
-      image.image_url;
-
-
-    if (
-      imageUrl.includes(
-        "/storage/v1/object/public/gallery/"
-      )
-    ) {
-
-      const filePath =
-        imageUrl.split(
-          "/storage/v1/object/public/gallery/"
-        )[1];
-
-      const {
-        error: storageError
-      } =
-        await supabaseClient
-          .storage
-          .from("gallery")
-          .remove([
-            filePath
-          ]);
-
-      if (storageError) {
-
-        console.error(
-          storageError
-        );
-
-        status.textContent =
-          "Storage delete error: " +
-          storageError.message;
-
-        return;
-      }
-    }
-
-
-    const {
-      data,
-      error
-    } =
-      await supabaseClient
-        .from("gallery")
-        .delete()
-        .eq("id", id)
-        .select();
-
-
-    if (error) {
-
-      console.error(error);
-
-      status.textContent =
-        "Database delete error: " +
-        error.message;
-
-      return;
-    }
-
-
-    if (
-      !data ||
-      data.length === 0
-    ) {
-
-      status.textContent =
-        "Delete failed: no row was deleted.";
-
-      return;
-    }
-
-
-    status.textContent =
-      "Gallery image and storage file deleted.";
-
-    loadGalleryImages();
-  }
-
-
-  /* LOGOUT */
-
-  if (logoutButton) {
+    /* LOGOUT */
 
     logoutButton.addEventListener(
       "click",
@@ -1220,9 +1914,7 @@
           "Logging out...";
 
         const { error } =
-          await supabaseClient
-            .auth
-            .signOut();
+          await supabaseClient.auth.signOut();
 
         if (error) {
 
@@ -1232,18 +1924,257 @@
           return;
         }
 
-        window.location.href =
-          "./";
+        window.location.href = "./";
+
       }
     );
+
+
+    /* LOAD SAVED DATA */
+
+    async function loadFoodData() {
+
+  const { data, error } =
+    await supabaseClient
+      .from("foods")
+      .select("*")
+      .order("id", { ascending: true });
+
+  if (error) {
+    console.log(error);
+    status.textContent =
+      "Could not load food data.";
+    return;
   }
 
+  data.forEach(function(food, index) {
 
-  /* START */
+    const number = index + 1;
 
-  checkSession();
+    const nameInput =
+      document.getElementById(
+        "food" + number + "Name"
+      );
 
-</script>
+    const priceInput =
+      document.getElementById(
+        "food" + number + "Price"
+      );
+
+    const imageInput =
+      document.getElementById(
+        "food" + number + "Image"
+      );
+
+    if (nameInput) {
+      nameInput.value =
+        food.name_en || "";
+    }
+
+    if (priceInput) {
+      priceInput.value =
+        food.price ?? "";
+    }
+
+    if (imageInput) {
+      imageInput.value =
+        food.image_url || "";
+    }
+
+  });
+
+  status.textContent =
+    "Food data loaded from Supabase.";
+}
+    async function addNewFood() {
+
+  const name =
+    document.getElementById(
+      "newFoodName"
+    ).value.trim();
+
+  const price =
+    document.getElementById(
+      "newFoodPrice"
+    ).value;
+
+  if (!name || !price) {
+
+    status.textContent =
+      "Please enter food name and price.";
+
+    return;
+  }
+
+  const { error } =
+    await supabaseClient
+      .from("foods")
+      .insert({
+        name_en: name,
+        price: Number(price),
+        category: "food"
+      });
+
+  if (error) {
+
+    console.error(error);
+
+    status.textContent =
+      "Could not add food.";
+
+    return;
+  }
+
+  status.textContent =
+    "New food added successfully.";
+
+  document.getElementById(
+    "newFoodName"
+  ).value = "";
+
+  document.getElementById(
+    "newFoodPrice"
+  ).value = "";
+
+  loadFoodData();
+
+}
+async function loadGalleryImages() {
+
+  const galleryList =
+    document.getElementById("galleryList");
+
+  const { data, error } =
+    await supabaseClient
+      .from("gallery")
+      .select("*")
+      .order("id", { ascending: false });
+
+  if (error) {
+
+    console.error(error);
+
+    galleryList.innerHTML =
+      "Could not load gallery images.";
+
+    return;
+  }
+
+  galleryList.innerHTML = "";
+
+  data.forEach(function(image) {
+
+    const item =
+      document.createElement("div");
+
+    item.style.marginBottom = "15px";
+
+    const imageSrc =
+  image.image_url.startsWith("http")
+    ? image.image_url
+    : "../" + image.image_url;
+
+item.innerHTML = `
+  <img
+    src="${imageSrc}"
+        style="
+          width:120px;
+          margin-top:10px;
+          border-radius:10px;
+          display:block;
+        "
+      >
+
+      <button
+        type="button"
+        class="close-manager"
+        onclick="deleteGalleryImage(${image.id})"
+      >
+        🗑️ Delete
+      </button>
+    `;
+
+    galleryList.appendChild(item);
+
+  });
+
+}
+
+async function uploadFoodImage() {
+
+  const fileInput =
+    document.getElementById("food1ImageFile");
+
+  const file =
+    fileInput.files[0];
+
+  if (!file) {
+
+    status.textContent =
+      "Please select a food image.";
+
+    return;
+  }
+
+  status.textContent =
+    "Uploading food image...";
+
+  const fileName =
+    Date.now() + "-" + file.name;
+
+  const { error: uploadError } =
+    await supabaseClient
+      .storage
+      .from("food")
+      .upload(
+        fileName,
+        file,
+        {
+          cacheControl: "3600",
+          upsert: false
+        }
+      );
+
+  if (uploadError) {
+
+    console.error(
+      "Food upload error:",
+      uploadError
+    );
+
+    status.textContent =
+      "Food image upload failed: " +
+      uploadError.message;
+
+    return;
+  }
+
+  const { data: publicData } =
+    supabaseClient
+      .storage
+      .from("food")
+      .getPublicUrl(fileName);
+
+  if (!publicData || !publicData.publicUrl) {
+
+    status.textContent =
+      "Image uploaded but public URL was not created.";
+
+    return;
+  }
+
+  document.getElementById(
+    "food1Image"
+  ).value =
+    publicData.publicUrl;
+
+  fileInput.value = "";
+
+  status.textContent =
+    "Food image uploaded successfully.";
+
+}
+  </script>
 
 </body>
 </html>
