@@ -1024,15 +1024,154 @@ item.innerHTML = `
 
 }
 
-async function uploadFoodImage() {
+  /* SESSION CHECK */
 
-  status.textContent = "FOOD TEST";
+   async function checkSession() {
 
-  const fileInput =
-    document.getElementById("food1ImageFile");
+  const {
+    data: { session }
+  } = await supabaseClient.auth.getSession();
+
+  if (!session) {
+
+    window.location.href = "./";
+
+    return;
+  }
+
+  status.textContent = "Logged in";
+}
+
+
+    /* FOOD MANAGER */
+
+    function openFoodManager() {
+
+      const manager =
+        document.getElementById("foodManager");
+
+      manager.style.display = "block";
+
+      manager.scrollIntoView({
+        behavior: "smooth"
+      });
+
+      status.textContent =
+        "Food Manager opened";
+    }
+
+
+    function closeFoodManager() {
+
+      document.getElementById(
+        "foodManager"
+      ).style.display = "none";
+
+      status.textContent =
+        "Food Manager closed";
+    }
+function openGalleryManager() {
+
+  const manager =
+    document.getElementById("galleryManager");
+
+  manager.style.display = "block";
+
+  manager.scrollIntoView({
+    behavior: "smooth"
+    });
+
+    loadGalleryImages();
+
+  status.textContent =
+    "Gallery Manager opened";
+}
+async function uploadGalleryImage() {
 
   const file =
-    fileInput.files[0];
+    document.getElementById(
+      "galleryImageFile"
+    ).files[0];
+
+  if (!file) {
+
+    status.textContent =
+      "Please select an image.";
+
+    return;
+  }
+
+  status.textContent =
+    "Uploading image...";
+
+  const fileName =
+    Date.now() + "-" + file.name;
+
+  const { error } =
+    await supabaseClient
+      .storage
+      .from("gallery")
+      .upload(
+        fileName,
+        file
+      );
+
+  if (error) {
+
+    console.error(error);
+
+    status.textContent =
+      "Image upload failed: " +
+      error.message;
+
+    return;
+  }
+
+  const { data } =
+    supabaseClient
+      .storage
+      .from("gallery")
+      .getPublicUrl(fileName);
+
+  const imageUrl =
+    data.publicUrl;
+
+  const { error: dbError } =
+    await supabaseClient
+      .from("gallery")
+      .insert({
+        image_url: imageUrl
+      });
+
+  if (dbError) {
+
+    console.error(dbError);
+
+    status.textContent =
+      "Image uploaded but database save failed: " +
+      dbError.message;
+
+    return;
+  }
+
+  status.textContent =
+    "Gallery image uploaded successfully.";
+
+  document.getElementById(
+    "galleryImageFile"
+  ).value = "";
+
+  loadGalleryImages();
+}
+    async function uploadFoodImage() {
+
+  status.textContent =
+    "Food upload button clicked.";
+
+  const file =
+    document.getElementById(
+      "food1ImageFile"
+    ).files[0];
 
   if (!file) {
 
@@ -1048,57 +1187,394 @@ async function uploadFoodImage() {
   const fileName =
     Date.now() + "-" + file.name;
 
-  const { error: uploadError } =
+  const { error } =
     await supabaseClient
       .storage
       .from("food")
       .upload(
         fileName,
-        file,
-        {
-          cacheControl: "3600",
-          upsert: false
-        }
+        file
       );
 
-  if (uploadError) {
+  if (error) {
 
-    console.error(
-      "Food upload error:",
-      uploadError
-    );
+    console.error(error);
 
     status.textContent =
       "Food image upload failed: " +
-      uploadError.message;
+      error.message;
 
     return;
   }
 
-  const { data: publicData } =
+  const { data } =
     supabaseClient
       .storage
       .from("food")
       .getPublicUrl(fileName);
 
-  if (!publicData || !publicData.publicUrl) {
-
-    status.textContent =
-      "Image uploaded but public URL was not created.";
-
-    return;
-  }
-
   document.getElementById(
     "food1Image"
   ).value =
-    publicData.publicUrl;
-
-  fileInput.value = "";
+    data.publicUrl;
 
   status.textContent =
     "Food image uploaded successfully.";
 
+}
+    /* SAVE FOOD DATA */
+
+    async function saveFoodData() {
+
+  const foods = [
+    {
+  id: 1,
+  name: document.getElementById("food1Name").value,
+  price: document.getElementById("food1Price").value,
+  image: document.getElementById("food1Image").value
+},
+    {
+  id: 2,
+  name: document.getElementById("food2Name").value,
+  price: document.getElementById("food2Price").value,
+  image: document.getElementById("food2Image").value
+},
+    {
+  id: 3,
+  name: document.getElementById("food3Name").value,
+  price: document.getElementById("food3Price").value,
+  image: document.getElementById("food3Image").value
+},
+    {
+  id: 4,
+  name: document.getElementById("food4Name").value,
+  price: document.getElementById("food4Price").value,
+  image: document.getElementById("food4Image").value
+},
+    {
+  id: 5,
+  name: document.getElementById("food5Name").value,
+  price: document.getElementById("food5Price").value,
+  image: document.getElementById("food5Image").value
+},
+    {
+  id: 6,
+  name: document.getElementById("food6Name").value,
+  price: document.getElementById("food6Price").value,
+  image: document.getElementById("food6Image").value
+},
+  ];
+
+  for (const food of foods) {
+
+    const { error } =
+      await supabaseClient
+        .from("foods")
+        .update({
+  name_en: food.name,
+  price: Number(food.price),
+  image_url: food.image
+})
+        .eq("id", food.id);
+
+    if (error) {
+
+      console.error(error);
+
+      status.textContent =
+        "Could not save food data.";
+
+      return;
+    }
+  }
+
+  status.textContent =
+    "Food & prices saved to Supabase.";
+
+}
+
+
+    /* LOGOUT */
+
+    logoutButton.addEventListener(
+      "click",
+      async function() {
+
+        status.textContent =
+          "Logging out...";
+
+        const { error } =
+          await supabaseClient.auth.signOut();
+
+        if (error) {
+
+          status.textContent =
+            "Logout failed.";
+
+          return;
+        }
+
+        window.location.href = "./";
+
+      }
+    );
+
+
+    /* LOAD SAVED DATA */
+
+    async function loadFoodData() {
+
+  const { data, error } =
+    await supabaseClient
+      .from("foods")
+      .select("*")
+      .order("id", { ascending: true });
+
+  if (error) {
+    console.log(error);
+    status.textContent =
+      "Could not load food data.";
+    return;
+  }
+
+  data.forEach(function(food, index) {
+
+    const number = index + 1;
+
+    const nameInput =
+      document.getElementById(
+        "food" + number + "Name"
+      );
+
+    const priceInput =
+      document.getElementById(
+        "food" + number + "Price"
+      );
+
+    const imageInput =
+      document.getElementById(
+        "food" + number + "Image"
+      );
+
+    if (nameInput) {
+      nameInput.value =
+        food.name_en || "";
+    }
+
+    if (priceInput) {
+      priceInput.value =
+        food.price ?? "";
+    }
+
+    if (imageInput) {
+      imageInput.value =
+        food.image_url || "";
+    }
+
+  });
+
+  status.textContent =
+    "Food data loaded from Supabase.";
+}
+    async function addNewFood() {
+
+  const name =
+    document.getElementById(
+      "newFoodName"
+    ).value.trim();
+
+  const price =
+    document.getElementById(
+      "newFoodPrice"
+    ).value;
+
+  if (!name || !price) {
+
+    status.textContent =
+      "Please enter food name and price.";
+
+    return;
+  }
+
+  const { error } =
+    await supabaseClient
+      .from("foods")
+      .insert({
+        name_en: name,
+        price: Number(price),
+        category: "food"
+      });
+
+  if (error) {
+
+    console.error(error);
+
+    status.textContent =
+      "Could not add food.";
+
+    return;
+  }
+
+  status.textContent =
+    "New food added successfully.";
+
+  document.getElementById(
+    "newFoodName"
+  ).value = "";
+
+  document.getElementById(
+    "newFoodPrice"
+  ).value = "";
+
+  loadFoodData();
+
+}
+async function loadGalleryImages() {
+
+  const galleryList =
+    document.getElementById("galleryList");
+
+  const { data, error } =
+    await supabaseClient
+      .from("gallery")
+      .select("*")
+      .order("id", { ascending: false });
+
+  if (error) {
+
+    console.error(error);
+
+    galleryList.innerHTML =
+      "Could not load gallery images.";
+
+    return;
+  }
+
+  galleryList.innerHTML = "";
+
+  data.forEach(function(image) {
+
+    const item =
+      document.createElement("div");
+
+    item.style.marginBottom = "15px";
+
+    const imageSrc =
+  image.image_url.startsWith("http")
+    ? image.image_url
+    : "../" + image.image_url;
+
+item.innerHTML = `
+  <img
+    src="${imageSrc}"
+        style="
+          width:120px;
+          margin-top:10px;
+          border-radius:10px;
+          display:block;
+        "
+      >
+
+      <button
+        type="button"
+        class="close-manager"
+        onclick="deleteGalleryImage(${image.id})"
+      >
+        🗑️ Delete
+      </button>
+    `;
+
+    galleryList.appendChild(item);
+
+  });
+
+}
+
+async function deleteGalleryImage(id) {
+
+  const confirmed =
+    confirm("Delete this gallery image?");
+
+  if (!confirmed) {
+    return;
+  }
+
+  const { data: image, error: fetchError } =
+    await supabaseClient
+      .from("gallery")
+      .select("image_url")
+      .eq("id", id)
+      .single();
+
+  if (fetchError) {
+    console.error(fetchError);
+
+    status.textContent =
+      "Could not find gallery image.";
+
+    return;
+  }
+
+  const imageUrl =
+    image.image_url;
+
+  if (
+    imageUrl.includes(
+      "/storage/v1/object/public/gallery/"
+    )
+  ) {
+
+    const filePath =
+      imageUrl.split(
+        "/storage/v1/object/public/gallery/"
+      )[1];
+
+    const { error: storageError } =
+      await supabaseClient
+        .storage
+        .from("gallery")
+        .remove([filePath]);
+
+    if (storageError) {
+      console.error(storageError);
+
+      status.textContent =
+        "Storage delete error: " +
+        storageError.message;
+
+      return;
+    }
+  }
+
+  const { data, error } =
+    await supabaseClient
+      .from("gallery")
+      .delete()
+      .eq("id", id)
+      .select();
+
+  if (error) {
+    console.error(error);
+
+    status.textContent =
+      "Database delete error: " +
+      error.message;
+
+    return;
+  }
+
+  if (!data || data.length === 0) {
+
+    status.textContent =
+      "Delete failed: no row was deleted.";
+
+    return;
+  }
+
+  status.textContent =
+    "Gallery image and storage file deleted.";
+
+  loadGalleryImages();
 }
   </script>
 
