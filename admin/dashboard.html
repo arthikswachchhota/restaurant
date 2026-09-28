@@ -855,7 +855,29 @@ async function uploadGalleryImage() {
 
 
     /* LOAD SAVED DATA */
+async function deleteGalleryImage(id) {
 
+  if (!confirm("Delete this gallery image?")) {
+    return;
+  }
+
+  const { error } = await supabaseClient
+    .from("gallery")
+    .delete()
+    .eq("id", id);
+
+  if (error) {
+    console.error("Gallery delete error:", error);
+    status.textContent =
+      "Gallery delete failed: " + error.message;
+    return;
+  }
+
+  status.textContent =
+    "Gallery image deleted successfully.";
+
+  await loadGalleryImages();
+}
     async function loadFoodData() {
 
   const { data, error } =
