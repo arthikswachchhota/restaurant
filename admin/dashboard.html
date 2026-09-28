@@ -802,126 +802,88 @@
 
   async function saveFoodData() {
 
-    const foods = [
-      {
-        id: 1,
-        name:
-          document.getElementById(
-            "food1Name"
-          ).value,
-        price:
-          document.getElementById(
-            "food1Price"
-          ).value,
-        image:
-          document.getElementById(
-            "food1Image"
-          ).value
-      },
-      {
-        id: 2,
-        name:
-          document.getElementById(
-            "food2Name"
-          ).value,
-        price:
-          document.getElementById(
-            "food2Price"
-          ).value,
-        image:
-          document.getElementById(
-            "food2Image"
-          ).value
-      },
-      {
-        id: 3,
-        name:
-          document.getElementById(
-            "food3Name"
-          ).value,
-        price:
-          document.getElementById(
-            "food3Price"
-          ).value,
-        image:
-          document.getElementById(
-            "food3Image"
-          ).value
-      },
-      {
-        id: 4,
-        name:
-          document.getElementById(
-            "food4Name"
-          ).value,
-        price:
-          document.getElementById(
-            "food4Price"
-          ).value,
-        image:
-          document.getElementById(
-            "food4Image"
-          ).value
-      },
-      {
-        id: 5,
-        name:
-          document.getElementById(
-            "food5Name"
-          ).value,
-        price:
-          document.getElementById(
-            "food5Price"
-          ).value,
-        image:
-          document.getElementById(
-            "food5Image"
-          ).value
-      },
-      {
-        id: 6,
-        name:
-          document.getElementById(
-            "food6Name"
-          ).value,
-        price:
-          document.getElementById(
-            "food6Price"
-          ).value,
-        image:
-          document.getElementById(
-            "food6Image"
-          ).value
-      }
-    ];
+  const foods = [
+    {
+      id: 1,
+      name: document.getElementById("food1Name").value,
+      price: document.getElementById("food1Price").value,
+      image: document.getElementById("food1Image").value
+    },
+    {
+      id: 2,
+      name: document.getElementById("food2Name").value,
+      price: document.getElementById("food2Price").value,
+      image: document.getElementById("food2Image").value
+    },
+    {
+      id: 3,
+      name: document.getElementById("food3Name").value,
+      price: document.getElementById("food3Price").value,
+      image: document.getElementById("food3Image").value
+    },
+    {
+      id: 4,
+      name: document.getElementById("food4Name").value,
+      price: document.getElementById("food4Price").value,
+      image: document.getElementById("food4Image").value
+    },
+    {
+      id: 5,
+      name: document.getElementById("food5Name").value,
+      price: document.getElementById("food5Price").value,
+      image: document.getElementById("food5Image").value
+    },
+    {
+      id: 6,
+      name: document.getElementById("food6Name").value,
+      price: document.getElementById("food6Price").value,
+      image: document.getElementById("food6Image").value
+    }
+  ];
 
+  status.textContent = "Saving food data...";
 
-    for (const food of foods) {
+  for (const food of foods) {
 
-      const { error } =
-        await supabaseClient
-          .from("foods")
-          .update({
-            name_en: food.name,
-            price: Number(food.price),
-            image_url: food.image
-          })
-          .eq("id", food.id);
+    const { data, error } =
+      await supabaseClient
+        .from("foods")
+        .update({
+          name_en: food.name,
+          price: Number(food.price),
+          image_url: food.image
+        })
+        .eq("id", food.id)
+        .select();
 
-      if (error) {
+    if (error) {
 
-        console.error(error);
+      console.error("Save error:", error);
 
-        status.textContent =
-          "Could not save food data.";
+      status.textContent =
+        "Save failed: " + error.message;
 
-        return;
-      }
+      return;
     }
 
-    status.textContent =
-      "Food & prices saved to Supabase.";
+    if (!data || data.length === 0) {
+
+      status.textContent =
+        "Save failed: no row updated for food ID " +
+        food.id;
+
+      console.error(
+        "No row updated:",
+        food.id
+      );
+
+      return;
+    }
   }
+
+  status.textContent =
+    "Food & prices saved successfully.";
+}
 
 
   /* LOAD FOOD DATA */
