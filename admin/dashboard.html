@@ -281,9 +281,17 @@
       </div>
 
       <div class="card">
-        <h2>🕐 Opening Hours</h2>
-        <p>Manage opening and break times.</p>
-      </div>
+  <h2>🕐 Opening Hours</h2>
+  <p>Manage opening and break times.</p>
+
+  <button
+    class="save-food"
+    type="button"
+    onclick="openHoursManager()"
+  >
+    ✏️ Edit Opening Hours
+  </button>
+</div>
 
       <div class="card">
         <h2>📱 WhatsApp</h2>
@@ -1143,7 +1151,16 @@
 
     }
 
+    /* =========================
+       OPENING HOURS
+    ========================= */
 
+    function openHoursManager() {
+
+      status.textContent =
+        "Opening Hours manager is ready.";
+
+    }
     /* =========================
        LOAD GALLERY
     ========================= */
