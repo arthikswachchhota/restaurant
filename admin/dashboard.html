@@ -734,7 +734,9 @@
 
 
         const imageUrl =
-          food.image_url || "";
+  food.image_url && food.image_url.startsWith("http")
+    ? food.image_url
+    : "../" + food.image_url;
 
 
         const imagePreview =
