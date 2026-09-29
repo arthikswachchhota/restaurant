@@ -311,33 +311,41 @@
 
       <div class="food-item">
 
-        <h3>➕ Add New Food</h3>
+  <h3>➕ Add New Food</h3>
 
-        <label>Food Name</label>
+  <label>Food Name</label>
 
-        <input
-          type="text"
-          id="newFoodName"
-          placeholder="Food name"
-        >
+  <input
+    type="text"
+    id="newFoodName"
+    placeholder="Food name"
+  >
 
-        <label>Price (SAR)</label>
+  <label>Price (SAR)</label>
 
-        <input
-          type="number"
-          id="newFoodPrice"
-          placeholder="Price"
-        >
+  <input
+    type="number"
+    id="newFoodPrice"
+    placeholder="Price"
+  >
 
-        <button
-          class="save-food"
-          type="button"
-          onclick="addNewFood()"
-        >
-          ➕ Add Food
-        </button>
+  <label>Food Image</label>
 
-      </div>
+  <input
+    type="file"
+    id="newFoodImage"
+    accept="image/*"
+  >
+
+  <button
+    class="save-food"
+    type="button"
+    onclick="addNewFood()"
+  >
+    ➕ Add Food
+  </button>
+
+</div>
 
       <!-- FOOD LIST -->
 
