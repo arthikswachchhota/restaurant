@@ -740,15 +740,16 @@
 
 
         const imagePreview =
-          imageUrl
-            ? `
-              <img
-                class="food-image-preview"
-                src="${imageUrl}"
-                alt="${food.name_en || "Food"}"
-              >
-            `
-            : "";
+  imageUrl
+    ? `
+      <img
+        class="food-image-preview"
+        src="${imageUrl}"
+        alt="Food"
+        onerror="this.style.display='none';"
+      >
+    `
+    : "";
 
 
         item.innerHTML = `
