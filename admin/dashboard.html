@@ -757,7 +757,30 @@ async function uploadGalleryImage() {
 
 }
     /* SAVE FOOD DATA */
+async function deleteFood(foodId) {
+  const confirmed = confirm(
+    "এই food item টি কি সত্যিই delete করতে চান?"
+  );
 
+  if (!confirmed) return;
+
+  try {
+    const { error } = await supabase
+      .from("foods")
+      .delete()
+      .eq("id", foodId);
+
+    if (error) throw error;
+
+    alert("Food successfully deleted.");
+
+    await loadFoodData();
+
+  } catch (error) {
+    console.error("Delete food error:", error);
+    alert("Food delete করা যায়নি। আবার চেষ্টা করুন।");
+  }
+}
     async function saveFoodData() {
 
   const foods = [
