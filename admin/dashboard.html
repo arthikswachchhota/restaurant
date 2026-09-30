@@ -1208,6 +1208,41 @@
     "Opening Hours loaded.";
 
 }
+      status.textContent =
+    "Opening Hours loaded.";
+
+}
+
+
+async function saveOpeningHours() {
+
+  const values = {
+    morning_start: document.getElementById("morningStart").value,
+    morning_end: document.getElementById("morningEnd").value,
+    evening_start: document.getElementById("eveningStart").value,
+    evening_end: document.getElementById("eveningEnd").value,
+    timezone: document.getElementById("timezone").value,
+    updated_at: new Date().toISOString()
+  };
+
+  const { error } =
+    await supabaseClient
+      .from("opening_hours")
+      .update(values)
+      .eq("id", 1);
+
+  status.textContent = error
+    ? "Save failed: " + error.message
+    : "Opening Hours saved.";
+
+}
+
+
+/* =========================
+   LOAD GALLERY
+========================= */
+
+async function loadGalleryImages() {
     /* =========================
        LOAD GALLERY
     ========================= */
