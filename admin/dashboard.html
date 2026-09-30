@@ -458,7 +458,7 @@
        SESSION CHECK
     ========================= */
 
-    console.log("SESSION CHECK START");
+    async function checkSession() {
 
       const {
         data: { session }
@@ -1259,42 +1259,56 @@ async function openHoursManager() {
   await supabaseClient
     .from("opening_hours")
     .select("*")
-    .eq("id", 1)
-    .maybeSingle();
+    .order("id", { ascending: true })
+    .limit(1);
 
-if (error) {
+  if (error) {
 
-  console.error(error);
+    console.error(error);
 
-  status.textContent =
-    "Could not load opening hours: " +
-    error.message;
+    status.textContent =
+      "Could not load opening hours: " +
+      error.message;
 
-  return;
-}
+    return;
+  }
 
-if (!data) {
-
-  status.textContent =
-    "Opening hours data not found.";
-
-  return;
-}
-
-document.getElementById("morningStart").value =
-  data.morning_start || "05:30";
+  document.getElementById("morningStart").value =
+  data[0].morning_start || "05:30";
 
 document.getElementById("morningEnd").value =
-  data.morning_end || "12:00";
+  data[0].morning_end || "12:00";
 
 document.getElementById("eveningStart").value =
-  data.evening_start || "16:00";
+  data[0].evening_start || "16:00";
 
 document.getElementById("eveningEnd").value =
-  data.evening_end || "00:00";
+  data[0].evening_end || "00:00";
 
 document.getElementById("timezone").value =
-  data.timezone || "Asia/Riyadh";
+  data[0].timezone || "Asia/Riyadh";
+}
+
+
+async function saveOpeningHours() {
+
+  const values = {
+
+    morning_start:
+      document.getElementById("morningStart").value,
+
+    morning_end:
+      document.getElementById("morningEnd").value,
+
+    evening_start:
+      document.getElementById("eveningStart").value,
+
+    evening_end:
+      document.getElementById("eveningEnd").value,
+
+    timezone:
+      document.getElementById("timezone").value,
+
     updated_at:
       new Date().toISOString()
   };
