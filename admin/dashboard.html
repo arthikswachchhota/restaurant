@@ -1152,15 +1152,189 @@
     }
 
     /* =========================
-       OPENING HOURS
-    ========================= */
+   OPENING HOURS
+========================= */
 
-    function openHoursManager() {
+async function openHoursManager() {
 
-      status.textContent =
-        "Opening Hours manager is ready.";
+  let manager =
+    document.getElementById("hoursManager");
 
-    }
+  if (!manager) {
+
+    manager =
+      document.createElement("div");
+
+    manager.className = "manager";
+    manager.id = "hoursManager";
+
+    manager.innerHTML = `
+      <h2>🕐 Edit Opening Hours</h2>
+
+      <div class="food-item">
+
+        <label>Morning Opening</label>
+        <input type="time" id="morningStart">
+
+        <label>Morning Closing</label>
+        <input type="time" id="morningEnd">
+
+        <label>Evening Opening</label>
+        <input type="time" id="eveningStart">
+
+        <label>Evening Closing</label>
+        <input type="time" id="eveningEnd">
+
+        <label>Timezone</label>
+
+        <select
+          id="timezone"
+          style="
+            width:100%;
+            padding:9px;
+            border:1px solid #d7e5e5;
+            border-radius:7px;
+            font-size:13px;
+            margin-bottom:8px;
+          "
+        >
+          <option value="Asia/Riyadh">
+            Saudi Arabia — Riyadh
+          </option>
+
+          <option value="Asia/Dhaka">
+            Bangladesh — Dhaka
+          </option>
+
+          <option value="Asia/Dubai">
+            UAE — Dubai
+          </option>
+
+          <option value="Asia/Kolkata">
+            India — Kolkata
+          </option>
+
+          <option value="Europe/London">
+            UK — London
+          </option>
+
+          <option value="Europe/Brussels">
+            Belgium — Brussels
+          </option>
+        </select>
+
+        <button
+          class="save-food"
+          type="button"
+          onclick="saveOpeningHours()"
+        >
+          💾 Save Opening Hours
+        </button>
+
+        <button
+          class="close-manager"
+          type="button"
+          onclick="
+            document.getElementById('hoursManager').style.display='none';
+          "
+        >
+          Close
+        </button>
+
+      </div>
+    `;
+
+    document
+      .querySelector(".dashboard")
+      .appendChild(manager);
+  }
+
+  manager.style.display = "block";
+
+  manager.scrollIntoView({
+    behavior: "smooth"
+  });
+
+  const { data, error } =
+    await supabaseClient
+      .from("opening_hours")
+      .select("*")
+      .limit(1)
+      .single();
+
+  if (error) {
+
+    console.error(error);
+
+    status.textContent =
+      "Could not load opening hours: " +
+      error.message;
+
+    return;
+  }
+
+  document.getElementById("morningStart").value =
+    data.morning_start || "05:30";
+
+  document.getElementById("morningEnd").value =
+    data.morning_end || "12:00";
+
+  document.getElementById("eveningStart").value =
+    data.evening_start || "16:00";
+
+  document.getElementById("eveningEnd").value =
+    data.evening_end || "00:00";
+
+  document.getElementById("timezone").value =
+    data.timezone || "Asia/Riyadh";
+
+  status.textContent =
+    "Opening Hours loaded.";
+}
+
+
+async function saveOpeningHours() {
+
+  const values = {
+
+    morning_start:
+      document.getElementById("morningStart").value,
+
+    morning_end:
+      document.getElementById("morningEnd").value,
+
+    evening_start:
+      document.getElementById("eveningStart").value,
+
+    evening_end:
+      document.getElementById("eveningEnd").value,
+
+    timezone:
+      document.getElementById("timezone").value,
+
+    updated_at:
+      new Date().toISOString()
+  };
+
+  const { error } =
+    await supabaseClient
+      .from("opening_hours")
+      .update(values)
+      .eq("id", 1);
+
+  if (error) {
+
+    console.error(error);
+
+    status.textContent =
+      "Save failed: " + error.message;
+
+    return;
+  }
+
+  status.textContent =
+    "Opening Hours saved.";
+}
     /* =========================
        LOAD GALLERY
     ========================= */
