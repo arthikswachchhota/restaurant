@@ -2286,7 +2286,7 @@ async function loadTodayStatus() {
     await supabaseClient
       .from("opening_hours")
       .select(
-        "morning_start, morning_end, evening_start, evening_end"
+        "morning_start, morning_end, evening_start, evening_end, timezone, closed_days"
       )
       .eq("id", 1)
       .single();
@@ -2295,6 +2295,45 @@ async function loadTodayStatus() {
     console.error(error);
     return;
   }
+
+  const timezone =
+    data.timezone || "Asia/Riyadh";
+
+  const closedDays =
+    Array.isArray(data.closed_days)
+      ? data.closed_days
+      : [];
+
+  const today =
+    new Intl.DateTimeFormat(
+      "en-US",
+      {
+        weekday: "long",
+        timeZone: timezone
+      }
+    ).format(new Date());
+
+  /* =========================
+     CLOSED DAY
+  ========================= */
+
+  if (closedDays.includes(today)) {
+
+    morningElement.textContent =
+      "🔴 Closed";
+
+    eveningElement.textContent =
+      "🔴 Closed";
+
+    breakElement.textContent =
+      "🔴 Closed";
+
+    return;
+  }
+
+  /* =========================
+     OPENING HOURS
+  ========================= */
 
   function formatTime(time) {
 
@@ -2352,100 +2391,6 @@ async function loadTodayStatus() {
     morningEnd +
     " – " +
     eveningStart;
-}
-async function loadFoodData() {
-
-  const foodGrid =
-    document.getElementById("foodGrid");
-
-  const { data, error } =
-    await supabaseClient
-      .from("foods")
-      .select("*")
-      .order("id", { ascending: true });
-
-  if (error) {
-    console.error(error);
-    return;
-  }
-
-  foodGrid.innerHTML = "";
-
-  data.forEach(function(food) {
-
-    const card =
-      document.createElement("div");
-
-    card.className = "food-card";
-
-    const image =
-      document.createElement("img");
-
-    image.className = "food-image";
-    image.src = food.image_url || "";
-    image.alt = food.name_en || "Food";
-
-    const name =
-      document.createElement("div");
-
-    name.className = "food-name";
-    name.textContent =
-      food.name_en || "";
-
-    const price =
-      document.createElement("div");
-
-    price.className = "food-price";
-    price.textContent =
-      "SAR " + food.price;
-
-    card.append(image, name, price);
-
-    foodGrid.appendChild(card);
-
-  });
-
-}
-
-
-async function loadGalleryData() {
-
-  const galleryGrid =
-    document.getElementById("galleryGrid");
-
-  const { data, error } =
-    await supabaseClient
-      .from("gallery")
-      .select("id,image_url")
-      .order("id", { ascending: true });
-
-  if (error) {
-    console.error(error);
-    return;
-  }
-
-  galleryGrid.innerHTML = "";
-
-  data.forEach(function(image) {
-
-    const item =
-      document.createElement("div");
-
-    item.className =
-      "gallery-item";
-
-    item.innerHTML = `
-      <img
-        src="${image.image_url}"
-        alt="Fawaz Gallery"
-        loading="lazy"
-      >
-    `;
-
-    galleryGrid.appendChild(item);
-
-  });
-
 }
 
 
