@@ -2392,6 +2392,59 @@ async function loadTodayStatus() {
     " – " +
     eveningStart;
 }
+  async function loadGalleryData() {
+
+  const galleryGrid =
+    document.getElementById("galleryGrid");
+
+  if (!galleryGrid) {
+    return;
+  }
+
+  const { data, error } =
+    await supabaseClient
+      .from("gallery")
+      .select("id, image_url")
+      .order("id", { ascending: true });
+
+  if (error) {
+    console.error("Gallery error:", error);
+    return;
+  }
+
+  galleryGrid.innerHTML = "";
+
+  data.forEach(function(image) {
+
+    if (!image.image_url) {
+      return;
+    }
+
+    const item =
+      document.createElement("div");
+
+    item.className =
+      "gallery-item";
+
+    const img =
+      document.createElement("img");
+
+    img.src =
+      image.image_url;
+
+    img.alt =
+      "Fawaz Gallery";
+
+    img.loading =
+      "lazy";
+
+    item.appendChild(img);
+
+    galleryGrid.appendChild(item);
+
+  });
+
+}
 async function loadFoodData() {
 
   const foodGrid =
