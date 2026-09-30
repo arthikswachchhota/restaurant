@@ -2201,7 +2201,61 @@ const supabaseClient =
     SUPABASE_URL,
     SUPABASE_KEY
   );
+async function loadTodayStatus() {
 
+  const statusElement =
+    document.getElementById("todayStatusText");
+
+  if (!statusElement) {
+    return;
+  }
+
+  const { data, error } =
+    await supabaseClient
+      .from("opening_hours")
+      .select("timezone, closed_days")
+      .eq("id", 1)
+      .single();
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  const timezone =
+    data.timezone || "Asia/Riyadh";
+
+  const closedDays =
+    data.closed_days || [];
+
+  const today =
+    new Intl.DateTimeFormat(
+      "en-US",
+      {
+        weekday: "long",
+        timeZone: timezone
+      }
+    ).format(new Date());
+
+  if (closedDays.includes(today)) {
+
+    statusElement.textContent =
+      today + " — 🔴 Closed";
+
+    statusElement.style.color =
+      "#ff6b6b";
+
+  } else {
+
+    statusElement.textContent =
+      today + " — 🟢 Open";
+
+    statusElement.style.color =
+      "#35d07f";
+
+  }
+
+}
 async function loadFoodData() {
 
   const foodGrid =
