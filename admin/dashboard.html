@@ -1155,12 +1155,59 @@
        OPENING HOURS
     ========================= */
 
-    function openHoursManager() {
+   async function openHoursManager() {
 
-      status.textContent =
-        "Opening Hours manager is ready.";
+  const manager =
+    document.getElementById("hoursManager");
 
-    }
+  manager.style.display = "block";
+
+  manager.scrollIntoView({
+    behavior: "smooth"
+  });
+
+  const { data, error } =
+    await supabaseClient
+      .from("opening_hours")
+      .select("*")
+      .limit(1)
+      .single();
+
+  if (error) {
+
+    console.error(error);
+
+    status.textContent =
+      "Could not load opening hours: " +
+      error.message;
+
+    return;
+  }
+
+  document.getElementById(
+    "morningStart"
+  ).value = data.morning_start || "05:30";
+
+  document.getElementById(
+    "morningEnd"
+  ).value = data.morning_end || "12:00";
+
+  document.getElementById(
+    "eveningStart"
+  ).value = data.evening_start || "16:00";
+
+  document.getElementById(
+    "eveningEnd"
+  ).value = data.evening_end || "00:00";
+
+  document.getElementById(
+    "timezone"
+  ).value = data.timezone || "Asia/Riyadh";
+
+  status.textContent =
+    "Opening Hours loaded.";
+
+}
     /* =========================
        LOAD GALLERY
     ========================= */
