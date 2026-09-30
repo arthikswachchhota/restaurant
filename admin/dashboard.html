@@ -1256,11 +1256,11 @@ async function openHoursManager() {
   });
 
   const { data, error } =
-    await supabaseClient
-      .from("opening_hours")
-      .select("*")
-      .limit(1)
-      .single();
+  await supabaseClient
+    .from("opening_hours")
+    .select("*")
+    .order("id", { ascending: true })
+    .limit(1);
 
   if (error) {
 
@@ -1274,7 +1274,7 @@ async function openHoursManager() {
   }
 
   document.getElementById("morningStart").value =
-    data.morning_start || "05:30";
+    data[0].morning_start || "05:30";
 
   document.getElementById("morningEnd").value =
     data.morning_end || "12:00";
