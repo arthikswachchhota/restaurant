@@ -1222,7 +1222,52 @@ async function openHoursManager() {
             Belgium — Brussels
           </option>
         </select>
+<label>📅 Closed Days</label>
 
+<div
+  id="closedDays"
+  style="
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-bottom:12px;
+  "
+>
+  <label>
+    <input type="checkbox" value="Saturday">
+    Saturday
+  </label>
+
+  <label>
+    <input type="checkbox" value="Sunday">
+    Sunday
+  </label>
+
+  <label>
+    <input type="checkbox" value="Monday">
+    Monday
+  </label>
+
+  <label>
+    <input type="checkbox" value="Tuesday">
+    Tuesday
+  </label>
+
+  <label>
+    <input type="checkbox" value="Wednesday">
+    Wednesday
+  </label>
+
+  <label>
+    <input type="checkbox" value="Thursday">
+    Thursday
+  </label>
+
+  <label>
+    <input type="checkbox" value="Friday">
+    Friday
+  </label>
+</div>
         <button
           class="save-food"
           type="button"
@@ -1287,6 +1332,21 @@ document.getElementById("eveningEnd").value =
 
 document.getElementById("timezone").value =
   data[0].timezone || "Asia/Riyadh";
+  const closedDays =
+  data[0].closed_days || [];
+
+document
+  .querySelectorAll(
+    "#closedDays input[type='checkbox']"
+  )
+  .forEach(function (checkbox) {
+
+    checkbox.checked =
+      closedDays.includes(
+        checkbox.value
+      );
+
+  });
 }
 
 
@@ -1307,7 +1367,19 @@ async function saveOpeningHours() {
       document.getElementById("eveningEnd").value,
 
     timezone:
-      document.getElementById("timezone").value,
+  document.getElementById("timezone").value,
+
+closed_days:
+  Array.from(
+    document.querySelectorAll(
+      "#closedDays input[type='checkbox']:checked"
+    )
+  ).map(function (checkbox) {
+    return checkbox.value;
+  }),
+
+updated_at:
+  new Date().toISOString()
 
     updated_at:
       new Date().toISOString()
