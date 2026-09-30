@@ -1274,22 +1274,19 @@ async function openHoursManager() {
   }
 
   document.getElementById("morningStart").value =
-    data[0].morning_start || "05:30";
+  data[0].morning_start || "05:30";
 
-  document.getElementById("morningEnd").value =
-    data.morning_end || "12:00";
+document.getElementById("morningEnd").value =
+  data[0].morning_end || "12:00";
 
-  document.getElementById("eveningStart").value =
-    data.evening_start || "16:00";
+document.getElementById("eveningStart").value =
+  data[0].evening_start || "16:00";
 
-  document.getElementById("eveningEnd").value =
-    data.evening_end || "00:00";
+document.getElementById("eveningEnd").value =
+  data[0].evening_end || "00:00";
 
-  document.getElementById("timezone").value =
-    data.timezone || "Asia/Riyadh";
-
-  status.textContent =
-    "Opening Hours loaded.";
+document.getElementById("timezone").value =
+  data[0].timezone || "Asia/Riyadh";
 }
 
 
