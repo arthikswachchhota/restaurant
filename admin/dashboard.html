@@ -1313,11 +1313,12 @@ async function saveOpeningHours() {
       new Date().toISOString()
   };
 
-  const { error } =
+  const { data, error } =
     await supabaseClient
       .from("opening_hours")
       .update(values)
-      .eq("id", 1);
+      .eq("id", 1)
+      .select();
 
   if (error) {
 
@@ -1329,8 +1330,16 @@ async function saveOpeningHours() {
     return;
   }
 
+  if (!data || data.length === 0) {
+
+    status.textContent =
+      "Save failed: No row was updated.";
+
+    return;
+  }
+
   status.textContent =
-    "Opening Hours saved.";
+    "Opening Hours saved successfully.";
 }
     /* =========================
        LOAD GALLERY
