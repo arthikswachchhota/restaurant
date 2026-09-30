@@ -2263,6 +2263,96 @@ async function loadTodayStatus() {
       "#35d07f";
   }
 }
+  async function loadOpeningHours() {
+
+  const morningElement =
+    document.getElementById("morningHours");
+
+  const eveningElement =
+    document.getElementById("eveningHours");
+
+  const breakElement =
+    document.getElementById("breakHours");
+
+  if (
+    !morningElement ||
+    !eveningElement ||
+    !breakElement
+  ) {
+    return;
+  }
+
+  const { data, error } =
+    await supabaseClient
+      .from("opening_hours")
+      .select(
+        "morning_start, morning_end, evening_start, evening_end"
+      )
+      .eq("id", 1)
+      .single();
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  function formatTime(time) {
+
+    if (!time) {
+      return "";
+    }
+
+    const parts =
+      time.split(":");
+
+    let hour =
+      Number(parts[0]);
+
+    const minute =
+      parts[1];
+
+    const suffix =
+      hour >= 12 ? "PM" : "AM";
+
+    hour =
+      hour % 12 || 12;
+
+    return (
+      hour +
+      ":" +
+      minute +
+      " " +
+      suffix
+    );
+  }
+
+  const morningStart =
+    formatTime(data.morning_start);
+
+  const morningEnd =
+    formatTime(data.morning_end);
+
+  const eveningStart =
+    formatTime(data.evening_start);
+
+  const eveningEnd =
+    formatTime(data.evening_end);
+
+  morningElement.textContent =
+    morningStart +
+    " – " +
+    morningEnd;
+
+  eveningElement.textContent =
+    eveningStart +
+    " – " +
+    eveningEnd;
+
+  breakElement.textContent =
+    morningEnd +
+    " – " +
+    eveningStart;
+}
 async function loadFoodData() {
 
   const foodGrid =
@@ -2359,6 +2449,8 @@ async function loadGalleryData() {
 }
 
 
+loadTodayStatus();
+loadOpeningHours();
 loadFoodData();
 loadGalleryData();
 /* =========================
