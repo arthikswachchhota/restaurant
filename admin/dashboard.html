@@ -1367,19 +1367,16 @@ async function saveOpeningHours() {
       document.getElementById("eveningEnd").value,
 
     timezone:
-  document.getElementById("timezone").value,
+      document.getElementById("timezone").value,
 
-closed_days:
-  Array.from(
-    document.querySelectorAll(
-      "#closedDays input[type='checkbox']:checked"
-    )
-  ).map(function (checkbox) {
-    return checkbox.value;
-  }),
-
-updated_at:
-  new Date().toISOString()
+    closed_days:
+      Array.from(
+        document.querySelectorAll(
+          "#closedDays input[type='checkbox']:checked"
+        )
+      ).map(function (checkbox) {
+        return checkbox.value;
+      }),
 
     updated_at:
       new Date().toISOString()
@@ -1413,80 +1410,6 @@ updated_at:
   status.textContent =
     "Opening Hours saved successfully.";
 }
-    /* =========================
-       LOAD GALLERY
-    ========================= */
-
-    async function loadGalleryImages() {
-
-      const galleryList =
-        document.getElementById(
-          "galleryList"
-        );
-
-
-      const { data, error } =
-        await supabaseClient
-          .from("gallery")
-          .select("*")
-          .order("id", {
-            ascending: false
-          });
-
-
-      if (error) {
-
-        console.error(error);
-
-        galleryList.innerHTML =
-          "Could not load gallery images.";
-
-        return;
-      }
-
-
-      galleryList.innerHTML = "";
-
-
-      data.forEach(function(image) {
-
-        const item =
-          document.createElement("div");
-
-        item.className =
-          "gallery-item";
-
-
-        const imageSrc =
-          image.image_url &&
-          image.image_url.startsWith("http")
-            ? image.image_url
-            : "../" + image.image_url;
-
-
-        item.innerHTML = `
-
-          <img
-            src="${imageSrc}"
-            alt="Gallery Image"
-          >
-
-          <button
-            type="button"
-            class="delete-food"
-            onclick="deleteGalleryImage(${image.id})"
-          >
-            🗑️ Delete Image
-          </button>
-
-        `;
-
-
-        galleryList.appendChild(item);
-
-      });
-
-    }
 
 
     /* =========================
