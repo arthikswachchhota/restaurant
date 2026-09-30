@@ -2229,13 +2229,20 @@ async function loadTodayStatus() {
     data.closed_days || [];
 
   const today =
-    new Intl.DateTimeFormat(
-      "en-US",
-      {
-        weekday: "long",
-        timeZone: timezone
-      }
-    ).format(new Date());
+  new Intl.DateTimeFormat(
+    "en-US",
+    {
+      weekday: "long",
+      timeZone: timezone
+    }
+  ).format(new Date());
+
+console.log(
+  "Today detected:",
+  today,
+  "Timezone:",
+  timezone
+);
 
   if (closedDays.includes(today)) {
 
