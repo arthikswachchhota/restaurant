@@ -1328,7 +1328,100 @@
       await loadGalleryImages();
 
     }
+    <!-- OPENING HOURS MANAGER -->
 
+    <div
+      class="manager"
+      id="hoursManager"
+    >
+
+      <h2>🕐 Edit Opening Hours</h2>
+
+      <div class="food-item">
+
+        <label>Morning Opening</label>
+        <input
+          type="time"
+          id="morningStart"
+        >
+
+        <label>Morning Closing</label>
+        <input
+          type="time"
+          id="morningEnd"
+        >
+
+        <label>Evening Opening</label>
+        <input
+          type="time"
+          id="eveningStart"
+        >
+
+        <label>Evening Closing</label>
+        <input
+          type="time"
+          id="eveningEnd"
+        >
+
+        <label>Timezone</label>
+
+        <select
+          id="timezone"
+          style="
+            width:100%;
+            padding:9px;
+            border:1px solid #d7e5e5;
+            border-radius:7px;
+            font-size:13px;
+            margin-bottom:8px;
+          "
+        >
+          <option value="Asia/Riyadh">
+            Saudi Arabia — Riyadh
+          </option>
+
+          <option value="Asia/Dhaka">
+            Bangladesh — Dhaka
+          </option>
+
+          <option value="Asia/Dubai">
+            UAE — Dubai
+          </option>
+
+          <option value="Asia/Kolkata">
+            India — Kolkata
+          </option>
+
+          <option value="Europe/London">
+            UK — London
+          </option>
+
+          <option value="Europe/Brussels">
+            Belgium — Brussels
+          </option>
+        </select>
+
+        <button
+          class="save-food"
+          type="button"
+          onclick="saveOpeningHours()"
+        >
+          💾 Save Opening Hours
+        </button>
+
+        <button
+          class="close-manager"
+          type="button"
+          onclick="
+            document.getElementById('hoursManager').style.display='none';
+          "
+        >
+          Close
+        </button>
+
+      </div>
+
+    </div>
 
     /* =========================
        LOGOUT
