@@ -2226,23 +2226,25 @@ async function loadTodayStatus() {
     data.timezone || "Asia/Riyadh";
 
   const closedDays =
-    data.closed_days || [];
+    Array.isArray(data.closed_days)
+      ? data.closed_days
+      : [];
 
   const today =
-  new Intl.DateTimeFormat(
-    "en-US",
-    {
-      weekday: "long",
-      timeZone: timezone
-    }
-  ).format(new Date());
+    new Intl.DateTimeFormat(
+      "en-US",
+      {
+        weekday: "long",
+        timeZone: timezone
+      }
+    ).format(new Date());
 
-console.log(
-  "Today detected:",
-  today,
-  "Timezone:",
-  timezone
-);
+  console.log(
+    "Today detected:",
+    today,
+    "Timezone:",
+    timezone
+  );
 
   if (closedDays.includes(today)) {
 
@@ -2259,9 +2261,7 @@ console.log(
 
     statusElement.style.color =
       "#35d07f";
-
   }
-
 }
 async function loadFoodData() {
 
