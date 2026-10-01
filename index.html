@@ -2219,6 +2219,46 @@ const supabaseClient =
     SUPABASE_URL,
     SUPABASE_KEY
   );
+  async function loadHeroData() {
+
+  const heroSection =
+    document.querySelector(".hero");
+
+  if (!heroSection) {
+    return;
+  }
+
+  const { data, error } =
+    await supabaseClient
+      .from("hero")
+      .select("image_url")
+      .eq("is_active", true)
+      .limit(1);
+
+  if (error) {
+    console.error(
+      "Hero load error:",
+      error
+    );
+    return;
+  }
+
+  if (
+    !data ||
+    data.length === 0 ||
+    !data[0].image_url
+  ) {
+    return;
+  }
+
+  heroSection.style.backgroundImage =
+    `linear-gradient(
+      180deg,
+      rgba(0, 190, 200, 0.30),
+      rgba(0, 65, 70, 0.72)
+    ),
+    url("${data[0].image_url}")`;
+    
 async function loadTodayStatus() {
 
   const statusElement =
