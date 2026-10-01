@@ -1456,7 +1456,90 @@ async function saveOpeningHours() {
       await loadGalleryImages();
 
     }
+async function loadGalleryImages() {
 
+  const galleryList =
+    document.getElementById("galleryList");
+
+  if (!galleryList) {
+    return;
+  }
+
+  galleryList.innerHTML =
+    "Loading gallery...";
+
+  const { data, error } =
+    await supabaseClient
+      .from("gallery")
+      .select("id, image_url")
+      .order("id", {
+        ascending: false
+      });
+
+  if (error) {
+
+    console.error(
+      "Gallery load error:",
+      error
+    );
+
+    galleryList.innerHTML =
+      "Could not load gallery.";
+
+    return;
+  }
+
+  galleryList.innerHTML = "";
+
+  if (!data || data.length === 0) {
+
+    galleryList.innerHTML =
+      "No gallery images found.";
+
+    return;
+  }
+
+  data.forEach(function(image) {
+
+    if (!image.image_url) {
+      return;
+    }
+
+    const item =
+      document.createElement("div");
+
+    item.className =
+      "gallery-admin-item";
+
+    item.innerHTML = `
+      <img
+        src="${image.image_url}"
+        alt="Gallery Image"
+        style="
+          width:100%;
+          max-width:220px;
+          height:150px;
+          object-fit:cover;
+          border-radius:12px;
+          display:block;
+          margin-bottom:10px;
+        "
+      >
+
+      <button
+        type="button"
+        class="delete-gallery"
+        onclick="deleteGalleryImage(${image.id})"
+      >
+        🗑️ Delete
+      </button>
+    `;
+
+    galleryList.appendChild(item);
+
+  });
+
+}
 
     /* =========================
        LOGOUT
