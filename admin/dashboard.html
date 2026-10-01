@@ -716,12 +716,17 @@ const descriptionColor =
     await supabaseClient
       .from("hero")
       .update({
-        welcome_text: welcome,
-        title: title,
-        description: description,
-        image_url: heroImageUrl,
-        updated_at: new Date().toISOString()
-      })
+  welcome_text: welcome,
+  title: title,
+  description: description,
+  image_url: heroImageUrl,
+
+  welcome_color: welcomeColor,
+  title_color: titleColor,
+  description_color: descriptionColor,
+
+  updated_at: new Date().toISOString()
+})
       .eq("is_active", true)
       .select();
 
