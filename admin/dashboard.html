@@ -532,7 +532,26 @@
   id="heroImageFile"
   accept="image/*"
 >
+<label>Welcome Text Color</label>
+<input
+  type="color"
+  id="heroWelcomeColor"
+  value="#ffffff"
+>
 
+<label>Title Color</label>
+<input
+  type="color"
+  id="heroTitleColor"
+  value="#ffffff"
+>
+
+<label>Description Color</label>
+<input
+  type="color"
+  id="heroDescriptionColor"
+  value="#ffffff"
+>
 <button
   class="save-food"
   type="button"
@@ -677,7 +696,14 @@ if (heroImageFile) {
 
   const description =
     document.getElementById("heroDescription").value.trim();
+const welcomeColor =
+  document.getElementById("heroWelcomeColor").value;
 
+const titleColor =
+  document.getElementById("heroTitleColor").value;
+
+const descriptionColor =
+  document.getElementById("heroDescriptionColor").value;
   if (!welcome || !title || !description) {
 
     status.textContent =
