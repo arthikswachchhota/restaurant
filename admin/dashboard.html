@@ -610,7 +610,47 @@ async function loadHeroData() {
     "Home data loaded successfully.";
 }
     async function saveHeroData() {
+const heroImageFile =
+  document.getElementById("heroImageFile").files[0];
 
+let heroImageUrl = null;
+
+if (heroImageFile) {
+
+  const fileName =
+    Date.now() + "-" + heroImageFile.name;
+
+  const { error: uploadError } =
+    await supabaseClient
+      .storage
+      .from("hero")
+      .upload(fileName, heroImageFile, {
+        upsert: true
+      });
+
+  if (uploadError) {
+
+    console.error(
+      "Hero image upload error:",
+      uploadError
+    );
+
+    status.textContent =
+      "Hero image upload failed: " +
+      uploadError.message;
+
+    return;
+  }
+
+  const { data: publicData } =
+    supabaseClient
+      .storage
+      .from("hero")
+      .getPublicUrl(fileName);
+
+  heroImageUrl =
+    publicData.publicUrl;
+}
   const welcome =
     document.getElementById("heroWelcome").value.trim();
 
@@ -635,6 +675,7 @@ async function loadHeroData() {
         welcome_text: welcome,
         title: title,
         description: description,
+        image_url: heroImageUrl,
         updated_at: new Date().toISOString()
       })
       .eq("is_active", true)
