@@ -615,6 +615,24 @@ const heroImageFile =
 
 let heroImageUrl = null;
 
+if (!heroImageFile) {
+
+  const { data: currentHero } =
+    await supabaseClient
+      .from("hero")
+      .select("image_url")
+      .eq("is_active", true)
+      .limit(1);
+
+  if (
+    currentHero &&
+    currentHero.length > 0
+  ) {
+    heroImageUrl =
+      currentHero[0].image_url || null;
+  }
+}
+
 if (heroImageFile) {
 
   const fileName =
