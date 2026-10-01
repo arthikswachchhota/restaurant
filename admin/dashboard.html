@@ -602,6 +602,62 @@ async function loadHeroData() {
   status.textContent =
     "Home data loaded successfully.";
 }
+    async function saveHeroData() {
+
+  const welcome =
+    document.getElementById("heroWelcome").value.trim();
+
+  const title =
+    document.getElementById("heroTitle").value.trim();
+
+  const description =
+    document.getElementById("heroDescription").value.trim();
+
+  if (!welcome || !title || !description) {
+
+    status.textContent =
+      "Please fill all Home fields.";
+
+    return;
+  }
+
+  const { data, error } =
+    await supabaseClient
+      .from("hero")
+      .update({
+        welcome_text: welcome,
+        title: title,
+        description: description,
+        updated_at: new Date().toISOString()
+      })
+      .eq("is_active", true)
+      .select();
+
+  if (error) {
+
+    console.error(
+      "Hero save error:",
+      error
+    );
+
+    status.textContent =
+      "Home save failed: " +
+      error.message;
+
+    return;
+  }
+
+  if (!data || data.length === 0) {
+
+    status.textContent =
+      "Home save failed: No active row found.";
+
+    return;
+  }
+
+  status.textContent =
+    "Home changes saved successfully.";
+}
     /* FOOD MANAGER */
 
     async function openFoodManager() {
@@ -921,12 +977,12 @@ async function loadHeroData() {
           </button>
 
           <button
-            class="save-food"
-            type="button"
-            onclick="saveSingleFood(${food.id})"
-          >
-            💾 Save Food
-          </button>
+  class="save-food"
+  type="button"
+  onclick="saveHeroData()"
+>
+  💾 Save Home Changes
+</button>
 
           <button
             class="delete-food"
