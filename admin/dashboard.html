@@ -494,10 +494,121 @@
 
     }
 
+        /* HOME / HERO MANAGER */
 
-    /* =========================
-       FOOD MANAGER
-    ========================= */
+    function openHeroManager() {
+
+      let manager =
+        document.getElementById("heroManager");
+
+      if (!manager) {
+
+        manager =
+          document.createElement("div");
+
+        manager.className = "manager";
+        manager.id = "heroManager";
+
+        manager.innerHTML = `
+          <h2>🏠 Manage Home</h2>
+
+          <div class="food-item">
+
+            <label>Welcome Text</label>
+            <input
+              type="text"
+              id="heroWelcome"
+            >
+
+            <label>Title</label>
+            <input
+              type="text"
+              id="heroTitle"
+            >
+
+            <label>Description</label>
+            <input
+              type="text"
+              id="heroDescription"
+            >
+
+            <button
+              class="save-food"
+              type="button"
+              onclick="loadHeroData()"
+            >
+              🔄 Load Home Data
+            </button>
+
+          </div>
+
+          <button
+            class="close-manager"
+            type="button"
+            onclick="
+              document.getElementById('heroManager').style.display='none';
+            "
+          >
+            Close
+          </button>
+        `;
+
+        document
+          .querySelector(".dashboard")
+          .appendChild(manager);
+      }
+
+      manager.style.display = "block";
+
+      manager.scrollIntoView({
+        behavior: "smooth"
+      });
+
+      loadHeroData();
+    }
+async function loadHeroData() {
+
+  const { data, error } =
+    await supabaseClient
+      .from("hero")
+      .select("*")
+      .eq("is_active", true)
+      .limit(1);
+
+  if (error) {
+    console.error("Hero load error:", error);
+
+    status.textContent =
+      "Could not load Home data: " +
+      error.message;
+
+    return;
+  }
+
+  if (!data || data.length === 0) {
+
+    status.textContent =
+      "No active Home data found.";
+
+    return;
+  }
+
+  const hero =
+    data[0];
+
+  document.getElementById("heroWelcome").value =
+    hero.welcome_text || "";
+
+  document.getElementById("heroTitle").value =
+    hero.title || "";
+
+  document.getElementById("heroDescription").value =
+    hero.description || "";
+
+  status.textContent =
+    "Home data loaded successfully.";
+}
+    /* FOOD MANAGER */
 
     async function openFoodManager() {
 
