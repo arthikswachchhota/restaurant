@@ -639,7 +639,7 @@ if (!heroImageFile) {
   const { data: currentHero } =
     await supabaseClient
       .from("hero")
-      .select("image_url")
+      .select("image_url, welcome_color, title_color, description_color")
       .eq("is_active", true)
       .limit(1);
 
