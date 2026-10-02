@@ -2223,7 +2223,7 @@ const supabaseClient =
   const { data, error } =
     await supabaseClient
       .from("hero")
-      .select("image_url, welcome_color, title_color, description_color, welcome_font_size, title_font_size, description_font_size, welcome_mobile_font_size, title_mobile_font_size, description_mobile_font_size")
+    .select("image_url, welcome_color, title_color, description_color, welcome_font_size, title_font_size, description_font_size, welcome_mobile_font_size, title_mobile_font_size, description_mobile_font_size")
       .eq("is_active", true)
       .limit(1);
 
@@ -2273,19 +2273,34 @@ if (heroDescription) {
   heroDescription.style.color =
     data[0].description_color || "#ffffff";
 }
-    if (welcomeText) {
+   if (welcomeText) {
   welcomeText.style.fontSize =
     data[0].welcome_font_size || "18px";
+
+  welcomeText.style.setProperty(
+    "--mobile-font-size",
+    data[0].welcome_mobile_font_size || "43px"
+  );
 }
 
 if (heroTitle) {
   heroTitle.style.fontSize =
     data[0].title_font_size || "48px";
+
+  heroTitle.style.setProperty(
+    "--mobile-font-size",
+    data[0].title_mobile_font_size || "30px"
+  );
 }
 
 if (heroDescription) {
   heroDescription.style.fontSize =
     data[0].description_font_size || "18px";
+
+  heroDescription.style.setProperty(
+    "--mobile-font-size",
+    data[0].description_mobile_font_size || "14px"
+  );
 }
 }
 
