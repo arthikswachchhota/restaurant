@@ -661,7 +661,14 @@ document.getElementById("heroTitleFontSize").value =
 
 document.getElementById("heroDescriptionFontSize").value =
   parseInt(hero.description_font_size) || 18;
+document.getElementById("heroWelcomeMobileFontSize").value =
+  parseInt(hero.welcome_mobile_font_size) || 18;
 
+document.getElementById("heroTitleMobileFontSize").value =
+  parseInt(hero.title_mobile_font_size) || 30;
+
+document.getElementById("heroDescriptionMobileFontSize").value =
+  parseInt(hero.description_mobile_font_size) || 14;
 status.textContent =
   "Home data loaded successfully.";
 }
@@ -750,6 +757,14 @@ const titleFontSize =
 
 const descriptionFontSize =
   document.getElementById("heroDescriptionFontSize").value;
+  const welcomeMobileFontSize =
+  document.getElementById("heroWelcomeMobileFontSize").value;
+
+const titleMobileFontSize =
+  document.getElementById("heroTitleMobileFontSize").value;
+
+const descriptionMobileFontSize =
+  document.getElementById("heroDescriptionMobileFontSize").value;
   if (!welcome || !title || !description) {
 
     status.textContent =
