@@ -2258,7 +2258,29 @@ const supabaseClient =
       rgba(0, 65, 70, 0.72)
     ),
         url("${data[0].image_url}")`;
+const welcomeText =
+  document.querySelector(".welcome-text");
 
+const heroTitle =
+  document.querySelector(".hero-title");
+
+const heroDescription =
+  document.querySelector(".hero-description");
+
+if (welcomeText) {
+  welcomeText.style.color =
+    data[0].welcome_color || "#ffffff";
+}
+
+if (heroTitle) {
+  heroTitle.style.color =
+    data[0].title_color || "#ffffff";
+}
+
+if (heroDescription) {
+  heroDescription.style.color =
+    data[0].description_color || "#ffffff";
+}
 }
 
 async function loadTodayStatus() {
