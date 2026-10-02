@@ -1067,18 +1067,15 @@
       }
 
       .welcome-text {
-  font-size: 43px;
   letter-spacing: 2px;
   margin-bottom: 9px;
 }
 
 .hero-title {
-  font-size: 30px;
   margin-bottom: 17px;
 }
 
       .hero-description {
-        font-size: 14px;
         line-height: 1.75;
         margin-bottom: 25px;
       }
@@ -1195,14 +1192,6 @@
         padding: 5px 6px;
         font-size: 10px;
       }
-
-      .welcome-text {
-  font-size: 39px;
-}
-
-.hero-title {
-  font-size: 27px;
-}
 
             .food-image {
         height: 145px;
@@ -2231,7 +2220,7 @@ const supabaseClient =
   const { data, error } =
     await supabaseClient
       .from("hero")
-      .select("image_url, welcome_color, title_color, description_color, welcome_font_size, title_font_size, description_font_size")
+      .select("image_url, welcome_color, title_color, description_color, welcome_font_size, title_font_size, description_font_size, welcome_mobile_font_size, title_mobile_font_size, description_mobile_font_size")
       .eq("is_active", true)
       .limit(1);
 
