@@ -307,9 +307,17 @@
 </div>
 
       <div class="card">
-        <h2>📱 WhatsApp</h2>
-        <p>Update WhatsApp contact number.</p>
-      </div>
+  <h2>📱 WhatsApp</h2>
+  <p>Update WhatsApp contact number.</p>
+
+  <button
+    class="manage-button"
+    type="button"
+    onclick="openWhatsAppManager()"
+  >
+    Manage WhatsApp
+  </button>
+</div>
 
       <div class="card">
         <h2>⚙️ Settings</h2>
@@ -487,7 +495,157 @@
       status.textContent = "Logged in";
 
     }
+/* =========================
+   WHATSAPP MANAGER
+========================= */
 
+async function openWhatsAppManager() {
+
+  let manager =
+    document.getElementById("whatsappManager");
+
+  if (!manager) {
+
+    manager =
+      document.createElement("div");
+
+    manager.className = "manager";
+    manager.id = "whatsappManager";
+
+    manager.innerHTML = `
+      <h2>📱 Manage WhatsApp</h2>
+
+      <div class="food-item">
+
+        <label>WhatsApp Number</label>
+
+        <input
+          type="tel"
+          id="whatsappNumber"
+          placeholder="966571638203"
+        >
+
+        <button
+          class="save-food"
+          type="button"
+          onclick="saveWhatsAppNumber()"
+        >
+          💾 Save WhatsApp Number
+        </button>
+
+      </div>
+
+      <button
+        class="close-manager"
+        type="button"
+        onclick="
+          document.getElementById('whatsappManager').style.display='none';
+        "
+      >
+        Close
+      </button>
+    `;
+
+    document
+      .querySelector(".dashboard")
+      .appendChild(manager);
+  }
+
+  manager.style.display = "block";
+
+  manager.scrollIntoView({
+    behavior: "smooth"
+  });
+
+  status.textContent =
+    "Loading WhatsApp number...";
+
+  const { data, error } =
+    await supabaseClient
+      .from("whatsapp_settings")
+      .select("phone_number")
+      .order("id", { ascending: true })
+      .limit(1);
+
+  if (error) {
+
+    console.error(
+      "WhatsApp load error:",
+      error
+    );
+
+    status.textContent =
+      "Could not load WhatsApp number: " +
+      error.message;
+
+    return;
+  }
+
+  if (data && data.length > 0) {
+
+    document.getElementById(
+      "whatsappNumber"
+    ).value =
+      data[0].phone_number || "";
+  }
+
+  status.textContent =
+    "WhatsApp number loaded.";
+}
+    async function saveWhatsAppNumber() {
+
+  const input =
+    document.getElementById("whatsappNumber");
+
+  const phoneNumber =
+    input.value.trim().replace(/\D/g, "");
+
+  if (!phoneNumber) {
+
+    status.textContent =
+      "Please enter a valid WhatsApp number.";
+
+    return;
+  }
+
+  status.textContent =
+    "Saving WhatsApp number...";
+
+  const { data, error } =
+    await supabaseClient
+      .from("whatsapp_settings")
+      .update({
+        phone_number: phoneNumber,
+        updated_at: new Date().toISOString()
+      })
+      .eq("id", 1)
+      .select();
+
+  if (error) {
+
+    console.error(
+      "WhatsApp save error:",
+      error
+    );
+
+    status.textContent =
+      "WhatsApp save failed: " +
+      error.message;
+
+    return;
+  }
+
+  if (!data || data.length === 0) {
+
+    status.textContent =
+      "WhatsApp save failed: No row was updated.";
+
+    return;
+  }
+
+  status.textContent =
+    "WhatsApp number saved successfully.";
+}
         /* HOME / HERO MANAGER */
 
     function openHeroManager() {
