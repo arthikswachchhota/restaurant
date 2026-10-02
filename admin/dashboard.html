@@ -585,11 +585,6 @@
   type="button"
   onclick="saveHeroData()"
 >
-<button
-  class="save-food"
-  type="button"
-  onclick="saveHeroData()"
->
   💾 Save Home Changes
 </button>
 
@@ -658,9 +653,6 @@ async function loadHeroData() {
   document.getElementById("heroDescription").value =
     hero.description || "";
 
-  document.getElementById("heroDescription").value =
-  hero.description || "";
-
 document.getElementById("heroWelcomeFontSize").value =
   parseInt(hero.welcome_font_size) || 18;
 
@@ -672,7 +664,9 @@ document.getElementById("heroDescriptionFontSize").value =
 
 status.textContent =
   "Home data loaded successfully.";
-    async function saveHeroData() {
+}
+
+async function saveHeroData() {
 const heroImageFile =
   document.getElementById("heroImageFile").files[0];
 
