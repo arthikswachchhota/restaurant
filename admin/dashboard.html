@@ -600,7 +600,9 @@ async function openWhatsAppManager() {
   const phoneNumber =
     input.value.trim().replace(/\D/g, "");
 
-  if (!phoneNumber) {
+console.log("WhatsApp input value:", input.value);
+
+if (!phoneNumber) {
 
     status.textContent =
       "Please enter a valid WhatsApp number.";
