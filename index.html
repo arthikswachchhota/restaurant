@@ -2314,26 +2314,18 @@ async function loadCustomContent() {
       .order("box_number", { ascending: true });
 
   if (error) {
-  console.error(
-    "Custom content load error:",
-    error
-  );
 
-  alert("Custom Content Error: " + error.message);
+    console.error(
+      "Custom content load error:",
+      error
+    );
 
-  return;
-}
+    return;
+  }
 
   if (!data || data.length === 0) {
-
-  alert(
-    "Custom Content Data: 0\n" +
-    "Error: " + (error ? error.message : "none")
-  );
-
-  return;
-}
-alert("Custom Content Data:\n" + JSON.stringify(data));
+    return;
+  }
 
   const placementMap = {
     "Hero After": "customContentHeroAfter"
@@ -2369,6 +2361,8 @@ alert("Custom Content Data:\n" + JSON.stringify(data));
     target.appendChild(box);
 
   });
+
+}
 }
 async function loadTodayStatus() {
   const statusElement =
