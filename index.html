@@ -1493,7 +1493,9 @@
     </section>
 
 
-    <!-- OUR FOOD -->
+<!-- CUSTOM CONTENT: HERO AFTER -->
+<div id="customContentHeroAfter"></div>
+<!-- OUR FOOD -->
 
 <section class="food-section" id="food">
 
@@ -2303,7 +2305,62 @@ if (heroDescription) {
   );
 }
 }
+async function loadCustomContent() {
 
+  const { data, error } =
+    await supabaseClient
+      .from("custom_content")
+      .select("*")
+      .eq("is_enabled", true)
+      .order("box_number", { ascending: true });
+
+  if (error) {
+    console.error(
+      "Custom content load error:",
+      error
+    );
+    return;
+  }
+
+  if (!data || data.length === 0) {
+    return;
+  }
+
+  const placementMap = {
+    "Hero After": "customContentHeroAfter"
+  };
+
+  data.forEach(function(item) {
+
+    const targetId =
+      placementMap[item.placement];
+
+    if (!targetId) {
+      return;
+    }
+
+    const target =
+      document.getElementById(targetId);
+
+    if (!target) {
+      return;
+    }
+
+    const box =
+      document.createElement("div");
+
+    box.className =
+      "custom-content-box";
+
+    box.innerHTML = `
+      <h3>${item.title || ""}</h3>
+      <p>${item.description || ""}</p>
+    `;
+
+    target.appendChild(box);
+
+  });
+}
 async function loadTodayStatus() {
   const statusElement =
     document.getElementById("todayStatusText");
@@ -2677,6 +2734,7 @@ async function loadFoodData() {
 
 }
 loadHeroData();
+loadCustomContent();
 loadTodayStatus();
 loadOpeningHours();
 loadFoodData();
