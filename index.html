@@ -2327,11 +2327,13 @@ async function loadCustomContent() {
 
   if (!data || data.length === 0) {
 
-  alert("Custom Content Data: 0");
+  alert(
+    "Custom Content Data: 0\n" +
+    "Error: " + (error ? error.message : "none")
+  );
 
   return;
 }
-
 alert("Custom Content Data: " + data.length);
 
   const placementMap = {
