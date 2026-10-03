@@ -608,17 +608,17 @@ if (!phoneNumber) {
     return;
   }
 
-  status.textContent =
+    status.textContent =
     "Saving WhatsApp number...";
 
   const { error } =
-  await supabaseClient
-    .from("whatsapp_settings")
-    .update({
-      phone_number: phoneNumber,
-      updated_at: new Date().toISOString()
-    })
-    .eq("id", 1);
+    await supabaseClient
+      .from("whatsapp_settings")
+      .update({
+        phone_number: phoneNumber,
+        updated_at: new Date().toISOString()
+      })
+      .eq("id", 1);
 
   if (error) {
 
@@ -634,18 +634,10 @@ if (!phoneNumber) {
     return;
   }
 
-  if (!data || data.length === 0) {
-
-    status.textContent =
-  "WhatsApp number saved successfully.";
-
-    return;
-  }
-
   status.textContent =
     "WhatsApp number saved successfully.";
-}
-        /* HOME / HERO MANAGER */
+}   
+    /* HOME / HERO MANAGER */
 
     function openHeroManager() {
 
