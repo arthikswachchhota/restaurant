@@ -806,11 +806,12 @@ function openCustomContentManager() {
         </select>
 
         <button
-          class="save-food"
-          type="button"
-        >
-          💾 Save Box 1
-        </button>
+  class="save-food"
+  type="button"
+  onclick="saveCustomContent(1)"
+>
+  💾 Save Box 1
+</button>
       </div>
 
       <div class="food-item">
@@ -912,6 +913,67 @@ function openCustomContentManager() {
   manager.scrollIntoView({
     behavior: "smooth"
   });
+}
+    async function saveCustomContent(boxNumber) {
+
+  const manager =
+    document.getElementById("customContentManager");
+
+  const boxes =
+    manager.querySelectorAll(".food-item");
+
+  const box =
+    boxes[boxNumber - 1];
+
+  const inputs =
+    box.querySelectorAll("input");
+
+  const selects =
+    box.querySelectorAll("select");
+
+  const title =
+    inputs[0].value.trim();
+
+  const description =
+    inputs[1].value.trim();
+
+  const isEnabled =
+    selects[0].value === "true";
+
+  const placement =
+    selects[1].value;
+
+  status.textContent =
+    "Saving custom content...";
+
+  const { error } =
+    await supabaseClient
+      .from("custom_content")
+      .update({
+        title: title,
+        description: description,
+        is_enabled: isEnabled,
+        placement: placement,
+        updated_at: new Date().toISOString()
+      })
+      .eq("box_number", boxNumber);
+
+  if (error) {
+
+    console.error(
+      "Custom content save error:",
+      error
+    );
+
+    status.textContent =
+      "Save failed: " + error.message;
+
+    return;
+  }
+
+  status.textContent =
+    "Custom Box " + boxNumber +
+    " saved successfully.";
 }
 /* =========================
    WHATSAPP MANAGER
