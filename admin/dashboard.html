@@ -977,6 +977,60 @@ function openCustomContentManager() {
     "Custom Box " + boxNumber +
     " saved successfully.";
 }
+    async function loadCustomContent() {
+
+  const manager =
+    document.getElementById("customContentManager");
+
+  if (!manager) return;
+
+  const { data, error } =
+    await supabaseClient
+      .from("custom_content")
+      .select("*")
+      .order("box_number", { ascending: true });
+
+  if (error) {
+
+    console.error(
+      "Custom content load error:",
+      error
+    );
+
+    return;
+  }
+
+  if (!data || data.length === 0) return;
+
+  const boxes =
+    manager.querySelectorAll(".food-item");
+
+  data.forEach(function(item) {
+
+    const box =
+      boxes[item.box_number - 1];
+
+    if (!box) return;
+
+    const inputs =
+      box.querySelectorAll("input");
+
+    const selects =
+      box.querySelectorAll("select");
+
+    inputs[0].value =
+      item.title || "";
+
+    inputs[1].value =
+      item.description || "";
+
+    selects[0].value =
+      item.is_enabled ? "true" : "false";
+
+    selects[1].value =
+      item.placement || "Hero After";
+  });
+}
 /* =========================
    WHATSAPP MANAGER
 ========================= */
