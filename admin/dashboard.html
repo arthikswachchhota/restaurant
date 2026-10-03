@@ -507,6 +507,84 @@
 /* =========================
    SETTINGS MANAGER
 ========================= */
+    async function saveWebsiteContent() {
+
+  const name =
+    document.getElementById("websiteName").value.trim();
+
+  const title =
+    document.getElementById("websiteHeroTitle").value.trim();
+
+  const description =
+    document.getElementById("websiteHeroDescription").value.trim();
+
+  if (!title || !description) {
+
+    status.textContent =
+      "Please enter Hero Title and Description.";
+
+    return;
+  }
+
+  status.textContent =
+    "Saving website content...";
+
+  const { data: heroData, error: heroError } =
+    await supabaseClient
+      .from("hero")
+      .select("id")
+      .order("id", { ascending: true })
+      .limit(1);
+
+  if (heroError) {
+
+    console.error(
+      "Hero load error:",
+      heroError
+    );
+
+    status.textContent =
+      "Could not load website content.";
+
+    return;
+  }
+
+  if (!heroData || heroData.length === 0) {
+
+    status.textContent =
+      "No Hero record found.";
+
+    return;
+  }
+
+  const heroId =
+    heroData[0].id;
+
+  const { error } =
+    await supabaseClient
+      .from("hero")
+      .update({
+        title: title,
+        description: description
+      })
+      .eq("id", heroId);
+
+  if (error) {
+
+    console.error(
+      "Website content save error:",
+      error
+    );
+
+    status.textContent =
+      "Save failed: " + error.message;
+
+    return;
+  }
+
+  status.textContent =
+    "Website content saved successfully.";
+}
 function openWebsiteContentManager() {
 
   let manager =
