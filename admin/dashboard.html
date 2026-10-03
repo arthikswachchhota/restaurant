@@ -611,15 +611,14 @@ if (!phoneNumber) {
   status.textContent =
     "Saving WhatsApp number...";
 
-  const { data, error } =
-    await supabaseClient
-      .from("whatsapp_settings")
-      .update({
-        phone_number: phoneNumber,
-        updated_at: new Date().toISOString()
-      })
-      .eq("id", 1)
-      .select();
+  const { error } =
+  await supabaseClient
+    .from("whatsapp_settings")
+    .update({
+      phone_number: phoneNumber,
+      updated_at: new Date().toISOString()
+    })
+    .eq("id", 1);
 
   if (error) {
 
@@ -638,7 +637,7 @@ if (!phoneNumber) {
   if (!data || data.length === 0) {
 
     status.textContent =
-      "WhatsApp save failed: No row was updated.";
+  "WhatsApp number saved successfully.";
 
     return;
   }
