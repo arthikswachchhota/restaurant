@@ -2311,7 +2311,7 @@ async function loadCustomContent() {
     await supabaseClient
       .from("custom_content")
       .select("*")
-      .eq("is_enabled", true)
+      // .eq("is_enabled", true)
       .order("box_number", { ascending: true });
 
   if (error) {
