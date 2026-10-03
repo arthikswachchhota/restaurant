@@ -507,7 +507,49 @@
 /* =========================
    SETTINGS MANAGER
 ========================= */
+function openWebsiteContentManager() {
 
+  let manager =
+    document.getElementById("websiteContentManager");
+
+  if (!manager) {
+
+    manager =
+      document.createElement("div");
+
+    manager.className = "manager";
+    manager.id = "websiteContentManager";
+
+    manager.innerHTML = `
+      <h2>📝 Website Content</h2>
+
+      <div class="food-item">
+        <h3>Website Text</h3>
+        <p>Manage website-wide text and descriptions.</p>
+      </div>
+
+      <button
+        class="close-manager"
+        type="button"
+        onclick="
+          document.getElementById('websiteContentManager').style.display='none';
+        "
+      >
+        ← Back
+      </button>
+    `;
+
+    document
+      .querySelector(".dashboard")
+      .appendChild(manager);
+  }
+
+  manager.style.display = "block";
+
+  manager.scrollIntoView({
+    behavior: "smooth"
+  });
+}
 function openSettingsManager() {
 
   let manager =
@@ -529,11 +571,12 @@ function openSettingsManager() {
         <p>Manage website text and content.</p>
 
         <button
-          class="manage-button"
-          type="button"
-        >
-          Manage Website Content
-        </button>
+  class="manage-button"
+  type="button"
+  onclick="openWebsiteContentManager()"
+>
+  Manage Website Content
+</button>
       </div>
 
       <div class="food-item">
