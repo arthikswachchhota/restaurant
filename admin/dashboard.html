@@ -559,7 +559,28 @@
 
   const heroId =
     heroData[0].id;
+const { error: websiteError } =
+  await supabaseClient
+    .from("website_settings")
+    .update({
+      website_name: name,
+      updated_at: new Date().toISOString()
+    })
+    .eq("id", 1);
 
+if (websiteError) {
+
+  console.error(
+    "Website settings save error:",
+    websiteError
+  );
+
+  status.textContent =
+    "Website name save failed: " +
+    websiteError.message;
+
+  return;
+}
   const { error } =
     await supabaseClient
       .from("hero")
