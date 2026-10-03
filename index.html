@@ -2326,8 +2326,13 @@ async function loadCustomContent() {
 }
 
   if (!data || data.length === 0) {
-    return;
-  }
+
+  alert("Custom Content Data: 0");
+
+  return;
+}
+
+alert("Custom Content Data: " + data.length);
 
   const placementMap = {
     "Hero After": "customContentHeroAfter"
