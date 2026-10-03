@@ -2315,12 +2315,15 @@ async function loadCustomContent() {
       .order("box_number", { ascending: true });
 
   if (error) {
-    console.error(
-      "Custom content load error:",
-      error
-    );
-    return;
-  }
+  console.error(
+    "Custom content load error:",
+    error
+  );
+
+  alert("Custom Content Error: " + error.message);
+
+  return;
+}
 
   if (!data || data.length === 0) {
     return;
