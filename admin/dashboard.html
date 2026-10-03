@@ -502,7 +502,87 @@
 
       status.textContent = "Logged in";
 
-    }
+}
+
+/* =========================
+   SETTINGS MANAGER
+========================= */
+
+function openSettingsManager() {
+
+  let manager =
+    document.getElementById("settingsManager");
+
+  if (!manager) {
+
+    manager =
+      document.createElement("div");
+
+    manager.className = "manager";
+    manager.id = "settingsManager";
+
+    manager.innerHTML = `
+      <h2>⚙️ Settings</h2>
+
+      <div class="food-item">
+        <h3>📝 Website Content</h3>
+        <p>Manage website text and content.</p>
+
+        <button
+          class="manage-button"
+          type="button"
+        >
+          Manage Website Content
+        </button>
+      </div>
+
+      <div class="food-item">
+        <h3>🧩 Custom Content</h3>
+        <p>Add and manage custom content boxes.</p>
+
+        <button
+          class="manage-button"
+          type="button"
+        >
+          Manage Custom Content
+        </button>
+      </div>
+
+      <div class="food-item">
+        <h3>🎨 Theme Colors</h3>
+        <p>Customize the website theme colors.</p>
+
+        <button
+          class="manage-button"
+          type="button"
+        >
+          Manage Theme Colors
+        </button>
+      </div>
+
+      <button
+        class="close-manager"
+        type="button"
+        onclick="
+          document.getElementById('settingsManager').style.display='none';
+        "
+      >
+        ← Back to Dashboard
+      </button>
+    `;
+
+    document
+      .querySelector(".dashboard")
+      .appendChild(manager);
+  }
+
+  manager.style.display = "block";
+
+  manager.scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
 /* =========================
    WHATSAPP MANAGER
 ========================= */
