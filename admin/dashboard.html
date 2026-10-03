@@ -716,11 +716,12 @@ function openSettingsManager() {
         <p>Add and manage custom content boxes.</p>
 
         <button
-          class="manage-button"
-          type="button"
-        >
-          Manage Custom Content
-        </button>
+  class="manage-button"
+  type="button"
+  onclick="openCustomContentManager()"
+>
+  Manage Custom Content
+</button>
       </div>
 
       <div class="food-item">
@@ -757,7 +758,137 @@ function openSettingsManager() {
     behavior: "smooth"
   });
 }
+function openCustomContentManager() {
 
+  let manager =
+    document.getElementById("customContentManager");
+
+  if (!manager) {
+
+    manager =
+      document.createElement("div");
+
+    manager.className = "manager";
+    manager.id = "customContentManager";
+
+    manager.innerHTML = `
+      <h2>🧩 Custom Content</h2>
+
+      <div class="food-item">
+        <h3>Custom Box 1</h3>
+
+        <label>Title</label>
+        <input
+          type="text"
+          placeholder="Custom title"
+        >
+
+        <label>Description</label>
+        <input
+          type="text"
+          placeholder="Custom description"
+        >
+
+        <label>Placement</label>
+        <select>
+          <option>Hero After</option>
+          <option>Menu After</option>
+          <option>Gallery After</option>
+          <option>Footer Before</option>
+        </select>
+
+        <button
+          class="save-food"
+          type="button"
+        >
+          💾 Save Box 1
+        </button>
+      </div>
+
+      <div class="food-item">
+        <h3>Custom Box 2</h3>
+
+        <label>Title</label>
+        <input
+          type="text"
+          placeholder="Custom title"
+        >
+
+        <label>Description</label>
+        <input
+          type="text"
+          placeholder="Custom description"
+        >
+
+        <label>Placement</label>
+        <select>
+          <option>Hero After</option>
+          <option>Menu After</option>
+          <option>Gallery After</option>
+          <option>Footer Before</option>
+        </select>
+
+        <button
+          class="save-food"
+          type="button"
+        >
+          💾 Save Box 2
+        </button>
+      </div>
+
+      <div class="food-item">
+        <h3>Custom Box 3</h3>
+
+        <label>Title</label>
+        <input
+          type="text"
+          placeholder="Custom title"
+        >
+
+        <label>Description</label>
+        <input
+          type="text"
+          placeholder="Custom description"
+        >
+
+        <label>Placement</label>
+        <select>
+          <option>Hero After</option>
+          <option>Menu After</option>
+          <option>Gallery After</option>
+          <option>Footer Before</option>
+        </select>
+
+        <button
+          class="save-food"
+          type="button"
+        >
+          💾 Save Box 3
+        </button>
+      </div>
+
+      <button
+        class="close-manager"
+        type="button"
+        onclick="
+          document.getElementById('customContentManager').style.display='none';
+        "
+      >
+        ← Back
+      </button>
+    `;
+
+    document
+      .querySelector(".dashboard")
+      .appendChild(manager);
+  }
+
+  manager.style.display = "block";
+
+  manager.scrollIntoView({
+    behavior: "smooth"
+  });
+}
 /* =========================
    WHATSAPP MANAGER
 ========================= */
