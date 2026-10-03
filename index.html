@@ -2547,6 +2547,61 @@ async function loadTodayStatus() {
   });
 
 }
+  /* =========================
+   WHATSAPP
+========================= */
+
+async function loadWhatsAppData() {
+
+  const fallbackNumber =
+    "966571638203";
+
+  const { data, error } =
+    await supabaseClient
+      .from("whatsapp_settings")
+      .select("phone_number")
+      .eq("id", 1)
+      .single();
+
+  let phoneNumber =
+    fallbackNumber;
+
+  if (
+    !error &&
+    data &&
+    data.phone_number
+  ) {
+    phoneNumber =
+      data.phone_number
+        .toString()
+        .replace(/\D/g, "");
+  }
+
+  const whatsappLinks =
+    document.querySelectorAll(
+      'a[href^="https://wa.me/"]'
+    );
+
+  whatsappLinks.forEach(function(link) {
+
+    link.href =
+      "https://wa.me/" + phoneNumber;
+
+  });
+
+  const contactWhatsApp =
+    document.querySelector(
+      '.contact-card a[href^="https://wa.me/"]'
+    );
+
+  if (contactWhatsApp) {
+
+    contactWhatsApp.textContent =
+      "+" +
+      phoneNumber;
+
+  }
+}
 async function loadFoodData() {
 
   const foodGrid =
@@ -2626,6 +2681,7 @@ loadTodayStatus();
 loadOpeningHours();
 loadFoodData();
 loadGalleryData();
+loadWhatsAppData();
 /* =========================
    LANGUAGE
 ========================== */
