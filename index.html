@@ -1250,7 +1250,54 @@
       font-weight: 800;
     }
 
+/* =========================
+   CUSTOM CONTENT BOX
+========================= */
 
+.custom-content-box {
+  width: 100%;
+  max-width: 900px;
+  margin: 24px auto;
+  padding: 22px 24px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 183, 195, 0.18);
+  border-left: 4px solid var(--cyan);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.custom-content-box h3 {
+  margin: 0 0 8px;
+  color: #003b40;
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+.custom-content-box p {
+  margin: 0;
+  color: #555;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+
+  .custom-content-box {
+    margin: 18px auto;
+    padding: 18px;
+    border-radius: 14px;
+  }
+
+  .custom-content-box h3 {
+    font-size: 18px;
+  }
+
+  .custom-content-box p {
+    font-size: 14px;
+  }
+
+}
   </style>
 </head>
 
