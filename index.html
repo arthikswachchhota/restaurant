@@ -2380,8 +2380,12 @@ async function loadCustomContent() {
 
   data.forEach(function(item) {
 
-    const targetId =
-      placementMap[item.placement];
+  if (!item.is_enabled) {
+    return;
+  }
+
+  const targetId =
+    placementMap[item.placement];
 
     if (!targetId) {
       return;
