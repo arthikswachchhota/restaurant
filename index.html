@@ -2269,10 +2269,26 @@ const supabaseClient =
     return;
   }
 
-  const { data, error } =
+    const { data, error } =
     await supabaseClient
       .from("hero")
-    .select("image_url, welcome_color, title_color, description_color, welcome_font_size, title_font_size, description_font_size, welcome_mobile_font_size, title_mobile_font_size, description_mobile_font_size")
+      .select(`
+        image_url,
+        welcome_text,
+        welcome_text_ar,
+        welcome_text_bn,
+        welcome_color,
+        title_color,
+        description_color,
+        welcome_font_size,
+        title_font_size,
+        description_font_size,
+        welcome_mobile_font_size,
+        title_mobile_font_size,
+        description_mobile_font_size,
+        title,
+        description
+      `)
       .eq("is_active", true)
       .limit(1);
 
@@ -2307,7 +2323,32 @@ const heroTitle =
 
 const heroDescription =
   document.querySelector(".hero-description");
+if (welcomeText) {
 
+  const welcomeEnglish =
+    welcomeText.querySelector('[data-lang="en"]');
+
+  const welcomeArabic =
+    welcomeText.querySelector('[data-lang="ar"]');
+
+  const welcomeBengali =
+    welcomeText.querySelector('[data-lang="bn"]');
+
+  if (welcomeEnglish) {
+    welcomeEnglish.textContent =
+      data[0].welcome_text || "";
+  }
+
+  if (welcomeArabic) {
+    welcomeArabic.textContent =
+      data[0].welcome_text_ar || "";
+  }
+
+  if (welcomeBengali) {
+    welcomeBengali.textContent =
+      data[0].welcome_text_bn || "";
+  }
+}
 if (welcomeText) {
   welcomeText.style.color =
     data[0].welcome_color || "#ffffff";
