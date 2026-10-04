@@ -942,7 +942,7 @@ function openCustomContentManager() {
     inputs[1].value.trim();
 
   const isEnabled =
-    selects[0].value === "true";
+  selects[0].selectedIndex === 0;
 
   const placement =
     selects[1].value;
