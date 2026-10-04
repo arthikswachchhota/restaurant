@@ -638,63 +638,65 @@ function openWebsiteContentManager() {
 
       <div class="food-item">
 
-  <h3>Website Information</h3>
+        <h3>Website Information</h3>
 
-  <label>Website / Cafeteria Name</label>
+        <label>Website / Cafeteria Name</label>
 
-  <input
-    type="text"
-    id="websiteName"
-    placeholder="Fawaz Cafeteria"
-  >
-<label>Welcome Text — English</label>
+        <input
+          type="text"
+          id="websiteName"
+          placeholder="Fawaz Cafeteria"
+        >
 
-<input
-  type="text"
-  id="websiteWelcomeText"
-  placeholder="WELCOME TO"
->
+        <label>Welcome Text — English</label>
 
-<label>Welcome Text — Arabic</label>
+        <input
+          type="text"
+          id="websiteWelcomeText"
+          placeholder="WELCOME TO"
+        >
 
-<input
-  type="text"
-  id="websiteWelcomeTextAr"
-  placeholder="مرحباً بكم في"
->
+        <label>Welcome Text — Arabic</label>
 
-<label>Welcome Text — Bengali</label>
+        <input
+          type="text"
+          id="websiteWelcomeTextAr"
+          placeholder="مرحباً بكم في"
+        >
 
-<input
-  type="text"
-  id="websiteWelcomeTextBn"
-  placeholder="স্বাগতম"
->
-  <label>Hero Title</label>
+        <label>Welcome Text — Bengali</label>
 
-  <input
-    type="text"
-    id="websiteHeroTitle"
-    placeholder="Welcome to Fawaz Cafeteria"
-  >
+        <input
+          type="text"
+          id="websiteWelcomeTextBn"
+          placeholder="স্বাগতম"
+        >
 
-  <label>Hero Description</label>
+        <label>Hero Title</label>
 
-  <input
-    type="text"
-    id="websiteHeroDescription"
-    placeholder="Fresh food and great taste."
-  >
+        <input
+          type="text"
+          id="websiteHeroTitle"
+          placeholder="Welcome to Fawaz Cafeteria"
+        >
 
-  <button
-  class="save-food"
-  type="button"
-  onclick="saveWebsiteContent()"
->
-  💾 Save Website Content
-</button>
+        <label>Hero Description</label>
 
-</div>
+        <input
+          type="text"
+          id="websiteHeroDescription"
+          placeholder="Fresh food and great taste."
+        >
+
+        <button
+          class="save-food"
+          type="button"
+          onclick="saveWebsiteContent()"
+        >
+          💾 Save Website Content
+        </button>
+
+      </div>
 
       <button
         class="close-manager"
@@ -714,11 +716,10 @@ function openWebsiteContentManager() {
 
   manager.style.display = "block";
 
-manager.scrollIntoView({
-  behavior: "smooth"
-});
+  manager.scrollIntoView({
+    behavior: "smooth"
+  });
 
-loadCustomContent();
 }
 function openSettingsManager() {
 
