@@ -510,7 +510,19 @@
     async function saveWebsiteContent() {
 
   const name =
-    document.getElementById("websiteName").value.trim();
+  document.getElementById("websiteName").value.trim();
+
+const welcomeText =
+  document.getElementById("websiteWelcomeText").value.trim();
+
+const welcomeTextAr =
+  document.getElementById("websiteWelcomeTextAr").value.trim();
+
+const welcomeTextBn =
+  document.getElementById("websiteWelcomeTextBn").value.trim();
+
+const title =
+  document.getElementById("websiteHeroTitle").value.trim();
 
   const title =
     document.getElementById("websiteHeroTitle").value.trim();
@@ -633,7 +645,29 @@ function openWebsiteContentManager() {
     id="websiteName"
     placeholder="Fawaz Cafeteria"
   >
+<label>Welcome Text — English</label>
 
+<input
+  type="text"
+  id="websiteWelcomeText"
+  placeholder="WELCOME TO"
+>
+
+<label>Welcome Text — Arabic</label>
+
+<input
+  type="text"
+  id="websiteWelcomeTextAr"
+  placeholder="مرحباً بكم في"
+>
+
+<label>Welcome Text — Bengali</label>
+
+<input
+  type="text"
+  id="websiteWelcomeTextBn"
+  placeholder="স্বাগতম"
+>
   <label>Hero Title</label>
 
   <input
