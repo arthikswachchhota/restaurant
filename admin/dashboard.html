@@ -527,6 +527,12 @@
   const description =
     document.getElementById("websiteHeroDescription").value.trim();
 
+  const aboutTitle =
+    document.getElementById("websiteAboutTitle").value.trim();
+
+  const aboutDescription =
+    document.getElementById("websiteAboutDescription").value.trim();
+
   if (!title || !description) {
 
     status.textContent =
@@ -574,6 +580,8 @@
       .from("website_settings")
       .update({
         website_name: name,
+        about_title: aboutTitle,
+        about_description: aboutDescription,
         updated_at: new Date().toISOString()
       })
       .eq("id", 1);
@@ -586,7 +594,7 @@
     );
 
     status.textContent =
-      "Website name save failed: " +
+      "Website content save failed: " +
       websiteError.message;
 
     return;
