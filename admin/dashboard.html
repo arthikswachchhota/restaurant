@@ -681,6 +681,12 @@
   const heroDescription =
     document.getElementById("websiteHeroDescription");
 
+  const aboutTitle =
+    document.getElementById("websiteAboutTitle");
+
+  const aboutDescription =
+    document.getElementById("websiteAboutDescription");
+
   if (websiteName) {
     websiteName.value =
       websiteData.website_name || "";
@@ -709,6 +715,16 @@
   if (heroDescription) {
     heroDescription.value =
       heroData.description || "";
+  }
+
+  if (aboutTitle) {
+    aboutTitle.value =
+      websiteData.about_title || "";
+  }
+
+  if (aboutDescription) {
+    aboutDescription.value =
+      websiteData.about_description || "";
   }
 }
 function openWebsiteContentManager() {
