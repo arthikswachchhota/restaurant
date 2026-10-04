@@ -633,7 +633,7 @@
   const { data: websiteData, error: websiteError } =
     await supabaseClient
       .from("website_settings")
-      .select("website_name")
+      .select("website_name, about_title, about_description")
       .eq("id", 1)
       .single();
 
