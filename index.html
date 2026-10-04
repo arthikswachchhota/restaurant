@@ -2414,6 +2414,63 @@ const supabaseClient =
     );
   }
 
+}
+
+async function loadWebsiteContent() {
+
+  const { data, error } =
+    await supabaseClient
+      .from("website_settings")
+      .select("about_title, about_description")
+      .eq("id", 1)
+      .single();
+
+  if (error) {
+    console.error(
+      "Website content load error:",
+      error
+    );
+    return;
+  }
+
+  const aboutSection =
+    document.getElementById("about");
+
+  if (!aboutSection) {
+    return;
+  }
+
+  const aboutTitle =
+    aboutSection.querySelector(".section-title");
+
+  const aboutDescription =
+    aboutSection.querySelector(".section-description");
+
+  if (aboutTitle) {
+
+    const titleEnglish =
+      aboutTitle.querySelector('[data-lang="en"]');
+
+    if (titleEnglish) {
+      titleEnglish.textContent =
+        data.about_title ||
+        "Simple food, familiar taste";
+    }
+  }
+
+  if (aboutDescription) {
+
+    const descriptionEnglish =
+      aboutDescription.querySelector('[data-lang="en"]');
+
+    if (descriptionEnglish) {
+      descriptionEnglish.textContent =
+        data.about_description ||
+        "Fawaz Cafeteria serves fresh and familiar food for the local community in Umm Al-Salam, Jeddah.";
+    }
+  }
+
+}
   /* HERO TITLE */
 
   const heroTitle =
