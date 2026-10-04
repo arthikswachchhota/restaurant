@@ -620,6 +620,89 @@
   status.textContent =
     "Website content saved successfully.";
 }
+    async function loadWebsiteContent() {
+
+  const { data: websiteData, error: websiteError } =
+    await supabaseClient
+      .from("website_settings")
+      .select("website_name")
+      .eq("id", 1)
+      .single();
+
+  if (websiteError) {
+    console.error(
+      "Website settings load error:",
+      websiteError
+    );
+    return;
+  }
+
+  const { data: heroData, error: heroError } =
+    await supabaseClient
+      .from("hero")
+      .select(
+        "welcome_text, welcome_text_ar, welcome_text_bn, title, description"
+      )
+      .order("id", { ascending: true })
+      .limit(1)
+      .single();
+
+  if (heroError) {
+    console.error(
+      "Hero content load error:",
+      heroError
+    );
+    return;
+  }
+
+  const websiteName =
+    document.getElementById("websiteName");
+
+  const welcomeText =
+    document.getElementById("websiteWelcomeText");
+
+  const welcomeTextAr =
+    document.getElementById("websiteWelcomeTextAr");
+
+  const welcomeTextBn =
+    document.getElementById("websiteWelcomeTextBn");
+
+  const heroTitle =
+    document.getElementById("websiteHeroTitle");
+
+  const heroDescription =
+    document.getElementById("websiteHeroDescription");
+
+  if (websiteName) {
+    websiteName.value =
+      websiteData.website_name || "";
+  }
+
+  if (welcomeText) {
+    welcomeText.value =
+      heroData.welcome_text || "";
+  }
+
+  if (welcomeTextAr) {
+    welcomeTextAr.value =
+      heroData.welcome_text_ar || "";
+  }
+
+  if (welcomeTextBn) {
+    welcomeTextBn.value =
+      heroData.welcome_text_bn || "";
+  }
+
+  if (heroTitle) {
+    heroTitle.value =
+      heroData.title || "";
+  }
+
+  if (heroDescription) {
+    heroDescription.value =
+      heroData.description || "";
+  }
+}
 function openWebsiteContentManager() {
 
   let manager =
