@@ -524,11 +524,8 @@ const welcomeTextBn =
 const title =
   document.getElementById("websiteHeroTitle").value.trim();
 
-  const title =
-    document.getElementById("websiteHeroTitle").value.trim();
-
-  const description =
-    document.getElementById("websiteHeroDescription").value.trim();
+const description =
+  document.getElementById("websiteHeroDescription").value.trim();
 
   if (!title || !description) {
 
@@ -593,10 +590,16 @@ if (websiteError) {
 
   return;
 }
+    const description =
+    document.getElementById("websiteHeroDescription").value.trim();
+
   const { error } =
     await supabaseClient
       .from("hero")
       .update({
+        welcome_text: welcomeText,
+        welcome_text_ar: welcomeTextAr,
+        welcome_text_bn: welcomeTextBn,
         title: title,
         description: description
       })
