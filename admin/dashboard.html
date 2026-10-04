@@ -510,22 +510,22 @@
     async function saveWebsiteContent() {
 
   const name =
-  document.getElementById("websiteName").value.trim();
+    document.getElementById("websiteName").value.trim();
 
-const welcomeText =
-  document.getElementById("websiteWelcomeText").value.trim();
+  const welcomeText =
+    document.getElementById("websiteWelcomeText").value.trim();
 
-const welcomeTextAr =
-  document.getElementById("websiteWelcomeTextAr").value.trim();
+  const welcomeTextAr =
+    document.getElementById("websiteWelcomeTextAr").value.trim();
 
-const welcomeTextBn =
-  document.getElementById("websiteWelcomeTextBn").value.trim();
+  const welcomeTextBn =
+    document.getElementById("websiteWelcomeTextBn").value.trim();
 
-const title =
-  document.getElementById("websiteHeroTitle").value.trim();
+  const title =
+    document.getElementById("websiteHeroTitle").value.trim();
 
-const description =
-  document.getElementById("websiteHeroDescription").value.trim();
+  const description =
+    document.getElementById("websiteHeroDescription").value.trim();
 
   if (!title || !description) {
 
@@ -568,30 +568,29 @@ const description =
 
   const heroId =
     heroData[0].id;
-const { error: websiteError } =
-  await supabaseClient
-    .from("website_settings")
-    .update({
-      website_name: name,
-      updated_at: new Date().toISOString()
-    })
-    .eq("id", 1);
 
-if (websiteError) {
+  const { error: websiteError } =
+    await supabaseClient
+      .from("website_settings")
+      .update({
+        website_name: name,
+        updated_at: new Date().toISOString()
+      })
+      .eq("id", 1);
 
-  console.error(
-    "Website settings save error:",
-    websiteError
-  );
+  if (websiteError) {
 
-  status.textContent =
-    "Website name save failed: " +
-    websiteError.message;
+    console.error(
+      "Website settings save error:",
+      websiteError
+    );
 
-  return;
-}
-    const description =
-    document.getElementById("websiteHeroDescription").value.trim();
+    status.textContent =
+      "Website name save failed: " +
+      websiteError.message;
+
+    return;
+  }
 
   const { error } =
     await supabaseClient
