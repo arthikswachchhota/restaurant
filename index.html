@@ -2414,7 +2414,46 @@ const supabaseClient =
     );
   }
 
+  /* HERO TITLE */
+
+  const heroTitle =
+    document.querySelector(".hero-title");
+
+  if (heroTitle) {
+
+    heroTitle.style.color =
+      hero.title_color || "#ffffff";
+
+    heroTitle.style.fontSize =
+      hero.title_font_size || "48px";
+
+    heroTitle.style.setProperty(
+      "--mobile-font-size",
+      hero.title_mobile_font_size || "30px"
+    );
+  }
+
+  /* HERO DESCRIPTION */
+
+  const heroDescription =
+    document.querySelector(".hero-description");
+
+  if (heroDescription) {
+
+    heroDescription.style.color =
+      hero.description_color || "#ffffff";
+
+    heroDescription.style.fontSize =
+      hero.description_font_size || "18px";
+
+    heroDescription.style.setProperty(
+      "--mobile-font-size",
+      hero.description_mobile_font_size || "14px"
+    );
+  }
+
 }
+
 
 async function loadWebsiteContent() {
 
@@ -2468,45 +2507,6 @@ async function loadWebsiteContent() {
         data.about_description ||
         "Fawaz Cafeteria serves fresh and familiar food for the local community in Umm Al-Salam, Jeddah.";
     }
-  }
-
-}
-  /* HERO TITLE */
-
-  const heroTitle =
-    document.querySelector(".hero-title");
-
-  if (heroTitle) {
-
-    heroTitle.style.color =
-      hero.title_color || "#ffffff";
-
-    heroTitle.style.fontSize =
-      hero.title_font_size || "48px";
-
-    heroTitle.style.setProperty(
-      "--mobile-font-size",
-      hero.title_mobile_font_size || "30px"
-    );
-  }
-
-  /* HERO DESCRIPTION */
-
-  const heroDescription =
-    document.querySelector(".hero-description");
-
-  if (heroDescription) {
-
-    heroDescription.style.color =
-      hero.description_color || "#ffffff";
-
-    heroDescription.style.fontSize =
-      hero.description_font_size || "18px";
-
-    heroDescription.style.setProperty(
-      "--mobile-font-size",
-      hero.description_mobile_font_size || "14px"
-    );
   }
 
 }
