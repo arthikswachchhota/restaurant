@@ -2325,7 +2325,7 @@ const supabaseClient =
     return;
   }
 
-    const { data, error } =
+  const { data, error } =
     await supabaseClient
       .from("hero")
       .select(`
@@ -2349,10 +2349,7 @@ const supabaseClient =
       .limit(1);
 
   if (error) {
-    console.error(
-      "Hero load error:",
-      error
-    );
+    console.error("Hero load error:", error);
     return;
   }
 
@@ -2364,90 +2361,97 @@ const supabaseClient =
     return;
   }
 
+  const hero = data[0];
+
   heroSection.style.backgroundImage =
     `linear-gradient(
       180deg,
       rgba(0, 190, 200, 0.30),
       rgba(0, 65, 70, 0.72)
     ),
-        url("${data[0].image_url}")`;
-const welcomeText =
-  document.querySelector(".welcome-text");
+    url("${hero.image_url}")`;
 
-const heroTitle =
-  document.querySelector(".hero-title");
+  /* WELCOME TEXT */
 
-const heroDescription =
-  document.querySelector(".hero-description");
-if (welcomeText) {
+  const welcomeText =
+    document.querySelector(".welcome-text");
 
-  const welcomeEnglish =
-    welcomeText.querySelector('[data-lang="en"]');
+  if (welcomeText) {
 
-  const welcomeArabic =
-    welcomeText.querySelector('[data-lang="ar"]');
+    const welcomeEnglish =
+      welcomeText.querySelector('[data-lang="en"]');
 
-  const welcomeBengali =
-    welcomeText.querySelector('[data-lang="bn"]');
+    const welcomeArabic =
+      welcomeText.querySelector('[data-lang="ar"]');
 
-  if (welcomeEnglish) {
-    welcomeEnglish.textContent =
-      data[0].welcome_text || "";
+    const welcomeBengali =
+      welcomeText.querySelector('[data-lang="bn"]');
+
+    if (welcomeEnglish) {
+      welcomeEnglish.textContent =
+        hero.welcome_text || "WELCOME TO";
+    }
+
+    if (welcomeArabic) {
+      welcomeArabic.textContent =
+        hero.welcome_text_ar || "مرحباً بكم في";
+    }
+
+    if (welcomeBengali) {
+      welcomeBengali.textContent =
+        hero.welcome_text_bn || "স্বাগতম";
+    }
+
+    welcomeText.style.color =
+      hero.welcome_color || "#ffffff";
+
+    welcomeText.style.fontSize =
+      hero.welcome_font_size || "18px";
+
+    welcomeText.style.setProperty(
+      "--mobile-font-size",
+      hero.welcome_mobile_font_size || "43px"
+    );
   }
 
-  if (welcomeArabic) {
-    welcomeArabic.textContent =
-      data[0].welcome_text_ar || "";
+  /* HERO TITLE */
+
+  const heroTitle =
+    document.querySelector(".hero-title");
+
+  if (heroTitle) {
+
+    heroTitle.style.color =
+      hero.title_color || "#ffffff";
+
+    heroTitle.style.fontSize =
+      hero.title_font_size || "48px";
+
+    heroTitle.style.setProperty(
+      "--mobile-font-size",
+      hero.title_mobile_font_size || "30px"
+    );
   }
 
-  if (welcomeBengali) {
-    welcomeBengali.textContent =
-      data[0].welcome_text_bn || "";
+  /* HERO DESCRIPTION */
+
+  const heroDescription =
+    document.querySelector(".hero-description");
+
+  if (heroDescription) {
+
+    heroDescription.style.color =
+      hero.description_color || "#ffffff";
+
+    heroDescription.style.fontSize =
+      hero.description_font_size || "18px";
+
+    heroDescription.style.setProperty(
+      "--mobile-font-size",
+      hero.description_mobile_font_size || "14px"
+    );
   }
-}
-if (welcomeText) {
-  welcomeText.style.color =
-    data[0].welcome_color || "#ffffff";
-}
 
-if (heroTitle) {
-  heroTitle.style.color =
-    data[0].title_color || "#ffffff";
-}
-
-if (heroDescription) {
-  heroDescription.style.color =
-    data[0].description_color || "#ffffff";
-}
-   if (welcomeText) {
-  welcomeText.style.fontSize =
-    data[0].welcome_font_size || "18px";
-
-  welcomeText.style.setProperty(
-    "--mobile-font-size",
-    data[0].welcome_mobile_font_size || "43px"
-  );
-}
-
-if (heroTitle) {
-  heroTitle.style.fontSize =
-    data[0].title_font_size || "48px";
-
-  heroTitle.style.setProperty(
-    "--mobile-font-size",
-    data[0].title_mobile_font_size || "30px"
-  );
-}
-
-if (heroDescription) {
-  heroDescription.style.fontSize =
-    data[0].description_font_size || "18px";
-
-  heroDescription.style.setProperty(
-    "--mobile-font-size",
-    data[0].description_mobile_font_size || "14px"
-  );
-}
 }
 async function loadCustomContent() {
 
