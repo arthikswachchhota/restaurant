@@ -2476,7 +2476,13 @@ async function loadWebsiteContent() {
   const { data, error } =
     await supabaseClient
       .from("website_settings")
-      .select("about_title, about_description, hours_text")
+      .select(`
+        about_title,
+        about_description,
+        hours_text,
+        contact_title,
+        contact_description
+      `)
       .eq("id", 1)
       .single();
 
@@ -2491,89 +2497,89 @@ async function loadWebsiteContent() {
   const aboutSection =
     document.getElementById("about");
 
-  if (!aboutSection) {
-    return;
-  }
+  if (aboutSection) {
 
-  const aboutTitle =
-    aboutSection.querySelector(".section-title");
+    const aboutTitle =
+      aboutSection.querySelector(".section-title");
 
-  const aboutDescription =
-    aboutSection.querySelector(".section-description");
+    const aboutDescription =
+      aboutSection.querySelector(".section-description");
 
-  if (aboutTitle) {
+    if (aboutTitle) {
 
-    const titleEnglish =
-      aboutTitle.querySelector('[data-lang="en"]');
+      const titleEnglish =
+        aboutTitle.querySelector('[data-lang="en"]');
 
-    if (titleEnglish) {
-      titleEnglish.textContent =
-        data.about_title ||
-        "Simple food, familiar taste";
+      if (titleEnglish) {
+        titleEnglish.textContent =
+          data.about_title ||
+          "Simple food, familiar taste";
+      }
+    }
+
+    if (aboutDescription) {
+
+      const descriptionEnglish =
+        aboutDescription.querySelector('[data-lang="en"]');
+
+      if (descriptionEnglish) {
+        descriptionEnglish.textContent =
+          data.about_description ||
+          "Fawaz Cafeteria serves fresh and familiar food for the local community in Umm Al-Salam, Jeddah.";
+      }
     }
   }
 
-  if (aboutDescription) {
+  const hoursTextDisplay =
+    document.getElementById("websiteHoursTextDisplay");
 
-    const descriptionEnglish =
-      aboutDescription.querySelector('[data-lang="en"]');
+  if (hoursTextDisplay) {
 
-    if (descriptionEnglish) {
-  descriptionEnglish.textContent =
-    data.about_description ||
-    "Fawaz Cafeteria serves fresh and familiar food for the local community in Umm Al-Salam, Jeddah.";
-}
+    const hoursEnglish =
+      hoursTextDisplay.querySelector('[data-lang="en"]');
 
-const hoursTextDisplay =
-  document.getElementById("websiteHoursTextDisplay");
-
-if (hoursTextDisplay) {
-
-  const hoursEnglish =
-    hoursTextDisplay.querySelector('[data-lang="en"]');
-
-  if (hoursEnglish) {
-    hoursEnglish.textContent =
-      data.hours_text ||
-      "Open 14 hours every day during the listed periods.";
-  }
-}
-
-const contactSection =
-  document.getElementById("contact");
-
-if (contactSection) {
-
-  const contactTitle =
-    contactSection.querySelector(".section-title");
-
-  const contactDescription =
-    contactSection.querySelector("#contactDescription");
-
-  if (contactTitle) {
-
-    const titleEnglish =
-      contactTitle.querySelector('[data-lang="en"]');
-
-    if (titleEnglish) {
-      titleEnglish.textContent =
-        data.contact_title ||
-        "Find Fawaz";
+    if (hoursEnglish) {
+      hoursEnglish.textContent =
+        data.hours_text ||
+        "Open 14 hours every day during the listed periods.";
     }
   }
 
-  if (contactDescription) {
+  const contactSection =
+    document.getElementById("contact");
 
-    const descriptionEnglish =
-      contactDescription.querySelector('[data-lang="en"]');
+  if (contactSection) {
 
-    if (descriptionEnglish) {
-      descriptionEnglish.textContent =
-        data.contact_description ||
-        "Get in touch with Fawaz Cafeteria.";
+    const contactTitle =
+      contactSection.querySelector(".section-title");
+
+    const contactDescription =
+      contactSection.querySelector("#contactDescription");
+
+    if (contactTitle) {
+
+      const titleEnglish =
+        contactTitle.querySelector('[data-lang="en"]');
+
+      if (titleEnglish) {
+        titleEnglish.textContent =
+          data.contact_title ||
+          "Find Fawaz";
+      }
+    }
+
+    if (contactDescription) {
+
+      const descriptionEnglish =
+        contactDescription.querySelector('[data-lang="en"]');
+
+      if (descriptionEnglish) {
+        descriptionEnglish.textContent =
+          data.contact_description ||
+          "Get in touch with Fawaz Cafeteria.";
+      }
     }
   }
-}
 
 }
 async function loadCustomContent() {
