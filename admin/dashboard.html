@@ -1105,11 +1105,12 @@ function openSettingsManager() {
         <p>Customize the website theme colors.</p>
 
         <button
-          class="manage-button"
-          type="button"
-        >
-          Manage Theme Colors
-        </button>
+  class="manage-button"
+  type="button"
+  onclick="openThemeColorsManager()"
+>
+  Manage Theme Colors
+</button>
       </div>
 
       <button
@@ -1120,6 +1121,151 @@ function openSettingsManager() {
         "
       >
         ← Back to Dashboard
+      </button>
+    `;
+
+    document
+      .querySelector(".dashboard")
+      .appendChild(manager);
+  }
+
+  manager.style.display = "block";
+
+  manager.scrollIntoView({
+    behavior: "smooth"
+  });
+}
+  function openThemeColorsManager() {
+
+  let manager =
+    document.getElementById("themeColorsManager");
+
+  if (!manager) {
+
+    manager =
+      document.createElement("div");
+
+    manager.className = "manager";
+    manager.id = "themeColorsManager";
+
+    manager.innerHTML = `
+      <h2>🎨 Theme Colors</h2>
+
+      <div class="food-item">
+
+        <h3>Website Colors</h3>
+
+        <label>Primary / Accent</label>
+        <input
+          type="color"
+          id="themePrimaryColor"
+          value="#00b7c3"
+        >
+
+        <label>Page Background</label>
+        <input
+          type="color"
+          id="themePageBackground"
+          value="#07191b"
+        >
+
+        <label>Section Background</label>
+        <input
+          type="color"
+          id="themeSectionBackground"
+          value="#0b2023"
+        >
+
+        <label>Card Background</label>
+        <input
+          type="color"
+          id="themeCardBackground"
+          value="#0b2023"
+        >
+
+        <label>Hero Overlay</label>
+        <input
+          type="text"
+          id="themeHeroOverlay"
+          value="rgba(0, 190, 200, 0.30)"
+          placeholder="rgba(0, 190, 200, 0.30)"
+        >
+
+        <label>Main Text</label>
+        <input
+          type="color"
+          id="themeMainText"
+          value="#ffffff"
+        >
+
+        <label>Muted Text</label>
+        <input
+          type="color"
+          id="themeMutedText"
+          value="#c9d7d8"
+        >
+
+        <label>Button Background</label>
+        <input
+          type="color"
+          id="themeButtonBackground"
+          value="#00b7c3"
+        >
+
+        <label>Button Text</label>
+        <input
+          type="color"
+          id="themeButtonText"
+          value="#ffffff"
+        >
+
+        <label>Link Color</label>
+        <input
+          type="color"
+          id="themeLinkColor"
+          value="#00b7c3"
+        >
+
+        <label>Footer Background</label>
+        <input
+          type="color"
+          id="themeFooterBackground"
+          value="#061416"
+        >
+
+        <label>Footer Text</label>
+        <input
+          type="color"
+          id="themeFooterText"
+          value="#c9d7d8"
+        >
+
+        <label>Border Color</label>
+        <input
+          type="text"
+          id="themeBorderColor"
+          value="rgba(0, 183, 195, 0.25)"
+          placeholder="rgba(0, 183, 195, 0.25)"
+        >
+
+        <button
+          class="save-food"
+          type="button"
+          onclick="saveThemeColors()"
+        >
+          💾 Save Theme Colors
+        </button>
+
+      </div>
+
+      <button
+        class="close-manager"
+        type="button"
+        onclick="
+          document.getElementById('themeColorsManager').style.display='none';
+        "
+      >
+        ← Back to Settings
       </button>
     `;
 
