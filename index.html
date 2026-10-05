@@ -2621,6 +2621,101 @@ async function loadWebsiteContent() {
 }
 
 }
+  async function loadThemeColors() {
+
+  const { data, error } =
+    await supabaseClient
+      .from("theme_colors")
+      .select("*")
+      .eq("id", 1)
+      .single();
+
+  if (error) {
+
+    console.error(
+      "Theme colors load error:",
+      error
+    );
+
+    return;
+  }
+
+  if (!data) {
+    return;
+  }
+
+  const root =
+    document.documentElement;
+
+  root.style.setProperty(
+    "--cyan",
+    data.primary_color || "#00b7c3"
+  );
+
+  root.style.setProperty(
+    "--dark",
+    data.page_background || "#071315"
+  );
+
+  root.style.setProperty(
+    "--muted",
+    data.muted_text || "#b9c8ca"
+  );
+
+  root.style.setProperty(
+    "--border",
+    data.border_color ||
+    "rgba(0, 210, 220, 0.22)"
+  );
+
+  root.style.setProperty(
+    "--white",
+    data.main_text || "#ffffff"
+  );
+
+  root.style.setProperty(
+    "--theme-section-background",
+    data.section_background || "#0b2023"
+  );
+
+  root.style.setProperty(
+    "--theme-card-background",
+    data.card_background || "#0b2023"
+  );
+
+  root.style.setProperty(
+    "--theme-button-background",
+    data.button_background || "#00b7c3"
+  );
+
+  root.style.setProperty(
+    "--theme-button-text",
+    data.button_text || "#ffffff"
+  );
+
+  root.style.setProperty(
+    "--theme-link-color",
+    data.link_color || "#00b7c3"
+  );
+
+  root.style.setProperty(
+    "--theme-footer-background",
+    data.footer_background || "#061416"
+  );
+
+  root.style.setProperty(
+    "--theme-footer-text",
+    data.footer_text || "#c9d7d8"
+  );
+
+  root.style.setProperty(
+    "--theme-hero-overlay",
+    data.hero_overlay ||
+    "rgba(0, 190, 200, 0.30)"
+  );
+}
+
+loadThemeColors();
 async function loadCustomContent() {
 
   const { data, error } =
