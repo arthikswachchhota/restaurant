@@ -1282,6 +1282,110 @@ function openThemeColorsManager() {
   manager.scrollIntoView({
     behavior: "smooth"
   });
+
+
+  /* LOAD SAVED THEME COLORS */
+
+  const { data, error } =
+    await supabaseClient
+      .from("theme_colors")
+      .select("*")
+      .eq("id", 1)
+      .single();
+
+  if (error) {
+
+    console.error(
+      "Theme colors load error:",
+      error
+    );
+
+    return;
+  }
+
+  if (!data) {
+    return;
+  }
+
+
+  document.getElementById(
+    "themePrimaryColor"
+  ).value =
+    data.primary_color || "#00b7c3";
+
+
+  document.getElementById(
+    "themePageBackground"
+  ).value =
+    data.page_background || "#07191b";
+
+
+  document.getElementById(
+    "themeSectionBackground"
+  ).value =
+    data.section_background || "#0b2023";
+
+
+  document.getElementById(
+    "themeCardBackground"
+  ).value =
+    data.card_background || "#0b2023";
+
+
+  document.getElementById(
+    "themeHeroOverlay"
+  ).value =
+    data.hero_overlay ||
+    "rgba(0, 190, 200, 0.30)";
+
+
+  document.getElementById(
+    "themeMainText"
+  ).value =
+    data.main_text || "#ffffff";
+
+
+  document.getElementById(
+    "themeMutedText"
+  ).value =
+    data.muted_text || "#c9d7d8";
+
+
+  document.getElementById(
+    "themeButtonBackground"
+  ).value =
+    data.button_background || "#00b7c3";
+
+
+  document.getElementById(
+    "themeButtonText"
+  ).value =
+    data.button_text || "#ffffff";
+
+
+  document.getElementById(
+    "themeLinkColor"
+  ).value =
+    data.link_color || "#00b7c3";
+
+
+  document.getElementById(
+    "themeFooterBackground"
+  ).value =
+    data.footer_background || "#061416";
+
+
+  document.getElementById(
+    "themeFooterText"
+  ).value =
+    data.footer_text || "#c9d7d8";
+
+
+  document.getElementById(
+    "themeBorderColor"
+  ).value =
+    data.border_color ||
+    "rgba(0, 183, 195, 0.25)";
 }
 
 
