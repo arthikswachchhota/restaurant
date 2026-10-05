@@ -5,12 +5,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Fawaz Cafeteria | Umm Al-Salam, Jeddah</title>
+  <title id="websiteSeoTitle">
+  Fawaz Cafeteria | Umm Al-Salam, Jeddah
+</title>
 
-  <meta
-    name="description"
-    content="Fawaz Cafeteria in Umm Al-Salam, Jeddah. Fresh food, familiar taste and friendly service."
-  >
+<meta
+  name="description"
+  id="websiteSeoDescription"
+  content="Fawaz Cafeteria in Umm Al-Salam, Jeddah. Fresh food, familiar taste and friendly service."
+>
 
   <meta
     name="keywords"
@@ -2582,7 +2585,7 @@ async function loadWebsiteContent() {
     }
   }
 
-  const footerTextDisplay =
+    const footerTextDisplay =
     document.getElementById("websiteFooterTextDisplay");
 
   if (footerTextDisplay) {
@@ -2595,6 +2598,26 @@ async function loadWebsiteContent() {
         data.footer_text ||
         "Fresh food, familiar taste and friendly service in Umm Al-Salam, Jeddah.";
     }
+  }
+
+  const seoTitle =
+    document.getElementById("websiteSeoTitle");
+
+  const seoDescription =
+    document.getElementById("websiteSeoDescription");
+
+  if (seoTitle) {
+    seoTitle.textContent =
+      data.seo_title ||
+      "Fawaz Cafeteria | Umm Al-Salam, Jeddah";
+  }
+
+  if (seoDescription) {
+    seoDescription.setAttribute(
+      "content",
+      data.seo_description ||
+      "Fawaz Cafeteria in Umm Al-Salam, Jeddah. Fresh food, familiar taste and friendly service."
+    );
   }
 
 }
