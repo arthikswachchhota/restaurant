@@ -1451,7 +1451,87 @@ function openCustomContentManager() {
 
   loadCustomContent();
 }
+async function saveThemeColors() {
 
+  const primaryColor =
+    document.getElementById("themePrimaryColor").value;
+
+  const pageBackground =
+    document.getElementById("themePageBackground").value;
+
+  const sectionBackground =
+    document.getElementById("themeSectionBackground").value;
+
+  const cardBackground =
+    document.getElementById("themeCardBackground").value;
+
+  const heroOverlay =
+    document.getElementById("themeHeroOverlay").value.trim();
+
+  const mainText =
+    document.getElementById("themeMainText").value;
+
+  const mutedText =
+    document.getElementById("themeMutedText").value;
+
+  const buttonBackground =
+    document.getElementById("themeButtonBackground").value;
+
+  const buttonText =
+    document.getElementById("themeButtonText").value;
+
+  const linkColor =
+    document.getElementById("themeLinkColor").value;
+
+  const footerBackground =
+    document.getElementById("themeFooterBackground").value;
+
+  const footerText =
+    document.getElementById("themeFooterText").value;
+
+  const borderColor =
+    document.getElementById("themeBorderColor").value.trim();
+
+  status.textContent =
+    "Saving theme colors...";
+
+  const { error } =
+    await supabaseClient
+      .from("theme_colors")
+      .update({
+        primary_color: primaryColor,
+        page_background: pageBackground,
+        section_background: sectionBackground,
+        card_background: cardBackground,
+        hero_overlay: heroOverlay,
+        main_text: mainText,
+        muted_text: mutedText,
+        button_background: buttonBackground,
+        button_text: buttonText,
+        link_color: linkColor,
+        footer_background: footerBackground,
+        footer_text: footerText,
+        border_color: borderColor,
+        updated_at: new Date().toISOString()
+      })
+      .eq("id", 1);
+
+  if (error) {
+
+    console.error(
+      "Theme colors save error:",
+      error
+    );
+
+    status.textContent =
+      "Save failed: " + error.message;
+
+    return;
+  }
+
+  status.textContent =
+    "Theme colors saved successfully.";
+}
 
 async function saveCustomContent(boxNumber) {
 
