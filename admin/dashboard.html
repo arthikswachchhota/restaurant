@@ -606,15 +606,21 @@ if (!title || !description) {
     await supabaseClient
       .from("website_settings")
       .update({
-        website_name: name,
-        about_title: aboutTitle,
-about_description: aboutDescription,
-food_title: foodTitle,
-food_description: foodDescription,
-gallery_title: galleryTitle,
-gallery_description: galleryDescription,
-updated_at: new Date().toISOString()
-      })
+  website_name: name,
+  about_title: aboutTitle,
+  about_description: aboutDescription,
+  food_title: foodTitle,
+  food_description: foodDescription,
+  gallery_title: galleryTitle,
+  gallery_description: galleryDescription,
+  hours_text: hoursText,
+  contact_title: contactTitle,
+  contact_description: contactDescription,
+  footer_text: footerText,
+  seo_title: seoTitle,
+  seo_description: seoDescription,
+  updated_at: new Date().toISOString()
+})
       .eq("id", 1);
 
   if (websiteError) {
