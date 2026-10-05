@@ -537,7 +537,29 @@ const foodTitle =
 
 const foodDescription =
   document.getElementById("websiteFoodDescription").value.trim();
+const galleryTitle =
+  document.getElementById("websiteGalleryTitle");
 
+const galleryDescription =
+  document.getElementById("websiteGalleryDescription");
+
+const hoursText =
+  document.getElementById("websiteHoursText");
+
+const contactTitle =
+  document.getElementById("websiteContactTitle");
+
+const contactDescription =
+  document.getElementById("websiteContactDescription");
+
+const footerText =
+  document.getElementById("websiteFooterText");
+
+const seoTitle =
+  document.getElementById("websiteSeoTitle");
+
+const seoDescription =
+  document.getElementById("websiteSeoDescription");
 const galleryTitle =
   document.getElementById("websiteGalleryTitle").value.trim();
 
@@ -670,7 +692,21 @@ if (!title || !description) {
   const { data: websiteData, error: websiteError } =
     await supabaseClient
       .from("website_settings")
-      .select("website_name, about_title, about_description")
+      .select(`
+  website_name,
+  about_title,
+  about_description,
+  food_title,
+  food_description,
+  gallery_title,
+  gallery_description,
+  hours_text,
+  contact_title,
+  contact_description,
+  footer_text,
+  seo_title,
+  seo_description
+`)
       .eq("id", 1)
       .single();
 
