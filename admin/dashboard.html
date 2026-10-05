@@ -822,7 +822,6 @@ function openWebsiteContentManager() {
   id="websiteFoodTitle"
   placeholder="Our Food Menu"
 >
-
 <label>Food Section Description</label>
 
 <input
@@ -830,26 +829,42 @@ function openWebsiteContentManager() {
   id="websiteFoodDescription"
   placeholder="Fresh and familiar favorites."
 >
-        <button
-          class="save-food"
-          type="button"
-          onclick="saveWebsiteContent()"
-        >
-          💾 Save Website Content
-        </button>
 
-      </div>
+<label>Gallery Section Title</label>
 
-      <button
-        class="close-manager"
-        type="button"
-        onclick="
-          document.getElementById('websiteContentManager').style.display='none';
-        "
-      >
-        ← Back
-      </button>
-    `;
+<input
+  type="text"
+  id="websiteGalleryTitle"
+  placeholder="Our Gallery"
+>
+
+<label>Gallery Section Description</label>
+
+<input
+  type="text"
+  id="websiteGalleryDescription"
+  placeholder="A look at our food and cafeteria."
+>
+
+<button
+  class="save-food"
+  type="button"
+  onclick="saveWebsiteContent()"
+>
+  💾 Save Website Content
+</button>
+
+</div>
+
+<button
+  class="close-manager"
+  type="button"
+  onclick="
+    document.getElementById('websiteContentManager').style.display='none';
+  "
+>
+  ← Back
+</button>
 
     document
       .querySelector(".dashboard")
