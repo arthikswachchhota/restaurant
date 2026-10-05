@@ -759,7 +759,35 @@ if (!title || !description) {
 
   const aboutDescription =
     document.getElementById("websiteAboutDescription");
+const foodTitle =
+  document.getElementById("websiteFoodTitle");
 
+const foodDescription =
+  document.getElementById("websiteFoodDescription");
+
+const galleryTitle =
+  document.getElementById("websiteGalleryTitle");
+
+const galleryDescription =
+  document.getElementById("websiteGalleryDescription");
+
+const hoursText =
+  document.getElementById("websiteHoursText");
+
+const contactTitle =
+  document.getElementById("websiteContactTitle");
+
+const contactDescription =
+  document.getElementById("websiteContactDescription");
+
+const footerText =
+  document.getElementById("websiteFooterText");
+
+const seoTitle =
+  document.getElementById("websiteSeoTitle");
+
+const seoDescription =
+  document.getElementById("websiteSeoDescription");
   if (websiteName) {
     websiteName.value =
       websiteData.website_name || "";
@@ -799,6 +827,55 @@ if (!title || !description) {
     aboutDescription.value =
       websiteData.about_description || "";
   }
+      if (foodTitle) {
+  foodTitle.value =
+    websiteData.food_title || "";
+}
+
+if (foodDescription) {
+  foodDescription.value =
+    websiteData.food_description || "";
+}
+
+if (galleryTitle) {
+  galleryTitle.value =
+    websiteData.gallery_title || "";
+}
+
+if (galleryDescription) {
+  galleryDescription.value =
+    websiteData.gallery_description || "";
+}
+
+if (hoursText) {
+  hoursText.value =
+    websiteData.hours_text || "";
+}
+
+if (contactTitle) {
+  contactTitle.value =
+    websiteData.contact_title || "";
+}
+
+if (contactDescription) {
+  contactDescription.value =
+    websiteData.contact_description || "";
+}
+
+if (footerText) {
+  footerText.value =
+    websiteData.footer_text || "";
+}
+
+if (seoTitle) {
+  seoTitle.value =
+    websiteData.seo_title || "";
+}
+
+if (seoDescription) {
+  seoDescription.value =
+    websiteData.seo_description || "";
+}
 }
 function openWebsiteContentManager() {
 
