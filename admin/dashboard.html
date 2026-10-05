@@ -507,7 +507,8 @@
 /* =========================
    SETTINGS MANAGER
 ========================= */
-    async function saveWebsiteContent() {
+
+async function saveWebsiteContent() {
 
   const name =
     document.getElementById("websiteName").value.trim();
@@ -532,63 +533,44 @@
 
   const aboutDescription =
     document.getElementById("websiteAboutDescription").value.trim();
-const foodTitle =
-  document.getElementById("websiteFoodTitle").value.trim();
 
-const foodDescription =
-  document.getElementById("websiteFoodDescription").value.trim();
-const galleryTitle =
-  document.getElementById("websiteGalleryTitle");
+  const foodTitle =
+    document.getElementById("websiteFoodTitle").value.trim();
 
-const galleryDescription =
-  document.getElementById("websiteGalleryDescription");
+  const foodDescription =
+    document.getElementById("websiteFoodDescription").value.trim();
 
-const hoursText =
-  document.getElementById("websiteHoursText");
+  const galleryTitle =
+    document.getElementById("websiteGalleryTitle").value.trim();
 
-const contactTitle =
-  document.getElementById("websiteContactTitle");
+  const galleryDescription =
+    document.getElementById("websiteGalleryDescription").value.trim();
 
-const contactDescription =
-  document.getElementById("websiteContactDescription");
+  const hoursText =
+    document.getElementById("websiteHoursText").value.trim();
 
-const footerText =
-  document.getElementById("websiteFooterText");
+  const contactTitle =
+    document.getElementById("websiteContactTitle").value.trim();
 
-const seoTitle =
-  document.getElementById("websiteSeoTitle");
+  const contactDescription =
+    document.getElementById("websiteContactDescription").value.trim();
 
-const seoDescription =
-  document.getElementById("websiteSeoDescription");
-const galleryTitle =
-  document.getElementById("websiteGalleryTitle").value.trim();
+  const footerText =
+    document.getElementById("websiteFooterText").value.trim();
 
-const galleryDescription =
-  document.getElementById("websiteGalleryDescription").value.trim();
-const hoursText =
-  document.getElementById("websiteHoursText").value.trim();
+  const seoTitle =
+    document.getElementById("websiteSeoTitle").value.trim();
 
-const contactTitle =
-  document.getElementById("websiteContactTitle").value.trim();
+  const seoDescription =
+    document.getElementById("websiteSeoDescription").value.trim();
 
-const contactDescription =
-  document.getElementById("websiteContactDescription").value.trim();
+  if (!title || !description) {
 
-const footerText =
-  document.getElementById("websiteFooterText").value.trim();
+    status.textContent =
+      "Please enter Hero Title and Description.";
 
-const seoTitle =
-  document.getElementById("websiteSeoTitle").value.trim();
-
-const seoDescription =
-  document.getElementById("websiteSeoDescription").value.trim();
-if (!title || !description) {
-
-  status.textContent =
-    "Please enter Hero Title and Description.";
-
-  return;
-}
+    return;
+  }
 
   status.textContent =
     "Saving website content...";
@@ -628,21 +610,21 @@ if (!title || !description) {
     await supabaseClient
       .from("website_settings")
       .update({
-  website_name: name,
-  about_title: aboutTitle,
-  about_description: aboutDescription,
-  food_title: foodTitle,
-  food_description: foodDescription,
-  gallery_title: galleryTitle,
-  gallery_description: galleryDescription,
-  hours_text: hoursText,
-  contact_title: contactTitle,
-  contact_description: contactDescription,
-  footer_text: footerText,
-  seo_title: seoTitle,
-  seo_description: seoDescription,
-  updated_at: new Date().toISOString()
-})
+        website_name: name,
+        about_title: aboutTitle,
+        about_description: aboutDescription,
+        food_title: foodTitle,
+        food_description: foodDescription,
+        gallery_title: galleryTitle,
+        gallery_description: galleryDescription,
+        hours_text: hoursText,
+        contact_title: contactTitle,
+        contact_description: contactDescription,
+        footer_text: footerText,
+        seo_title: seoTitle,
+        seo_description: seoDescription,
+        updated_at: new Date().toISOString()
+      })
       .eq("id", 1);
 
   if (websiteError) {
@@ -687,34 +669,38 @@ if (!title || !description) {
   status.textContent =
     "Website content saved successfully.";
 }
-    async function loadWebsiteContent() {
+
+
+async function loadWebsiteContent() {
 
   const { data: websiteData, error: websiteError } =
     await supabaseClient
       .from("website_settings")
       .select(`
-  website_name,
-  about_title,
-  about_description,
-  food_title,
-  food_description,
-  gallery_title,
-  gallery_description,
-  hours_text,
-  contact_title,
-  contact_description,
-  footer_text,
-  seo_title,
-  seo_description
-`)
+        website_name,
+        about_title,
+        about_description,
+        food_title,
+        food_description,
+        gallery_title,
+        gallery_description,
+        hours_text,
+        contact_title,
+        contact_description,
+        footer_text,
+        seo_title,
+        seo_description
+      `)
       .eq("id", 1)
       .single();
 
   if (websiteError) {
+
     console.error(
       "Website settings load error:",
       websiteError
     );
+
     return;
   }
 
@@ -729,10 +715,12 @@ if (!title || !description) {
       .single();
 
   if (heroError) {
+
     console.error(
       "Hero content load error:",
       heroError
     );
+
     return;
   }
 
@@ -759,35 +747,38 @@ if (!title || !description) {
 
   const aboutDescription =
     document.getElementById("websiteAboutDescription");
-const foodTitle =
-  document.getElementById("websiteFoodTitle");
 
-const foodDescription =
-  document.getElementById("websiteFoodDescription");
+  const foodTitle =
+    document.getElementById("websiteFoodTitle");
 
-const galleryTitle =
-  document.getElementById("websiteGalleryTitle");
+  const foodDescription =
+    document.getElementById("websiteFoodDescription");
 
-const galleryDescription =
-  document.getElementById("websiteGalleryDescription");
+  const galleryTitle =
+    document.getElementById("websiteGalleryTitle");
 
-const hoursText =
-  document.getElementById("websiteHoursText");
+  const galleryDescription =
+    document.getElementById("websiteGalleryDescription");
 
-const contactTitle =
-  document.getElementById("websiteContactTitle");
+  const hoursText =
+    document.getElementById("websiteHoursText");
 
-const contactDescription =
-  document.getElementById("websiteContactDescription");
+  const contactTitle =
+    document.getElementById("websiteContactTitle");
 
-const footerText =
-  document.getElementById("websiteFooterText");
+  const contactDescription =
+    document.getElementById("websiteContactDescription");
 
-const seoTitle =
-  document.getElementById("websiteSeoTitle");
+  const footerText =
+    document.getElementById("websiteFooterText");
 
-const seoDescription =
-  document.getElementById("websiteSeoDescription");
+  const seoTitle =
+    document.getElementById("websiteSeoTitle");
+
+  const seoDescription =
+    document.getElementById("websiteSeoDescription");
+
+
   if (websiteName) {
     websiteName.value =
       websiteData.website_name || "";
@@ -827,56 +818,59 @@ const seoDescription =
     aboutDescription.value =
       websiteData.about_description || "";
   }
-      if (foodTitle) {
-  foodTitle.value =
-    websiteData.food_title || "";
+
+  if (foodTitle) {
+    foodTitle.value =
+      websiteData.food_title || "";
+  }
+
+  if (foodDescription) {
+    foodDescription.value =
+      websiteData.food_description || "";
+  }
+
+  if (galleryTitle) {
+    galleryTitle.value =
+      websiteData.gallery_title || "";
+  }
+
+  if (galleryDescription) {
+    galleryDescription.value =
+      websiteData.gallery_description || "";
+  }
+
+  if (hoursText) {
+    hoursText.value =
+      websiteData.hours_text || "";
+  }
+
+  if (contactTitle) {
+    contactTitle.value =
+      websiteData.contact_title || "";
+  }
+
+  if (contactDescription) {
+    contactDescription.value =
+      websiteData.contact_description || "";
+  }
+
+  if (footerText) {
+    footerText.value =
+      websiteData.footer_text || "";
+  }
+
+  if (seoTitle) {
+    seoTitle.value =
+      websiteData.seo_title || "";
+  }
+
+  if (seoDescription) {
+    seoDescription.value =
+      websiteData.seo_description || "";
+  }
 }
 
-if (foodDescription) {
-  foodDescription.value =
-    websiteData.food_description || "";
-}
 
-if (galleryTitle) {
-  galleryTitle.value =
-    websiteData.gallery_title || "";
-}
-
-if (galleryDescription) {
-  galleryDescription.value =
-    websiteData.gallery_description || "";
-}
-
-if (hoursText) {
-  hoursText.value =
-    websiteData.hours_text || "";
-}
-
-if (contactTitle) {
-  contactTitle.value =
-    websiteData.contact_title || "";
-}
-
-if (contactDescription) {
-  contactDescription.value =
-    websiteData.contact_description || "";
-}
-
-if (footerText) {
-  footerText.value =
-    websiteData.footer_text || "";
-}
-
-if (seoTitle) {
-  seoTitle.value =
-    websiteData.seo_title || "";
-}
-
-if (seoDescription) {
-  seoDescription.value =
-    websiteData.seo_description || "";
-}
-}
 function openWebsiteContentManager() {
 
   let manager =
@@ -891,173 +885,174 @@ function openWebsiteContentManager() {
     manager.id = "websiteContentManager";
 
     manager.innerHTML = `
-  <h2>📝 Website Content</h2>
+      <h2>📝 Website Content</h2>
 
-  <div class="food-item">
+      <div class="food-item">
 
-    <h3>Website Information</h3>
+        <h3>Website Information</h3>
 
-    <label>Website / Cafeteria Name</label>
-    <input
-      type="text"
-      id="websiteName"
-      placeholder="Fawaz Cafeteria"
-    >
+        <label>Website / Cafeteria Name</label>
+        <input
+          type="text"
+          id="websiteName"
+          placeholder="Fawaz Cafeteria"
+        >
 
-    <label>Welcome Text — English</label>
-    <input
-      type="text"
-      id="websiteWelcomeText"
-      placeholder="WELCOME TO"
-    >
+        <label>Welcome Text — English</label>
+        <input
+          type="text"
+          id="websiteWelcomeText"
+          placeholder="WELCOME TO"
+        >
 
-    <label>Welcome Text — Arabic</label>
-    <input
-      type="text"
-      id="websiteWelcomeTextAr"
-      placeholder="مرحباً بكم في"
-    >
+        <label>Welcome Text — Arabic</label>
+        <input
+          type="text"
+          id="websiteWelcomeTextAr"
+          placeholder="مرحباً بكم في"
+        >
 
-    <label>Welcome Text — Bengali</label>
-    <input
-      type="text"
-      id="websiteWelcomeTextBn"
-      placeholder="স্বাগতম"
-    >
+        <label>Welcome Text — Bengali</label>
+        <input
+          type="text"
+          id="websiteWelcomeTextBn"
+          placeholder="স্বাগতম"
+        >
 
-    <label>Hero Title</label>
-    <input
-      type="text"
-      id="websiteHeroTitle"
-      placeholder="Welcome to Fawaz Cafeteria"
-    >
+        <label>Hero Title</label>
+        <input
+          type="text"
+          id="websiteHeroTitle"
+          placeholder="Welcome to Fawaz Cafeteria"
+        >
 
-    <label>Hero Description</label>
-    <input
-      type="text"
-      id="websiteHeroDescription"
-      placeholder="Fresh food and great taste."
-    >
+        <label>Hero Description</label>
+        <input
+          type="text"
+          id="websiteHeroDescription"
+          placeholder="Fresh food and great taste."
+        >
 
-    <label>About Title</label>
-    <input
-      type="text"
-      id="websiteAboutTitle"
-      placeholder="Simple food, familiar taste"
-    >
+        <label>About Title</label>
+        <input
+          type="text"
+          id="websiteAboutTitle"
+          placeholder="Simple food, familiar taste"
+        >
 
-    <label>About Description</label>
-    <input
-      type="text"
-      id="websiteAboutDescription"
-      placeholder="Fawaz Cafeteria serves fresh and familiar food for the local community in Umm Al-Salam, Jeddah."
-    >
+        <label>About Description</label>
+        <input
+          type="text"
+          id="websiteAboutDescription"
+          placeholder="Fawaz Cafeteria serves fresh and familiar food for the local community in Umm Al-Salam, Jeddah."
+        >
 
-    <label>Food Section Title</label>
-    <input
-      type="text"
-      id="websiteFoodTitle"
-      placeholder="Our Food Menu"
-    >
+        <label>Food Section Title</label>
+        <input
+          type="text"
+          id="websiteFoodTitle"
+          placeholder="Our Food Menu"
+        >
 
-    <label>Food Section Description</label>
-    <input
-      type="text"
-      id="websiteFoodDescription"
-      placeholder="Fresh and familiar favorites."
-    >
+        <label>Food Section Description</label>
+        <input
+          type="text"
+          id="websiteFoodDescription"
+          placeholder="Fresh and familiar favorites."
+        >
 
-    <label>Gallery Section Title</label>
-    <input
-      type="text"
-      id="websiteGalleryTitle"
-      placeholder="Our Gallery"
-    >
+        <label>Gallery Section Title</label>
+        <input
+          type="text"
+          id="websiteGalleryTitle"
+          placeholder="Our Gallery"
+        >
 
-    <label>Gallery Section Description</label>
-    <input
-      type="text"
-      id="websiteGalleryDescription"
-      placeholder="A look at our food and cafeteria."
-    >
+        <label>Gallery Section Description</label>
+        <input
+          type="text"
+          id="websiteGalleryDescription"
+          placeholder="A look at our food and cafeteria."
+        >
 
-    <label>Opening Hours Section Text</label>
-    <input
-      type="text"
-      id="websiteHoursText"
-      placeholder="Open daily from 5:30 AM to 12:00 PM and 4:00 PM to 12:00 AM."
-    >
+        <label>Opening Hours Section Text</label>
+        <input
+          type="text"
+          id="websiteHoursText"
+          placeholder="Open daily from 5:30 AM to 12:00 PM and 4:00 PM to 12:00 AM."
+        >
 
-    <label>Contact Section Title</label>
-    <input
-      type="text"
-      id="websiteContactTitle"
-      placeholder="Contact Us"
-    >
+        <label>Contact Section Title</label>
+        <input
+          type="text"
+          id="websiteContactTitle"
+          placeholder="Contact Us"
+        >
 
-    <label>Contact Section Description</label>
-    <input
-      type="text"
-      id="websiteContactDescription"
-      placeholder="Get in touch with Fawaz Cafeteria."
-    >
+        <label>Contact Section Description</label>
+        <input
+          type="text"
+          id="websiteContactDescription"
+          placeholder="Get in touch with Fawaz Cafeteria."
+        >
 
-    <label>Footer Text</label>
-    <input
-      type="text"
-      id="websiteFooterText"
-      placeholder="© 2026 Fawaz Cafeteria. All rights reserved."
-    >
+        <label>Footer Text</label>
+        <input
+          type="text"
+          id="websiteFooterText"
+          placeholder="© 2026 Fawaz Cafeteria. All rights reserved."
+        >
 
-    <label>SEO Title</label>
-    <input
-      type="text"
-      id="websiteSeoTitle"
-      placeholder="Fawaz Cafeteria | Umm Al-Salam, Jeddah"
-    >
+        <label>SEO Title</label>
+        <input
+          type="text"
+          id="websiteSeoTitle"
+          placeholder="Fawaz Cafeteria | Umm Al-Salam, Jeddah"
+        >
 
-    <label>SEO Description</label>
-    <input
-      type="text"
-      id="websiteSeoDescription"
-      placeholder="Fawaz Cafeteria in Umm Al-Salam, Jeddah. Fresh food, familiar taste and friendly service."
-    >
+        <label>SEO Description</label>
+        <input
+          type="text"
+          id="websiteSeoDescription"
+          placeholder="Fawaz Cafeteria in Umm Al-Salam, Jeddah. Fresh food, familiar taste and friendly service."
+        >
 
-    <button
-      class="save-food"
-      type="button"
-      onclick="saveWebsiteContent()"
-    >
-      💾 Save Website Content
-    </button>
+        <button
+          class="save-food"
+          type="button"
+          onclick="saveWebsiteContent()"
+        >
+          💾 Save Website Content
+        </button>
 
-  </div>
+      </div>
 
-  <button
-    class="close-manager"
-    type="button"
-    onclick="
-      document.getElementById('websiteContentManager').style.display='none';
-    "
-  >
-    ← Back
-  </button>
-`;
+      <button
+        class="close-manager"
+        type="button"
+        onclick="
+          document.getElementById('websiteContentManager').style.display='none';
+        "
+      >
+        ← Back
+      </button>
+    `;
 
     document
       .querySelector(".dashboard")
       .appendChild(manager);
-  
+  }
 
   manager.style.display = "block";
 
-    manager.scrollIntoView({
+  manager.scrollIntoView({
     behavior: "smooth"
   });
 
   loadWebsiteContent();
-
 }
+
+
 function openSettingsManager() {
 
   let manager =
@@ -1075,42 +1070,48 @@ function openSettingsManager() {
       <h2>⚙️ Settings</h2>
 
       <div class="food-item">
+
         <h3>📝 Website Content</h3>
         <p>Manage website text and content.</p>
 
         <button
-  class="manage-button"
-  type="button"
-  onclick="openWebsiteContentManager()"
->
-  Manage Website Content
-</button>
+          class="manage-button"
+          type="button"
+          onclick="openWebsiteContentManager()"
+        >
+          Manage Website Content
+        </button>
+
       </div>
 
       <div class="food-item">
+
         <h3>🧩 Custom Content</h3>
         <p>Add and manage custom content boxes.</p>
 
         <button
-  class="manage-button"
-  type="button"
-  onclick="openCustomContentManager()"
->
-  Manage Custom Content
-</button>
+          class="manage-button"
+          type="button"
+          onclick="openCustomContentManager()"
+        >
+          Manage Custom Content
+        </button>
+
       </div>
 
       <div class="food-item">
+
         <h3>🎨 Theme Colors</h3>
         <p>Customize the website theme colors.</p>
 
         <button
-  class="manage-button"
-  type="button"
-  onclick="openThemeColorsManager()"
->
-  Manage Theme Colors
-</button>
+          class="manage-button"
+          type="button"
+          onclick="openThemeColorsManager()"
+        >
+          Manage Theme Colors
+        </button>
+
       </div>
 
       <button
@@ -1135,7 +1136,9 @@ function openSettingsManager() {
     behavior: "smooth"
   });
 }
-  function openThemeColorsManager() {
+
+
+function openThemeColorsManager() {
 
   let manager =
     document.getElementById("themeColorsManager");
@@ -1280,6 +1283,8 @@ function openSettingsManager() {
     behavior: "smooth"
   });
 }
+
+
 function openCustomContentManager() {
 
   let manager =
@@ -1297,6 +1302,7 @@ function openCustomContentManager() {
       <h2>🧩 Custom Content</h2>
 
       <div class="food-item">
+
         <h3>Custom Box 1</h3>
 
         <label>Title</label>
@@ -1306,20 +1312,20 @@ function openCustomContentManager() {
         >
 
         <label>Description</label>
+        <input
+          type="text"
+          placeholder="Custom description"
+        >
 
-<input
-  type="text"
-  placeholder="Custom description"
->
+        <label>Status</label>
 
-<label>Status</label>
+        <select>
+          <option value="true">Enabled</option>
+          <option value="false">Disabled</option>
+        </select>
 
-<select>
-  <option value="true">Enabled</option>
-  <option value="false">Disabled</option>
-</select>
+        <label>Placement</label>
 
-<label>Placement</label>
         <select>
           <option>Hero After</option>
           <option>Menu After</option>
@@ -1328,15 +1334,17 @@ function openCustomContentManager() {
         </select>
 
         <button
-  class="save-food"
-  type="button"
-  onclick="saveCustomContent(1)"
->
-  💾 Save Box 1
-</button>
+          class="save-food"
+          type="button"
+          onclick="saveCustomContent(1)"
+        >
+          💾 Save Box 1
+        </button>
+
       </div>
 
       <div class="food-item">
+
         <h3>Custom Box 2</h3>
 
         <label>Title</label>
@@ -1346,20 +1354,20 @@ function openCustomContentManager() {
         >
 
         <label>Description</label>
+        <input
+          type="text"
+          placeholder="Custom description"
+        >
 
-<input
-  type="text"
-  placeholder="Custom description"
->
+        <label>Status</label>
 
-<label>Status</label>
+        <select>
+          <option value="true">Enabled</option>
+          <option value="false">Disabled</option>
+        </select>
 
-<select>
-  <option value="true">Enabled</option>
-  <option value="false">Disabled</option>
-</select>
+        <label>Placement</label>
 
-<label>Placement</label>
         <select>
           <option>Hero After</option>
           <option>Menu After</option>
@@ -1368,15 +1376,17 @@ function openCustomContentManager() {
         </select>
 
         <button
-  class="save-food"
-  type="button"
-  onclick="saveCustomContent(2)"
->
-  💾 Save Box 2
-</button>
+          class="save-food"
+          type="button"
+          onclick="saveCustomContent(2)"
+        >
+          💾 Save Box 2
+        </button>
+
       </div>
 
       <div class="food-item">
+
         <h3>Custom Box 3</h3>
 
         <label>Title</label>
@@ -1386,20 +1396,20 @@ function openCustomContentManager() {
         >
 
         <label>Description</label>
+        <input
+          type="text"
+          placeholder="Custom description"
+        >
 
-<input
-  type="text"
-  placeholder="Custom description"
->
+        <label>Status</label>
 
-<label>Status</label>
+        <select>
+          <option value="true">Enabled</option>
+          <option value="false">Disabled</option>
+        </select>
 
-<select>
-  <option value="true">Enabled</option>
-  <option value="false">Disabled</option>
-</select>
+        <label>Placement</label>
 
-<label>Placement</label>
         <select>
           <option>Hero After</option>
           <option>Menu After</option>
@@ -1408,12 +1418,13 @@ function openCustomContentManager() {
         </select>
 
         <button
-  class="save-food"
-  type="button"
-  onclick="saveCustomContent(3)"
->
-  💾 Save Box 3
-</button>
+          class="save-food"
+          type="button"
+          onclick="saveCustomContent(3)"
+        >
+          💾 Save Box 3
+        </button>
+
       </div>
 
       <button
@@ -1437,8 +1448,12 @@ function openCustomContentManager() {
   manager.scrollIntoView({
     behavior: "smooth"
   });
+
+  loadCustomContent();
 }
-    async function saveCustomContent(boxNumber) {
+
+
+async function saveCustomContent(boxNumber) {
 
   const manager =
     document.getElementById("customContentManager");
@@ -1462,7 +1477,7 @@ function openCustomContentManager() {
     inputs[1].value.trim();
 
   const isEnabled =
-  selects[0].selectedIndex === 0;
+    selects[0].selectedIndex === 0;
 
   const placement =
     selects[1].value;
@@ -1499,18 +1514,24 @@ function openCustomContentManager() {
     "Custom Box " + boxNumber +
     " saved successfully.";
 }
-    async function loadCustomContent() {
+
+
+async function loadCustomContent() {
 
   const manager =
     document.getElementById("customContentManager");
 
-  if (!manager) return;
+  if (!manager) {
+    return;
+  }
 
   const { data, error } =
     await supabaseClient
       .from("custom_content")
       .select("*")
-      .order("box_number", { ascending: true });
+      .order("box_number", {
+        ascending: true
+      });
 
   if (error) {
 
@@ -1522,7 +1543,9 @@ function openCustomContentManager() {
     return;
   }
 
-  if (!data || data.length === 0) return;
+  if (!data || data.length === 0) {
+    return;
+  }
 
   const boxes =
     manager.querySelectorAll(".food-item");
@@ -1532,7 +1555,9 @@ function openCustomContentManager() {
     const box =
       boxes[item.box_number - 1];
 
-    if (!box) return;
+    if (!box) {
+      return;
+    }
 
     const inputs =
       box.querySelectorAll("input");
