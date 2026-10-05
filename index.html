@@ -2086,21 +2086,21 @@
             Fawaz Cafeteria
           </div>
 
-          <p class="footer-text">
+          <p class="footer-text" id="websiteFooterTextDisplay">
 
-            <span data-lang="en">
-              Fresh food, familiar taste and friendly service in Umm Al-Salam, Jeddah.
-            </span>
+  <span data-lang="en">
+    Fresh food, familiar taste and friendly service in Umm Al-Salam, Jeddah.
+  </span>
 
-            <span data-lang="ar">
-              طعام طازج، مذاق مألوف وخدمة ودودة في أم السلام، جدة.
-            </span>
+  <span data-lang="ar">
+    طعام طازج، مذاق مألوف وخدمة ودودة في أم السلام، جدة.
+  </span>
 
-            <span data-lang="bn">
-              জেদ্দার উম্ম আল-সালামে তাজা খাবার, পরিচিত স্বাদ ও বন্ধুত্বপূর্ণ সেবা।
-            </span>
+  <span data-lang="bn">
+    জেদ্দার উম্ম আল-সালামে তাজা খাবার, পরিচিত স্বাদ ও বন্ধুত্বপূর্ণ সেবা।
+  </span>
 
-          </p>
+</p>
 
         </div>
 
@@ -2481,7 +2481,8 @@ async function loadWebsiteContent() {
         about_description,
         hours_text,
         contact_title,
-        contact_description
+        contact_description,
+        footer_text
       `)
       .eq("id", 1)
       .single();
@@ -2580,6 +2581,23 @@ async function loadWebsiteContent() {
       }
     }
   }
+
+  const footerTextDisplay =
+    document.getElementById("websiteFooterTextDisplay");
+
+  if (footerTextDisplay) {
+
+    const footerEnglish =
+      footerTextDisplay.querySelector('[data-lang="en"]');
+
+    if (footerEnglish) {
+      footerEnglish.textContent =
+        data.footer_text ||
+        "Fresh food, familiar taste and friendly service in Umm Al-Salam, Jeddah.";
+    }
+  }
+
+}
 
 }
 async function loadCustomContent() {
