@@ -532,7 +532,11 @@
 
   const aboutDescription =
     document.getElementById("websiteAboutDescription").value.trim();
+const foodTitle =
+  document.getElementById("websiteFoodTitle").value.trim();
 
+const foodDescription =
+  document.getElementById("websiteFoodDescription").value.trim();
   if (!title || !description) {
 
     status.textContent =
@@ -581,8 +585,10 @@
       .update({
         website_name: name,
         about_title: aboutTitle,
-        about_description: aboutDescription,
-        updated_at: new Date().toISOString()
+about_description: aboutDescription,
+food_title: foodTitle,
+food_description: foodDescription,
+updated_at: new Date().toISOString()
       })
       .eq("id", 1);
 
