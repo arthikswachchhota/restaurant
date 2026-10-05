@@ -543,7 +543,23 @@ const galleryTitle =
 
 const galleryDescription =
   document.getElementById("websiteGalleryDescription").value.trim();
+const hoursText =
+  document.getElementById("websiteHoursText").value.trim();
 
+const contactTitle =
+  document.getElementById("websiteContactTitle").value.trim();
+
+const contactDescription =
+  document.getElementById("websiteContactDescription").value.trim();
+
+const footerText =
+  document.getElementById("websiteFooterText").value.trim();
+
+const seoTitle =
+  document.getElementById("websiteSeoTitle").value.trim();
+
+const seoDescription =
+  document.getElementById("websiteSeoDescription").value.trim();
 if (!title || !description) {
 
   status.textContent =
@@ -756,197 +772,163 @@ function openWebsiteContentManager() {
     manager.id = "websiteContentManager";
 
     manager.innerHTML = `
-      <h2>📝 Website Content</h2>
+  <h2>📝 Website Content</h2>
 
-      <div class="food-item">
+  <div class="food-item">
 
-        <h3>Website Information</h3>
+    <h3>Website Information</h3>
 
-        <label>Website / Cafeteria Name</label>
+    <label>Website / Cafeteria Name</label>
+    <input
+      type="text"
+      id="websiteName"
+      placeholder="Fawaz Cafeteria"
+    >
 
-        <input
-          type="text"
-          id="websiteName"
-          placeholder="Fawaz Cafeteria"
-        >
+    <label>Welcome Text — English</label>
+    <input
+      type="text"
+      id="websiteWelcomeText"
+      placeholder="WELCOME TO"
+    >
 
-        <label>Welcome Text — English</label>
+    <label>Welcome Text — Arabic</label>
+    <input
+      type="text"
+      id="websiteWelcomeTextAr"
+      placeholder="مرحباً بكم في"
+    >
 
-        <input
-          type="text"
-          id="websiteWelcomeText"
-          placeholder="WELCOME TO"
-        >
+    <label>Welcome Text — Bengali</label>
+    <input
+      type="text"
+      id="websiteWelcomeTextBn"
+      placeholder="স্বাগতম"
+    >
 
-        <label>Welcome Text — Arabic</label>
+    <label>Hero Title</label>
+    <input
+      type="text"
+      id="websiteHeroTitle"
+      placeholder="Welcome to Fawaz Cafeteria"
+    >
 
-        <input
-          type="text"
-          id="websiteWelcomeTextAr"
-          placeholder="مرحباً بكم في"
-        >
+    <label>Hero Description</label>
+    <input
+      type="text"
+      id="websiteHeroDescription"
+      placeholder="Fresh food and great taste."
+    >
 
-        <label>Welcome Text — Bengali</label>
+    <label>About Title</label>
+    <input
+      type="text"
+      id="websiteAboutTitle"
+      placeholder="Simple food, familiar taste"
+    >
 
-        <input
-          type="text"
-          id="websiteWelcomeTextBn"
-          placeholder="স্বাগতম"
-        >
+    <label>About Description</label>
+    <input
+      type="text"
+      id="websiteAboutDescription"
+      placeholder="Fawaz Cafeteria serves fresh and familiar food for the local community in Umm Al-Salam, Jeddah."
+    >
 
-        <label>Hero Title</label>
+    <label>Food Section Title</label>
+    <input
+      type="text"
+      id="websiteFoodTitle"
+      placeholder="Our Food Menu"
+    >
 
-        <input
-          type="text"
-          id="websiteHeroTitle"
-          placeholder="Welcome to Fawaz Cafeteria"
-        >
+    <label>Food Section Description</label>
+    <input
+      type="text"
+      id="websiteFoodDescription"
+      placeholder="Fresh and familiar favorites."
+    >
 
-        <label>Hero Description</label>
+    <label>Gallery Section Title</label>
+    <input
+      type="text"
+      id="websiteGalleryTitle"
+      placeholder="Our Gallery"
+    >
 
-        <input
-          type="text"
-          id="websiteHeroDescription"
-          placeholder="Fresh food and great taste."
-        >
-<label>About Title</label>
+    <label>Gallery Section Description</label>
+    <input
+      type="text"
+      id="websiteGalleryDescription"
+      placeholder="A look at our food and cafeteria."
+    >
 
-<input
-  type="text"
-  id="websiteAboutTitle"
-  placeholder="Simple food, familiar taste"
->
+    <label>Opening Hours Section Text</label>
+    <input
+      type="text"
+      id="websiteHoursText"
+      placeholder="Open daily from 5:30 AM to 12:00 PM and 4:00 PM to 12:00 AM."
+    >
 
-<label>About Description</label>
+    <label>Contact Section Title</label>
+    <input
+      type="text"
+      id="websiteContactTitle"
+      placeholder="Contact Us"
+    >
 
-<input
-  type="text"
-  id="websiteAboutDescription"
-  placeholder="Fawaz Cafeteria serves fresh and familiar food for the local community in Umm Al-Salam, Jeddah."
->
-<label>Food Section Title</label>
+    <label>Contact Section Description</label>
+    <input
+      type="text"
+      id="websiteContactDescription"
+      placeholder="Get in touch with Fawaz Cafeteria."
+    >
 
-<input
-  type="text"
-  id="websiteFoodTitle"
-  placeholder="Our Food Menu"
->
-<label>Food Section Description</label>
+    <label>Footer Text</label>
+    <input
+      type="text"
+      id="websiteFooterText"
+      placeholder="© 2026 Fawaz Cafeteria. All rights reserved."
+    >
 
-<input
-  type="text"
-  id="websiteFoodDescription"
-  placeholder="Fresh and familiar favorites."
->
+    <label>SEO Title</label>
+    <input
+      type="text"
+      id="websiteSeoTitle"
+      placeholder="Fawaz Cafeteria | Umm Al-Salam, Jeddah"
+    >
 
-<label>Gallery Section Title</label>
+    <label>SEO Description</label>
+    <input
+      type="text"
+      id="websiteSeoDescription"
+      placeholder="Fawaz Cafeteria in Umm Al-Salam, Jeddah. Fresh food, familiar taste and friendly service."
+    >
 
-<input
-  type="text"
-  id="websiteGalleryTitle"
-  placeholder="Our Gallery"
->
+    <button
+      class="save-food"
+      type="button"
+      onclick="saveWebsiteContent()"
+    >
+      💾 Save Website Content
+    </button>
 
-<label>Gallery Section Description</label>
+  </div>
 
-<input
-  type="text"
-  id="websiteGalleryDescription"
-  placeholder="A look at our food and cafeteria."
->
-<label>Opening Hours Section Text</label>
-
-<input
-  type="text"
-  id="websiteHoursText"
-  placeholder="Open daily from 5:30 AM to 12:00 PM and 4:00 PM to 12:00 AM."
->
-<label>Contact Section Title</label>
-
-<input
-  type="text"
-  id="websiteContactTitle"
-  placeholder="Contact Us"
->
-
-<label>Contact Section Description</label>
-
-<input
-  type="text"
-  id="websiteContactDescription"
-  placeholder="Get in touch with Fawaz Cafeteria."
->
-<button
-  class="save-food"
-  type="button"
-  onclick="saveWebsiteContent()"<input
-  type="text"
-  id="websiteContactDescription"
-  placeholder="Get in touch with Fawaz Cafeteria."
->
-
-<label>Footer Text</label>
-
-<input
-  type="text"
-  id="websiteFooterText"
-  placeholder="© 2026 Fawaz Cafeteria. All rights reserved."
->
-
-<button
-  class="save-food"
-  type="button"
-  onclick="saveWebsiteContent()"
-  <label>SEO Title</label>
-
-<input
-  type="text"
-  id="websiteSeoTitle"
-  placeholder="Fawaz Cafeteria | Umm Al-Salam, Jeddah"
->
-
-<label>SEO Description</label>
-
-<input
-  type="text"
-  id="websiteSeoDescription"
-  placeholder="Fawaz Cafeteria in Umm Al-Salam, Jeddah. Fresh food, familiar taste and friendly service."
->
-
-<button
-  class="save-food"
-  type="button"
-  onclick="saveWebsiteContent()"
->
-  💾 Save Website Content
-</button>
-
-</div>
-
-<button
-  class="close-manager"
-  type="button"
-  onclick="
-    document.getElementById('websiteContentManager').style.display='none';
-  "
->
-  ← Back
-</button>
-
-<button
-  class="close-manager"
-  type="button"
-  onclick="
-    document.getElementById('websiteContentManager').style.display='none';
-  "
->
-  ← Back
-</button>
+  <button
+    class="close-manager"
+    type="button"
+    onclick="
+      document.getElementById('websiteContentManager').style.display='none';
+    "
+  >
+    ← Back
+  </button>
+`;
 
     document
       .querySelector(".dashboard")
       .appendChild(manager);
-  }
+  
 
   manager.style.display = "block";
 
