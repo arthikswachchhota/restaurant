@@ -1872,6 +1872,22 @@
             </span>
 
           </h2>
+        
+          <p class="section-description" id="contactDescription">
+
+  <span data-lang="en">
+    Get in touch with Fawaz Cafeteria.
+  </span>
+
+  <span data-lang="ar">
+    تواصل مع كافتيريا فواز.
+  </span>
+
+  <span data-lang="bn">
+    ফাওয়াজ ক্যাফেটেরিয়ার সাথে যোগাযোগ করুন।
+  </span>
+
+</p>
 
         </div>
 
@@ -2520,6 +2536,42 @@ if (hoursTextDisplay) {
     hoursEnglish.textContent =
       data.hours_text ||
       "Open 14 hours every day during the listed periods.";
+  }
+}
+
+const contactSection =
+  document.getElementById("contact");
+
+if (contactSection) {
+
+  const contactTitle =
+    contactSection.querySelector(".section-title");
+
+  const contactDescription =
+    contactSection.querySelector("#contactDescription");
+
+  if (contactTitle) {
+
+    const titleEnglish =
+      contactTitle.querySelector('[data-lang="en"]');
+
+    if (titleEnglish) {
+      titleEnglish.textContent =
+        data.contact_title ||
+        "Find Fawaz";
+    }
+  }
+
+  if (contactDescription) {
+
+    const descriptionEnglish =
+      contactDescription.querySelector('[data-lang="en"]');
+
+    if (descriptionEnglish) {
+      descriptionEnglish.textContent =
+        data.contact_description ||
+        "Get in touch with Fawaz Cafeteria.";
+    }
   }
 }
 
