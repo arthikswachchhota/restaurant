@@ -1557,9 +1557,6 @@ function openCustomContentManager() {
 }
 async function saveThemeColors() {
 
-  status.textContent =
-    "Theme color button clicked.";
-
   const primaryColor =
     document.getElementById("themePrimaryColor").value;
 
@@ -1599,16 +1596,33 @@ async function saveThemeColors() {
   const borderColor =
     document.getElementById("themeBorderColor").value.trim();
 
+
   status.textContent =
     "Saving theme colors...";
 
-  console.log(
-  "Card Background:",
-  cardBackground
-);
 
-const { error } =
-  await supabaseClient
+  console.log(
+    "Theme colors to save:",
+    {
+      primaryColor,
+      pageBackground,
+      sectionBackground,
+      cardBackground,
+      heroOverlay,
+      mainText,
+      mutedText,
+      buttonBackground,
+      buttonText,
+      linkColor,
+      footerBackground,
+      footerText,
+      borderColor
+    }
+  );
+
+
+  const { data, error } =
+    await supabaseClient
       .from("theme_colors")
       .update({
         primary_color: primaryColor,
@@ -1626,7 +1640,10 @@ const { error } =
         border_color: borderColor,
         updated_at: new Date().toISOString()
       })
-      .eq("id", 1);
+      .eq("id", 1)
+      .select("*")
+      .single();
+
 
   if (error) {
 
@@ -1640,6 +1657,26 @@ const { error } =
 
     return;
   }
+
+
+  if (!data) {
+
+    console.error(
+      "Theme colors save returned no data."
+    );
+
+    status.textContent =
+      "Save failed: no database row was updated.";
+
+    return;
+  }
+
+
+  console.log(
+    "Theme colors saved to Supabase:",
+    data
+  );
+
 
   status.textContent =
     "Theme colors saved successfully.";
