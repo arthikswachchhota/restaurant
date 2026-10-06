@@ -1621,7 +1621,9 @@ async function saveThemeColors() {
   );
 
 
-  const { data, error } =
+  /* UPDATE DATABASE */
+
+  const { error } =
     await supabaseClient
       .from("theme_colors")
       .update({
@@ -1640,15 +1642,15 @@ async function saveThemeColors() {
         border_color: borderColor,
         updated_at: new Date().toISOString()
       })
-      .eq("id", 1)
-      .select("*")
-      .single();
+      .eq("id", 1);
 
+
+  /* CHECK UPDATE ERROR */
 
   if (error) {
 
     console.error(
-      "Theme colors save error:",
+      "Theme colors update error:",
       error
     );
 
@@ -1659,24 +1661,61 @@ async function saveThemeColors() {
   }
 
 
-  if (!data) {
+  /* VERIFY SAVED DATA */
+
+  const {
+    data: verifyData,
+    error: verifyError
+  } =
+    await supabaseClient
+      .from("theme_colors")
+      .select(
+        "id, primary_color, page_background, section_background, card_background, hero_overlay, main_text, muted_text, button_background, button_text, link_color, footer_background, footer_text, border_color"
+      )
+      .eq("id", 1);
+
+
+  /* CHECK VERIFY ERROR */
+
+  if (verifyError) {
 
     console.error(
-      "Theme colors save returned no data."
+      "Theme colors verify error:",
+      verifyError
     );
 
     status.textContent =
-      "Save failed: no database row was updated.";
+      "Save verification failed: " +
+      verifyError.message;
 
     return;
   }
 
 
+  /* CHECK DATABASE ROW */
+
+  if (
+    !verifyData ||
+    verifyData.length === 0
+  ) {
+
+    console.error(
+      "Theme colors verify returned no row."
+    );
+
+    status.textContent =
+      "Save failed: theme row could not be verified.";
+
+    return;
+  }
+
+
+  /* SUCCESS */
+
   console.log(
     "Theme colors saved to Supabase:",
-    data
+    verifyData[0]
   );
-
 
   status.textContent =
     "Theme colors saved successfully.";
