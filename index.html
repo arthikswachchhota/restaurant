@@ -2416,7 +2416,7 @@ const supabaseClient =
 
     if (welcomeArabic) {
       welcomeArabic.textContent =
-        hero.welcome_text_ar || "مرحباً بكم في";
+        hero.welcome_text_ar ||"مرحباً بكم في";
     }
 
     if (welcomeBengali) {
@@ -2648,8 +2648,9 @@ async function loadWebsiteContent() {
 }
 
 alert(
-  "Theme loaded: " +
-  data.page_background
+  "Theme loaded:\n" +
+  "Page: " + data.page_background + "\n" +
+  "Card: " + data.card_background
 );
 
 const root =
