@@ -450,23 +450,19 @@
     }
 
     .food-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-    }
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
 
-    .food-card {
-      background: linear-gradient(
-        145deg,
-        rgba(0, 181, 193, .13),
-        rgba(255,255,255,.035)
-      );
+.food-card {
+  background: var(--theme-card-background, #0b2023);
 
-      border: 1px solid var(--border);
+  border: 1px solid var(--border);
 
-      border-radius: var(--radius);
+  border-radius: var(--radius);
 
-      overflow: hidden;
+  overflow: hidden;
 
       box-shadow: 0 16px 45px rgba(0,0,0,.22);
 
