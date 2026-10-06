@@ -671,31 +671,28 @@ async function saveWebsiteContent() {
 }
 
 
-const { data: updatedRows, error } =
-  await supabaseClient
-    .from("theme_colors")
-    .update({
-      primary_color: primaryColor,
-      page_background: pageBackground,
-      section_background: sectionBackground,
-      card_background: cardBackground,
-      hero_overlay: heroOverlay,
-      main_text: mainText,
-      muted_text: mutedText,
-      button_background: buttonBackground,
-      button_text: buttonText,
-      link_color: linkColor,
-      footer_background: footerBackground,
-      footer_text: footerText,
-      border_color: borderColor,
-      updated_at: new Date().toISOString()
-    })
-    .eq("id", 1);
+async function loadWebsiteContent() {
 
-console.log(
-  "UPDATED ROWS:",
-  updatedRows
-);
+  const { data: websiteData, error: websiteError } =
+    await supabaseClient
+      .from("website_settings")
+      .select(`
+        website_name,
+        about_title,
+        about_description,
+        food_title,
+        food_description,
+        gallery_title,
+        gallery_description,
+        hours_text,
+        contact_title,
+        contact_description,
+        footer_text,
+        seo_title,
+        seo_description
+      `)
+      .eq("id", 1)
+      .single();
 
   if (websiteError) {
 
