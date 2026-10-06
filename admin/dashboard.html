@@ -1631,7 +1631,7 @@ console.log(
 
   /* UPDATE DATABASE */
 
-  const { error } =
+  const { data: updatedRows, error } =
     await supabaseClient
       .from("theme_colors")
       .update({
