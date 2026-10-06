@@ -1601,8 +1601,10 @@ async function saveThemeColors() {
     "Saving theme colors...";
 
 
+  /* SHOW VALUES BEFORE SAVE */
+
   console.log(
-    "Theme colors to save:",
+    "THEME VALUES BEFORE SAVE:",
     {
       primaryColor,
       pageBackground,
@@ -1645,12 +1647,12 @@ async function saveThemeColors() {
       .eq("id", 1);
 
 
-  /* CHECK UPDATE ERROR */
+  /* UPDATE ERROR */
 
   if (error) {
 
     console.error(
-      "Theme colors update error:",
+      "THEME UPDATE ERROR:",
       error
     );
 
@@ -1661,61 +1663,73 @@ async function saveThemeColors() {
   }
 
 
-  /* VERIFY SAVED DATA */
+  console.log(
+    "THEME UPDATE REQUEST FINISHED."
+  );
+
+
+  /* READ DATABASE AGAIN */
 
   const {
-    data: verifyData,
-    error: verifyError
+    data: savedData,
+    error: readError
   } =
     await supabaseClient
       .from("theme_colors")
-      .select(
-        "id, primary_color, page_background, section_background, card_background, hero_overlay, main_text, muted_text, button_background, button_text, link_color, footer_background, footer_text, border_color"
-      )
+      .select("*")
       .eq("id", 1);
 
 
-  /* CHECK VERIFY ERROR */
+  /* READ ERROR */
 
-  if (verifyError) {
+  if (readError) {
 
     console.error(
-      "Theme colors verify error:",
-      verifyError
+      "THEME READ-BACK ERROR:",
+      readError
     );
 
     status.textContent =
       "Save verification failed: " +
-      verifyError.message;
+      readError.message;
 
     return;
   }
 
 
-  /* CHECK DATABASE ROW */
+  /* CHECK ROW */
 
   if (
-    !verifyData ||
-    verifyData.length === 0
+    !savedData ||
+    savedData.length === 0
   ) {
 
     console.error(
-      "Theme colors verify returned no row."
+      "THEME READ-BACK: NO ROW FOUND"
     );
 
     status.textContent =
-      "Save failed: theme row could not be verified.";
+      "Save failed: database row not found.";
 
     return;
   }
 
 
-  /* SUCCESS */
+  /* SHOW ACTUAL DATABASE VALUE */
 
   console.log(
-    "Theme colors saved to Supabase:",
-    verifyData[0]
+    "THEME VALUE ACTUALLY IN DATABASE:",
+    savedData[0]
   );
+
+
+  console.log(
+    "DATABASE CARD BACKGROUND:",
+    savedData[0].card_background
+  );
+
+
+  /* SUCCESS */
 
   status.textContent =
     "Theme colors saved successfully.";
