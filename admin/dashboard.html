@@ -1602,8 +1602,13 @@ async function saveThemeColors() {
   status.textContent =
     "Saving theme colors...";
 
-  const { error } =
-    await supabaseClient
+  console.log(
+  "Card Background:",
+  cardBackground
+);
+
+const { error } =
+  await supabaseClient
       .from("theme_colors")
       .update({
         primary_color: primaryColor,
