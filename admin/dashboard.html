@@ -1568,12 +1568,7 @@ async function saveThemeColors() {
     document.getElementById("themeSectionBackground").value;
 
   const cardBackground =
-  document.getElementById("themeCardBackground").value;
-
-console.log(
-  "CARD INPUT VALUE:",
-  document.getElementById("themeCardBackground").value
-);
+    document.getElementById("themeCardBackground").value.trim();
 
   const heroOverlay =
     document.getElementById("themeHeroOverlay").value.trim();
@@ -1603,12 +1598,6 @@ console.log(
     document.getElementById("themeBorderColor").value.trim();
 
 
-  status.textContent =
-    "Saving theme colors...";
-
-
-  /* SHOW VALUES BEFORE SAVE */
-
   console.log(
     "THEME VALUES BEFORE SAVE:",
     {
@@ -1629,9 +1618,18 @@ console.log(
   );
 
 
-  /* UPDATE DATABASE */
+  status.textContent =
+    "Saving theme colors...";
 
-  const { error } =
+
+  /* =========================
+     UPDATE DATABASE
+  ========================= */
+
+  const {
+    data: updatedRows,
+    error: updateError
+  } =
     await supabaseClient
       .from("theme_colors")
       .update({
@@ -1650,31 +1648,64 @@ console.log(
         border_color: borderColor,
         updated_at: new Date().toISOString()
       })
-      .eq("id", 1);
+      .eq("id", 1)
+      .select("id, card_background");
 
 
-  /* UPDATE ERROR */
+  console.log(
+    "UPDATED ROWS:",
+    updatedRows
+  );
 
-  if (error) {
+
+  /* =========================
+     UPDATE ERROR
+  ========================= */
+
+  if (updateError) {
 
     console.error(
       "THEME UPDATE ERROR:",
-      error
+      updateError
     );
 
     status.textContent =
-      "Save failed: " + error.message;
+      "Save failed: " +
+      updateError.message;
+
+    return;
+  }
+
+
+  /* =========================
+     CHECK WHETHER ROW UPDATED
+  ========================= */
+
+  if (
+    !updatedRows ||
+    updatedRows.length === 0
+  ) {
+
+    console.error(
+      "NO THEME ROW WAS UPDATED."
+    );
+
+    status.textContent =
+      "Save failed: No theme row was updated.";
 
     return;
   }
 
 
   console.log(
-    "THEME UPDATE REQUEST FINISHED."
+    "THEME ROW UPDATED SUCCESSFULLY:",
+    updatedRows[0]
   );
 
 
-  /* READ DATABASE AGAIN */
+  /* =========================
+     READ DATABASE AGAIN
+  ========================= */
 
   const {
     data: savedData,
@@ -1683,10 +1714,9 @@ console.log(
     await supabaseClient
       .from("theme_colors")
       .select("*")
-      .eq("id", 1);
+      .eq("id", 1)
+      .single();
 
-
-  /* READ ERROR */
 
   if (readError) {
 
@@ -1703,42 +1733,28 @@ console.log(
   }
 
 
-  /* CHECK ROW */
-
-  if (
-    !savedData ||
-    savedData.length === 0
-  ) {
-
-    console.error(
-      "THEME READ-BACK: NO ROW FOUND"
-    );
-
-    status.textContent =
-      "Save failed: database row not found.";
-
-    return;
-  }
-
-
-  /* SHOW ACTUAL DATABASE VALUE */
+  /* =========================
+     FINAL DATABASE CHECK
+  ========================= */
 
   console.log(
     "THEME VALUE ACTUALLY IN DATABASE:",
-    savedData[0]
+    savedData
   );
-
 
   console.log(
     "DATABASE CARD BACKGROUND:",
-    savedData[0].card_background
+    savedData.card_background
   );
 
 
-  /* SUCCESS */
+  /* =========================
+     FINAL SUCCESS
+  ========================= */
 
   status.textContent =
     "Theme colors saved successfully.";
+
 }
 
 async function saveCustomContent(boxNumber) {
