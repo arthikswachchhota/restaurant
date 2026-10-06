@@ -2648,11 +2648,16 @@ async function loadWebsiteContent() {
   }
 
   if (!data) {
-    return;
-  }
+  return;
+}
 
-  const root =
-    document.documentElement;
+alert(
+  "Theme loaded: " +
+  data.page_background
+);
+
+const root =
+  document.documentElement;
 
   root.style.setProperty(
     "--cyan",
