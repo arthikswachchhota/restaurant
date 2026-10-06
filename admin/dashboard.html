@@ -692,6 +692,11 @@ const { data: updatedRows, error } =
     })
     .eq("id", 1);
 
+console.log(
+  "UPDATED ROWS:",
+  updatedRows
+);
+
   if (websiteError) {
 
     console.error(
@@ -1566,12 +1571,12 @@ async function saveThemeColors() {
     document.getElementById("themeSectionBackground").value;
 
   const cardBackground =
-    document.getElementById("themeCardBackground").value;
+  document.getElementById("themeCardBackground").value;
 
-  console.log(
-    "CARD INPUT VALUE:",
-    cardBackground
-  );
+console.log(
+  "CARD INPUT VALUE:",
+  document.getElementById("themeCardBackground").value
+);
 
   const heroOverlay =
     document.getElementById("themeHeroOverlay").value.trim();
@@ -1648,16 +1653,7 @@ async function saveThemeColors() {
         border_color: borderColor,
         updated_at: new Date().toISOString()
       })
-      .eq("id", 1)
-      .select("id, card_background");
-
-
-  /* SHOW UPDATED ROW */
-
-  console.log(
-    "UPDATED ROWS:",
-    updatedRows
-  );
+      .eq("id", 1);
 
 
   /* UPDATE ERROR */
