@@ -33,19 +33,30 @@
 }
 
     .header {
-      margin-bottom: 16px;
-    }
+  margin-bottom: 22px;
+  padding: 20px 22px;
+  background: linear-gradient(
+    135deg,
+    #003b40,
+    #006f78
+  );
+  border-radius: 18px;
+  border: 1px solid rgba(0, 183, 195, 0.35);
+  box-shadow: 0 10px 28px rgba(0, 59, 64, 0.18);
+}
 
-    .header h1 {
-      color: #003b40;
-      font-size: 20px;
-      margin-bottom: 4px;
-    }
+.header h1 {
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 7px;
+  letter-spacing: -0.3px;
+}
 
-    .welcome {
-      color: #777;
-      font-size: 13px;
-    }
+.welcome {
+  color: #d8f5f6;
+  font-size: 13px;
+}
 
     .menu-grid {
       display: grid;
@@ -53,36 +64,13 @@
       gap: 10px;
     }
 
-    .card:first-child {
-  background: linear-gradient(135deg, #003b40, #00b7c3);
-  border: 2px solid #00b7c3;
-  border-radius: 22px;
-  padding: 25px;
-  min-height: 190px;
-  box-shadow: 0 15px 35px rgba(0, 183, 195, 0.35);
-  transform: scale(1.02);
-}
-
-.card:first-child h2 {
-  color: #ffffff;
-  font-size: 22px;
-  margin-bottom: 12px;
-}
-
-.card:first-child p {
-  color: #eaffff;
-  font-size: 14px;
-  line-height: 1.6;
-  margin-bottom: 18px;
-}
-
-.card:first-child .manage-button {
-  background: #ffffff;
-  color: #003b40;
-  border-radius: 12px;
-  padding: 12px;
-  font-size: 14px;
-}
+    .card {
+      background: #f3faf9;
+      border: 1px solid #dceeed;
+      border-radius: 12px;
+      padding: 15px;
+      min-height: 120px;
+    }
 
     .card h2 {
       color: #006f78;
