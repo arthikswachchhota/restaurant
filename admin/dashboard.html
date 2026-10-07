@@ -238,6 +238,133 @@
         font-size: 18px;
       }
     }
+    /* ================================
+   DASHBOARD PROFESSIONAL POLISH
+   STEP 1
+================================ */
+
+body {
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(0, 183, 195, 0.12),
+      transparent 35%
+    ),
+    #071315;
+}
+
+.dashboard {
+  max-width: 820px;
+  margin: 28px auto;
+  padding: 22px;
+  background: rgba(255, 255, 255, 0.97);
+  border: 1px solid rgba(0, 183, 195, 0.18);
+  border-radius: 20px;
+  box-shadow:
+    0 20px 55px rgba(0, 0, 0, 0.28);
+}
+
+.header {
+  padding: 4px 4px 18px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #dceeed;
+}
+
+.header h1 {
+  color: #003b40;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+}
+
+.welcome {
+  color: #6b7d7f;
+  font-size: 13px;
+}
+
+.menu-grid {
+  gap: 14px;
+}
+
+.card {
+  position: relative;
+  background:
+    linear-gradient(
+      145deg,
+      #f7fcfc,
+      #edf8f7
+    );
+  border: 1px solid #d7ebea;
+  border-radius: 15px;
+  padding: 17px;
+  min-height: 135px;
+  box-shadow:
+    0 6px 18px rgba(0, 59, 64, 0.06);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(0, 183, 195, 0.45);
+  box-shadow:
+    0 12px 28px rgba(0, 59, 64, 0.12);
+}
+
+.card h2 {
+  color: #005c63;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.card p {
+  color: #718284;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.manage-button,
+.save-food {
+  background: #006f78;
+  border-radius: 9px;
+  padding: 10px;
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease;
+}
+
+.manage-button:hover,
+.save-food:hover {
+  background: #00545b;
+}
+
+.manage-button:active,
+.save-food:active {
+  transform: scale(0.98);
+}
+
+.logout {
+  margin-top: 20px;
+  border-radius: 10px;
+  background: #003b40;
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease;
+}
+
+.logout:hover {
+  background: #00282c;
+}
+
+.logout:active {
+  transform: scale(0.98);
+}
+
+#status {
+  color: #718284;
+}
   </style>
 </head>
 
