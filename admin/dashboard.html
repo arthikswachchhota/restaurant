@@ -2433,14 +2433,18 @@ document.querySelectorAll(".menu-grid .card").forEach(function(card) {
 
     function closeFoodManager() {
 
-      document.getElementById(
-        "foodManager"
-      ).style.display = "none";
+  document.getElementById(
+    "foodManager"
+  ).style.display = "none";
 
-      status.textContent =
-        "Food Manager closed.";
+  document.querySelectorAll(".menu-grid .card").forEach(function(card) {
+    card.style.display = "";
+  });
 
-    }
+  status.textContent =
+    "Food Manager closed.";
+
+}
 
 
     /* =========================
