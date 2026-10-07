@@ -247,7 +247,29 @@
       margin: 5px 0 10px;
       border-radius: 9px;
     }
+.food-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
 
+.food-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.food-image-side {
+  width: 90px;
+  flex-shrink: 0;
+}
+
+.food-image-side .food-image-preview {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  margin: 0;
+  border-radius: 8px;
+}
     .gallery-item {
       background: #f8fbfb;
       border: 1px solid #dceeed;
@@ -283,7 +305,20 @@
         font-size: 18px;
       }
     }
-    
+    @media (max-width: 480px) {
+  .food-content {
+    gap: 8px;
+  }
+
+  .food-image-side {
+    width: 82px;
+  }
+
+  .food-image-side .food-image-preview {
+    width: 72px;
+    height: 72px;
+  }
+}
   </style>
 </head>
 
@@ -2700,60 +2735,59 @@ document.querySelectorAll(".menu-grid .card").forEach(function(card) {
 
         item.innerHTML = `
 
-          <label>Food Name</label>
+  <div class="food-content">
 
-          <input
-            type="text"
-            id="foodName-${food.id}"
-            value="${food.name_en || ""}"
-          >
+    <div class="food-details">
 
-          <label>Price (SAR)</label>
+      <label>Food Name</label>
 
-          <input
-            type="number"
-            id="foodPrice-${food.id}"
-            value="${food.price ?? ""}"
-          >
+      <input
+        type="text"
+        id="foodName-${food.id}"
+        value="${food.name_en || ""}"
+      >
 
-          ${imagePreview}
+      <label>Price (SAR)</label>
 
-          <label>Food Image</label>
+      <input
+        type="number"
+        id="foodPrice-${food.id}"
+        value="${food.price ?? ""}"
+      >
 
-          <input
-            type="file"
-            id="foodImage-${food.id}"
-            accept="image/*"
-          >
+      <label>Food Image</label>
 
-          <button
-            class="save-food"
-            type="button"
-            onclick="uploadFoodImage(${food.id})"
-          >
-            🖼️ Upload Food Image
-          </button>
+      <input
+        type="file"
+        id="foodImage-${food.id}"
+        accept="image/*"
+      >
 
-          <button
-            class="delete-food"
-            type="button"
-            onclick="deleteFood(${food.id})"
-          >
-            🗑️ Delete Food
-          </button>
+      <button
+        class="save-food"
+        type="button"
+        onclick="uploadFoodImage(${food.id})"
+      >
+        🖼️ Upload Food Image
+      </button>
 
-        `;
+      <button
+        class="delete-food"
+        type="button"
+        onclick="deleteFood(${food.id})"
+      >
+        🗑️ Delete Food
+      </button>
 
+    </div>
 
-        foodList.appendChild(item);
+    <div class="food-image-side">
+      ${imagePreview}
+    </div>
 
-      });
+  </div>
 
-
-      status.textContent =
-        "Food data loaded from Supabase.";
-
-    }
+`;
 
 
     /* =========================
