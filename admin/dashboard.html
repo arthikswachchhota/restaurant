@@ -2028,9 +2028,9 @@ if (!phoneNumber) {
         manager.id = "heroManager";
 
         manager.innerHTML = `
-          <h2>🏠 Manage Home</h2>
+  <p>Hero section content and image.</p>
 
-          <div class="food-item">
+  <div class="food-item">
 
             <label>Welcome Text</label>
             <input
@@ -2151,8 +2151,11 @@ if (!phoneNumber) {
         `;
 
         document
-          .querySelector(".dashboard")
-          .appendChild(manager);
+  .querySelector(".dashboard")
+  .insertBefore(
+    manager,
+    document.getElementById("status")
+  );
       }
 
       manager.style.display = "block";
