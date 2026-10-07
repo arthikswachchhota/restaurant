@@ -290,7 +290,27 @@
       display: block;
       margin-bottom: 8px;
     }
+.gallery-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  margin-bottom: 8px;
+}
 
+.gallery-item img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  margin: 0;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.gallery-item button {
+  flex: 1;
+  margin: 0;
+}
     @media (max-width: 480px) {
 
       body {
@@ -322,6 +342,17 @@
   .food-image-side .food-image-preview {
     width: 72px;
     height: 72px;
+  }
+}
+    @media (max-width: 480px) {
+  .gallery-item {
+    gap: 8px;
+    padding: 7px;
+  }
+
+  .gallery-item img {
+    width: 70px;
+    height: 70px;
   }
 }
   </style>
@@ -3483,37 +3514,22 @@ async function loadGalleryImages() {
       document.createElement("div");
 
     item.className =
-      "gallery-admin-item";
+  "gallery-item";
 
-    item.innerHTML = `
-      <img
-        src="${image.image_url}"
-        alt="Gallery Image"
-        style="
-          width:100%;
-          max-width:220px;
-          height:150px;
-          object-fit:cover;
-          border-radius:12px;
-          display:block;
-          margin-bottom:10px;
-        "
-      >
+item.innerHTML = `
+  <img
+    src="${image.image_url}"
+    alt="Gallery Image"
+  >
 
-      <button
-        type="button"
-        class="delete-gallery"
-        onclick="deleteGalleryImage(${image.id})"
-      >
-        🗑️ Delete
-      </button>
-    `;
-
-    galleryList.appendChild(item);
-
-  });
-
-}
+  <button
+    type="button"
+    class="delete-gallery"
+    onclick="deleteGalleryImage(${image.id})"
+  >
+    🗑️ Delete
+  </button>
+`;
 
     /* =========================
        LOGOUT
