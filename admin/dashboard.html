@@ -165,10 +165,15 @@
   box-shadow: 0 8px 24px rgba(0, 59, 64, 0.10);
 }
     .manager h2 {
-      color: #003b40;
-      font-size: 18px;
-      margin-bottom: 14px;
-    }
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 14px;
+  padding: 10px 12px;
+  background: linear-gradient(135deg, #003b40, #006f78);
+  border-radius: 10px;
+  border: 1px solid rgba(0, 183, 195, 0.35);
+}
 
     .food-item {
       background: #f8fbfb;
@@ -472,53 +477,52 @@
 
 
     <!-- GALLERY MANAGER -->
+<div
+  class="manager"
+  id="galleryManager"
+>
 
-    <div
-      class="manager"
-      id="galleryManager"
+  <h2>🖼️ View food image gallery</h2>
+
+  <div class="food-item">
+
+    <label>Upload Gallery Image</label>
+
+    <input
+      type="file"
+      id="galleryImageFile"
+      accept="image/*"
     >
 
-      <h2>🖼️ Manage Gallery</h2>
+    <label>Gallery Image URL</label>
 
-      <div class="food-item">
+    <input
+      type="text"
+      id="galleryImageUrl"
+      placeholder="Optional image URL"
+    >
 
-        <label>Upload Gallery Image</label>
+    <button
+      class="save-food"
+      type="button"
+      onclick="uploadGalleryImage()"
+    >
+      🖼️ Upload Gallery Image
+    </button>
 
-        <input
-          type="file"
-          id="galleryImageFile"
-          accept="image/*"
-        >
+  </div>
 
-        <label>Gallery Image URL</label>
+  <div id="galleryList"></div>
 
-        <input
-          type="text"
-          id="galleryImageUrl"
-          placeholder="Optional image URL"
-        >
+  <button
+    class="close-manager"
+    type="button"
+    onclick="closeGalleryManager()"
+  >
+    ← Back to Dashboard
+  </button>
 
-        <button
-          class="save-food"
-          type="button"
-          onclick="uploadGalleryImage()"
-        >
-          🖼️ Upload Gallery Image
-        </button>
-
-      </div>
-
-      <div id="galleryList"></div>
-
-      <button
-        class="close-manager"
-        type="button"
-        onclick="closeGalleryManager()"
-      >
-        Close
-      </button>
-
-    </div>
+</div>
 
 
     <!-- LOGOUT -->
