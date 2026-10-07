@@ -68,8 +68,8 @@
   background: #f8fcfc;
   border: 1px solid #d6e7e8;
   border-radius: 16px;
-  padding: 18px;
-  min-height: 145px;
+  padding: 14px;
+  min-height: 120px;
   box-shadow: 0 6px 18px rgba(0, 59, 64, 0.07);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -80,29 +80,37 @@
 }
 
     .card h2 {
-      color: #006f78;
-      font-size: 15px;
-      margin-bottom: 6px;
-    }
+  color: #003b40;
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 6px;
+  letter-spacing: -0.2px;
+}
 
     .card p {
-      color: #777;
-      font-size: 12px;
-      line-height: 1.4;
-      margin-bottom: 12px;
-    }
+  color: #667779;
+  font-size: 12px;
+  line-height: 1.45;
+  margin-bottom: 11px;
+}
 
     .manage-button {
-      width: 100%;
-      padding: 9px;
-      border: none;
-      border-radius: 8px;
-      background: #006f78;
-      color: #fff;
-      font-size: 12px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+  width: 100%;
+  padding: 9px 10px;
+  border: 1px solid #006f78;
+  border-radius: 9px;
+  background: #006f78;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.manage-button:hover {
+  background: #00545b;
+  transform: translateY(-1px);
+}
 
     .manage-button:hover {
       background: #00545b;
