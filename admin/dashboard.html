@@ -1627,7 +1627,6 @@ async function saveThemeColors() {
   ========================= */
 
   const {
-    data: updatedRows,
     error: updateError
   } =
     await supabaseClient
@@ -1648,14 +1647,7 @@ async function saveThemeColors() {
         border_color: borderColor,
         updated_at: new Date().toISOString()
       })
-      .eq("id", 1)
-      
-
-
-  console.log(
-    "UPDATED ROWS:",
-    updatedRows
-  );
+      .eq("id", 1);
 
 
   /* =========================
@@ -1675,32 +1667,6 @@ async function saveThemeColors() {
 
     return;
   }
-
-
-  /* =========================
-     CHECK WHETHER ROW UPDATED
-  ========================= */
-
-  if (
-    !updatedRows ||
-    updatedRows.length === 0
-  ) {
-
-    console.error(
-      "NO THEME ROW WAS UPDATED."
-    );
-
-    status.textContent =
-      "Save failed: No theme row was updated.";
-
-    return;
-  }
-
-
-  console.log(
-    "THEME ROW UPDATED SUCCESSFULLY:",
-    updatedRows[0]
-  );
 
 
   /* =========================
