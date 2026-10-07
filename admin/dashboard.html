@@ -2152,11 +2152,7 @@ if (!phoneNumber) {
 
         document
   .querySelector(".dashboard")
-  .insertBefore(
-    manager,
-    document.getElementById("status")
-  );
-      }
+  .appendChild(manager);
 
       manager.style.display = "block";
 
