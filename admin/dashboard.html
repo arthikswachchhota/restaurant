@@ -2153,15 +2153,16 @@ if (!phoneNumber) {
         document
   .querySelector(".dashboard")
   .appendChild(manager);
+}
 
-      manager.style.display = "block";
+manager.style.display = "block";
 
-      manager.scrollIntoView({
-        behavior: "smooth"
-      });
+manager.scrollIntoView({
+  behavior: "smooth"
+});
 
-      loadHeroData();
-    }
+loadHeroData();
+}
 async function loadHeroData() {
 
   const { data, error } =
