@@ -2416,7 +2416,9 @@ updated_at: new Date().toISOString()
         document.getElementById("foodManager");
 
       manager.style.display = "block";
-
+document.querySelectorAll(".menu-grid .card").forEach(function(card) {
+  card.style.display = "none";
+});
       manager.scrollIntoView({
         behavior: "smooth"
       });
