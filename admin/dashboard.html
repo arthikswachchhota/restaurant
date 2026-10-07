@@ -3516,21 +3516,26 @@ async function loadGalleryImages() {
     item.className =
   "gallery-item";
 
-item.innerHTML = `
-  <img
-    src="${image.image_url}"
-    alt="Gallery Image"
-  >
+  item.innerHTML = `
+    <img
+      src="${image.image_url}"
+      alt="Gallery Image"
+    >
 
-  <button
-    type="button"
-    class="delete-gallery"
-    onclick="deleteGalleryImage(${image.id})"
-  >
-    🗑️ Delete
-  </button>
-`;
+    <button
+      type="button"
+      class="delete-gallery"
+      onclick="deleteGalleryImage(${image.id})"
+    >
+      🗑️ Delete
+    </button>
+  `;
 
+  galleryList.appendChild(item);
+
+});
+
+}
     /* =========================
        LOGOUT
     ========================= */
