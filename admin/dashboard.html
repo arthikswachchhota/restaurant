@@ -2017,7 +2017,9 @@ if (!phoneNumber) {
     /* HOME / HERO MANAGER */
 
     function openHeroManager() {
-
+document.querySelectorAll(".card").forEach(function(card) {
+  card.style.display = "none";
+});
       let manager =
         document.getElementById("heroManager");
 
@@ -2141,16 +2143,19 @@ if (!phoneNumber) {
 
           </div>
 
-          <button
+                    <button
             class="close-manager"
             type="button"
             onclick="
               document.getElementById('heroManager').style.display='none';
+
+              document.querySelectorAll('.card').forEach(function(card) {
+                card.style.display = '';
+              });
             "
           >
             Close
           </button>
-        `;
 
         document
   .querySelector(".dashboard")
