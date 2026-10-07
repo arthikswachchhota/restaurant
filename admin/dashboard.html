@@ -2017,14 +2017,15 @@ if (!phoneNumber) {
     /* HOME / HERO MANAGER */
 
     function openHeroManager() {
-document.querySelectorAll(".card").forEach(function(card) {
-  card.style.display = "none";
-});
-      let manager =
-        document.getElementById("heroManager");
+  document.querySelectorAll(".card").forEach(function(card) {
+    card.style.display = "none";
+  });
 
-      if (!manager) {
+  let manager =
+    document.getElementById("heroManager");
 
+  if (!manager) {
+    
         manager =
           document.createElement("div");
 
@@ -2153,14 +2154,14 @@ document.querySelectorAll(".card").forEach(function(card) {
                 card.style.display = '';
               });
             "
-          >
-            Close
+          >            Close
           </button>
+        `;
 
         document
-  .querySelector(".dashboard")
-  .appendChild(manager);
-}
+          .querySelector(".dashboard")
+          .appendChild(manager);
+      }
 
 manager.style.display = "block";
 
