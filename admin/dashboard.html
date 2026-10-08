@@ -2539,21 +2539,27 @@ document.querySelectorAll(".menu-grid .card").forEach(function(card) {
 
     async function openGalleryManager() {
 
-      const manager =
-        document.getElementById("galleryManager");
+  const manager =
+    document.getElementById("galleryManager");
 
-      manager.style.display = "block";
+  document.querySelectorAll(
+    ".menu-grid .card"
+  ).forEach(function(card) {
+    card.style.display = "none";
+  });
 
-      manager.scrollIntoView({
-        behavior: "smooth"
-      });
+  manager.style.display = "block";
 
-      status.textContent =
-        "Gallery Manager opened.";
+  manager.scrollIntoView({
+    behavior: "smooth"
+  });
 
-      await loadGalleryImages();
+  status.textContent =
+    "Gallery Manager opened.";
 
-    }
+  await loadGalleryImages();
+
+}
 
 
     function closeGalleryManager() {
@@ -2565,14 +2571,11 @@ document.querySelectorAll(".menu-grid .card").forEach(function(card) {
   document.querySelectorAll(
     ".menu-grid .card"
   ).forEach(function(card) {
-
     card.style.display = "";
-
   });
 
   status.textContent =
     "Gallery Manager closed.";
-
 }
 
 
