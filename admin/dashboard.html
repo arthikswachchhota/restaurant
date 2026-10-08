@@ -2606,6 +2606,11 @@ document.querySelectorAll(".menu-grid .card").forEach(function(card) {
     card.style.display = "";
   });
 
+  window.scrollTo({
+    top: 0,
+    behavior: "auto"
+  });
+
   status.textContent =
     "Gallery Manager closed.";
 }
@@ -3399,18 +3404,23 @@ async function openHoursManager() {
   </button>
 
   <button
-    class="close-manager"
-    type="button"
-    onclick="
-      document.getElementById('hoursManager').style.display='none';
+  class="close-manager"
+  type="button"
+  onclick="
+    document.getElementById('hoursManager').style.display='none';
 
-      document.querySelectorAll('.menu-grid .card').forEach(function(card) {
-        card.style.display = '';
-      });
-    "
-  >
-    ← Back to Dashboard
-  </button>
+    document.querySelectorAll('.menu-grid .card').forEach(function(card) {
+      card.style.display = '';
+    });
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto'
+    });
+  "
+>
+  ← Back to Dashboard
+</button>
 `;
 
       document
