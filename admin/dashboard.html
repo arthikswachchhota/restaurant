@@ -3199,129 +3199,187 @@ async function openHoursManager() {
     manager.id = "hoursManager";
 
     manager.innerHTML = `
-      <h2>🕐 Edit Opening Hours</h2>
+  <h2>🕐 Edit Opening Hours</h2>
 
-      <div class="food-item">
+  <div
+    style="
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+      align-items:start;
+    "
+  >
 
-        <label>Morning Opening</label>
-        <input type="time" id="morningStart">
+    <!-- OPENING HOURS -->
+    <div class="food-item">
 
-        <label>Morning Closing</label>
-        <input type="time" id="morningEnd">
+      <label>Morning Opening</label>
+      <input
+        type="time"
+        id="morningStart"
+      >
 
-        <label>Evening Opening</label>
-        <input type="time" id="eveningStart">
+      <label>Morning Closing</label>
+      <input
+        type="time"
+        id="morningEnd"
+      >
 
-        <label>Evening Closing</label>
-        <input type="time" id="eveningEnd">
+      <label>Evening Opening</label>
+      <input
+        type="time"
+        id="eveningStart"
+      >
 
-        <label>Timezone</label>
+      <label>Evening Closing</label>
+      <input
+        type="time"
+        id="eveningEnd"
+      >
 
-        <select
-          id="timezone"
-          style="
-            width:100%;
-            padding:9px;
-            border:1px solid #d7e5e5;
-            border-radius:7px;
-            font-size:13px;
-            margin-bottom:8px;
-          "
-        >
-          <option value="Asia/Riyadh">
-            Saudi Arabia — Riyadh
-          </option>
+      <label>Timezone</label>
 
-          <option value="Asia/Dhaka">
-            Bangladesh — Dhaka
-          </option>
+      <select
+        id="timezone"
+        style="
+          width:100%;
+          padding:9px;
+          border:1px solid #d7e5e5;
+          border-radius:7px;
+          font-size:13px;
+          margin-bottom:8px;
+        "
+      >
+        <option value="Asia/Riyadh">
+          Saudi Arabia — Riyadh
+        </option>
 
-          <option value="Asia/Dubai">
-            UAE — Dubai
-          </option>
+        <option value="Asia/Dhaka">
+          Bangladesh — Dhaka
+        </option>
 
-          <option value="Asia/Kolkata">
-            India — Kolkata
-          </option>
+        <option value="Asia/Dubai">
+          UAE — Dubai
+        </option>
 
-          <option value="Europe/London">
-            UK — London
-          </option>
+        <option value="Asia/Kolkata">
+          India — Kolkata
+        </option>
 
-          <option value="Europe/Brussels">
-            Belgium — Brussels
-          </option>
-        </select>
-<label>📅 Closed Days</label>
+        <option value="Europe/London">
+          UK — London
+        </option>
 
-<div
-  id="closedDays"
-  style="
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:8px;
-    margin-bottom:12px;
-  "
->
-  <label>
-    <input type="checkbox" value="Saturday">
-    Saturday
-  </label>
+        <option value="Europe/Brussels">
+          Belgium — Brussels
+        </option>
+      </select>
 
-  <label>
-    <input type="checkbox" value="Sunday">
-    Sunday
-  </label>
+    </div>
 
-  <label>
-    <input type="checkbox" value="Monday">
-    Monday
-  </label>
 
-  <label>
-    <input type="checkbox" value="Tuesday">
-    Tuesday
-  </label>
+    <!-- CLOSED DAYS -->
+    <div class="food-item">
 
-  <label>
-    <input type="checkbox" value="Wednesday">
-    Wednesday
-  </label>
+      <label>📅 Closed Days</label>
 
-  <label>
-    <input type="checkbox" value="Thursday">
-    Thursday
-  </label>
+      <div
+        id="closedDays"
+        style="
+          display:grid;
+          grid-template-columns:1fr;
+          gap:6px;
+          margin-bottom:0;
+        "
+      >
 
-  <label>
-    <input type="checkbox" value="Friday">
-    Friday
-  </label>
-</div>
-        <button
-          class="save-food"
-          type="button"
-          onclick="saveOpeningHours()"
-        >
-          💾 Save Opening Hours
-        </button>
+        <label>
+          <input
+            type="checkbox"
+            value="Saturday"
+          >
+          Saturday
+        </label>
 
-        <button
-  class="close-manager"
-  type="button"
-  onclick="
-    document.getElementById('hoursManager').style.display='none';
+        <label>
+          <input
+            type="checkbox"
+            value="Sunday"
+          >
+          Sunday
+        </label>
 
-    document.querySelectorAll('.menu-grid .card').forEach(function(card) {
-      card.style.display = '';
-    });
-  "
->
-  ← Back to Dashboard
-</button>
+        <label>
+          <input
+            type="checkbox"
+            value="Monday"
+          >
+          Monday
+        </label>
+
+        <label>
+          <input
+            type="checkbox"
+            value="Tuesday"
+          >
+          Tuesday
+        </label>
+
+        <label>
+          <input
+            type="checkbox"
+            value="Wednesday"
+          >
+          Wednesday
+        </label>
+
+        <label>
+          <input
+            type="checkbox"
+            value="Thursday"
+          >
+          Thursday
+        </label>
+
+        <label>
+          <input
+            type="checkbox"
+            value="Friday"
+          >
+          Friday
+        </label>
 
       </div>
-    `;
+
+    </div>
+
+  </div>
+
+
+  <!-- ACTION BUTTONS -->
+
+  <button
+    class="save-food"
+    type="button"
+    onclick="saveOpeningHours()"
+  >
+    💾 Save Opening Hours
+  </button>
+
+  <button
+    class="close-manager"
+    type="button"
+    onclick="
+      document.getElementById('hoursManager').style.display='none';
+
+      document.querySelectorAll('.menu-grid .card').forEach(function(card) {
+        card.style.display = '';
+      });
+    "
+  >
+    ← Back to Dashboard
+  </button>
+`;
 
       document
     .querySelector(".dashboard")
