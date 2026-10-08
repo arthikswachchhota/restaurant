@@ -2548,8 +2548,15 @@ document.querySelectorAll(".menu-grid .card").forEach(function(card) {
     "foodManager"
   ).style.display = "none";
 
-  document.querySelectorAll(".menu-grid .card").forEach(function(card) {
+  document.querySelectorAll(
+    ".menu-grid .card"
+  ).forEach(function(card) {
     card.style.display = "";
+  });
+
+  window.scrollTo({
+    top: 0,
+    behavior: "auto"
   });
 
   status.textContent =
