@@ -1244,20 +1244,30 @@ function openSettingsManager() {
       </div>
 
       <button
-        class="close-manager"
-        type="button"
-        onclick="
-          document.getElementById('settingsManager').style.display='none';
-        "
-      >
-        ← Back to Dashboard
-      </button>
+  class="close-manager"
+  type="button"
+  onclick="
+    document.getElementById('settingsManager').style.display='none';
+
+    document.querySelectorAll('.menu-grid .card').forEach(function(card) {
+      card.style.display = '';
+    });
+  "
+>
+  ← Back to Dashboard
+</button>
     `;
 
     document
       .querySelector(".dashboard")
       .appendChild(manager);
   }
+
+    document.querySelectorAll(
+    ".menu-grid .card"
+  ).forEach(function(card) {
+    card.style.display = "none";
+  });
 
   manager.style.display = "block";
 
@@ -2018,20 +2028,30 @@ async function openWhatsAppManager() {
       </div>
 
       <button
-        class="close-manager"
-        type="button"
-        onclick="
-          document.getElementById('whatsappManager').style.display='none';
-        "
-      >
-        Close
-      </button>
+  class="close-manager"
+  type="button"
+  onclick="
+    document.getElementById('whatsappManager').style.display='none';
+
+    document.querySelectorAll('.menu-grid .card').forEach(function(card) {
+      card.style.display = '';
+    });
+  "
+>
+  ← Back to Dashboard
+</button>
     `;
 
     document
       .querySelector(".dashboard")
       .appendChild(manager);
   }
+
+    document.querySelectorAll(
+    ".menu-grid .card"
+  ).forEach(function(card) {
+    card.style.display = "none";
+  });
 
   manager.style.display = "block";
 
