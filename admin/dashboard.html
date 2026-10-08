@@ -275,21 +275,10 @@
   margin: 0;
   border-radius: 8px;
 }
-    .gallery-item {
-      background: #f8fbfb;
-      border: 1px solid #dceeed;
-      border-radius: 10px;
-      padding: 10px;
-      margin-bottom: 12px;
-    }
+    /* =========================
+   GALLERY MANAGER
+========================= */
 
-    .gallery-item img {
-      width: 120px;
-      max-width: 100%;
-      border-radius: 10px;
-      display: block;
-      margin-bottom: 8px;
-    }
 .gallery-item {
   display: flex;
   align-items: center;
@@ -311,44 +300,37 @@
   margin: 0;
 }
 
-.gallery-item button {
+.gallery-item-info {
   flex: 1;
-  margin: 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
-    @media (max-width: 480px) {
 
-      body {
-        padding: 10px;
-      }
-
-      .dashboard {
-        margin: 10px auto;
-        padding: 14px;
-      }
-
-      .menu-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .header h1 {
-        font-size: 18px;
-      }
-    }
-    @media (max-width: 480px) {
-  .food-content {
-    gap: 8px;
-  }
-
-  .food-image-side {
-    width: 82px;
-  }
-
-  .food-image-side .food-image-preview {
-    width: 72px;
-    height: 72px;
-  }
+.gallery-item-info span {
+  color: #003b40;
+  font-size: 13px;
+  font-weight: 700;
 }
-    @media (max-width: 480px) {
+
+.delete-gallery {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 7px;
+  background: #b42318;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.delete-gallery:hover {
+  background: #8f1c13;
+}
+
+@media (max-width: 480px) {
   .gallery-item {
     gap: 8px;
     padding: 7px;
@@ -358,6 +340,34 @@
     width: 70px;
     height: 70px;
   }
+}
+    .gallery-item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.gallery-item-info span {
+  color: #003b40;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.delete-gallery {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 7px;
+  background: #b42318;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.delete-gallery:hover {
+  background: #8f1c13;
 }
   </style>
 </head>
@@ -3523,16 +3533,20 @@ async function loadGalleryImages() {
     }
 
     const item =
-      document.createElement("div");
+  document.createElement("div");
 
-    item.className =
+item.className =
   "gallery-item";
 
-  item.innerHTML = `
-    <img
-      src="${image.image_url}"
-      alt="Gallery Image"
-    >
+item.innerHTML = `
+  <img
+    src="${image.image_url}"
+    alt="Gallery Image"
+  >
+
+  <div class="gallery-item-info">
+
+    <span>Gallery Image</span>
 
     <button
       type="button"
@@ -3541,9 +3555,11 @@ async function loadGalleryImages() {
     >
       🗑️ Delete
     </button>
-  `;
 
-  galleryList.appendChild(item);
+  </div>
+`;
+
+galleryList.appendChild(item);
 
 });
 
