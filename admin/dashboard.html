@@ -27,7 +27,7 @@
   margin: 16px auto;
   background: #ffffff;
   border: none;
-  border-radius: 0;
+  border-radius: 12;
   padding: 16px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 }
@@ -3307,22 +3307,32 @@ async function openHoursManager() {
         </button>
 
         <button
-          class="close-manager"
-          type="button"
-          onclick="
-            document.getElementById('hoursManager').style.display='none';
-          "
-        >
-          Close
-        </button>
+  class="close-manager"
+  type="button"
+  onclick="
+    document.getElementById('hoursManager').style.display='none';
+
+    document.querySelectorAll('.menu-grid .card').forEach(function(card) {
+      card.style.display = '';
+    });
+  "
+>
+  ← Back to Dashboard
+</button>
 
       </div>
     `;
 
-    document
-      .querySelector(".dashboard")
-      .appendChild(manager);
+      document
+    .querySelector(".dashboard")
+    .appendChild(manager);
   }
+
+  document.querySelectorAll(
+    ".menu-grid .card"
+  ).forEach(function(card) {
+    card.style.display = "none";
+  });
 
   manager.style.display = "block";
 
