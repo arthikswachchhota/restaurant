@@ -2272,18 +2272,23 @@ if (!phoneNumber) {
           </div>
 
                     <button
-            class="close-manager"
-            type="button"
-            onclick="
-              document.getElementById('heroManager').style.display='none';
+  class="close-manager"
+  type="button"
+  onclick="
+    document.getElementById('heroManager').style.display='none';
 
-              document.querySelectorAll('.card').forEach(function(card) {
-                card.style.display = '';
-              });
-            "
-                    >
-            ← Back to Dashboard
-          </button>
+    document.querySelectorAll('.menu-grid .card').forEach(function(card) {
+      card.style.display = '';
+    });
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto'
+    });
+  "
+>
+  ← Back to Dashboard
+</button>
         `;
 
         document
