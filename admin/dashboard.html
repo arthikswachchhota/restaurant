@@ -2544,14 +2544,22 @@ document.querySelectorAll(".menu-grid .card").forEach(function(card) {
 
     function closeGalleryManager() {
 
-      document.getElementById(
-        "galleryManager"
-      ).style.display = "none";
+  document.getElementById(
+    "galleryManager"
+  ).style.display = "none";
 
-      status.textContent =
-        "Gallery Manager closed.";
+  document.querySelectorAll(
+    ".menu-grid .card"
+  ).forEach(function(card) {
 
-    }
+    card.style.display = "";
+
+  });
+
+  status.textContent =
+    "Gallery Manager closed.";
+
+}
 
 
     /* =========================
