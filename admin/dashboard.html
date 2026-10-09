@@ -2131,20 +2131,15 @@ async function openWhatsAppManager() {
     "Saving WhatsApp number...";
 
   const { data, error } =
-    await supabaseClient
-      .from("whatsapp_settings")
-      .upsert(
-        {
-          id: 1,
-          phone_number: phoneNumber,
-          updated_at: new Date().toISOString()
-        },
-        {
-          onConflict: "id"
-        }
-      )
-      .select("id, phone_number")
-      .single();
+  await supabaseClient
+    .from("whatsapp_settings")
+    .update({
+      phone_number: phoneNumber,
+      updated_at: new Date().toISOString()
+    })
+    .eq("id", 1)
+    .select("id, phone_number")
+    .single();
 
   if (error) {
     console.error("WhatsApp save error:", error);
