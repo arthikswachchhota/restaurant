@@ -1157,14 +1157,19 @@ function openWebsiteContentManager() {
       </div>
 
       <button
-        class="close-manager"
-        type="button"
-        onclick="
-          document.getElementById('websiteContentManager').style.display='none';
-        "
-      >
-        ← Back
-      </button>
+  class="close-manager"
+  type="button"
+  onclick="
+    document.getElementById('websiteContentManager').style.display='none';
+    document.getElementById('settingsManager').style.display='block';
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto'
+    });
+  "
+>
+  ← Back to Settings
+</button>
     `;
 
     document
@@ -1407,14 +1412,19 @@ async function openThemeColorsManager() {
       </div>
 
       <button
-        class="close-manager"
-        type="button"
-        onclick="
-          document.getElementById('themeColorsManager').style.display='none';
-        "
-      >
-        ← Back to Settings
-      </button>
+  class="close-manager"
+  type="button"
+  onclick="
+    document.getElementById('themeColorsManager').style.display='none';
+    document.getElementById('settingsManager').style.display='block';
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto'
+    });
+  "
+>
+  ← Back to Settings
+</button>
     `;
 
     document
@@ -1677,14 +1687,19 @@ function openCustomContentManager() {
       </div>
 
       <button
-        class="close-manager"
-        type="button"
-        onclick="
-          document.getElementById('customContentManager').style.display='none';
-        "
-      >
-        ← Back
-      </button>
+  class="close-manager"
+  type="button"
+  onclick="
+    document.getElementById('customContentManager').style.display='none';
+    document.getElementById('settingsManager').style.display='block';
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto'
+    });
+  "
+>
+  ← Back to Settings
+</button>
     `;
 
     document
