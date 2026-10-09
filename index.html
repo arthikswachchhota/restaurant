@@ -3036,55 +3036,57 @@ async function loadTodayStatus() {
 ========================= */
 
 async function loadWhatsAppData() {
+  const fallbackNumber = "966571638203";
 
-  const fallbackNumber =
-    "966571638203";
+  const { data, error } = await supabaseClient
+    .from("whatsapp_settings")
+    .select("phone_number")
+    .eq("id", 1)
+    .single();
 
-  const { data, error } =
-    await supabaseClient
-      .from("whatsapp_settings")
-      .select("phone_number")
-      .eq("id", 1)
-      .single();
+  let phoneNumber = fallbackNumber;
 
-  let phoneNumber =
-    fallbackNumber;
-
-  if (
-    !error &&
-    data &&
-    data.phone_number
-  ) {
-    phoneNumber =
-      data.phone_number
-        .toString()
-        .replace(/\D/g, "");
+  if (!error && data && data.phone_number) {
+    phoneNumber = data.phone_number
+      .toString()
+      .replace(/\D/g, "");
   }
 
-  const whatsappLinks =
-    document.querySelectorAll(
-      'a[href^="https://wa.me/"]'
-    );
+  // Format the number for display
+  let displayNumber = "+" + phoneNumber;
 
-  whatsappLinks.forEach(function(link) {
+  if (phoneNumber.startsWith("966") &&
+      phoneNumber.length === 12) {
+    displayNumber =
+      "+966 " +
+      phoneNumber.slice(3, 5) + " " +
+      phoneNumber.slice(5, 8) + " " +
+      phoneNumber.slice(8);
+  }
 
-    link.href =
-      "https://wa.me/" + phoneNumber;
+  // Update all WhatsApp links
+  document
+    .querySelectorAll('a[href^="https://wa.me/"]')
+    .forEach(function(link) {
+      link.href = "https://wa.me/" + phoneNumber;
+    });
 
-  });
-
-  const contactWhatsApp =
-    document.querySelector(
-      '.contact-card a[href^="https://wa.me/"]'
-    );
+  // Update WhatsApp number in the main Contact section
+  const contactWhatsApp = document.querySelector(
+    '.contact-card a[href^="https://wa.me/"]'
+  );
 
   if (contactWhatsApp) {
-
-    contactWhatsApp.textContent =
-      "+" +
-      phoneNumber;
-
+    contactWhatsApp.textContent = displayNumber;
   }
+
+  // Update all Call links and their displayed numbers
+  document
+    .querySelectorAll('a[href^="tel:"]')
+    .forEach(function(link) {
+      link.href = "tel:+" + phoneNumber;
+      link.textContent = displayNumber;
+    });
 }
 async function loadFoodData() {
 
