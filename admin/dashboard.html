@@ -2115,49 +2115,48 @@ async function openWhatsAppManager() {
     "WhatsApp number loaded.";
 }
     async function saveWhatsAppNumber() {
-
   const input =
     document.getElementById("whatsappNumber");
 
   const phoneNumber =
     input.value.trim().replace(/\D/g, "");
 
-if (!phoneNumber) {
-
+  if (!phoneNumber) {
     status.textContent =
       "Please enter a valid WhatsApp number.";
-
-    return;
-  }
-
-    status.textContent =
-    "Saving WhatsApp number...";
-
-  const { error } =
-    await supabaseClient
-      .from("whatsapp_settings")
-      .update({
-        phone_number: phoneNumber,
-        updated_at: new Date().toISOString()
-      })
-      .eq("id", 1);
-
-  if (error) {
-
-    console.error(
-      "WhatsApp save error:",
-      error
-    );
-
-    status.textContent =
-      "WhatsApp save failed: " +
-      error.message;
-
     return;
   }
 
   status.textContent =
-    "WhatsApp number saved successfully.";
+    "Saving WhatsApp number...";
+
+  const { data, error } =
+    await supabaseClient
+      .from("whatsapp_settings")
+      .upsert(
+        {
+          id: 1,
+          phone_number: phoneNumber,
+          updated_at: new Date().toISOString()
+        },
+        {
+          onConflict: "id"
+        }
+      )
+      .select("id, phone_number")
+      .single();
+
+  if (error) {
+    console.error("WhatsApp save error:", error);
+
+    status.textContent =
+      "WhatsApp save failed: " + error.message;
+    return;
+  }
+
+  status.textContent =
+    "WhatsApp number saved: " +
+    data.phone_number;
 }   
     /* HOME / HERO MANAGER */
 
