@@ -2131,15 +2131,14 @@ async function openWhatsAppManager() {
     "Saving WhatsApp number...";
 
   const { data, error } =
-  await supabaseClient
-    .from("whatsapp_settings")
-    .update({
-      phone_number: phoneNumber,
-      updated_at: new Date().toISOString()
-    })
-    .eq("id", 1)
-    .select("id, phone_number")
-    .single();
+    await supabaseClient
+      .from("whatsapp_settings")
+      .update({
+        phone_number: phoneNumber,
+        updated_at: new Date().toISOString()
+      })
+      .eq("id", 1)
+      .select("id, phone_number");
 
   if (error) {
     console.error("WhatsApp save error:", error);
@@ -2149,9 +2148,15 @@ async function openWhatsAppManager() {
     return;
   }
 
+  if (!data || data.length === 0) {
+    status.textContent =
+      "No row updated. Check Supabase RLS permissions.";
+    return;
+  }
+
   status.textContent =
     "WhatsApp number saved: " +
-    data.phone_number;
+    data[0].phone_number;
 }   
     /* HOME / HERO MANAGER */
 
