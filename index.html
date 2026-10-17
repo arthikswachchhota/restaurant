@@ -449,12 +449,12 @@
         );
     }
 
-    .food-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
+   @media (max-width: 600px) {
+  .food-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+  }
 }
-
 .food-card {
   background: var(--theme-card-background, #0b2023);
 
