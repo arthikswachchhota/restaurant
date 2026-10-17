@@ -1066,7 +1066,35 @@
         letter-spacing: 2px;
         margin-bottom: 15px;
       }
+.contact-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
 
+.contact-card {
+  padding: 12px 4px;
+  min-width: 0;
+}
+
+.contact-icon {
+  width: 32px;
+  height: 32px;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.contact-name {
+  font-size: 13px;
+}
+
+.contact-value {
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.map-box {
+  padding: 14px 10px;
+}
       .welcome-text {
   font-size: var(--mobile-font-size);
   letter-spacing: 2px;
