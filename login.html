@@ -349,25 +349,28 @@
   }
 
   function getSupabaseClient() {
-    if (loginSupabaseClient) return loginSupabaseClient;
+  if (loginSupabaseClient) return loginSupabaseClient;
 
-    if (
-      !window.supabase ||
-      typeof SUPABASE_URL === "undefined" ||
-      typeof SUPABASE_KEY === "undefined"
-    ) {
-      throw new Error(
-        "Supabase configuration was not detected. Please check config.js."
-      );
-    }
+  const config = window.FAWAZ_SUPABASE_CONFIG;
 
-    loginSupabaseClient = window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_KEY
+  if (
+    !window.supabase ||
+    !config ||
+    !config.url ||
+    !config.key
+  ) {
+    throw new Error(
+      "Supabase configuration was not detected. Please check config.js."
     );
-
-    return loginSupabaseClient;
   }
+
+  loginSupabaseClient = window.supabase.createClient(
+    config.url,
+    config.key
+  );
+
+  return loginSupabaseClient;
+}
 
   function showSignedIn(user) {
     authSection.classList.add("hidden");
