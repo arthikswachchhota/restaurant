@@ -1,0 +1,498 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#103b36">
+  <meta name="description" content="Sign in or create your Fawaz Cafeteria customer account.">
+  <title>Customer Login | Fawaz Cafeteria</title>
+
+  <style>
+    :root {
+      --dark: #103b36;
+      --dark2: #082b28;
+      --cyan: #00b7c3;
+      --cream: #fff8e9;
+      --muted: #b9d0cc;
+      --danger: #ffb4ab;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+      color: var(--cream);
+      background:
+        radial-gradient(circle at top, #176057, transparent 55%),
+        var(--dark2);
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 420px;
+      padding: 28px 22px;
+      border: 1px solid rgba(0,183,195,.35);
+      border-radius: 22px;
+      background: rgba(16,59,54,.96);
+      box-shadow: 0 18px 50px rgba(0,0,0,.28);
+    }
+
+    .brand {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .brand a {
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 27px;
+      font-weight: 800;
+    }
+
+    .brand span {
+      color: var(--cyan);
+    }
+
+    .brand p {
+      margin: 9px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 24px;
+      padding: 5px;
+      border-radius: 12px;
+      background: var(--dark2);
+    }
+
+    .tab {
+      padding: 12px 8px;
+      border: 0;
+      border-radius: 9px;
+      background: transparent;
+      color: var(--cream);
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .tab.active {
+      color: #062c2a;
+      background: var(--cyan);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 24px;
+    }
+
+    .subtitle {
+      margin: 0 0 22px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .field {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #47716b;
+      border-radius: 10px;
+      outline: none;
+      background: #092f2c;
+      color: white;
+      font-size: 16px;
+    }
+
+    input:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 2px rgba(0,183,195,.15);
+    }
+
+    .main-btn {
+      width: 100%;
+      margin-top: 5px;
+      padding: 14px;
+      border: 0;
+      border-radius: 10px;
+      background: var(--cyan);
+      color: #062c2a;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .main-btn:disabled {
+      opacity: .6;
+      cursor: wait;
+    }
+
+    .forgot {
+      display: block;
+      margin: 0 0 18px;
+      text-align: right;
+      color: #7ceaf0;
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+    .message {
+      display: none;
+      margin: 0 0 16px;
+      padding: 12px;
+      border-radius: 9px;
+      background: #092f2c;
+      color: var(--cream);
+      font-size: 14px;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+
+    .message.show {
+      display: block;
+    }
+
+    .back {
+      display: block;
+      margin-top: 22px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .back:hover,
+    .forgot:hover {
+      text-decoration: underline;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 380px) {
+      .login-card {
+        padding: 24px 17px;
+      }
+
+      .brand a {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="login-card">
+    <div class="brand">
+      <a href="index.html">Fawaz <span>Cafeteria</span></a>
+      <p>Welcome! Sign in or create your customer account.</p>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" id="loginTab" type="button">
+        Login
+      </button>
+      <button class="tab" id="signupTab" type="button">
+        Create Account
+      </button>
+    </div>
+
+    <section id="authSection">
+      <h1 id="formTitle">Welcome Back!</h1>
+      <p class="subtitle" id="formSubtitle">
+        Sign in to continue to your customer account.
+      </p>
+
+      <div id="message" class="message" role="status" aria-live="polite"></div>
+
+      <form id="authForm">
+        <div class="field hidden" id="nameField">
+          <label for="fullName">Full Name</label>
+          <input
+            id="fullName"
+            type="text"
+            autocomplete="name"
+            maxlength="100"
+          >
+        </div>
+
+        <div class="field">
+          <label for="email">Email Address</label>
+          <input
+            id="email"
+            type="email"
+            autocomplete="email"
+            required
+            maxlength="254"
+          >
+        </div>
+
+        <div class="field" id="passwordField">
+          <label for="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            autocomplete="current-password"
+            minlength="6"
+            required
+          >
+        </div>
+
+        <a href="#" class="forgot" id="forgotLink">
+          Forgot Password?
+        </a>
+
+        <button class="main-btn" id="submitButton" type="submit">
+          Login
+        </button>
+      </form>
+    </section>
+
+    <section id="signedInSection" class="hidden">
+      <h1>You're signed in!</h1>
+      <p class="subtitle" id="signedInEmail"></p>
+      <button class="main-btn" id="continueButton" type="button">
+        Continue to Website
+      </button>
+      <button class="main-btn" id="logoutButton" type="button"
+        style="margin-top:10px;background:#fff8e9;">
+        Logout
+      </button>
+    </section>
+
+    <a href="index.html" class="back">← Back to Fawaz Cafeteria</a>
+  </main>
+
+  <!-- Uses the existing Supabase client configuration. -->
+  <script src="config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    const loginTab = document.getElementById("loginTab");
+    const signupTab = document.getElementById("signupTab");
+    const authForm = document.getElementById("authForm");
+    const message = document.getElementById("message");
+    const formTitle = document.getElementById("formTitle");
+    const formSubtitle = document.getElementById("formSubtitle");
+    const nameField = document.getElementById("nameField");
+    const fullName = document.getElementById("fullName");
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
+    const passwordField = document.getElementById("passwordField");
+    const forgotLink = document.getElementById("forgotLink");
+    const submitButton = document.getElementById("submitButton");
+    const authSection = document.getElementById("authSection");
+    const signedInSection = document.getElementById("signedInSection");
+
+    let currentMode = "login";
+    let supabaseClient = null;
+
+    function showMessage(text) {
+      message.textContent = text;
+      message.classList.add("show");
+    }
+
+    function clearMessage() {
+      message.textContent = "";
+      message.classList.remove("show");
+    }
+
+    function setMode(mode) {
+      currentMode = mode;
+      const isSignup = mode === "signup";
+
+      loginTab.classList.toggle("active", !isSignup);
+      signupTab.classList.toggle("active", isSignup);
+      nameField.classList.toggle("hidden", !isSignup);
+      passwordField.classList.remove("hidden");
+      passwordInput.required = true;
+      forgotLink.classList.toggle("hidden", isSignup);
+
+      passwordInput.autocomplete =
+        isSignup ? "new-password" : "current-password";
+
+      formTitle.textContent =
+        isSignup ? "Create Your Account" : "Welcome Back!";
+
+      formSubtitle.textContent = isSignup
+        ? "Create an account to continue."
+        : "Sign in to your customer account.";
+
+      submitButton.textContent =
+        isSignup ? "Create Account" : "Login";
+
+      clearMessage();
+    }
+
+    loginTab.addEventListener("click", () => setMode("login"));
+    signupTab.addEventListener("click", () => setMode("signup"));
+
+    function getSupabaseClient() {
+      if (supabaseClient) return supabaseClient;
+
+      if (!window.supabase || !window.SUPABASE_URL ||
+          !window.SUPABASE_ANON_KEY) {
+        throw new Error(
+          "Supabase configuration was not detected. Please check config.js."
+        );
+      }
+
+      supabaseClient = window.supabase.createClient(
+        window.SUPABASE_URL,
+        window.SUPABASE_ANON_KEY
+      );
+
+      return supabaseClient;
+    }
+
+    function showSignedIn(user) {
+      authSection.classList.add("hidden");
+      signedInSection.classList.remove("hidden");
+      document.getElementById("signedInEmail").textContent =
+        user.email || "Your customer account is active.";
+    }
+
+    async function checkSession() {
+      try {
+        const client = getSupabaseClient();
+        const { data, error } = await client.auth.getSession();
+        if (error) throw error;
+        if (data.session) showSignedIn(data.session.user);
+      } catch (error) {
+        showMessage(error.message || "Could not connect to the account service.");
+      }
+    }
+
+    authForm.addEventListener("submit", async function (event) {
+      event.preventDefault();
+      clearMessage();
+
+      const email = emailInput.value.trim();
+      const password = passwordInput.value;
+      const name = fullName.value.trim();
+
+      if (currentMode === "signup" && !name) {
+        showMessage("Please enter your full name.");
+        fullName.focus();
+        return;
+      }
+
+      submitButton.disabled = true;
+      submitButton.textContent = "Please wait...";
+
+      try {
+        const client = getSupabaseClient();
+        let result;
+
+        if (currentMode === "signup") {
+          result = await client.auth.signUp({
+            email,
+            password,
+            options: {
+              data: { full_name: name },
+              emailRedirectTo: window.location.origin +
+                window.location.pathname
+            }
+          });
+
+          if (result.error) throw result.error;
+
+          if (result.data.session) {
+            showSignedIn(result.data.user);
+          } else {
+            showMessage(
+              "Account request submitted. Check your email for a confirmation link before logging in."
+            );
+            setMode("login");
+          }
+        } else {
+          result = await client.auth.signInWithPassword({
+            email,
+            password
+          });
+
+          if (result.error) throw result.error;
+          showSignedIn(result.data.user);
+        }
+      } catch (error) {
+        showMessage(error.message || "Something went wrong. Please try again.");
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent =
+          currentMode === "signup" ? "Create Account" : "Login";
+      }
+    });
+
+    forgotLink.addEventListener("click", async function (event) {
+      event.preventDefault();
+      clearMessage();
+
+      const email = emailInput.value.trim();
+      if (!email) {
+        showMessage("Enter your email address first.");
+        emailInput.focus();
+        return;
+      }
+
+      try {
+        const client = getSupabaseClient();
+        const { error } = await client.auth.resetPasswordForEmail(email, {
+          redirectTo: window.location.origin +
+            window.location.pathname
+        });
+
+        if (error) throw error;
+        showMessage("If this email is registered, a password reset link will be sent.");
+      } catch (error) {
+        showMessage(error.message || "Could not request a password reset.");
+      }
+    });
+
+    document.getElementById("continueButton").addEventListener("click", function () {
+      window.location.href = "index.html";
+    });
+
+    document.getElementById("logoutButton").addEventListener("click", async function () {
+      try {
+        const client = getSupabaseClient();
+        const { error } = await client.auth.signOut();
+        if (error) throw error;
+
+        signedInSection.classList.add("hidden");
+        authSection.classList.remove("hidden");
+        authForm.reset();
+        setMode("login");
+        showMessage("You have been logged out.");
+      } catch (error) {
+        showMessage(error.message || "Could not log out.");
+      }
+    });
+
+    checkSession();
+  </script>
+</body>
+</html>
