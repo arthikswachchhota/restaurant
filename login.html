@@ -290,214 +290,248 @@
   <script src="config.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <script>
-    const loginTab = document.getElementById("loginTab");
-    const signupTab = document.getElementById("signupTab");
-    const authForm = document.getElementById("authForm");
-    const message = document.getElementById("message");
-    const formTitle = document.getElementById("formTitle");
-    const formSubtitle = document.getElementById("formSubtitle");
-    const nameField = document.getElementById("nameField");
-    const fullName = document.getElementById("fullName");
-    const emailInput = document.getElementById("email");
-    const passwordInput = document.getElementById("password");
-    const passwordField = document.getElementById("passwordField");
-    const forgotLink = document.getElementById("forgotLink");
-    const submitButton = document.getElementById("submitButton");
-    const authSection = document.getElementById("authSection");
-    const signedInSection = document.getElementById("signedInSection");
+  
+<script>
+  const loginTab = document.getElementById("loginTab");
+  const signupTab = document.getElementById("signupTab");
+  const authForm = document.getElementById("authForm");
+  const message = document.getElementById("message");
+  const formTitle = document.getElementById("formTitle");
+  const formSubtitle = document.getElementById("formSubtitle");
+  const nameField = document.getElementById("nameField");
+  const fullName = document.getElementById("fullName");
+  const emailInput = document.getElementById("email");
+  const passwordInput = document.getElementById("password");
+  const passwordField = document.getElementById("passwordField");
+  const forgotLink = document.getElementById("forgotLink");
+  const submitButton = document.getElementById("submitButton");
+  const authSection = document.getElementById("authSection");
+  const signedInSection = document.getElementById("signedInSection");
 
-    let currentMode = "login";
-    let supabaseClient = null;
+  let currentMode = "login";
+  let loginSupabaseClient = null;
 
-    function showMessage(text) {
-      message.textContent = text;
-      message.classList.add("show");
-    }
-
-    function clearMessage() {
-      message.textContent = "";
-      message.classList.remove("show");
-    }
-
-    function setMode(mode) {
-      currentMode = mode;
-      const isSignup = mode === "signup";
-
-      loginTab.classList.toggle("active", !isSignup);
-      signupTab.classList.toggle("active", isSignup);
-      nameField.classList.toggle("hidden", !isSignup);
-      passwordField.classList.remove("hidden");
-      passwordInput.required = true;
-      forgotLink.classList.toggle("hidden", isSignup);
-
-      passwordInput.autocomplete =
-        isSignup ? "new-password" : "current-password";
-
-      formTitle.textContent =
-        isSignup ? "Create Your Account" : "Welcome Back!";
-
-      formSubtitle.textContent = isSignup
-        ? "Create an account to continue."
-        : "Sign in to your customer account.";
-
-      submitButton.textContent =
-        isSignup ? "Create Account" : "Login";
-
-      clearMessage();
-    }
-
-    loginTab.addEventListener("click", () => setMode("login"));
-    signupTab.addEventListener("click", () => setMode("signup"));
-
-    function getSupabaseClient() {
-      if (supabaseClient) return supabaseClient;
-
-      function getSupabaseClient() {
-  if (supabaseClient) return supabaseClient;
-
-  if (
-    !window.supabase ||
-    typeof SUPABASE_URL === "undefined" ||
-    typeof SUPABASE_KEY === "undefined"
-  ) {
-    throw new Error(
-      "Supabase configuration was not detected. Please check config.js."
-    );
+  function showMessage(text) {
+    message.textContent = text;
+    message.classList.add("show");
   }
 
-  supabaseClient = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-  );
+  function clearMessage() {
+    message.textContent = "";
+    message.classList.remove("show");
+  }
 
-  return supabaseClient;
-}
+  function setMode(mode) {
+    currentMode = mode;
+    const isSignup = mode === "signup";
 
-    function showSignedIn(user) {
-      authSection.classList.add("hidden");
-      signedInSection.classList.remove("hidden");
-      document.getElementById("signedInEmail").textContent =
-        user.email || "Your customer account is active.";
+    loginTab.classList.toggle("active", !isSignup);
+    signupTab.classList.toggle("active", isSignup);
+    nameField.classList.toggle("hidden", !isSignup);
+    passwordField.classList.remove("hidden");
+    passwordInput.required = true;
+    forgotLink.classList.toggle("hidden", isSignup);
+
+    passwordInput.autocomplete =
+      isSignup ? "new-password" : "current-password";
+
+    formTitle.textContent =
+      isSignup ? "Create Your Account" : "Welcome Back!";
+
+    formSubtitle.textContent = isSignup
+      ? "Create an account to continue."
+      : "Sign in to your customer account.";
+
+    submitButton.textContent =
+      isSignup ? "Create Account" : "Login";
+
+    clearMessage();
+  }
+
+  function getSupabaseClient() {
+    if (loginSupabaseClient) return loginSupabaseClient;
+
+    if (
+      !window.supabase ||
+      typeof SUPABASE_URL === "undefined" ||
+      typeof SUPABASE_KEY === "undefined"
+    ) {
+      throw new Error(
+        "Supabase configuration was not detected. Please check config.js."
+      );
     }
 
-    async function checkSession() {
-      try {
-        const client = getSupabaseClient();
-        const { data, error } = await client.auth.getSession();
-        if (error) throw error;
-        if (data.session) showSignedIn(data.session.user);
-      } catch (error) {
-        showMessage(error.message || "Could not connect to the account service.");
+    loginSupabaseClient = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
+
+    return loginSupabaseClient;
+  }
+
+  function showSignedIn(user) {
+    authSection.classList.add("hidden");
+    signedInSection.classList.remove("hidden");
+
+    document.getElementById("signedInEmail").textContent =
+      user.email || "Your customer account is active.";
+  }
+
+  async function checkSession() {
+    try {
+      const client = getSupabaseClient();
+      const { data, error } = await client.auth.getSession();
+
+      if (error) throw error;
+
+      if (data.session) {
+        showSignedIn(data.session.user);
       }
+    } catch (error) {
+      showMessage(
+        error.message || "Could not connect to the account service."
+      );
+    }
+  }
+
+  loginTab.addEventListener("click", function () {
+    setMode("login");
+  });
+
+  signupTab.addEventListener("click", function () {
+    setMode("signup");
+  });
+
+  authForm.addEventListener("submit", async function (event) {
+    event.preventDefault();
+    clearMessage();
+
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
+    const name = fullName.value.trim();
+
+    if (currentMode === "signup" && !name) {
+      showMessage("Please enter your full name.");
+      fullName.focus();
+      return;
     }
 
-    authForm.addEventListener("submit", async function (event) {
-      event.preventDefault();
-      clearMessage();
+    submitButton.disabled = true;
+    submitButton.textContent = "Please wait...";
 
-      const email = emailInput.value.trim();
-      const password = passwordInput.value;
-      const name = fullName.value.trim();
+    try {
+      const client = getSupabaseClient();
 
-      if (currentMode === "signup" && !name) {
-        showMessage("Please enter your full name.");
-        fullName.focus();
-        return;
-      }
-
-      submitButton.disabled = true;
-      submitButton.textContent = "Please wait...";
-
-      try {
-        const client = getSupabaseClient();
-        let result;
-
-        if (currentMode === "signup") {
-          result = await client.auth.signUp({
-            email,
-            password,
-            options: {
-              data: { full_name: name },
-              emailRedirectTo: window.location.origin +
-                window.location.pathname
-            }
-          });
-
-          if (result.error) throw result.error;
-
-          if (result.data.session) {
-            showSignedIn(result.data.user);
-          } else {
-            showMessage(
-              "Account request submitted. Check your email for a confirmation link before logging in."
-            );
-            setMode("login");
+      if (currentMode === "signup") {
+        const { data, error } = await client.auth.signUp({
+          email: email,
+          password: password,
+          options: {
+            data: {
+              full_name: name
+            },
+            emailRedirectTo:
+              window.location.origin + window.location.pathname
           }
-        } else {
-          result = await client.auth.signInWithPassword({
-            email,
-            password
-          });
-
-          if (result.error) throw result.error;
-          showSignedIn(result.data.user);
-        }
-      } catch (error) {
-        showMessage(error.message || "Something went wrong. Please try again.");
-      } finally {
-        submitButton.disabled = false;
-        submitButton.textContent =
-          currentMode === "signup" ? "Create Account" : "Login";
-      }
-    });
-
-    forgotLink.addEventListener("click", async function (event) {
-      event.preventDefault();
-      clearMessage();
-
-      const email = emailInput.value.trim();
-      if (!email) {
-        showMessage("Enter your email address first.");
-        emailInput.focus();
-        return;
-      }
-
-      try {
-        const client = getSupabaseClient();
-        const { error } = await client.auth.resetPasswordForEmail(email, {
-          redirectTo: window.location.origin +
-            window.location.pathname
         });
 
         if (error) throw error;
-        showMessage("If this email is registered, a password reset link will be sent.");
-      } catch (error) {
-        showMessage(error.message || "Could not request a password reset.");
-      }
-    });
 
-    document.getElementById("continueButton").addEventListener("click", function () {
+        if (data.session && data.user) {
+          showSignedIn(data.user);
+        } else {
+          setMode("login");
+          showMessage(
+            "Account request submitted. Check your email for a confirmation link before logging in."
+          );
+        }
+      } else {
+        const { data, error } =
+          await client.auth.signInWithPassword({
+            email: email,
+            password: password
+          });
+
+        if (error) throw error;
+
+        showSignedIn(data.user);
+      }
+    } catch (error) {
+      showMessage(
+        error.message || "Something went wrong. Please try again."
+      );
+    } finally {
+      submitButton.disabled = false;
+      submitButton.textContent =
+        currentMode === "signup" ? "Create Account" : "Login";
+    }
+  });
+
+  forgotLink.addEventListener("click", async function (event) {
+    event.preventDefault();
+    clearMessage();
+
+    const email = emailInput.value.trim();
+
+    if (!email) {
+      showMessage("Enter your email address first.");
+      emailInput.focus();
+      return;
+    }
+
+    try {
+      const client = getSupabaseClient();
+
+      const { error } = await client.auth.resetPasswordForEmail(
+        email,
+        {
+          redirectTo:
+            window.location.origin + window.location.pathname
+        }
+      );
+
+      if (error) throw error;
+
+      showMessage(
+        "If this email is registered, a password reset link will be sent."
+      );
+    } catch (error) {
+      showMessage(
+        error.message || "Could not request a password reset."
+      );
+    }
+  });
+
+  document
+    .getElementById("continueButton")
+    .addEventListener("click", function () {
       window.location.href = "index.html";
     });
 
-    document.getElementById("logoutButton").addEventListener("click", async function () {
+  document
+    .getElementById("logoutButton")
+    .addEventListener("click", async function () {
       try {
         const client = getSupabaseClient();
         const { error } = await client.auth.signOut();
+
         if (error) throw error;
 
         signedInSection.classList.add("hidden");
         authSection.classList.remove("hidden");
         authForm.reset();
         setMode("login");
+
         showMessage("You have been logged out.");
       } catch (error) {
-        showMessage(error.message || "Could not log out.");
+        showMessage(
+          error.message || "Could not log out."
+        );
       }
     });
 
-    checkSession();
-  </script>
+  checkSession();
+</script>
+
 </body>
 </html>
