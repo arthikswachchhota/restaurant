@@ -1,0 +1,600 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#103b36">
+  <meta name="description" content="Your Fawaz Cafeteria customer account.">
+  <title>My Account | Fawaz Cafeteria</title>
+
+  <style>
+    :root {
+      --dark: #103b36;
+      --dark2: #082b28;
+      --cyan: #00b7c3;
+      --cream: #fff8e9;
+      --muted: #b9d0cc;
+      --border: rgba(0, 183, 195, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      color: var(--cream);
+      background:
+        radial-gradient(circle at top, #176057, transparent 55%),
+        var(--dark2);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .site-header {
+      background: var(--dark);
+      border-bottom: 3px solid var(--cyan);
+      padding: 16px 5%;
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .brand span {
+      color: var(--cyan);
+    }
+
+    .back-link {
+      color: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 10px 13px;
+      font-size: 13px;
+    }
+
+    .page {
+      max-width: 950px;
+      margin: auto;
+      padding: 38px 18px 55px;
+    }
+
+    .welcome {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .eyebrow {
+      color: var(--cyan);
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    h1 {
+      margin: 12px 0 8px;
+      font-size: clamp(27px, 5vw, 38px);
+    }
+
+    .welcome p {
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .profile-card {
+      max-width: 680px;
+      margin: auto;
+      padding: 25px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(16, 59, 54, 0.94);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22);
+    }
+
+    .profile-top {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .avatar {
+      width: 58px;
+      height: 58px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--dark2);
+      background: var(--cyan);
+      font-size: 27px;
+    }
+
+    .profile-top h2 {
+      font-size: 20px;
+      margin: 0 0 6px;
+    }
+
+    .profile-top p {
+      color: var(--muted);
+      margin: 0;
+      overflow-wrap: anywhere;
+      font-size: 14px;
+    }
+
+    .account-info {
+      padding: 16px;
+      border-radius: 12px;
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      margin-bottom: 22px;
+    }
+
+    .info-label {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 7px;
+    }
+
+    #userEmail {
+      overflow-wrap: anywhere;
+      font-size: 15px;
+    }
+
+    .section-title {
+      font-size: 19px;
+      margin: 25px 0 13px;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 13px;
+    }
+
+    .menu-card {
+      display: block;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      background: rgba(8, 43, 40, 0.75);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .menu-card:hover {
+      border-color: var(--cyan);
+      transform: translateY(-2px);
+    }
+
+    .menu-icon {
+      font-size: 25px;
+      margin-bottom: 10px;
+    }
+
+    .menu-card h3 {
+      margin: 0 0 7px;
+      font-size: 16px;
+    }
+
+    .menu-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .orders-box {
+      padding: 24px 16px;
+      text-align: center;
+      border: 1px dashed rgba(0, 183, 195, 0.4);
+      border-radius: 13px;
+      background: rgba(8, 43, 40, 0.6);
+    }
+
+    .orders-box .order-icon {
+      font-size: 34px;
+      margin-bottom: 8px;
+    }
+
+    .orders-box h3 {
+      margin: 0 0 8px;
+    }
+
+    .orders-box p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .shop-button {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 12px 18px;
+      background: var(--cyan);
+      color: var(--dark2);
+      border-radius: 9px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .logout-button {
+      width: 100%;
+      margin-top: 23px;
+      padding: 13px;
+      color: var(--cream);
+      background: transparent;
+      border: 1px solid rgba(255, 120, 120, 0.6);
+      border-radius: 10px;
+      font-weight: bold;
+    }
+
+    .logout-button:hover {
+      background: rgba(255, 80, 80, 0.1);
+    }
+
+    .site-footer {
+      text-align: center;
+      padding: 20px 12px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .language-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .language-buttons button {
+      color: var(--cream);
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 7px 11px;
+      font-size: 12px;
+    }
+
+    .language-buttons button.active {
+      color: var(--dark2);
+      background: var(--cyan);
+      border-color: var(--cyan);
+    }
+
+    #pageStatus {
+      text-align: center;
+      color: var(--muted);
+      padding: 35px 10px;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    @media (max-width: 520px) {
+      .page {
+        padding: 28px 13px 40px;
+      }
+
+      .profile-card {
+        padding: 18px;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .brand {
+        font-size: 19px;
+      }
+
+      .back-link {
+        font-size: 12px;
+        padding: 9px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand">
+        Fawaz <span>Cafeteria</span>
+      </a>
+
+      <a href="index.html" class="back-link">
+        ← <span data-lang="en">Back to Website</span>
+        <span data-lang="ar">العودة إلى الموقع</span>
+        <span data-lang="bn">ওয়েবসাইটে ফিরুন</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="page">
+
+    <div id="pageStatus" role="status">
+      Checking your account...
+    </div>
+
+    <div id="accountContent" hidden>
+
+      <section class="welcome">
+        <div class="eyebrow">
+          FRESH • SIMPLE • FAMILIAR
+        </div>
+
+        <h1>
+          <span data-lang="en">My Account</span>
+          <span data-lang="ar">حسابي</span>
+          <span data-lang="bn">আমার অ্যাকাউন্ট</span>
+        </h1>
+
+        <p>
+          <span data-lang="en">Welcome to your Fawaz customer account.</span>
+          <span data-lang="ar">مرحباً بك في حسابك لدى كفتيريا فواز.</span>
+          <span data-lang="bn">আপনার Fawaz গ্রাহক অ্যাকাউন্টে স্বাগতম।</span>
+        </p>
+      </section>
+
+      <section class="profile-card">
+
+        <div class="profile-top">
+          <div class="avatar">👤</div>
+
+          <div>
+            <h2>
+              <span data-lang="en">My Profile</span>
+              <span data-lang="ar">ملفي الشخصي</span>
+              <span data-lang="bn">আমার প্রোফাইল</span>
+            </h2>
+
+            <p id="userEmail">Loading...</p>
+          </div>
+        </div>
+
+        <div class="account-info">
+          <div class="info-label">
+            <span data-lang="en">Registered email</span>
+            <span data-lang="ar">البريد الإلكتروني</span>
+            <span data-lang="bn">নিবন্ধিত ইমেইল</span>
+          </div>
+
+          <div id="userEmailDetail">Loading...</div>
+        </div>
+
+        <div class="menu-grid">
+
+          <a href="#orders" class="menu-card">
+            <div class="menu-icon">🛍️</div>
+
+            <h3>
+              <span data-lang="en">My Orders</span>
+              <span data-lang="ar">طلباتي</span>
+              <span data-lang="bn">আমার অর্ডার</span>
+            </h3>
+
+            <p>
+              <span data-lang="en">View your order history.</span>
+              <span data-lang="ar">عرض سجل طلباتك.</span>
+              <span data-lang="bn">আপনার অর্ডারের ইতিহাস দেখুন।</span>
+            </p>
+          </a>
+
+          <a href="index.html#food" class="menu-card">
+            <div class="menu-icon">🍔</div>
+
+            <h3>
+              <span data-lang="en">Explore Our Food</span>
+              <span data-lang="ar">استكشف أطعمتنا</span>
+              <span data-lang="bn">আমাদের খাবার দেখুন</span>
+            </h3>
+
+            <p>
+              <span data-lang="en">Discover the Fawaz menu.</span>
+              <span data-lang="ar">اكتشف قائمة فواز.</span>
+              <span data-lang="bn">Fawaz-এর মেনু দেখুন।</span>
+            </p>
+          </a>
+
+        </div>
+
+        <h2 class="section-title" id="orders">
+          <span data-lang="en">My Orders</span>
+          <span data-lang="ar">طلباتي</span>
+          <span data-lang="bn">আমার অর্ডার</span>
+        </h2>
+
+        <div class="orders-box">
+          <div class="order-icon">📦</div>
+
+          <h3>
+            <span data-lang="en">Order history</span>
+            <span data-lang="ar">سجل الطلبات</span>
+            <span data-lang="bn">অর্ডারের ইতিহাস</span>
+          </h3>
+
+          <p>
+            <span data-lang="en">
+              Your orders will appear here when order saving is connected.
+              WhatsApp orders are not automatically recorded here yet.
+            </span>
+
+            <span data-lang="ar">
+              ستظهر طلباتك هنا بعد تفعيل حفظ الطلبات.
+              طلبات واتساب لا تُسجّل هنا تلقائياً حتى الآن.
+            </span>
+
+            <span data-lang="bn">
+              অর্ডার সংরক্ষণের ব্যবস্থা চালু হলে এখানে অর্ডার দেখা যাবে।
+              WhatsApp-এর অর্ডার এখনো এখানে স্বয়ংক্রিয়ভাবে জমা হয় না।
+            </span>
+          </p>
+
+          <a href="index.html#food" class="shop-button">
+            <span data-lang="en">Explore Menu</span>
+            <span data-lang="ar">استكشف القائمة</span>
+            <span data-lang="bn">মেনু দেখুন</span>
+          </a>
+        </div>
+
+        <button id="logoutButton" class="logout-button" type="button">
+          <span data-lang="en">Logout</span>
+          <span data-lang="ar">تسجيل الخروج</span>
+          <span data-lang="bn">লগআউট</span>
+        </button>
+
+        <div class="language-buttons" aria-label="Choose language">
+          <button type="button" data-set-lang="en">EN</button>
+          <button type="button" data-set-lang="ar">العربية</button>
+          <button type="button" data-set-lang="bn">বাংলা</button>
+        </div>
+
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    Fawaz Cafeteria • Umm Al-Salam, Jeddah
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    const SUPABASE_URL =
+      "https://vqoyhnrhlpnwtnvdxpjn.supabase.co";
+
+    const SUPABASE_KEY =
+      "sb_publishable_9s15tPt0smgSEX_Hsr-t_g_xYH_QFY3";
+
+    const accountSupabase =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
+
+    const pageStatus =
+      document.getElementById("pageStatus");
+
+    const accountContent =
+      document.getElementById("accountContent");
+
+    function setAccountLanguage(language) {
+      const supported = ["en", "ar", "bn"];
+      const selected = supported.includes(language)
+        ? language
+        : "en";
+
+      document.documentElement.lang = selected;
+      document.documentElement.dir =
+        selected === "ar" ? "rtl" : "ltr";
+
+      document.querySelectorAll("[data-lang]").forEach((element) => {
+        element.hidden = element.dataset.lang !== selected;
+      });
+
+      document.querySelectorAll("[data-set-lang]").forEach((button) => {
+        button.classList.toggle(
+          "active",
+          button.dataset.setLang === selected
+        );
+      });
+
+      try {
+        localStorage.setItem("fawaz-language", selected);
+      } catch (error) {
+        // Language selection still works if storage is unavailable.
+      }
+    }
+
+    document.querySelectorAll("[data-set-lang]").forEach((button) => {
+      button.addEventListener("click", () => {
+        setAccountLanguage(button.dataset.setLang);
+      });
+    });
+
+    async function loadCustomerAccount() {
+      const { data, error } =
+        await accountSupabase.auth.getSession();
+
+      if (error) {
+        pageStatus.textContent =
+          "Unable to check your session. Please try again.";
+        console.error("Account session error:", error);
+        return;
+      }
+
+      const session = data.session;
+
+      if (!session || !session.user) {
+        window.location.replace("login.html");
+        return;
+      }
+
+      const email = session.user.email || "Email unavailable";
+
+      document.getElementById("userEmail").textContent = email;
+      document.getElementById("userEmailDetail").textContent = email;
+
+      pageStatus.hidden = true;
+      accountContent.hidden = false;
+    }
+
+    document.getElementById("logoutButton")
+      .addEventListener("click", async () => {
+        const button = document.getElementById("logoutButton");
+        button.disabled = true;
+
+        const { error } =
+          await accountSupabase.auth.signOut();
+
+        if (error) {
+          console.error("Logout error:", error);
+          button.disabled = false;
+          alert("Logout failed. Please try again.");
+          return;
+        }
+
+        window.location.replace("index.html");
+      });
+
+    let savedLanguage = "en";
+
+    try {
+      savedLanguage =
+        localStorage.getItem("fawaz-language") || "en";
+    } catch (error) {
+      // Use English if local storage is unavailable.
+    }
+
+    setAccountLanguage(savedLanguage);
+    loadCustomerAccount();
+  </script>
+
+</body>
+</html>
