@@ -8,305 +8,292 @@
   <title>Customer Login | Fawaz Cafeteria</title>
 
   <style>
-  :root {
-    --dark: #103b36;
-    --dark2: #082b28;
-    --cyan: #00b7c3;
-    --cream: #fff8e9;
-    --muted: #b9d0cc;
-  }
-
-  * {
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0;
-    min-height: 100vh;
-    font-family: Arial, sans-serif;
-    color: var(--cream);
-    background:
-        radial-gradient(circle at top, #176057, transparent 55%),
-        #082b28;
+:root {
+  --dark: #103b36;
+  --dark2: #082b28;
+  --cyan: #00b7c3;
+  --cream: #fff8e9;
+  --muted: #c2d9d4;
+  --white: #ffffff;
 }
 
-  .site-header {
-    background: var(--dark);
-    border-bottom: 3px solid var(--cyan);
-    padding: 16px 5%;
-  }
+* {
+  box-sizing: border-box;
+}
 
-  .header-inner {
-    max-width: 1150px;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-  }
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  color: var(--cream);
+  background: var(--dark2);
+}
 
-  .brand-logo {
-    color: var(--cream);
-    text-decoration: none;
-    font-size: 23px;
-    font-weight: 800;
-  }
+.site-header {
+  background: var(--dark);
+  border-bottom: 3px solid var(--cyan);
+  padding: 16px 5%;
+}
 
-  .brand-logo span {
-    color: var(--cyan);
-  }
+.header-inner {
+  max-width: 1150px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
 
-  .home-link {
-    color: var(--cream);
-    text-decoration: none;
-    border: 1px solid rgba(255,255,255,.3);
-    border-radius: 9px;
-    padding: 10px 14px;
-    font-size: 14px;
-  }
+.brand-logo {
+  color: var(--cream);
+  text-decoration: none;
+  font-size: 23px;
+  font-weight: 800;
+}
 
-  .home-link:hover {
-    background: rgba(255,255,255,.1);
-  }
+.brand-logo span {
+  color: var(--cyan);
+}
 
+.home-link {
+  color: var(--cream);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.home-link:hover,
+.back:hover {
+  color: var(--cyan);
+}
+
+.page-shell {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 38px 18px 30px;
+}
+
+.welcome-heading {
+  text-align: center;
+  margin-bottom: 28px;
+  color: var(--cream);
+}
+
+.welcome-heading .eyebrow {
+  color: var(--cyan);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.welcome-heading h1 {
+  color: var(--cream);
+  font-size: clamp(27px, 5vw, 38px);
+  margin: 0 0 12px;
+}
+
+.welcome-heading p {
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 460px;
+  margin: 0 auto;
+  padding: 30px;
+  border: 1px solid rgba(0, 183, 195, 0.35);
+  border-radius: 20px;
+  background: var(--dark);
+  color: var(--cream);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+}
+
+.brand {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.brand a {
+  color: var(--cream);
+  text-decoration: none;
+  font-size: 25px;
+  font-weight: 800;
+}
+
+.brand span {
+  color: var(--cyan);
+}
+
+.brand p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 10px 0 0;
+}
+
+.tabs {
+  display: flex;
+  gap: 5px;
+  padding: 5px;
+  margin-bottom: 25px;
+  border-radius: 12px;
+  background: var(--dark2);
+}
+
+.tab {
+  flex: 1;
+  border: 0;
+  border-radius: 9px;
+  padding: 12px 8px;
+  background: transparent;
+  color: var(--cream);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.tab.active {
+  background: var(--cyan);
+  color: #062b29;
+}
+
+#formTitle,
+#signedInSection h1 {
+  color: var(--cream);
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+label {
+  display: block;
+  color: var(--cream);
+  font-size: 14px;
+  font-weight: 700;
+  margin: 16px 0 8px;
+}
+
+input {
+  display: block;
+  width: 100%;
+  min-height: 46px;
+  padding: 12px 13px;
+  border: 1px solid #52746e;
+  border-radius: 10px;
+  outline: none;
+  background: var(--dark2);
+  color: var(--white);
+  font-size: 16px;
+}
+
+input::placeholder {
+  color: #b2c8c3;
+  opacity: 1;
+}
+
+input:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px rgba(0, 183, 195, 0.18);
+}
+
+button {
+  font-family: inherit;
+}
+
+#submitButton,
+#signedInSection button,
+#signedInSection a {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px 16px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--cyan);
+  color: #062b29;
+  font-size: 15px;
+  font-weight: 800;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#submitButton:hover,
+#signedInSection button:hover,
+#signedInSection a:hover {
+  background: #48d8df;
+}
+
+.forgot {
+  display: inline-block;
+  margin-top: 14px;
+  color: #75e9ee;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.forgot:hover {
+  color: var(--white);
+  text-decoration: underline;
+}
+
+.message {
+  margin-top: 18px;
+  padding: 12px;
+  border: 1px solid #52746e;
+  border-radius: 10px;
+  background: var(--dark2);
+  color: var(--cream);
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.back {
+  display: block;
+  margin-top: 25px;
+  color: var(--muted);
+  font-size: 14px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.site-footer {
+  padding: 20px 15px 28px;
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 520px) {
   .page-shell {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 42px 20px 50px;
-  }
-
-  .welcome-heading {
-    text-align: center;
-    margin-bottom: 28px;
-    color: var(--dark);
-  }
-
-  .welcome-heading .eyebrow {
-    color: #078b93;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
-  }
-
-  .welcome-heading h1 {
-    font-size: clamp(26px, 5vw, 36px);
-    margin: 0 0 10px;
-  }
-
-  .welcome-heading p {
-    margin: 0;
-    color: #58706b;
-    font-size: 15px;
-    line-height: 1.6;
+    padding: 28px 14px 22px;
   }
 
   .login-card {
-    width: 100%;
-    max-width: 460px;
-    margin: 0 auto;
-    padding: 30px;
-    border: 1px solid #dce9e5;
-    border-radius: 20px;
-    background: #fff;
-    color: var(--dark);
-    box-shadow: 0 15px 45px rgba(16,59,54,.10);
+    padding: 22px 18px;
+    border-radius: 16px;
   }
 
-  .brand {
-    text-align: center;
-    margin-bottom: 24px;
+  .brand-logo {
+    font-size: 20px;
   }
 
-  .brand a {
-    color: var(--dark);
-    text-decoration: none;
-    font-size: 25px;
-    font-weight: 800;
+  .welcome-heading h1 {
+    font-size: 28px;
   }
-
-  .brand span {
-    color: #079da7;
-  }
-
-  .brand p {
-    margin: 9px 0 0;
-    color: #687d78;
-    font-size: 14px;
-    line-height: 1.5;
-  }
-
-  .tabs {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6px;
-    margin-bottom: 24px;
-    padding: 5px;
-    border-radius: 12px;
-    background: #edf4f1;
-  }
-
-  .tab {
-    padding: 12px 8px;
-    border: 0;
-    border-radius: 9px;
-    background: transparent;
-    color: var(--dark);
-    font-weight: 700;
-    cursor: pointer;
-    font-size: 14px;
-  }
-
-  .tab.active {
-    color: #fff;
-    background: var(--dark);
-  }
-
-  #formTitle,
-  #signedInSection h1 {
-    margin: 0 0 8px;
-    font-size: 24px;
-  }
-
-  .subtitle {
-    margin: 0 0 22px;
-    color: #687d78;
-    font-size: 14px;
-    line-height: 1.6;
-    overflow-wrap: anywhere;
-  }
-
-  .field {
-    margin-bottom: 16px;
-  }
-
-  label {
-    display: block;
-    margin-bottom: 7px;
-    font-size: 14px;
-    font-weight: 700;
-  }
-
-  input {
-    width: 100%;
-    padding: 14px;
-    border: 1px solid #ceddd8;
-    border-radius: 10px;
-    outline: none;
-    background: #fff;
-    color: #173b36;
-    font-size: 16px;
-  }
-
-  input:focus {
-    border-color: #00aab5;
-    box-shadow: 0 0 0 3px rgba(0,183,195,.13);
-  }
-
-  .main-btn {
-    width: 100%;
-    margin-top: 5px;
-    padding: 14px;
-    border: 0;
-    border-radius: 10px;
-    background: var(--cyan);
-    color: #062c2a;
-    font-size: 16px;
-    font-weight: 800;
-    cursor: pointer;
-  }
-
-  .main-btn:hover {
-    filter: brightness(.96);
-  }
-
-  .main-btn:disabled {
-    opacity: .6;
-    cursor: wait;
-  }
-
-  .forgot {
-    display: block;
-    margin: 0 0 18px;
-    text-align: right;
-    color: #087f88;
-    font-size: 13px;
-    text-decoration: none;
-  }
-
-  .message {
-    display: none;
-    margin: 0 0 16px;
-    padding: 12px;
-    border: 1px solid #d4e5df;
-    border-radius: 9px;
-    background: #f0f7f4;
-    color: var(--dark);
-    font-size: 14px;
-    line-height: 1.5;
-    overflow-wrap: anywhere;
-  }
-
-  .message.show {
-    display: block;
-  }
-
-  .back {
-    display: block;
-    margin-top: 22px;
-    text-align: center;
-    color: #58706b;
-    font-size: 14px;
-    text-decoration: none;
-  }
-
-  .back:hover,
-  .forgot:hover {
-    text-decoration: underline;
-  }
-
-  .hidden {
-    display: none !important;
-  }
-
-  .site-footer {
-    text-align: center;
-    padding: 20px;
-    color: #687d78;
-    font-size: 13px;
-  }
-
-  @media (max-width: 480px) {
-    .site-header {
-      padding: 14px 16px;
-    }
-
-    .brand-logo {
-      font-size: 19px;
-    }
-
-    .home-link {
-      padding: 9px 10px;
-      font-size: 12px;
-    }
-
-    .page-shell {
-      padding: 30px 15px 38px;
-    }
-
-    .welcome-heading {
-      margin-bottom: 22px;
-    }
-
-    .login-card {
-      padding: 24px 19px;
-      border-radius: 16px;
-    }
-
-    .brand a {
-      font-size: 23px;
-    }
-  }
+}
 </style>
 </head>
 
