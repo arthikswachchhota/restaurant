@@ -8,283 +8,405 @@
   <title>Customer Login | Fawaz Cafeteria</title>
 
   <style>
-    :root {
-      --dark: #103b36;
-      --dark2: #082b28;
-      --cyan: #00b7c3;
-      --cream: #fff8e9;
-      --muted: #b9d0cc;
-      --danger: #ffb4ab;
+  :root {
+    --dark: #103b36;
+    --dark2: #082b28;
+    --cyan: #00b7c3;
+    --cream: #fff8e9;
+    --muted: #b9d0cc;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    color: var(--cream);
+    background: #f4f7f5;
+  }
+
+  .site-header {
+    background: var(--dark);
+    border-bottom: 3px solid var(--cyan);
+    padding: 16px 5%;
+  }
+
+  .header-inner {
+    max-width: 1150px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .brand-logo {
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 23px;
+    font-weight: 800;
+  }
+
+  .brand-logo span {
+    color: var(--cyan);
+  }
+
+  .home-link {
+    color: var(--cream);
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 9px;
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+
+  .home-link:hover {
+    background: rgba(255,255,255,.1);
+  }
+
+  .page-shell {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 42px 20px 50px;
+  }
+
+  .welcome-heading {
+    text-align: center;
+    margin-bottom: 28px;
+    color: var(--dark);
+  }
+
+  .welcome-heading .eyebrow {
+    color: #078b93;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+
+  .welcome-heading h1 {
+    font-size: clamp(26px, 5vw, 36px);
+    margin: 0 0 10px;
+  }
+
+  .welcome-heading p {
+    margin: 0;
+    color: #58706b;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .login-card {
+    width: 100%;
+    max-width: 460px;
+    margin: 0 auto;
+    padding: 30px;
+    border: 1px solid #dce9e5;
+    border-radius: 20px;
+    background: #fff;
+    color: var(--dark);
+    box-shadow: 0 15px 45px rgba(16,59,54,.10);
+  }
+
+  .brand {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .brand a {
+    color: var(--dark);
+    text-decoration: none;
+    font-size: 25px;
+    font-weight: 800;
+  }
+
+  .brand span {
+    color: #079da7;
+  }
+
+  .brand p {
+    margin: 9px 0 0;
+    color: #687d78;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin-bottom: 24px;
+    padding: 5px;
+    border-radius: 12px;
+    background: #edf4f1;
+  }
+
+  .tab {
+    padding: 12px 8px;
+    border: 0;
+    border-radius: 9px;
+    background: transparent;
+    color: var(--dark);
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .tab.active {
+    color: #fff;
+    background: var(--dark);
+  }
+
+  #formTitle,
+  #signedInSection h1 {
+    margin: 0 0 8px;
+    font-size: 24px;
+  }
+
+  .subtitle {
+    margin: 0 0 22px;
+    color: #687d78;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+  }
+
+  .field {
+    margin-bottom: 16px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ceddd8;
+    border-radius: 10px;
+    outline: none;
+    background: #fff;
+    color: #173b36;
+    font-size: 16px;
+  }
+
+  input:focus {
+    border-color: #00aab5;
+    box-shadow: 0 0 0 3px rgba(0,183,195,.13);
+  }
+
+  .main-btn {
+    width: 100%;
+    margin-top: 5px;
+    padding: 14px;
+    border: 0;
+    border-radius: 10px;
+    background: var(--cyan);
+    color: #062c2a;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+  }
+
+  .main-btn:hover {
+    filter: brightness(.96);
+  }
+
+  .main-btn:disabled {
+    opacity: .6;
+    cursor: wait;
+  }
+
+  .forgot {
+    display: block;
+    margin: 0 0 18px;
+    text-align: right;
+    color: #087f88;
+    font-size: 13px;
+    text-decoration: none;
+  }
+
+  .message {
+    display: none;
+    margin: 0 0 16px;
+    padding: 12px;
+    border: 1px solid #d4e5df;
+    border-radius: 9px;
+    background: #f0f7f4;
+    color: var(--dark);
+    font-size: 14px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+
+  .message.show {
+    display: block;
+  }
+
+  .back {
+    display: block;
+    margin-top: 22px;
+    text-align: center;
+    color: #58706b;
+    font-size: 14px;
+    text-decoration: none;
+  }
+
+  .back:hover,
+  .forgot:hover {
+    text-decoration: underline;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  .site-footer {
+    text-align: center;
+    padding: 20px;
+    color: #687d78;
+    font-size: 13px;
+  }
+
+  @media (max-width: 480px) {
+    .site-header {
+      padding: 14px 16px;
     }
 
-    * {
-      box-sizing: border-box;
+    .brand-logo {
+      font-size: 19px;
     }
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      padding: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: Arial, sans-serif;
-      color: var(--cream);
-      background:
-        radial-gradient(circle at top, #176057, transparent 55%),
-        var(--dark2);
+    .home-link {
+      padding: 9px 10px;
+      font-size: 12px;
+    }
+
+    .page-shell {
+      padding: 30px 15px 38px;
+    }
+
+    .welcome-heading {
+      margin-bottom: 22px;
     }
 
     .login-card {
-      width: 100%;
-      max-width: 420px;
-      padding: 28px 22px;
-      border: 1px solid rgba(0,183,195,.35);
-      border-radius: 22px;
-      background: rgba(16,59,54,.96);
-      box-shadow: 0 18px 50px rgba(0,0,0,.28);
-    }
-
-    .brand {
-      text-align: center;
-      margin-bottom: 24px;
+      padding: 24px 19px;
+      border-radius: 16px;
     }
 
     .brand a {
-      color: var(--cream);
-      text-decoration: none;
-      font-size: 27px;
-      font-weight: 800;
+      font-size: 23px;
     }
-
-    .brand span {
-      color: var(--cyan);
-    }
-
-    .brand p {
-      margin: 9px 0 0;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .tabs {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-      margin-bottom: 24px;
-      padding: 5px;
-      border-radius: 12px;
-      background: var(--dark2);
-    }
-
-    .tab {
-      padding: 12px 8px;
-      border: 0;
-      border-radius: 9px;
-      background: transparent;
-      color: var(--cream);
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .tab.active {
-      color: #062c2a;
-      background: var(--cyan);
-    }
-
-    h1 {
-      margin: 0 0 8px;
-      font-size: 24px;
-    }
-
-    .subtitle {
-      margin: 0 0 22px;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
-    .field {
-      margin-bottom: 16px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 7px;
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    input {
-      width: 100%;
-      padding: 13px;
-      border: 1px solid #47716b;
-      border-radius: 10px;
-      outline: none;
-      background: #092f2c;
-      color: white;
-      font-size: 16px;
-    }
-
-    input:focus {
-      border-color: var(--cyan);
-      box-shadow: 0 0 0 2px rgba(0,183,195,.15);
-    }
-
-    .main-btn {
-      width: 100%;
-      margin-top: 5px;
-      padding: 14px;
-      border: 0;
-      border-radius: 10px;
-      background: var(--cyan);
-      color: #062c2a;
-      font-size: 16px;
-      font-weight: 800;
-      cursor: pointer;
-    }
-
-    .main-btn:disabled {
-      opacity: .6;
-      cursor: wait;
-    }
-
-    .forgot {
-      display: block;
-      margin: 0 0 18px;
-      text-align: right;
-      color: #7ceaf0;
-      font-size: 13px;
-      text-decoration: none;
-    }
-
-    .message {
-      display: none;
-      margin: 0 0 16px;
-      padding: 12px;
-      border-radius: 9px;
-      background: #092f2c;
-      color: var(--cream);
-      font-size: 14px;
-      line-height: 1.5;
-      overflow-wrap: anywhere;
-    }
-
-    .message.show {
-      display: block;
-    }
-
-    .back {
-      display: block;
-      margin-top: 22px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 14px;
-      text-decoration: none;
-    }
-
-    .back:hover,
-    .forgot:hover {
-      text-decoration: underline;
-    }
-
-    .hidden {
-      display: none !important;
-    }
-
-    @media (max-width: 380px) {
-      .login-card {
-        padding: 24px 17px;
-      }
-
-      .brand a {
-        font-size: 24px;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 
 <body>
-  <main class="login-card">
-    <div class="brand">
-      <a href="index.html">Fawaz <span>Cafeteria</span></a>
-      <p>Welcome! Sign in or create your customer account.</p>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand-logo">
+        Fawaz <span>Cafeteria</span>
+      </a>
+
+      <a href="index.html" class="home-link">
+        ← Back to Website
+      </a>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <div class="welcome-heading">
+      <div class="eyebrow">FRESH • SIMPLE • FAMILIAR</div>
+      <h1>Your Fawaz Account</h1>
+      <p>Sign in or create an account to get started.</p>
     </div>
 
-    <div class="tabs">
-      <button class="tab active" id="loginTab" type="button">
-        Login
-      </button>
-      <button class="tab" id="signupTab" type="button">
-        Create Account
-      </button>
-    </div>
+    <div class="login-card">
+      <div class="brand">
+        <a href="index.html">Welcome to <span>Fawaz</span></a>
+        <p>Your customer account, all in one place.</p>
+      </div>
 
-    <section id="authSection">
-      <h1 id="formTitle">Welcome Back!</h1>
-      <p class="subtitle" id="formSubtitle">
-        Sign in to continue to your customer account.
-      </p>
-
-      <div id="message" class="message" role="status" aria-live="polite"></div>
-
-      <form id="authForm">
-        <div class="field hidden" id="nameField">
-          <label for="fullName">Full Name</label>
-          <input
-            id="fullName"
-            type="text"
-            autocomplete="name"
-            maxlength="100"
-          >
-        </div>
-
-        <div class="field">
-          <label for="email">Email Address</label>
-          <input
-            id="email"
-            type="email"
-            autocomplete="email"
-            required
-            maxlength="254"
-          >
-        </div>
-
-        <div class="field" id="passwordField">
-          <label for="password">Password</label>
-          <input
-            id="password"
-            type="password"
-            autocomplete="current-password"
-            minlength="6"
-            required
-          >
-        </div>
-
-        <a href="#" class="forgot" id="forgotLink">
-          Forgot Password?
-        </a>
-
-        <button class="main-btn" id="submitButton" type="submit">
+      <div class="tabs">
+        <button class="tab active" id="loginTab" type="button">
           Login
         </button>
-      </form>
-    </section>
+        <button class="tab" id="signupTab" type="button">
+          Create Account
+        </button>
+      </div>
 
-    <section id="signedInSection" class="hidden">
-      <h1>You're signed in!</h1>
-      <p class="subtitle" id="signedInEmail"></p>
-      <button class="main-btn" id="continueButton" type="button">
-        Continue to Website
-      </button>
-      <button class="main-btn" id="logoutButton" type="button"
-        style="margin-top:10px;background:#fff8e9;">
-        Logout
-      </button>
-    </section>
+      <section id="authSection">
+        <h1 id="formTitle">Welcome Back!</h1>
+        <p class="subtitle" id="formSubtitle">
+          Sign in to continue to your customer account.
+        </p>
 
-    <a href="index.html" class="back">← Back to Fawaz Cafeteria</a>
+        <div id="message" class="message"
+          role="status" aria-live="polite"></div>
+
+        <form id="authForm">
+          <div class="field hidden" id="nameField">
+            <label for="fullName">Full Name</label>
+            <input id="fullName" type="text"
+              autocomplete="name" maxlength="100">
+          </div>
+
+          <div class="field">
+            <label for="email">Email Address</label>
+            <input id="email" type="email"
+              autocomplete="email" required maxlength="254">
+          </div>
+
+          <div class="field" id="passwordField">
+            <label for="password">Password</label>
+            <input id="password" type="password"
+              autocomplete="current-password"
+              minlength="6" required>
+          </div>
+
+          <a href="#" class="forgot" id="forgotLink">
+            Forgot Password?
+          </a>
+
+          <button class="main-btn" id="submitButton" type="submit">
+            Login
+          </button>
+        </form>
+      </section>
+
+      <section id="signedInSection" class="hidden">
+        <h1>You're signed in!</h1>
+        <p class="subtitle" id="signedInEmail"></p>
+
+        <button class="main-btn" id="continueButton" type="button">
+          Continue to Website
+        </button>
+
+        <button class="main-btn" id="logoutButton" type="button"
+          style="margin-top:10px;background:#edf4f1;color:#103b36;">
+          Logout
+        </button>
+      </section>
+
+      <a href="index.html" class="back">
+        ← Back to Fawaz Cafeteria
+      </a>
+    </div>
   </main>
+
+  <footer class="site-footer">
+    Fawaz Cafeteria • Umm Al-Salam, Jeddah
+  </footer>
+
+  <!-- Keep the existing Supabase scripts below unchanged. -->
 
   <!-- Uses the existing Supabase client configuration. -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
