@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -542,10 +541,8 @@ const accountSupabase = window.supabase.createClient(
       }
 
       const email = session.user.email || "Email unavailable";
-
       document.getElementById("userEmail").textContent = email;
-      document.getElementById("userEmailDetail").textContent = email;
-
+      
       pageStatus.hidden = true;
       accountContent.hidden = false;
     }
