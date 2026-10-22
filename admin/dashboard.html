@@ -3717,6 +3717,183 @@ galleryList.appendChild(item);
 });
 
 }
+    
+/* ORDERS MANAGER */
+
+async function openOrdersManager() {
+  let manager = document.getElementById("ordersManager");
+
+  if (!manager) {
+    manager = document.createElement("div");
+    manager.id = "ordersManager";
+    manager.className = "manager";
+
+    manager.innerHTML = `
+      <h2>🛒 Manage Orders</h2>
+      <p id="ordersMessage">Loading orders...</p>
+      <div id="ordersList"></div>
+      <button type="button" class="close-manager"
+        onclick="closeOrdersManager()">
+        ← Back to Dashboard
+      </button>
+    `;
+
+    document.querySelector(".dashboard").appendChild(manager);
+  }
+
+  document.querySelectorAll(".menu-grid .card").forEach(function(card) {
+    card.style.display = "none";
+  });
+
+  document.querySelectorAll(".manager").forEach(function(item) {
+    item.style.display = "none";
+  });
+
+  manager.style.display = "block";
+  manager.scrollIntoView({ behavior: "smooth" });
+
+  await loadOrders();
+}
+
+function closeOrdersManager() {
+  const manager = document.getElementById("ordersManager");
+
+  if (manager) manager.style.display = "none";
+
+  document.querySelectorAll(".menu-grid .card").forEach(function(card) {
+    card.style.display = "";
+  });
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function ordersEscapeHtml(value) {
+  return String(value ?? "").replace(/[&<>"']/g, function(char) {
+    return {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    }[char];
+  });
+}
+
+async function loadOrders() {
+  const message = document.getElementById("ordersMessage");
+  const list = document.getElementById("ordersList");
+
+  if (!message || !list) return;
+
+  message.textContent = "Loading orders...";
+  list.innerHTML = "";
+
+  const { data: orders, error } = await supabaseClient
+    .from("orders")
+    .select("id, created_at, customer_name, customer_phone, customer_address, total_amount, status, order_number")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    message.textContent = "Could not load orders: " + error.message;
+    return;
+  }
+
+  if (!orders || orders.length === 0) {
+    message.textContent = "No orders found yet.";
+    return;
+  }
+
+  const orderIds = orders.map(function(order) {
+    return order.id;
+  });
+
+  const { data: items, error: itemsError } = await supabaseClient
+    .from("order_items")
+    .select("order_id, food_name, quantity, item_price, subtotal")
+    .in("order_id", orderIds);
+
+  if (itemsError) {
+    message.textContent = "Orders loaded, but order items could not load: " + itemsError.message;
+    return;
+  }
+
+  const statusOptions = [
+    ["pending", "Pending"],
+    ["preparing", "Preparing"],
+    ["ready", "Ready"],
+    ["completed", "Completed"],
+    ["cancelled", "Cancelled"]
+  ];
+
+  list.innerHTML = orders.map(function(order) {
+    const orderItems = (items || []).filter(function(item) {
+      return String(item.order_id) === String(order.id);
+    });
+
+    const currentStatus = String(order.status || "pending").toLowerCase();
+
+    let optionsHtml = statusOptions.map(function(option) {
+      return `<option value="${option[0]}" ${
+        currentStatus === option[0] ? "selected" : ""
+      }>${option[1]}</option>`;
+    }).join("");
+
+    if (!statusOptions.some(function(option) {
+      return option[0] === currentStatus;
+    })) {
+      optionsHtml += `<option value="${ordersEscapeHtml(currentStatus)}" selected>${ordersEscapeHtml(order.status)}</option>`;
+    }
+
+    const itemsHtml = orderItems.length
+      ? orderItems.map(function(item) {
+          return `<li>${ordersEscapeHtml(item.food_name)} × ${ordersEscapeHtml(item.quantity)} — SAR ${ordersEscapeHtml(item.subtotal)}</li>`;
+        }).join("")
+      : "<li>No items found</li>";
+
+    return `
+      <div class="card" style="margin:12px 0;padding:16px;">
+        <h3>Order #${ordersEscapeHtml(order.order_number || order.id)}</h3>
+        <p><strong>Customer:</strong> ${ordersEscapeHtml(order.customer_name)}</p>
+        <p><strong>Phone:</strong> ${ordersEscapeHtml(order.customer_phone)}</p>
+        <p><strong>Address:</strong> ${ordersEscapeHtml(order.customer_address)}</p>
+        <p><strong>Total:</strong> SAR ${ordersEscapeHtml(order.total_amount)}</p>
+        <p><strong>Date:</strong> ${ordersEscapeHtml(order.created_at)}</p>
+        <p><strong>Items:</strong></p>
+        <ul>${itemsHtml}</ul>
+        <label>Order Status</label>
+        <select onchange="updateOrderStatus('${ordersEscapeHtml(order.id)}', this.value)">
+          ${optionsHtml}
+        </select>
+      </div>
+    `;
+  }).join("");
+
+  message.textContent = "Total orders: " + orders.length;
+}
+
+async function updateOrderStatus(orderId, newStatus) {
+  const { data, error } = await supabaseClient
+    .from("orders")
+    .update({ status: newStatus })
+    .eq("id", orderId)
+    .select("id");
+
+  if (error) {
+    alert("Status update failed: " + error.message);
+    await loadOrders();
+    return;
+  }
+
+  if (!data || data.length === 0) {
+    alert("Status was not updated. Check the admin permissions for the orders table.");
+    await loadOrders();
+    return;
+  }
+
+  alert("Order status updated successfully!");
+  await loadOrders();
+}
+
     /* =========================
        LOGOUT
     ========================= */
