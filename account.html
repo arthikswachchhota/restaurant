@@ -484,19 +484,14 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
+  <script src="config.js"></script>
   <script>
-    const SUPABASE_URL =
-      "https://vqoyhnrhlpnwtnvdxpjn.supabase.co";
+    const config = window.FAWAZ_SUPABASE_CONFIG;
 
-    const SUPABASE_KEY =
-      "sb_publishable_9s15tPt0smgSEX_Hsr-t_g_xYH_QFY3";
-
-    const accountSupabase =
-      window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-      );
+const accountSupabase = window.supabase.createClient(
+  config.url,
+  config.key
+);
 
     const pageStatus =
       document.getElementById("pageStatus");
