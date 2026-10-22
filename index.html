@@ -3423,16 +3423,6 @@ async function loadFoodData() {
     price.textContent =
       "SAR " + food.price;
 
-    const cartButton = document.createElement("button");
-
-cartButton.type = "button";
-cartButton.className = "add-to-cart-button";
-cartButton.textContent = "🛒 Add to Cart";
-
-cartButton.addEventListener("click", function() {
-  addToCart(food);
-});
-
 const cartButton = document.createElement("button");
 
 cartButton.type = "button";
