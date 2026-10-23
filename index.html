@@ -3307,10 +3307,15 @@ function saveCart() {
 }
 
 function renderCart() {
-    saveCart();
-  let cartBox = document.getElementById("shoppingCart");
+  saveCart();
 
+  const cartBox = document.getElementById("shoppingCart");
+
+  // Do not create a cart inside the Food section.
+  // The cart will be displayed in My Account.
   if (!cartBox) {
+    return;
+  }
     cartBox = document.createElement("section");
     cartBox.id = "shoppingCart";
     cartBox.style.cssText =
