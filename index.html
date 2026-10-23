@@ -3259,6 +3259,20 @@ async function loadWhatsAppData() {
 
 let shoppingCart = [];
 
+try {
+  const savedCart = localStorage.getItem("fawaz-shopping-cart");
+
+  if (savedCart) {
+    const parsedCart = JSON.parse(savedCart);
+
+    if (Array.isArray(parsedCart)) {
+      shoppingCart = parsedCart;
+    }
+  }
+} catch (error) {
+  shoppingCart = [];
+}
+
 function addToCart(food) {
   const foodId = String(food.id);
 
@@ -3272,6 +3286,7 @@ function addToCart(food) {
     shoppingCart.push({
       id: food.id,
       name: food.name_en || "Food",
+      image_url: food.image_url || "",
       price: Number(food.price) || 0,
       quantity: 1
     });
@@ -3280,7 +3295,19 @@ function addToCart(food) {
   renderCart();
 }
 
+function saveCart() {
+  try {
+    localStorage.setItem(
+      "fawaz-shopping-cart",
+      JSON.stringify(shoppingCart)
+    );
+  } catch (error) {
+    console.error("Could not save cart:", error);
+  }
+}
+
 function renderCart() {
+    saveCart();
   let cartBox = document.getElementById("shoppingCart");
 
   if (!cartBox) {
@@ -3426,8 +3453,7 @@ async function loadFoodData() {
 card.append(
   image,
   name,
-  price,
-  cartButton
+  price
 );
 
 foodGrid.appendChild(card);
