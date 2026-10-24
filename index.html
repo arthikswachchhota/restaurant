@@ -3429,10 +3429,22 @@ async function loadFoodData() {
     price.textContent =
       "SAR " + food.price;
 
+const addButton = document.createElement("button");
+
+addButton.type = "button";
+addButton.className = "shop-button";
+addButton.textContent = "Add to Cart";
+
+addButton.addEventListener("click", function() {
+  addToCart(food);
+  addButton.textContent = "Added ✓";
+});
+
 card.append(
   image,
   name,
-  price
+  price,
+  addButton
 );
 
 foodGrid.appendChild(card);
