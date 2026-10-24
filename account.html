@@ -571,7 +571,7 @@ const accountSupabase = window.supabase.createClient(
 
   let total = 0;
 
-  const itemsHTML = cart.map(function(item) {
+  const itemsHTML = cart.map(function(item, index) {
     const price = Number(item.price) || 0;
     const quantity = Number(item.quantity) || 0;
     const subtotal = price * quantity;
@@ -589,7 +589,13 @@ const accountSupabase = window.supabase.createClient(
         <div style="flex:1;min-width:0;">
           <strong>${String(item.name || "Food").replace(/[&<>"']/g, "")}</strong>
           <p style="margin:5px 0;">SAR ${price.toFixed(2)} × ${quantity}</p>
-          <small>Subtotal: SAR ${subtotal.toFixed(2)}</small>
+          <div style="display:flex;align-items:center;gap:8px;margin-top:8px;">
+  <button type="button" onclick="changeAccountCartQuantity(${index}, -1)">−</button>
+  <span>${quantity}</span>
+  <button type="button" onclick="changeAccountCartQuantity(${index}, 1)">+</button>
+  <button type="button" onclick="removeAccountCartItem(${index})">Remove</button>
+</div>
+<small>Subtotal: SAR ${subtotal.toFixed(2)}</small>
         </div>
       </div>
     `;
@@ -602,7 +608,47 @@ const accountSupabase = window.supabase.createClient(
     <a href="index.html#food" class="shop-button">Explore Menu</a>
   `;
 }
+function changeAccountCartQuantity(index, change) {
+  let cart = [];
 
+  try {
+    cart = JSON.parse(
+      localStorage.getItem("fawaz-shopping-cart") || "[]"
+    );
+  } catch (error) {
+    return;
+  }
+
+  if (!Array.isArray(cart) || !cart[index]) return;
+
+  cart[index].quantity =
+    (Number(cart[index].quantity) || 1) + change;
+
+  if (cart[index].quantity <= 0) {
+    cart.splice(index, 1);
+  }
+
+  localStorage.setItem("fawaz-shopping-cart", JSON.stringify(cart));
+  renderAccountCart();
+}
+
+function removeAccountCartItem(index) {
+  let cart = [];
+
+  try {
+    cart = JSON.parse(
+      localStorage.getItem("fawaz-shopping-cart") || "[]"
+    );
+  } catch (error) {
+    return;
+  }
+
+  if (!Array.isArray(cart)) return;
+
+  cart.splice(index, 1);
+  localStorage.setItem("fawaz-shopping-cart", JSON.stringify(cart));
+  renderAccountCart();
+}
     async function loadCustomerAccount() {
       const { data, error } =
         await accountSupabase.auth.getSession();
