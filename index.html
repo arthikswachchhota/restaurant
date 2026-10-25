@@ -1364,113 +1364,102 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
-/* ==========================================
-   FAWAZ FOOD CARDS — FULLY RESPONSIVE DESIGN
-   (Works Perfectly on Desktop & Mobile)
-   ========================================== */
+/* ========================================================
+   FAWAZ 3D CIRCULAR CAROUSEL (PURE CSS - NO HTML CHANGE)
+   ======================================================== */
 
-/* 1. General & Desktop Styles (Screen widths above 650px) */
+/* ১. মেইন কন্টেইনারকে হরাইজন্টাল স্লাইডারে রূপান্তর */
 .food-section #foodGrid {
-  display: grid !important;
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  gap: 12px !important; /* ডেস্কটপে একটু বেশি স্পেস সুন্দর দেখায় */
-  padding: 10px !important;
+  display: flex !important;
+  gap: 0px !important; /* কার্ড স্কেলিং এর জন্য গ্যাপ ০ থাকবে */
+  padding: 40px 10px !important;
+  overflow-x: auto !important; /* ডানে-বামে স্ক্রল করার জন্য */
+  scroll-snap-type: x mandatory !important;
+  scroll-behavior: smooth !important;
+  -webkit-overflow-scrolling: touch !important;
 }
 
-/* Card Main Styling */
+/* স্ক্রলবার লুকিয়ে রাখার ট্রিক */
+.food-section #foodGrid::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* ২. ফুড কার্ডের সাইজ এবং সম্পূর্ণ গোল ব্যাকগ্রাউন্ড */
 .food-section #foodGrid > .food-card {
-  display: block !important;
-  width: 100% !important;
+  flex: 0 0 65% !important; /* স্ক্রিনের মাঝখানে প্রধান কার্ডটি থাকবে */
   min-width: 0 !important;
-  border-radius: 16px !important; /* ডেস্কটপের জন্য পারফেক্ট রাউন্ড কোণ */
-  overflow: hidden !important;
-  border: 1px solid #00b7c3 !important;
-  background: linear-gradient(180deg, #103b36, #082b28) !important;
-  transition: transform 0.2s ease;
+  background: transparent !important; /* বাইরের চারকোনা বক্সটি হাওয়া করে দেওয়া হলো */
+  border: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  scroll-snap-align: center !important; /* স্ক্রল ছাড়লে কার্ড মাঝখানে লক হবে */
+  
+  /* ডিফল্টভাবে দুই পাশের কার্ড ছোট ও আবছা দেখাবে */
+  transform: scale(0.75) !important;
+  opacity: 0.5 !important;
+  transition: transform 0.3s ease, opacity 0.3s ease !important;
 }
 
-/* Image Styling for Desktop */
+/* ৩. ইমেজটিকে সম্পূর্ণ গোল করার মূল ম্যাজিক */
 .food-section #foodGrid > .food-card .food-image {
   display: block !important;
-  width: 100% !important;
-  height: 120px !important; /* ডেস্কটপে ইমেজ একটু বড় ও স্পষ্ট দেখাবে */
+  width: 140px !important;  /* পারফেক্ট গোল সাইজ */
+  height: 140px !important; /* হাইট এবং উইড্থ সমান রাখতে হবে */
   object-fit: cover !important;
-  border-radius: 15px 15px 0 0 !important;
+  border-radius: 50% !important; /* ইমেজ সম্পূর্ণ গোল করার জন্য */
+  border: 4px solid #00b7c3 !important;
+  box-shadow: 0 10px 25px rgba(0, 183, 195, 0.3) !important;
+  transition: all 0.3s ease !important;
 }
 
-/* Food Title Typography */
+/* ৪. খাবারের নাম ও দাম (ডিফল্টভাবে হালকা দেখাবে) */
 .food-section #foodGrid > .food-card .food-name {
-  padding: 10px 8px 4px !important;
+  margin-top: 15px !important;
+  padding: 0 !important;
   color: #ffffff !important;
-  font-size: 13px !important;
+  font-size: 11px !important;
   font-weight: 800 !important;
   text-align: center !important;
-  overflow-wrap: anywhere !important;
+  opacity: 0.6 !important;
 }
 
-/* Food Price Typography */
 .food-section #foodGrid > .food-card .food-price {
-  display: block !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-  padding: 2px 6px 12px !important;
+  padding: 2px 0 0 !important;
   color: var(--gold, #ffd700) !important;
-  font-size: 13px !important;
+  font-size: 11px !important;
   font-weight: 900 !important;
   text-align: center !important;
-  white-space: nowrap !important;
+  opacity: 0.6 !important;
 }
 
-/* Brand & Login Area Styles */
-.brand-area {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 6px;
-  flex-shrink: 0;
+/* ========================================================
+   মোবাইলে সোয়াইপ/স্ক্রল করার সময় মাঝখানের কার্ডটি বড় হবে
+   ======================================================== */
+.food-section #foodGrid > .food-card:hover,
+.food-section #foodGrid > .food-card:active,
+.food-section #foodGrid > .food-card:focus-within {
+  transform: scale(1.1) !important; /* মাঝখানের কার্ডটি বড় দেখাবে */
+  opacity: 1 !important;
 }
 
-.customer-login-link {
-  display: inline-block;
-  margin-top: 2px;
-  padding: 4px 10px;
-  border-radius: 6px;
-  background: #00b7c3;
-  color: #103b36 !important;
-  font-size: 12px;
-  line-height: 1.4;
-  font-weight: 700;
-  text-decoration: none;
-  white-space: nowrap;
+/* মাঝখানের কার্ডের ইমেজ এবং টেক্সট হাইলাইট */
+.food-section #foodGrid > .food-card:hover .food-image,
+.food-section #foodGrid > .food-card:active .food-image,
+.food-section #foodGrid > .food-card:focus-within .food-image {
+  width: 180px !important; /* ছবি বড় হয়ে যাবে */
+  height: 180px !important;
+  border-color: #ffd700 !important; /* গোল্ডেন বর্ডার হবে */
 }
 
-/* 2. Mobile Specific Styles (Screen widths 650px and below) */
-@media (max-width: 650px) {
-  .food-section #foodGrid {
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important; /* ৩ কলাম ঠিক থাকবে */
-    gap: 6px !important; /* ছোট স্ক্রিনে গ্যাপ কমবে */
-    padding: 4px !important;
-  }
-
-  .food-section #foodGrid > .food-card {
-    border-radius: 12px !important; /* মোবাইল স্ক্রিনের অনুপাতে কোণা রাউন্ড */
-  }
-
-  .food-section #foodGrid > .food-card .food-image {
-    height: 80px !important; /* মোবাইলে ইমেজ হাইট কমবে যেন কার্ড স্লিম দেখায় */
-    border-radius: 11px 11px 0 0 !important;
-  }
-
-  .food-section #foodGrid > .food-card .food-name {
-    font-size: 10px !important; /* মোবাইলে লেখা ওভারফ্লো রোধ করতে সাইজ ছোট করা হয়েছে */
-    padding: 6px 3px 2px !important;
-  }
-
-  .food-section #foodGrid > .food-card .food-price {
-    font-size: 10px !important;
-    padding-bottom: 8px !important;
-  }
+.food-section #foodGrid > .food-card:hover .food-name,
+.food-section #foodGrid > .food-card:hover .food-price,
+.food-section #foodGrid > .food-card:active .food-name,
+.food-section #foodGrid > .food-card:active .food-price {
+  font-size: 14px !important; /* টেক্সট সাইজ বড় হবে */
+  opacity: 1 !important;
 }
+
 
 
   </style>
