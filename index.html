@@ -1364,70 +1364,61 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
-  
-/* FAWAZ FOOD CARDS — ROUNDED DESIGN */
-.food-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 7px;
-}
+/* ==========================================
+   FAWAZ FOOD CARDS — FULLY RESPONSIVE DESIGN
+   (Works Perfectly on Desktop & Mobile)
+   ========================================== */
 
-.food-card {
-  border-radius: 14px;
-  overflow: hidden;
-}
-
-.food-image {
-  display: block;
-  width: 100%;
-  height: 115px;
-  object-fit: cover;
-  border-radius: 17px 17px 0 0;
-}
-
-.food-name {
-  padding: 10px 5px 5px;
-  color: #ffffff;
-  font-size: 12px;
-  font-weight: 800;
-  text-align: center;
-  overflow-wrap: anywhere;
-}
-
-.food-price {
-  display: block;
-  width: 100%;
-  box-sizing: border-box;
-  padding: 3px 4px 12px;
-  color: var(--gold);
-  font-size: 12px;
-  font-weight: 900;
-  text-align: center;
-  white-space: nowrap;
-}
-
-/* FINAL FAWAZ FOOD CARD TEST & MOBILE FIX */
+/* 1. General & Desktop Styles (Screen widths above 650px) */
 .food-section #foodGrid {
   display: grid !important;
   grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  gap: 8px !important;
+  gap: 12px !important; /* ডেস্কটপে একটু বেশি স্পেস সুন্দর দেখায় */
+  padding: 10px !important;
 }
 
+/* Card Main Styling */
 .food-section #foodGrid > .food-card {
   display: block !important;
   width: 100% !important;
   min-width: 0 !important;
-  border-radius: 16px !important;
+  border-radius: 16px !important; /* ডেস্কটপের জন্য পারফেক্ট রাউন্ড কোণ */
   overflow: hidden !important;
   border: 1px solid #00b7c3 !important;
   background: linear-gradient(180deg, #103b36, #082b28) !important;
+  transition: transform 0.2s ease;
 }
 
+/* Image Styling for Desktop */
 .food-section #foodGrid > .food-card .food-image {
   display: block !important;
   width: 100% !important;
-  height: 100px !important;
+  height: 120px !important; /* ডেস্কটপে ইমেজ একটু বড় ও স্পষ্ট দেখাবে */
   object-fit: cover !important;
   border-radius: 15px 15px 0 0 !important;
+}
+
+/* Food Title Typography */
+.food-section #foodGrid > .food-card .food-name {
+  padding: 10px 8px 4px !important;
+  color: #ffffff !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  text-align: center !important;
+  overflow-wrap: anywhere !important;
+}
+
+/* Food Price Typography */
+.food-section #foodGrid > .food-card .food-price {
+  display: block !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 2px 6px 12px !important;
+  color: var(--gold, #ffd700) !important;
+  font-size: 13px !important;
+  font-weight: 900 !important;
+  text-align: center !important;
+  white-space: nowrap !important;
 }
 
 /* Brand & Login Area Styles */
@@ -1453,31 +1444,35 @@ body {
   white-space: nowrap;
 }
 
-/* Responsive Optimization for Mobile and Small Screens */
+/* 2. Mobile Specific Styles (Screen widths 650px and below) */
 @media (max-width: 650px) {
   .food-section #foodGrid {
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important; /* ৩ কলাম ঠিক থাকবে */
+    gap: 6px !important; /* ছোট স্ক্রিনে গ্যাপ কমবে */
+    padding: 4px !important;
   }
 
   .food-section #foodGrid > .food-card {
-    border-radius: 14px !important;
+    border-radius: 12px !important; /* মোবাইল স্ক্রিনের অনুপাতে কোণা রাউন্ড */
   }
 
   .food-section #foodGrid > .food-card .food-image {
-    height: 100px !important;
-    border-radius: 13px 13px 0 0 !important;
+    height: 80px !important; /* মোবাইলে ইমেজ হাইট কমবে যেন কার্ড স্লিম দেখায় */
+    border-radius: 11px 11px 0 0 !important;
   }
 
   .food-section #foodGrid > .food-card .food-name {
-    font-size: 11px !important;
-    padding: 8px 3px 4px !important;
+    font-size: 10px !important; /* মোবাইলে লেখা ওভারফ্লো রোধ করতে সাইজ ছোট করা হয়েছে */
+    padding: 6px 3px 2px !important;
   }
 
   .food-section #foodGrid > .food-card .food-price {
-    font-size: 11px !important;
-    padding-bottom: 10px !important;
+    font-size: 10px !important;
+    padding-bottom: 8px !important;
   }
 }
+
+
   </style>
 </head>
 
