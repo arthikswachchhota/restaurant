@@ -1433,14 +1433,19 @@ body {
   width: 100% !important;
   height: 100px !important;
   object-fit: cover !important;
-  border-radius: 15px 15px 0 0 !important;
+  /* Separate border-radius is not needed, overflow: hidden will handle it */
 }
 
+/* Optimization for mobile and small screens */
 @media (max-width: 650px) {
   .food-section #foodGrid {
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    /* Changing to 2 columns for better responsiveness on small screens */
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 6px !important;
   }
 }
+
+
 
 
   .food-card {
