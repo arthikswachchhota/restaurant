@@ -478,31 +478,38 @@
     }
 
     .food-image {
-  display: block;
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
-}
+      height: 220px;
+      object-fit: cover;
+    }
 
     .food-name {
-  padding: 9px 4px 6px;
-  font-size: 12px;
-  font-weight: 800;
-  color: #fff;
-  text-align: center;
-  overflow-wrap: anywhere;
-}
+      padding: 17px 16px 19px;
+
+      font-size: 17px;
+      font-weight: 800;
+
+      color: #fff;
+
+      text-align: center;
+    }
     .food-price {
-  display: block;
-  width: 100%;
-  box-sizing: border-box;
-  padding: 0 4px 8px;
-  color: var(--gold);
-  font-size: 12px;
-  font-weight: 900;
-  text-align: center;
-  white-space: nowrap;
-}
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+
+      padding: 0 16px 16px;
+
+      color: var(--gold);
+      font-size: 16px;
+      font-weight: 900;
+
+      text-align: center;
+      white-space: nowrap;
+    }
+    .full-gallery-btn-wrap {
+      text-align: center;
+      margin-top: 34px;
+    }
 
     .full-gallery-btn {
       display: inline-flex;
@@ -3380,7 +3387,7 @@ async function loadFoodData() {
   }
 
   foodGrid.innerHTML = "";
-console.log("Food rows loaded:", data.length);
+
   data.forEach(function(food) {
 
     const card =
@@ -3422,22 +3429,10 @@ console.log("Food rows loaded:", data.length);
     price.textContent =
       "SAR " + food.price;
 
-const addButton = document.createElement("button");
-
-addButton.type = "button";
-addButton.className = "shop-button";
-addButton.textContent = "Add to Cart";
-
-addButton.addEventListener("click", function() {
-  addToCart(food);
-  addButton.textContent = "Added ✓";
-});
-
 card.append(
   image,
   name,
-  price,
-  addButton
+  price
 );
 
 foodGrid.appendChild(card);
@@ -3733,6 +3728,7 @@ document.addEventListener(
   }
 );
 
+
 /* =========================
    YEAR
 ========================== */
@@ -3748,7 +3744,7 @@ if (yearElement) {
     new Date().getFullYear();
 
 }
-  
+
 </script>
 
 </body>
