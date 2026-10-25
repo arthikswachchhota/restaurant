@@ -1365,102 +1365,77 @@ body {
   margin-right: auto;
 }
 /* ========================================================
-   FAWAZ 3D CIRCULAR CAROUSEL (PURE CSS - NO HTML CHANGE)
+   FAWAZ 3D CIRCULAR CAROUSEL (NO HTML DATA CHANGE)
    ======================================================== */
+.food-section {
+  padding: 30px 0 !important;
+  overflow: hidden !important;
+}
 
-/* ১. মেইন কন্টেইনারকে হরাইজন্টাল স্লাইডারে রূপান্তর */
+/* Swiper ক্লাসের সাথে মানানসই কন্টেইনার স্টাইল */
 .food-section #foodGrid {
   display: flex !important;
-  gap: 0px !important; /* কার্ড স্কেলিং এর জন্য গ্যাপ ০ থাকবে */
-  padding: 40px 10px !important;
-  overflow-x: auto !important; /* ডানে-বামে স্ক্রল করার জন্য */
-  scroll-snap-type: x mandatory !important;
-  scroll-behavior: smooth !important;
-  -webkit-overflow-scrolling: touch !important;
+  flex-wrap: nowrap !important;
 }
 
-/* স্ক্রলবার লুকিয়ে রাখার ট্রিক */
-.food-section #foodGrid::-webkit-scrollbar {
-  display: none !important;
-}
-
-/* ২. ফুড কার্ডের সাইজ এবং সম্পূর্ণ গোল ব্যাকগ্রাউন্ড */
+/* ফুড কার্ডের বেস কাস্টমাইজেশন */
 .food-section #foodGrid > .food-card {
-  flex: 0 0 65% !important; /* স্ক্রিনের মাঝখানে প্রধান কার্ডটি থাকবে */
-  min-width: 0 !important;
-  background: transparent !important; /* বাইরের চারকোনা বক্সটি হাওয়া করে দেওয়া হলো */
+  background: transparent !important;
   border: none !important;
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
-  scroll-snap-align: center !important; /* স্ক্রল ছাড়লে কার্ড মাঝখানে লক হবে */
-  
-  /* ডিফল্টভাবে দুই পাশের কার্ড ছোট ও আবছা দেখাবে */
-  transform: scale(0.75) !important;
-  opacity: 0.5 !important;
-  transition: transform 0.3s ease, opacity 0.3s ease !important;
+  width: 150px !important; /* স্ক্রিনে একসাথে অনেকগুলো দেখানোর জন্য পারফেক্ট উইডথ */
+  margin: 0 !important;
+  flex-shrink: 0 !important;
 }
 
-/* ৩. ইমেজটিকে সম্পূর্ণ গোল করার মূল ম্যাজিক */
+/* ইমেজটিকে ১০০% গোল বৃত্ত করার মূল ট্রিক */
 .food-section #foodGrid > .food-card .food-image {
   display: block !important;
-  width: 140px !important;  /* পারফেক্ট গোল সাইজ */
-  height: 140px !important; /* হাইট এবং উইড্থ সমান রাখতে হবে */
+  width: 110px !important; /* দুই পাশের স্বাভাবিক ছবিগুলোর সাইজ */
+  height: 110px !important;
+  border-radius: 50% !important;
+  border: 3px solid #00b7c3 !important;
+  box-shadow: 0 8px 20px rgba(0, 183, 195, 0.2) !important;
   object-fit: cover !important;
-  border-radius: 50% !important; /* ইমেজ সম্পূর্ণ গোল করার জন্য */
-  border: 4px solid #00b7c3 !important;
-  box-shadow: 0 10px 25px rgba(0, 183, 195, 0.3) !important;
   transition: all 0.3s ease !important;
 }
 
-/* ৪. খাবারের নাম ও দাম (ডিফল্টভাবে হালকা দেখাবে) */
+/* খাবারের নাম ও দাম (ডিফল্টভাবে নিচে থাকবে) */
 .food-section #foodGrid > .food-card .food-name {
-  margin-top: 15px !important;
-  padding: 0 !important;
+  margin-top: 12px !important;
   color: #ffffff !important;
   font-size: 11px !important;
-  font-weight: 800 !important;
+  font-weight: 700 !important;
   text-align: center !important;
-  opacity: 0.6 !important;
+  opacity: 0.5 !important;
+  transition: all 0.3s ease !important;
 }
 
 .food-section #foodGrid > .food-card .food-price {
-  padding: 2px 0 0 !important;
   color: var(--gold, #ffd700) !important;
   font-size: 11px !important;
   font-weight: 900 !important;
   text-align: center !important;
-  opacity: 0.6 !important;
+  opacity: 0.5 !important;
 }
 
 /* ========================================================
-   মোবাইলে সোয়াইপ/স্ক্রল করার সময় মাঝখানের কার্ডটি বড় হবে
+   জাভাস্ক্রিপ্ট স্লাইডারের মাধ্যমে মাঝখানের কার্ডটিকে বড় করার ম্যাজিক
    ======================================================== */
-.food-section #foodGrid > .food-card:hover,
-.food-section #foodGrid > .food-card:active,
-.food-section #foodGrid > .food-card:focus-within {
-  transform: scale(1.1) !important; /* মাঝখানের কার্ডটি বড় দেখাবে */
-  opacity: 1 !important;
+.food-section #foodGrid > .food-card.swiper-slide-active .food-image {
+  width: 160px !important; /* মাঝখানের একটি ছবি স্বয়ংক্রিয়ভাবে বড় হবে */
+  height: 160px !important;
+  border-color: #ffd700 !important; /* বর্ডার গোল্ডেন হবে */
+  box-shadow: 0 12px 30px rgba(0, 183, 195, 0.4) !important;
 }
 
-/* মাঝখানের কার্ডের ইমেজ এবং টেক্সট হাইলাইট */
-.food-section #foodGrid > .food-card:hover .food-image,
-.food-section #foodGrid > .food-card:active .food-image,
-.food-section #foodGrid > .food-card:focus-within .food-image {
-  width: 180px !important; /* ছবি বড় হয়ে যাবে */
-  height: 180px !important;
-  border-color: #ffd700 !important; /* গোল্ডেন বর্ডার হবে */
+.food-section #foodGrid > .food-card.swiper-slide-active .food-name,
+.food-section #foodGrid > .food-card.swiper-slide-active .food-price {
+  font-size: 14px !important; /* মাঝখানের লেখার সাইজ বড় হবে */
+  opacity: 1 !important; /* লেখা স্পষ্ট হবে */
 }
-
-.food-section #foodGrid > .food-card:hover .food-name,
-.food-section #foodGrid > .food-card:hover .food-price,
-.food-section #foodGrid > .food-card:active .food-name,
-.food-section #foodGrid > .food-card:active .food-price {
-  font-size: 14px !important; /* টেক্সট সাইজ বড় হবে */
-  opacity: 1 !important;
-}
-
-
 
   </style>
 </head>
@@ -3765,7 +3740,49 @@ if (yearElement) {
 
 }
 
+<!-- ১. প্রয়োজনীয় স্লাইডার ইঞ্জিন লাইব্রেরি লোড (অটোমেটিক থ্রিডি ইফেক্ট হ্যান্ডেল করবে) -->
+<link rel="stylesheet" href="https://jsdelivr.net" />
+<script src="https://jsdelivr.net"></script>
+
+<script>
+  // আপনার আগের HTML স্ট্রাকচার অক্ষুণ্ন রেখে ক্লাস অ্যাসাইন করার ট্রিক
+  const mainGrid = document.getElementById('foodGrid');
+  if (mainGrid) {
+    // স্লাইডার ফ্রেমওয়ার্কের জন্য প্রয়োজনীয় ক্লাস যুক্ত করা হচ্ছে
+    mainGrid.parentElement.classList.add('swiper');
+    mainGrid.classList.add('swiper-wrapper');
+    
+    const cards = mainGrid.querySelectorAll('.food-card');
+    cards.forEach(card => card.classList.add('swiper-slide'));
+
+    // ৩টি স্তরের ইন্ডিকেটর ডট যোগ করার জন্য এলিমেন্ট তৈরি
+    const paginationDiv = document.createElement('div');
+    paginationDiv.className = 'swiper-pagination';
+    paginationDiv.style.marginTop = '20px';
+    mainGrid.parentElement.appendChild(paginationDiv);
+
+    // ৩ডি স্লাইডার ইঞ্জিন রান করা হচ্ছে
+    new Swiper('.swiper', {
+      effect: 'coverflow',
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: 'auto',
+      loop: true,
+      coverflowEffect: {
+        rotate: 0,         // ছবি বেঁকে যাবে না
+        stretch: 25,       // কার্ডগুলো একে অপরের কতটা কাছাকাছি চেপে থাকবে
+        depth: 140,        // দুই পাশের কার্ডগুলো কতটা পেছনে ও ছোট দেখাবে
+        modifier: 1,
+        slideShadows: false
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      }
+    });
+  }
 </script>
+
 
 </body>
 </html>
