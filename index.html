@@ -3422,22 +3422,10 @@ console.log("Food rows loaded:", data.length);
     price.textContent =
       "SAR " + food.price;
 
-const addButton = document.createElement("button");
-
-addButton.type = "button";
-addButton.className = "shop-button";
-addButton.textContent = "Add to Cart";
-
-addButton.addEventListener("click", function() {
-  addToCart(food);
-  addButton.textContent = "Added ✓";
-});
-
 card.append(
   image,
   name,
-  price,
-  addButton
+  price
 );
 
 foodGrid.appendChild(card);
