@@ -1410,11 +1410,38 @@ body {
   white-space: nowrap;
 }
 
-@media (max-width: 600px) {
-  .food-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 7px;
+
+/* FINAL FAWAZ FOOD CARD TEST */
+.food-section #foodGrid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+}
+
+.food-section #foodGrid > .food-card {
+  display: block !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  border: 1px solid #00b7c3 !important;
+  background: #103b36 !important;
+}
+
+.food-section #foodGrid > .food-card > .food-image {
+  display: block !important;
+  width: 100% !important;
+  height: 100px !important;
+  object-fit: cover !important;
+  border-radius: 15px 15px 0 0 !important;
+}
+
+@media (max-width: 650px) {
+  .food-section #foodGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   }
+}
+
 
   .food-card {
     border-radius: 14px;
