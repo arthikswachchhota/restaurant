@@ -1442,91 +1442,6 @@ body {
   text-decoration: none;
   white-space: nowrap;
 }
-    /* ========================================================
-   FAWAZ 3D CIRCULAR CAROUSEL STYLE (FINAL INTEGRATION)
-   ======================================================== */
-.food-section {
-  padding: 30px 0 !important;
-  overflow: hidden !important;
-}
-
-/* স্লাইডারের মেইন কন্টেইনার ফ্লেক্স লেআউট */
-.food-section #foodGrid {
-  display: flex !important;
-  flex-wrap: nowrap !important;
-}
-
-/* ফুড কার্ডের বেস কাস্টমাইজেশন (আগের চারকোনা ব্যাকগ্রাউন্ড ও বর্ডার রিমুভ করা হয়েছে) */
-.food-section #foodGrid > .food-card {
-  background: transparent !important;
-  border: none !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  width: 140px !important; /* স্ক্রিনে পাশাপাশি ৫টি কার্ড সুন্দরভাবে উঁকি দেওয়ার পারফেক্ট উইডথ */
-  margin: 0 !important;
-  flex-shrink: 0 !important;
-}
-
-/* খাবারের ছবিকে সম্পূর্ণ ১০০% গোল বৃত্তাকার করার মূল ট্রিক */
-.food-section #foodGrid > .food-card .food-image {
-  display: block !important;
-  width: 100px !important; /* দুই পাশের স্বাভাবিক ছবিগুলোর সাইজ */
-  height: 100px !important;
-  border-radius: 50% !important; /* ইমেজ সম্পূর্ণ গোল করার জন্য */
-  border: 3px solid #00b7c3 !important;
-  box-shadow: 0 8px 20px rgba(0, 183, 195, 0.2) !important;
-  object-fit: cover !important;
-  transition: all 0.3s ease !important;
-}
-
-/* খাবারের নাম ও দাম (ডিফল্ট বা নরমাল মোড) */
-.food-section #foodGrid > .food-card .food-name {
-  margin-top: 12px !important;
-  color: #ffffff !important;
-  font-size: 11px !important;
-  font-weight: 700 !important;
-  text-align: center !important;
-  opacity: 0.5 !important;
-  transition: all 0.3s ease !important;
-}
-
-.food-section #foodGrid > .food-card .food-price {
-  color: var(--gold, #ffd700) !important;
-  font-size: 11px !important;
-  font-weight: 900 !important;
-  text-align: center !important;
-  opacity: 0.5 !important;
-  transition: all 0.3s ease !important;
-}
-
-/* ========================================================
-   স্লাইডারের মাধ্যমে স্ক্রিনের মাঝখানের (Active) কার্ডটি বড় করার ম্যাজিক
-   ======================================================== */
-.food-section #foodGrid > .food-card.swiper-slide-active .food-image {
-  width: 155px !important; /* মাঝখানের ছবি স্বয়ংক্রিয়ভাবে দেড়গুণ বড় হবে */
-  height: 155px !important;
-  border-color: #ffd700 !important; /* বর্ডার উজ্জ্বল গোল্ডেন হবে */
-  box-shadow: 0 12px 30px rgba(0, 183, 195, 0.5) !important;
-}
-
-.food-section #foodGrid > .food-card.swiper-slide-active .food-name,
-.food-section #foodGrid > .food-card.swiper-slide-active .food-price {
-  font-size: 14px !important; /* মাঝখানের লেখার সাইজ বড় হবে */
-  opacity: 1 !important; /* লেখা সম্পূর্ণ স্পষ্ট ও উজ্জ্বল দেখাবে */
-}
-
-/* স্লাইডারের নিচের ইন্ডিকেটর পেজিনেশন ডট স্টাইল */
-.swiper-pagination-bullet {
-  background: rgba(255, 255, 255, 0.3) !important;
-  opacity: 1 !important;
-}
-.swiper-pagination-bullet-active {
-  background: #00b7c3 !important;
-  width: 18px !important;
-  border-radius: 4px !important;
-}
-
   </style>
 </head>
 
@@ -3344,20 +3259,6 @@ async function loadWhatsAppData() {
 
 let shoppingCart = [];
 
-try {
-  const savedCart = localStorage.getItem("fawaz-shopping-cart");
-
-  if (savedCart) {
-    const parsedCart = JSON.parse(savedCart);
-
-    if (Array.isArray(parsedCart)) {
-      shoppingCart = parsedCart;
-    }
-  }
-} catch (error) {
-  shoppingCart = [];
-}
-
 function addToCart(food) {
   const foodId = String(food.id);
 
@@ -3371,7 +3272,6 @@ function addToCart(food) {
     shoppingCart.push({
       id: food.id,
       name: food.name_en || "Food",
-      image_url: food.image_url || "",
       price: Number(food.price) || 0,
       quantity: 1
     });
@@ -3380,47 +3280,39 @@ function addToCart(food) {
   renderCart();
 }
 
-function saveCart() {
-  try {
-    localStorage.setItem(
-      "fawaz-shopping-cart",
-      JSON.stringify(shoppingCart)
-    );
-  } catch (error) {
-    console.error("Could not save cart:", error);
-  }
-}
-
 function renderCart() {
-  saveCart();
+  let cartBox = document.getElementById("shoppingCart");
 
-  const cartBox = document.getElementById("shoppingCart");
-
-  // Cart will only render where its container already exists.
-  // Do not insert a new cart into the customer food section.
   if (!cartBox) {
-    return;
+    cartBox = document.createElement("section");
+    cartBox.id = "shoppingCart";
+    cartBox.style.cssText =
+      "margin:20px 0;padding:16px;border-radius:12px;background:#103b36;color:white;";
+
+    const foodGrid = document.getElementById("foodGrid");
+
+    if (foodGrid) {
+      foodGrid.parentNode.insertBefore(cartBox, foodGrid.nextSibling);
+    } else {
+      document.body.appendChild(cartBox);
+    }
   }
 
   if (shoppingCart.length === 0) {
-    cartBox.innerHTML =
-      "<h2>🛒 Your Cart</h2><p>Your cart is empty.</p>";
+    cartBox.innerHTML = "<h2>🛒 Your Cart</h2><p>Your cart is empty.</p>";
     return;
   }
 
   let total = 0;
 
   const itemsHTML = shoppingCart.map(function(item, index) {
-    const price = Number(item.price) || 0;
-    const quantity = Number(item.quantity) || 0;
-    const subtotal = price * quantity;
-
+    const subtotal = item.price * item.quantity;
     total += subtotal;
 
     return `
       <div style="padding:10px 0;border-bottom:1px solid #56736e;">
         <strong>${escapeCartText(item.name)}</strong>
-        <p>SAR ${price.toFixed(2)} × ${quantity}</p>
+        <p>SAR ${item.price.toFixed(2)} × ${item.quantity}</p>
         <button type="button" onclick="changeCartQuantity(${index}, -1)">−</button>
         <button type="button" onclick="changeCartQuantity(${index}, 1)">+</button>
         <button type="button" onclick="removeCartItem(${index})">Remove</button>
@@ -3431,12 +3323,29 @@ function renderCart() {
 
   cartBox.innerHTML = `
     <h2>🛒 Your Cart (${shoppingCart.reduce(function(sum, item) {
-      return sum + (Number(item.quantity) || 0);
+      return sum + item.quantity;
     }, 0)})</h2>
     ${itemsHTML}
     <h3>Total: SAR ${total.toFixed(2)}</h3>
     <p>Checkout will be added in the next step.</p>
   `;
+}
+
+function changeCartQuantity(index, change) {
+  if (!shoppingCart[index]) return;
+
+  shoppingCart[index].quantity += change;
+
+  if (shoppingCart[index].quantity <= 0) {
+    shoppingCart.splice(index, 1);
+  }
+
+  renderCart();
+}
+
+function removeCartItem(index) {
+  shoppingCart.splice(index, 1);
+  renderCart();
 }
 
 function escapeCartText(value) {
@@ -3452,15 +3361,19 @@ function escapeCartText(value) {
 }
 
 async function loadFoodData() {
-  const foodGrid = document.getElementById("foodGrid");
+
+  const foodGrid =
+    document.getElementById("foodGrid");
+
   if (!foodGrid) {
     return;
   }
 
-  const { data, error } = await supabaseClient
-    .from("foods")
-    .select("*")
-    .order("id", { ascending: true });
+  const { data, error } =
+    await supabaseClient
+      .from("foods")
+      .select("*")
+      .order("id", { ascending: true });
 
   if (error) {
     console.error(error);
@@ -3470,72 +3383,56 @@ async function loadFoodData() {
   foodGrid.innerHTML = "";
 
   data.forEach(function(food) {
-    const card = document.createElement("div");
-    card.className = "food-card";
 
-    const image = document.createElement("img");
-    image.className = "food-image";
-    image.src = food.image_url || "";
-    image.alt = food.name_en || "Food";
-    image.loading = "lazy";
+    const card =
+      document.createElement("div");
 
-    const name = document.createElement("div");
-    name.className = "food-name";
-    name.textContent = food.name_en || "";
+    card.className =
+      "food-card";
 
-    const price = document.createElement("div");
-    price.className = "food-price";
-    price.textContent = "SAR " + food.price;
+    const image =
+      document.createElement("img");
 
-    card.append(image, name, price);
-    foodGrid.appendChild(card);
+    image.className =
+      "food-image";
+
+    image.src =
+      food.image_url || "";
+
+    image.alt =
+      food.name_en || "Food";
+
+    image.loading =
+      "lazy";
+
+    const name =
+      document.createElement("div");
+
+    name.className =
+      "food-name";
+
+    name.textContent =
+      food.name_en || "";
+
+    const price =
+      document.createElement("div");
+
+    price.className =
+      "food-price";
+
+    price.textContent =
+      "SAR " + food.price;
+
+card.append(
+  image,
+  name,
+  price,
+  cartButton
+);
+
+foodGrid.appendChild(card);
+
   });
-
-  // ========================================================
-  // সুপাবেস থেকে ডাটা লোড সম্পন্ন হওয়ার পর ৩ডি স্লাইডার ইঞ্জিন সচল করার লজিক
-  // ========================================================
-  try {
-    // স্লাইডার ফ্রেমওয়ার্কের জন্য প্রয়োজনীয় ক্লাস ডাইনামিকালি যুক্ত করা হচ্ছে
-    foodGrid.parentElement.classList.add('swiper');
-    foodGrid.classList.add('swiper-wrapper');
-    
-    const allCards = foodGrid.querySelectorAll('.food-card');
-    allCards.forEach(card => card.classList.add('swiper-slide'));
-
-    // নিচে স্তরের ডট (Pagination) ইন্ডিকেটর কন্টেইনার তৈরি
-    let paginationDiv = foodGrid.parentElement.querySelector('.swiper-pagination');
-    if (!paginationDiv) {
-      paginationDiv = document.createElement('div');
-      paginationDiv.className = 'swiper-pagination';
-      paginationDiv.style.position = 'relative';
-      paginationDiv.style.marginTop = '25px';
-      foodGrid.parentElement.appendChild(paginationDiv);
-    }
-
-    // ৩ডি স্লাইডার ইঞ্জিন রান করা হচ্ছে
-    new Swiper('.swiper', {
-      effect: 'coverflow',
-      grabCursor: true,
-      centeredSlides: true,
-      slidesPerView: 'auto',
-      loop: true,
-      coverflowEffect: {
-        rotate: 0,         // ছবি বেঁকে যাবে না, সোজা থাকবে
-        stretch: 35,       // কার্ডগুলো একে অপরের কতটা কাছাকাছি চেপে থাকবে
-        depth: 150,        // দুই পাশের কার্ডগুলো কতটা পেছনে ও ছোট দেখাবে (3D Look)
-        modifier: 1,
-        slideShadows: false
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      }
-    });
-  } catch (swiperError) {
-    console.error("Swiper initialization failed:", swiperError);
-  }
-}
-
 
 }
 loadHeroData();
