@@ -1366,7 +1366,6 @@ body {
 }
   
 /* FAWAZ FOOD CARDS — ROUNDED DESIGN */
-
 .food-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 7px;
@@ -1377,10 +1376,6 @@ body {
   overflow: hidden;
 }
 
-.food-image {
-  height: 100px;
-  border-radius: 13px 13px 0 0;
-}
 .food-image {
   display: block;
   width: 100%;
@@ -1410,8 +1405,7 @@ body {
   white-space: nowrap;
 }
 
-
-/* FINAL FAWAZ FOOD CARD TEST */
+/* FINAL FAWAZ FOOD CARD TEST & MOBILE FIX */
 .food-section #foodGrid {
   display: grid !important;
   grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
@@ -1425,49 +1419,18 @@ body {
   border-radius: 16px !important;
   overflow: hidden !important;
   border: 1px solid #00b7c3 !important;
-  background: #103b36 !important;
+  background: linear-gradient(180deg, #103b36, #082b28) !important;
 }
 
-.food-section #foodGrid > .food-card > .food-image {
+.food-section #foodGrid > .food-card .food-image {
   display: block !important;
   width: 100% !important;
   height: 100px !important;
   object-fit: cover !important;
-  /* Separate border-radius is not needed, overflow: hidden will handle it */
+  border-radius: 15px 15px 0 0 !important;
 }
 
-/* Optimization for mobile and small screens */
-@media (max-width: 650px) {
-  .food-section #foodGrid {
-    /* Changing to 2 columns for better responsiveness on small screens */
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 6px !important;
-  }
-}
-
-
-
-
-  .food-card {
-    border-radius: 14px;
-  }
-
-  .food-image {
-    height: 100px;
-    border-radius: 13px 13px 0 0;
-  }
-
-  .food-name {
-    font-size: 11px;
-    padding: 8px 3px 4px;
-  }
-
-  .food-price {
-    font-size: 11px;
-    padding-bottom: 10px;
-  }
-}
-
+/* Brand & Login Area Styles */
 .brand-area {
   display: flex;
   flex-direction: column;
@@ -1490,36 +1453,31 @@ body {
   white-space: nowrap;
 }
 
-
-/* FAWAZ FOOD GRID - MOBILE FIX */
-.food-section #foodGrid {
-  display: grid !important;
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  gap: 8px !important;
-}
-
-.food-section #foodGrid > .food-card {
-  width: 100% !important;
-  min-width: 0 !important;
-  border-radius: 16px !important;
-  overflow: hidden !important;
-  border: 1px solid #00b7c3 !important;
-  background: linear-gradient(180deg, #103b36, #082b28) !important;
-}
-
-.food-section #foodGrid > .food-card .food-image {
-  width: 100% !important;
-  height: 100px !important;
-  object-fit: cover !important;
-  border-radius: 15px 15px 0 0 !important;
-}
-
+/* Responsive Optimization for Mobile and Small Screens */
 @media (max-width: 650px) {
   .food-section #foodGrid {
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   }
-}
 
+  .food-section #foodGrid > .food-card {
+    border-radius: 14px !important;
+  }
+
+  .food-section #foodGrid > .food-card .food-image {
+    height: 100px !important;
+    border-radius: 13px 13px 0 0 !important;
+  }
+
+  .food-section #foodGrid > .food-card .food-name {
+    font-size: 11px !important;
+    padding: 8px 3px 4px !important;
+  }
+
+  .food-section #foodGrid > .food-card .food-price {
+    font-size: 11px !important;
+    padding-bottom: 10px !important;
+  }
+}
   </style>
 </head>
 
