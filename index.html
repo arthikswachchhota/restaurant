@@ -1368,26 +1368,19 @@ body {
 /* FAWAZ FOOD CARDS — ROUNDED DESIGN */
 
 .food-grid {
-  display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
+  gap: 7px;
 }
 
 .food-card {
-  min-width: 0;
-  background: linear-gradient(180deg, #103b36 0%, #082b28 100%);
-  border: 1px solid rgba(0, 183, 195, 0.35);
-  border-radius: 18px;
+  border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
-  transition: transform 0.25s ease, border-color 0.25s ease;
 }
 
-.food-card:hover {
-  transform: translateY(-3px);
-  border-color: #00b7c3;
+.food-image {
+  height: 100px;
+  border-radius: 13px 13px 0 0;
 }
-
 .food-image {
   display: block;
   width: 100%;
