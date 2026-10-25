@@ -1458,42 +1458,32 @@ body {
   white-space: nowrap;
 }
 
-/* FAWAZ FOOD GRID - FINAL OVERRIDE */
-#foodGrid {
+
+/* FAWAZ FOOD GRID - MOBILE FIX */
+.food-section #foodGrid {
   display: grid !important;
   grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   gap: 8px !important;
-  width: 100%;
 }
 
-#foodGrid .food-card {
-  min-width: 0;
+.food-section #foodGrid > .food-card {
+  width: 100% !important;
+  min-width: 0 !important;
   border-radius: 16px !important;
   overflow: hidden !important;
   border: 1px solid #00b7c3 !important;
   background: linear-gradient(180deg, #103b36, #082b28) !important;
 }
 
-#foodGrid .food-image {
-  display: block;
-  width: 100%;
-  height: 100px;
-  object-fit: cover;
+.food-section #foodGrid > .food-card .food-image {
+  width: 100% !important;
+  height: 100px !important;
+  object-fit: cover !important;
   border-radius: 15px 15px 0 0 !important;
 }
 
-#foodGrid .food-name {
-  font-size: 11px;
-  text-align: center;
-  overflow-wrap: anywhere;
-}
-
-#foodGrid .food-price {
-  text-align: center;
-}
-
-@media (max-width: 600px) {
-  #foodGrid {
+@media (max-width: 650px) {
+  .food-section #foodGrid {
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   }
 }
