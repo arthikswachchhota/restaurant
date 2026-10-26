@@ -1518,6 +1518,62 @@ body {
     height: 135px;
   }
 }
+    /* Center OUR FOOD section */
+#food .container,
+#about .container {
+  text-align: center;
+}
+
+#food .section-label,
+#food .section-title,
+#food .section-description,
+#about .section-label,
+#about .section-title,
+#about .section-description {
+  width: 100%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Keep food cards centered in their grid */
+#food #foodGrid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(150px, 1fr)
+  );
+  gap: 18px;
+  width: 100%;
+}
+
+#food #foodGrid .food-card {
+  text-align: center;
+}
+
+#food #foodGrid .food-image {
+  display: block;
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+#food #foodGrid .food-name,
+#food #foodGrid .food-price {
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  #food #foodGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  #food #foodGrid .food-image {
+    height: 135px;
+  }
+}
   </style>
 </head>
 
