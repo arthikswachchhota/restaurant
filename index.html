@@ -1456,7 +1456,7 @@ body {
         Fawaz <span>Cafeteria</span>
       </a>
 
-      <a href="account.html" class="customer-login-link">
+      <a href="login.html" class="customer-login-link">
         <span data-lang="en">Login</span>
         <span data-lang="ar">تسجيل الدخول</span>
         <span data-lang="bn">লগইন</span>
@@ -2866,7 +2866,7 @@ async function updateCustomerLoginLink() {
     return;
   }
 
-  loginLink.href = "account.html";
+  loginLink.href = "login.html";
   loginLink.innerHTML = `
     <span data-lang="en">My Account</span>
     <span data-lang="ar">حسابي</span>
@@ -3252,114 +3252,6 @@ async function loadWhatsAppData() {
       link.textContent = displayNumber;
     });
 }
-  
-/* =========================
-   FAWAZ SHOPPING CART
-========================= */
-
-let shoppingCart = [];
-
-function addToCart(food) {
-  const foodId = String(food.id);
-
-  const existingItem = shoppingCart.find(function(item) {
-    return String(item.id) === foodId;
-  });
-
-  if (existingItem) {
-    existingItem.quantity += 1;
-  } else {
-    shoppingCart.push({
-      id: food.id,
-      name: food.name_en || "Food",
-      price: Number(food.price) || 0,
-      quantity: 1
-    });
-  }
-
-  renderCart();
-}
-
-function renderCart() {
-  let cartBox = document.getElementById("shoppingCart");
-
-  if (!cartBox) {
-    cartBox = document.createElement("section");
-    cartBox.id = "shoppingCart";
-    cartBox.style.cssText =
-      "margin:20px 0;padding:16px;border-radius:12px;background:#103b36;color:white;";
-
-    const foodGrid = document.getElementById("foodGrid");
-
-    if (foodGrid) {
-      foodGrid.parentNode.insertBefore(cartBox, foodGrid.nextSibling);
-    } else {
-      document.body.appendChild(cartBox);
-    }
-  }
-
-  if (shoppingCart.length === 0) {
-    cartBox.innerHTML = "<h2>🛒 Your Cart</h2><p>Your cart is empty.</p>";
-    return;
-  }
-
-  let total = 0;
-
-  const itemsHTML = shoppingCart.map(function(item, index) {
-    const subtotal = item.price * item.quantity;
-    total += subtotal;
-
-    return `
-      <div style="padding:10px 0;border-bottom:1px solid #56736e;">
-        <strong>${escapeCartText(item.name)}</strong>
-        <p>SAR ${item.price.toFixed(2)} × ${item.quantity}</p>
-        <button type="button" onclick="changeCartQuantity(${index}, -1)">−</button>
-        <button type="button" onclick="changeCartQuantity(${index}, 1)">+</button>
-        <button type="button" onclick="removeCartItem(${index})">Remove</button>
-        <p>Subtotal: SAR ${subtotal.toFixed(2)}</p>
-      </div>
-    `;
-  }).join("");
-
-  cartBox.innerHTML = `
-    <h2>🛒 Your Cart (${shoppingCart.reduce(function(sum, item) {
-      return sum + item.quantity;
-    }, 0)})</h2>
-    ${itemsHTML}
-    <h3>Total: SAR ${total.toFixed(2)}</h3>
-    <p>Checkout will be added in the next step.</p>
-  `;
-}
-
-function changeCartQuantity(index, change) {
-  if (!shoppingCart[index]) return;
-
-  shoppingCart[index].quantity += change;
-
-  if (shoppingCart[index].quantity <= 0) {
-    shoppingCart.splice(index, 1);
-  }
-
-  renderCart();
-}
-
-function removeCartItem(index) {
-  shoppingCart.splice(index, 1);
-  renderCart();
-}
-
-function escapeCartText(value) {
-  return String(value).replace(/[&<>"']/g, function(char) {
-    return {
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      '"': "&quot;",
-      "'": "&#39;"
-    }[char];
-  });
-}
-
 async function loadFoodData() {
 
   const foodGrid =
@@ -3423,34 +3315,13 @@ async function loadFoodData() {
     price.textContent =
       "SAR " + food.price;
 
-    const cartButton = document.createElement("button");
+    card.append(
+      image,
+      name,
+      price
+    );
 
-cartButton.type = "button";
-cartButton.className = "add-to-cart-button";
-cartButton.textContent = "🛒 Add to Cart";
-
-cartButton.addEventListener("click", function() {
-  addToCart(food);
-});
-
-const cartButton = document.createElement("button");
-
-cartButton.type = "button";
-cartButton.className = "add-to-cart-button";
-cartButton.textContent = "🛒 Add to Cart";
-
-cartButton.addEventListener("click", function() {
-  addToCart(food);
-});
-
-card.append(
-  image,
-  name,
-  price,
-  cartButton
-);
-
-foodGrid.appendChild(card);
+    foodGrid.appendChild(card);
 
   });
 
