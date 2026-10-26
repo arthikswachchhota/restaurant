@@ -2850,34 +2850,36 @@ const root =
 }
 
 async function updateCustomerLoginLink() {
-  const loginLink = document.querySelector(".customer-login-link");
+  const loginLinks = document.querySelectorAll(
+    ".customer-login-link"
+  );
 
-  if (!loginLink) return;
+  if (!loginLinks.length) return;
 
   const { data, error } = await supabaseClient.auth.getUser();
+  const signedIn = !error && !!data.user;
 
-  if (error || !data.user) {
-    loginLink.href = "account.html";
-    loginLink.innerHTML = `
-      <span data-lang="en">Login</span>
-      <span data-lang="ar">تسجيل الدخول</span>
-      <span data-lang="bn">লগইন</span>
-    `;
-    return;
-  }
+  loginLinks.forEach((loginLink) => {
+    loginLink.href = signedIn
+      ? "account.html"
+      : "login.html";
 
-  loginLink.href = "login.html";
-  loginLink.innerHTML = `
-    <span data-lang="en">My Account</span>
-    <span data-lang="ar">حسابي</span>
-    <span data-lang="bn">আমার অ্যাকাউন্ট</span>
-  `;
+    loginLink.innerHTML = signedIn
+      ? `<span data-lang="en">My Account</span>
+         <span data-lang="ar">حسابي</span>
+         <span data-lang="bn">আমার অ্যাকাউন্ট</span>`
+      : `<span data-lang="en">Login</span>
+         <span data-lang="ar">تسجيل الدخول</span>
+         <span data-lang="bn">লগইন</span>`;
+  });
 
   if (typeof setLanguage === "function") {
     const activeLang = document.documentElement.lang || "en";
     setLanguage(activeLang);
   }
 }
+
+updateCustomerLoginLink();
 
 updateCustomerLoginLink();
 
