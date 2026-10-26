@@ -1457,6 +1457,67 @@ body {
 #about p {
   text-align: center;
 }
+    /* Center Food and About headings */
+#foodSection,
+#aboutSection {
+  text-align: center;
+}
+
+#foodSection h1,
+#foodSection h2,
+#foodSection h3,
+#aboutSection h1,
+#aboutSection h2,
+#aboutSection h3 {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#foodSection p,
+#aboutSection p {
+  text-align: center;
+}
+
+/* Food cards layout */
+#foodGrid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(150px, 1fr)
+  );
+  gap: 18px;
+  width: 100%;
+}
+
+#foodGrid .food-card {
+  text-align: center;
+  min-width: 0;
+}
+
+#foodGrid .food-image {
+  display: block;
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+#foodGrid .food-name,
+#foodGrid .food-price {
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  #foodGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  #foodGrid .food-image {
+    height: 135px;
+  }
+}
   </style>
 </head>
 
