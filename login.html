@@ -312,7 +312,9 @@ button {
       </a>
     </div>
   </header>
-
+<div id="checkingAccount" style="text-align:center;padding:20px;">
+  Checking your account...
+</div>
   <main class="page-shell">
     <div class="welcome-heading">
       <div class="eyebrow">FRESH • SIMPLE • FAMILIAR</div>
@@ -496,21 +498,33 @@ button {
 }
 
   async function checkSession() {
-    try {
-      const client = getSupabaseClient();
-      const { data, error } = await client.auth.getSession();
+  const checkingMessage = document.getElementById("checkingAccount");
 
-      if (error) throw error;
+  try {
+    const client = getSupabaseClient();
+    const { data, error } = await client.auth.getSession();
 
-      if (data.session) {
-        showSignedIn(data.session.user);
-      }
-    } catch (error) {
-      showMessage(
-        error.message || "Could not connect to the account service."
-      );
+    if (error) throw error;
+
+    if (data.session) {
+      showSignedIn(data.session.user);
+    } else {
+      authSection.classList.remove("hidden");
+      authSection.style.display = "block";
+    }
+  } catch (error) {
+    showMessage(
+      error.message || "Could not connect to the account service."
+    );
+
+    authSection.classList.remove("hidden");
+    authSection.style.display = "block";
+  } finally {
+    if (checkingMessage) {
+      checkingMessage.style.display = "none";
     }
   }
+}
 
   loginTab.addEventListener("click", function () {
     setMode("login");
