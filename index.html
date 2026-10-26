@@ -1442,138 +1442,6 @@ body {
   text-decoration: none;
   white-space: nowrap;
 }
-    /* Center OUR FOOD and ABOUT US sections */
-#menu,
-#food,
-#about {
-  text-align: center;
-}
-
-#menu h2,
-#food h2,
-#about h2,
-#menu p,
-#food p,
-#about p {
-  text-align: center;
-}
-    /* Center Food and About headings */
-#foodSection,
-#aboutSection {
-  text-align: center;
-}
-
-#foodSection h1,
-#foodSection h2,
-#foodSection h3,
-#aboutSection h1,
-#aboutSection h2,
-#aboutSection h3 {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#foodSection p,
-#aboutSection p {
-  text-align: center;
-}
-
-/* Food cards layout */
-#foodGrid {
-  display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(150px, 1fr)
-  );
-  gap: 18px;
-  width: 100%;
-}
-
-#foodGrid .food-card {
-  text-align: center;
-  min-width: 0;
-}
-
-#foodGrid .food-image {
-  display: block;
-  width: 100%;
-  height: 170px;
-  object-fit: cover;
-  border-radius: 12px;
-}
-
-#foodGrid .food-name,
-#foodGrid .food-price {
-  text-align: center;
-}
-
-@media (max-width: 480px) {
-  #foodGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-  }
-
-  #foodGrid .food-image {
-    height: 135px;
-  }
-}
-    /* Center OUR FOOD section */
-#food .container,
-#about .container {
-  text-align: center;
-}
-
-#food .section-label,
-#food .section-title,
-#food .section-description,
-#about .section-label,
-#about .section-title,
-#about .section-description {
-  width: 100%;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Keep food cards centered in their grid */
-#food #foodGrid {
-  display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(150px, 1fr)
-  );
-  gap: 18px;
-  width: 100%;
-}
-
-#food #foodGrid .food-card {
-  text-align: center;
-}
-
-#food #foodGrid .food-image {
-  display: block;
-  width: 100%;
-  height: 170px;
-  object-fit: cover;
-  border-radius: 12px;
-}
-
-#food #foodGrid .food-name,
-#food #foodGrid .food-price {
-  text-align: center;
-}
-
-@media (max-width: 480px) {
-  #food #foodGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-  }
-
-  #food #foodGrid .food-image {
-    height: 135px;
-  }
-}
   </style>
 </head>
 
@@ -1588,7 +1456,7 @@ body {
         Fawaz <span>Cafeteria</span>
       </a>
 
-      <a href="login.html" class="customer-login-link">
+      <a href="account.html" class="customer-login-link">
         <span data-lang="en">Login</span>
         <span data-lang="ar">تسجيل الدخول</span>
         <span data-lang="bn">লগইন</span>
@@ -2998,7 +2866,7 @@ async function updateCustomerLoginLink() {
     return;
   }
 
-  loginLink.href = "login.html";
+  loginLink.href = "account.html";
   loginLink.innerHTML = `
     <span data-lang="en">My Account</span>
     <span data-lang="ar">حسابي</span>
@@ -3384,6 +3252,120 @@ async function loadWhatsAppData() {
       link.textContent = displayNumber;
     });
 }
+  
+/* =========================
+   FAWAZ SHOPPING CART
+========================= */
+
+let shoppingCart = [];
+
+try {
+  const savedCart = localStorage.getItem("fawaz-shopping-cart");
+
+  if (savedCart) {
+    const parsedCart = JSON.parse(savedCart);
+
+    if (Array.isArray(parsedCart)) {
+      shoppingCart = parsedCart;
+    }
+  }
+} catch (error) {
+  shoppingCart = [];
+}
+
+function addToCart(food) {
+  const foodId = String(food.id);
+
+  const existingItem = shoppingCart.find(function(item) {
+    return String(item.id) === foodId;
+  });
+
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    shoppingCart.push({
+      id: food.id,
+      name: food.name_en || "Food",
+      image_url: food.image_url || "",
+      price: Number(food.price) || 0,
+      quantity: 1
+    });
+  }
+
+  renderCart();
+}
+
+function saveCart() {
+  try {
+    localStorage.setItem(
+      "fawaz-shopping-cart",
+      JSON.stringify(shoppingCart)
+    );
+  } catch (error) {
+    console.error("Could not save cart:", error);
+  }
+}
+
+function renderCart() {
+  saveCart();
+
+  const cartBox = document.getElementById("shoppingCart");
+
+  // Cart will only render where its container already exists.
+  // Do not insert a new cart into the customer food section.
+  if (!cartBox) {
+    return;
+  }
+
+  if (shoppingCart.length === 0) {
+    cartBox.innerHTML =
+      "<h2>🛒 Your Cart</h2><p>Your cart is empty.</p>";
+    return;
+  }
+
+  let total = 0;
+
+  const itemsHTML = shoppingCart.map(function(item, index) {
+    const price = Number(item.price) || 0;
+    const quantity = Number(item.quantity) || 0;
+    const subtotal = price * quantity;
+
+    total += subtotal;
+
+    return `
+      <div style="padding:10px 0;border-bottom:1px solid #56736e;">
+        <strong>${escapeCartText(item.name)}</strong>
+        <p>SAR ${price.toFixed(2)} × ${quantity}</p>
+        <button type="button" onclick="changeCartQuantity(${index}, -1)">−</button>
+        <button type="button" onclick="changeCartQuantity(${index}, 1)">+</button>
+        <button type="button" onclick="removeCartItem(${index})">Remove</button>
+        <p>Subtotal: SAR ${subtotal.toFixed(2)}</p>
+      </div>
+    `;
+  }).join("");
+
+  cartBox.innerHTML = `
+    <h2>🛒 Your Cart (${shoppingCart.reduce(function(sum, item) {
+      return sum + (Number(item.quantity) || 0);
+    }, 0)})</h2>
+    ${itemsHTML}
+    <h3>Total: SAR ${total.toFixed(2)}</h3>
+    <p>Checkout will be added in the next step.</p>
+  `;
+}
+
+function escapeCartText(value) {
+  return String(value).replace(/[&<>"']/g, function(char) {
+    return {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    }[char];
+  });
+}
+
 async function loadFoodData() {
 
   const foodGrid =
@@ -3447,13 +3429,13 @@ async function loadFoodData() {
     price.textContent =
       "SAR " + food.price;
 
-    card.append(
-      image,
-      name,
-      price
-    );
+card.append(
+  image,
+  name,
+  price
+);
 
-    foodGrid.appendChild(card);
+foodGrid.appendChild(card);
 
   });
 
