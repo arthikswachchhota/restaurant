@@ -294,9 +294,6 @@ button {
     font-size: 28px;
   }
 }
-    .hidden {
-  display: none !important;
-}
 </style>
 </head>
 
@@ -312,9 +309,7 @@ button {
       </a>
     </div>
   </header>
-<div id="checkingAccount" style="text-align:center;padding:20px;">
-  Checking your account...
-</div>
+
   <main class="page-shell">
     <div class="welcome-heading">
       <div class="eyebrow">FRESH • SIMPLE • FAMILIAR</div>
@@ -488,43 +483,29 @@ button {
 }
 
   function showSignedIn(user) {
-  authSection.style.display = "none";
-  document.querySelector(".tabs").style.display = "none";
-  signedInSection.classList.remove("hidden");
-  signedInSection.style.display = "block";
+    authSection.classList.add("hidden");
+    signedInSection.classList.remove("hidden");
 
-  document.getElementById("signedInEmail").textContent =
-    user.email || "Your customer account is active.";
-}
+    document.getElementById("signedInEmail").textContent =
+      user.email || "Your customer account is active.";
+  }
 
   async function checkSession() {
-  const checkingMessage = document.getElementById("checkingAccount");
+    try {
+      const client = getSupabaseClient();
+      const { data, error } = await client.auth.getSession();
 
-  try {
-    const client = getSupabaseClient();
-    const { data, error } = await client.auth.getSession();
+      if (error) throw error;
 
-    if (error) throw error;
-
-    if (data.session) {
-      showSignedIn(data.session.user);
-    } else {
-      authSection.classList.remove("hidden");
-      authSection.style.display = "block";
-    }
-  } catch (error) {
-    showMessage(
-      error.message || "Could not connect to the account service."
-    );
-
-    authSection.classList.remove("hidden");
-    authSection.style.display = "block";
-  } finally {
-    if (checkingMessage) {
-      checkingMessage.style.display = "none";
+      if (data.session) {
+        showSignedIn(data.session.user);
+      }
+    } catch (error) {
+      showMessage(
+        error.message || "Could not connect to the account service."
+      );
     }
   }
-}
 
   loginTab.addEventListener("click", function () {
     setMode("login");
