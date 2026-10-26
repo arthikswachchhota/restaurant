@@ -486,8 +486,10 @@ button {
 }
 
   function showSignedIn(user) {
-  authSection.style.setProperty("display", "none", "important");
-  signedInSection.style.setProperty("display", "block", "important");
+  authSection.style.display = "none";
+  document.querySelector(".tabs").style.display = "none";
+  signedInSection.classList.remove("hidden");
+  signedInSection.style.display = "block";
 
   document.getElementById("signedInEmail").textContent =
     user.email || "Your customer account is active.";
