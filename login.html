@@ -486,12 +486,12 @@ button {
 }
 
   function showSignedIn(user) {
-    authSection.classList.add("hidden");
-    signedInSection.classList.remove("hidden");
+  authSection.style.setProperty("display", "none", "important");
+  signedInSection.style.setProperty("display", "block", "important");
 
-    document.getElementById("signedInEmail").textContent =
-      user.email || "Your customer account is active.";
-  }
+  document.getElementById("signedInEmail").textContent =
+    user.email || "Your customer account is active.";
+}
 
   async function checkSession() {
     try {
