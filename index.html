@@ -2857,7 +2857,7 @@ async function updateCustomerLoginLink() {
   const { data, error } = await supabaseClient.auth.getUser();
 
   if (error || !data.user) {
-    loginLink.href = "login.html";
+    loginLink.href = "account.html";
     loginLink.innerHTML = `
       <span data-lang="en">Login</span>
       <span data-lang="ar">تسجيل الدخول</span>
