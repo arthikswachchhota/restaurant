@@ -675,24 +675,23 @@ function removeAccountCartItem(index) {
       accountContent.hidden = false;
     }
 
-    const logoutButton = document.getElementById("logoutButton");
+    document.getElementById("logoutButton")
+      .addEventListener("click", async () => {
+        const button = document.getElementById("logoutButton");
+        button.disabled = true;
 
-if (logoutButton) {
-  logoutButton.addEventListener("click", async () => {
-    logoutButton.disabled = true;
+        const { error } =
+          await accountSupabase.auth.signOut();
 
-    const { error } = await accountSupabase.auth.signOut();
+        if (error) {
+          console.error("Logout error:", error);
+          button.disabled = false;
+          alert("Logout failed. Please try again.");
+          return;
+        }
 
-    if (error) {
-      console.error("Logout error:", error);
-      logoutButton.disabled = false;
-      alert("Logout failed. Please try again.");
-      return;
-    }
-
-    window.location.replace("index.html");
-  });
-}
+        window.location.replace("index.html");
+      });
 
     let savedLanguage = "en";
 
